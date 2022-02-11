@@ -3,8 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Projects/Android/ITIStimetable/app/src/main/res/layout/activity_main.xml" value="0.36666666666666664" />
+        <entry key="..\:/Projects/Android/ITIStimetable/app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="..\:/Projects/Android/ITIStimetable/app/src/main/res/layout/fragment_entry.xml" value="0.36666666666666664" />
+        <entry key="..\:/Projects/Android/ITIStimetable/app/src/main/res/layout/group_list_item.xml" value="0.36666666666666664" />
         <entry key="..\:/Projects/Android/ITIStimetable/app/src/main/res/layout/table_fragment.xml" value="0.36666666666666664" />
       </map>
     </option>
