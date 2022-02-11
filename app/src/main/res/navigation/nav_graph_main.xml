@@ -11,7 +11,7 @@
         android:label="fragment_groups"
         tools:layout="@layout/fragment_groups" >
         <action
-            android:id="@+id/action_entryFragment_to_tableFragment"
+            android:id="@+id/action_groupsFragment_to_tableFragment"
             app:destination="@id/tableFragment" />
     </fragment>
     <fragment
@@ -20,7 +20,7 @@
         android:label="fragment_table"
         tools:layout="@layout/fragment_table" >
         <action
-            android:id="@+id/action_tableFragment_to_entryFragment"
+            android:id="@+id/action_tableFragment_to_groupsFragment"
             app:destination="@id/groupsFragment" />
     </fragment>
 </navigation>

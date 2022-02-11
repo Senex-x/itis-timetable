@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">ITIS timetable</string>
     <string name="search_group_title">Search for group</string>
+    <string name="open_timetable_title">Open timetable</string>
 </resources>
