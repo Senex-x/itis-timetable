@@ -4,12 +4,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.SpinnerAdapter
 import androidx.fragment.app.Fragment
-import com.senex.timetable.databinding.FragmentEntryBinding
+import com.senex.timetable.databinding.FragmentGroupsBinding
 
-class EntryFragment : Fragment() {
-    private var _binding: FragmentEntryBinding? = null
+class GroupsFragment : Fragment() {
+    private var _binding: FragmentGroupsBinding? = null
     private val binding
         get() = _binding!!
 
@@ -18,7 +17,7 @@ class EntryFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View {
-        _binding = FragmentEntryBinding.inflate(
+        _binding = FragmentGroupsBinding.inflate(
             inflater, container, false
         )
         return binding.root
@@ -29,10 +28,5 @@ class EntryFragment : Fragment() {
         savedInstanceState: Bundle?,
     ) = with(binding) {
 
-
-
-        confirmButton.setOnClickListener {
-
-        }
     }
 }

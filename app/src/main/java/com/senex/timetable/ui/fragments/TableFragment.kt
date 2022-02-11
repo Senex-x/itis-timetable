@@ -26,7 +26,7 @@ class TableFragment : Fragment() {
     override fun onViewCreated(
         view: View,
         savedInstanceState: Bundle?,
-    ) {
+    ) = with(binding) {
 
     }
 }
