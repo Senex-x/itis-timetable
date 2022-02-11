@@ -26,7 +26,7 @@ class GroupsFragment : Fragment() {
     override fun onViewCreated(
         view: View,
         savedInstanceState: Bundle?,
-    ) = with(binding) {
+    ): Unit = with(binding) {
 
     }
 }
