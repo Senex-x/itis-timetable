@@ -1,14 +1,14 @@
-package com.senex.timetable.ui.fragments
+package com.senex.timetable.ui.fragments.table
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.senex.timetable.databinding.FragmentGroupsBinding
+import com.senex.timetable.databinding.FragmentTableBinding
 
-class GroupsFragment : Fragment() {
-    private var _binding: FragmentGroupsBinding? = null
+class TableFragment : Fragment() {
+    private var _binding: FragmentTableBinding? = null
     private val binding
         get() = _binding!!
 
@@ -17,7 +17,7 @@ class GroupsFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View {
-        _binding = FragmentGroupsBinding.inflate(
+        _binding = FragmentTableBinding.inflate(
             inflater, container, false
         )
         return binding.root

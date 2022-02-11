@@ -3,11 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph_main"
-    app:startDestination="@id/groupsFragment">
+    app:startDestination="@id/tableFragment">
 
     <fragment
         android:id="@+id/groupsFragment"
-        android:name="com.senex.timetable.ui.fragments.GroupsFragment"
+        android:name="com.senex.timetable.ui.fragments.groups.GroupsFragment"
         android:label="fragment_groups"
         tools:layout="@layout/fragment_groups" >
         <action
@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/tableFragment"
-        android:name="com.senex.timetable.ui.fragments.TableFragment"
+        android:name="com.senex.timetable.ui.fragments.table.TableFragment"
         android:label="fragment_table"
         tools:layout="@layout/fragment_table" >
         <action

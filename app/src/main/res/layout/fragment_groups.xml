@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="@dimen/default_layout_indent"
-    tools:context=".ui.fragments.GroupsFragment">
+    tools:context=".ui.fragments.groups.GroupsFragment">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/groups_recycler_view"
