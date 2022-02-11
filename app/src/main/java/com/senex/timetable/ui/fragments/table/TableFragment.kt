@@ -37,7 +37,6 @@ class TableFragment : Fragment() {
                 }
                 else -> false
             }
-
         }
     }
 
