@@ -17,5 +17,8 @@ internal fun Context.toast(message: String?) =
 internal fun log(message: String?) =
     Log.d(DEBUG_PREFIX, message ?: "null")
 
+internal suspend fun logs(message: String?) =
+    Log.d(DEBUG_PREFIX, message ?: "null")
+
 internal fun Fragment.log(message: String?) =
     Log.d(DEBUG_PREFIX + ": " + this::class.java.simpleName, message ?: "null")

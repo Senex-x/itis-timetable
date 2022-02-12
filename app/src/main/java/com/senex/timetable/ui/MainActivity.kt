@@ -1,12 +1,12 @@
 package com.senex.timetable.ui
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuItem
-import androidx.navigation.findNavController
-import com.senex.timetable.R
+import androidx.appcompat.app.AppCompatActivity
 import com.senex.timetable.databinding.ActivityMainBinding
+import com.senex.timetable.models.entities.DaySchedule
+import com.senex.timetable.models.entities.GroupSchedule
+import com.senex.timetable.models.entities.Subject
+import com.senex.timetable.models.entities.SubjectType
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -18,3 +18,53 @@ class MainActivity : AppCompatActivity() {
 
     }
 }
+
+val groupScheduleDemo = GroupSchedule(
+    "11-005",
+    listOf(
+        DaySchedule(
+            1,
+            "Monday",
+            listOf(
+                Subject(
+                    "8:30", "10:00",
+                    "Mathematical analysis",
+                    "1306",
+                    SubjectType.Seminar,
+                    true, true,
+                    "Galeev", "Ruslan", "Tagirovich"
+                ),
+                Subject(
+                    "10:10", "11:40",
+                    "Database science",
+                    "1309",
+                    SubjectType.Seminar,
+                    true, true,
+                    "Azat", "Ruslan", "Shavkatovich"
+                )
+            )
+        ),
+        DaySchedule(
+            2,
+            "Tuesday",
+            listOf(
+                Subject(
+                    "8:30", "10:00",
+                    "Mathematical analysis",
+                    "1306",
+                    SubjectType.Seminar,
+                    true, true,
+                    "Galeev", "Ruslan", "Tagirovich"
+                ),
+                Subject(
+                    "10:10", "11:40",
+                    "Database science",
+                    "1309",
+                    SubjectType.Seminar,
+                    true, true,
+                    "Azat", "Ruslan", "Shavkatovich"
+                )
+            )
+        )
+    )
+)
