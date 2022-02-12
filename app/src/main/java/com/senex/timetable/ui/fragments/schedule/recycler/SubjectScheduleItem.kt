@@ -1,6 +1,6 @@
 package com.senex.timetable.ui.fragments.schedule.recycler
 
-class SubjectItem(
+class SubjectScheduleItem(
     val name: String,
 ) : ScheduleListItem {
 

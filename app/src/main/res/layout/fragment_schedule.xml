@@ -22,6 +22,7 @@
         app:titleTextColor="@color/primary" />
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/schedule_recycler_view"
         android:layout_width="0dp"
         android:layout_height="0dp"
         tools:listitem="@layout/schedule_list_item"

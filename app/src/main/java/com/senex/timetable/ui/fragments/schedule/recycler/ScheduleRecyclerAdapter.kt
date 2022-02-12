@@ -15,7 +15,7 @@ class ScheduleRecyclerAdapter(
     ) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(item: ScheduleListItem): Unit = with(binding) {
-            val dayItem = item as DayItem
+            val dayItem = item as DayScheduleItem
 
             name.text = dayItem.name
         }
@@ -26,7 +26,7 @@ class ScheduleRecyclerAdapter(
     ) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(item: ScheduleListItem): Unit = with(binding) {
-            val subjectItem = item as SubjectItem
+            val subjectItem = item as SubjectScheduleItem
 
             name.text = subjectItem.name
         }

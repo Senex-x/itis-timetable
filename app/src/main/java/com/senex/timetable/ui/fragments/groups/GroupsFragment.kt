@@ -44,7 +44,7 @@ class GroupsFragment : Fragment() {
         }
 
         groupsRecyclerView.layoutManager = LinearLayoutManager(requireContext())
-        groupsRecyclerView.adapter = GroupsRecyclerAdapter(EntityRepository.getEntities(10))
+        groupsRecyclerView.adapter = GroupsRecyclerAdapter(EntityRepository.getGroups(10))
     }
 
     private fun navigateToGroupsFragment() {
