@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.fragments.table.TableFragment">
+    tools:context=".ui.fragments.table.ScheduleFragment">
 
     <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/table_toolbar"
@@ -17,7 +17,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:menu="@menu/table_toolbar_menu"
+        app:menu="@menu/schedule_fragment_toolbar_menu"
         app:title="@string/app_name"
         app:titleTextColor="@color/primary" />
 

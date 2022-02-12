@@ -2,7 +2,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/action_open_table"
+        android:id="@+id/action_open_schedule_fragment"
         app:iconTint="@color/primary"
         app:showAsAction="always"
         android:icon="@drawable/ic_table_chart_24"

@@ -1,16 +1,16 @@
 package com.senex.timetable.ui.fragments.table
 
 import android.os.Bundle
-import android.view.*
-import androidx.core.view.children
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.senex.timetable.R
-import com.senex.timetable.databinding.FragmentTableBinding
-import com.senex.timetable.utils.log
+import com.senex.timetable.databinding.FragmentScheduleBinding
 
-class TableFragment : Fragment() {
-    private var _binding: FragmentTableBinding? = null
+class ScheduleFragment : Fragment() {
+    private var _binding: FragmentScheduleBinding? = null
     private val binding
         get() = _binding!!
 
@@ -19,7 +19,7 @@ class TableFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View {
-        _binding = FragmentTableBinding.inflate(
+        _binding = FragmentScheduleBinding.inflate(
             inflater, container, false
         )
         return binding.root
@@ -31,7 +31,7 @@ class TableFragment : Fragment() {
     ): Unit = with(binding) {
         tableToolbar.setOnMenuItemClickListener {
             when(it.itemId) {
-                R.id.action_pick_group -> {
+                R.id.action_open_groups_fragment -> {
                     navigateToTableFragment()
                     true
                 }

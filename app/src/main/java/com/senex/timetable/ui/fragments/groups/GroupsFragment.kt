@@ -34,7 +34,7 @@ class GroupsFragment : Fragment() {
     ): Unit = with(binding) {
         groupsToolbar.setOnMenuItemClickListener {
             when(it.itemId) {
-                R.id.action_open_table -> {
+                R.id.action_open_schedule_fragment -> {
                     navigateToGroupsFragment()
                     true
                 }

@@ -16,7 +16,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:menu="@menu/groups_toolbar_menu"
+        app:menu="@menu/groups_fragment_toolbar_menu"
         app:title="@string/app_name"
         app:titleTextColor="@color/primary" />
 
