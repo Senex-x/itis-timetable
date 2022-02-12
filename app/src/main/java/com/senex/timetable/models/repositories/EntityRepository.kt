@@ -1,9 +1,9 @@
 package com.senex.timetable.models.repositories
 
 import com.senex.timetable.models.entities.*
-import com.senex.timetable.ui.fragments.schedule.recycler.DayScheduleItem
-import com.senex.timetable.ui.fragments.schedule.recycler.ScheduleListItem
-import com.senex.timetable.ui.fragments.schedule.recycler.SubjectScheduleItem
+import com.senex.timetable.ui.fragments.schedule.recycler.items.DayScheduleItem
+import com.senex.timetable.ui.fragments.schedule.recycler.items.ScheduleListItem
+import com.senex.timetable.ui.fragments.schedule.recycler.items.SubjectScheduleItem
 import kotlin.random.Random
 
 object EntityRepository {
@@ -30,7 +30,7 @@ object EntityRepository {
             ))
             for(subject in day.subjects) {
                 items.add(SubjectScheduleItem(
-                    subject.name
+                    subject
                 ))
             }
         }
@@ -38,7 +38,7 @@ object EntityRepository {
         return items
     }
 
-    fun getGroupSchedule() = GroupSchedule(
+    private fun getGroupSchedule() = GroupSchedule(
         "11-005",
         listOf(
             DaySchedule(
