@@ -1,4 +1,4 @@
-package com.senex.timetable.ui.fragments.table
+package com.senex.timetable.ui.fragments.schedule
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -38,6 +38,9 @@ class ScheduleFragment : Fragment() {
                 else -> false
             }
         }
+
+        
+
     }
 
     private fun navigateToTableFragment() {

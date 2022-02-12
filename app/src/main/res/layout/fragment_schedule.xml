@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.fragments.table.ScheduleFragment">
+    tools:context=".ui.fragments.schedule.ScheduleFragment">
 
     <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/table_toolbar"
@@ -24,7 +24,7 @@
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="0dp"
         android:layout_height="0dp"
-        tools:listitem="@layout/table_list_item"
+        tools:listitem="@layout/schedule_list_item"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

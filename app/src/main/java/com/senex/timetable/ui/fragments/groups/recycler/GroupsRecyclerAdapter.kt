@@ -11,9 +11,8 @@ class GroupsRecyclerAdapter(
 ) : RecyclerView.Adapter<GroupsRecyclerAdapter.ViewHolder>() {
 
     inner class ViewHolder(
-        binding: GroupListItemBinding,
+        private val binding: GroupListItemBinding,
     ) : RecyclerView.ViewHolder(binding.root) {
-        private val binding = GroupListItemBinding.bind(itemView)
 
         fun bind(item: Group): Unit = with(binding) {
             groupName.text = item.name
