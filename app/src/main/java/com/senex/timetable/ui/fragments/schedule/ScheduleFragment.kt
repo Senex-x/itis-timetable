@@ -9,7 +9,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.senex.timetable.R
 import com.senex.timetable.databinding.FragmentScheduleBinding
-import com.senex.timetable.models.repositories.EntityRepository
+import com.senex.timetable.model.repositories.MainRepository
 import com.senex.timetable.ui.fragments.schedule.recycler.ScheduleRecyclerAdapter
 
 class ScheduleFragment : Fragment() {
@@ -43,7 +43,7 @@ class ScheduleFragment : Fragment() {
         }
 
         scheduleRecyclerView.layoutManager = LinearLayoutManager(requireContext())
-        scheduleRecyclerView.adapter = ScheduleRecyclerAdapter(EntityRepository.getScheduleListItems())
+        scheduleRecyclerView.adapter = ScheduleRecyclerAdapter(MainRepository.getScheduleListItems())
     }
 
     private fun navigateToTableFragment() {

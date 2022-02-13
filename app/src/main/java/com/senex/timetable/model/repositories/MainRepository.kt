@@ -1,19 +1,20 @@
-package com.senex.timetable.models.repositories
+package com.senex.timetable.model.repositories
 
-import com.senex.timetable.models.entities.*
+import com.senex.timetable.model.entities.*
 import com.senex.timetable.ui.fragments.schedule.recycler.items.DayScheduleItem
 import com.senex.timetable.ui.fragments.schedule.recycler.items.ScheduleListItem
 import com.senex.timetable.ui.fragments.schedule.recycler.items.SubjectScheduleItem
 import kotlin.random.Random
 
-object EntityRepository {
+object MainRepository {
     fun getGroups(count: Int): List<Group> {
         val list = mutableListOf<Group>()
 
         for (i in 1..count) {
             list.add(Group(
                 Random.nextInt(10, 20).toString() + "-" +
-                        Random.nextInt(100, 1000).toString()
+                        Random.nextInt(100, 1000).toString(),
+                Random.nextInt(1, 5)
             ))
         }
 

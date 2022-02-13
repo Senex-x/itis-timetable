@@ -1,4 +1,4 @@
-package com.senex.timetable.models.entities
+package com.senex.timetable.model.entities
 
 data class GroupSchedule(
     val groupName: String,
