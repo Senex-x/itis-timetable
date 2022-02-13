@@ -12,6 +12,7 @@ object MainRepository {
 
         for (i in 1..count) {
             list.add(Group(
+                Random.nextLong(),
                 Random.nextInt(10, 20).toString() + "-" +
                         Random.nextInt(100, 1000).toString(),
                 Random.nextInt(1, 5)
@@ -25,11 +26,11 @@ object MainRepository {
         val items = mutableListOf<ScheduleListItem>()
         val groupSchedule = getGroupSchedule()
 
-        for(day in groupSchedule.dailySchedules) {
+        for (day in groupSchedule.dailySchedules) {
             items.add(DayScheduleItem(
                 day.name
             ))
-            for(subject in day.subjects) {
+            for (subject in day.subjects) {
                 items.add(SubjectScheduleItem(
                     subject
                 ))

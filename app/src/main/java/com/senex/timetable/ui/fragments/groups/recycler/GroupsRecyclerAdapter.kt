@@ -10,6 +10,8 @@ import com.senex.timetable.model.entities.Group
 class GroupsRecyclerAdapter : ListAdapter<Group, GroupsRecyclerAdapter.ViewHolder>(
     GroupDiffCallback
 ) {
+    var onItemClickListener: ((Long) -> Unit)? = null
+
     inner class ViewHolder(
         private val binding: GroupListItemBinding,
     ) : RecyclerView.ViewHolder(binding.root) {
@@ -17,6 +19,10 @@ class GroupsRecyclerAdapter : ListAdapter<Group, GroupsRecyclerAdapter.ViewHolde
         fun bind(item: Group): Unit = with(binding) {
             courseNumber.text = item.courseNumber.toString()
             name.text = item.name
+
+            root.setOnClickListener {
+                onItemClickListener?.invoke(item.id!!)
+            }
         }
     }
 
