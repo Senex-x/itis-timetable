@@ -2,11 +2,8 @@ package com.senex.timetable.ui.fragments.schedule.recycler.items
 
 import com.senex.timetable.model.entities.Subject
 
-class SubjectScheduleItem(
+internal class SubjectItem(
     val item: Subject
 ) : ScheduleListItem {
-
-    override fun getViewType(): Int {
-        return ScheduleListItemType.Subject.value
-    }
+    override fun getViewType() = ScheduleListItemType.Subject.value
 }

@@ -4,7 +4,7 @@ interface ScheduleListItem {
     fun getViewType(): Int
 }
 
-enum class ScheduleListItemType(val value: Int) {
+internal enum class ScheduleListItemType(val value: Int) {
     Day(1),
     Subject(2),
 }

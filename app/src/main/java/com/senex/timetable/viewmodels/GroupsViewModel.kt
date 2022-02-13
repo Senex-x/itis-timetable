@@ -9,6 +9,8 @@ class GroupsViewModel : ViewModel() {
         MainRepository.getGroups(20)
     }
 
+    var onListChangeListener: ((List<Group>) -> Unit)? = null
+
     fun getGroupList() = groups
 
     fun getGroup(id: Long) =
@@ -16,5 +18,9 @@ class GroupsViewModel : ViewModel() {
 
     fun setPrimaryGroup(groupId: Long) {
         // TODO: save state
+    }
+
+    private fun notifyListChangeListener() {
+        onListChangeListener?.invoke(groups)
     }
 }

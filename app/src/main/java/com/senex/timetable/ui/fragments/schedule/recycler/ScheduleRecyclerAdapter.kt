@@ -6,10 +6,10 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.senex.timetable.databinding.ScheduleDayListItemBinding
 import com.senex.timetable.databinding.ScheduleListItemBinding
-import com.senex.timetable.ui.fragments.schedule.recycler.items.DayScheduleItem
+import com.senex.timetable.ui.fragments.schedule.recycler.items.DayItem
 import com.senex.timetable.ui.fragments.schedule.recycler.items.ScheduleListItem
 import com.senex.timetable.ui.fragments.schedule.recycler.items.ScheduleListItemType
-import com.senex.timetable.ui.fragments.schedule.recycler.items.SubjectScheduleItem
+import com.senex.timetable.ui.fragments.schedule.recycler.items.SubjectItem
 
 class ScheduleRecyclerAdapter(
     private val items: List<ScheduleListItem>,
@@ -20,7 +20,7 @@ class ScheduleRecyclerAdapter(
     ) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(item: ScheduleListItem): Unit = with(binding) {
-            val dayItem = item as DayScheduleItem
+            val dayItem = item as DayItem
 
             name.text = dayItem.name
         }
@@ -32,7 +32,7 @@ class ScheduleRecyclerAdapter(
 
         @SuppressLint("SetTextI18n")
         fun bind(item: ScheduleListItem): Unit = with(binding) {
-            val subjectItem = item as SubjectScheduleItem
+            val subjectItem = item as SubjectItem
 
             period.text = subjectItem.item.startTime +
                     "\n" + subjectItem.item.endTime

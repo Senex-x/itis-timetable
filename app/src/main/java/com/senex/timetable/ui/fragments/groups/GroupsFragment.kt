@@ -10,8 +10,6 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.senex.timetable.R
 import com.senex.timetable.databinding.FragmentGroupsBinding
-import com.senex.timetable.model.entities.Group
-import com.senex.timetable.model.repositories.MainRepository
 import com.senex.timetable.ui.fragments.groups.recycler.GroupsRecyclerAdapter
 import com.senex.timetable.utils.toast
 import com.senex.timetable.viewmodels.GroupsViewModel
