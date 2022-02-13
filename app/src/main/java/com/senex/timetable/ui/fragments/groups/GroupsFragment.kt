@@ -9,7 +9,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.senex.timetable.R
 import com.senex.timetable.databinding.FragmentGroupsBinding
-import com.senex.timetable.models.repositories.EntityRepository
+import com.senex.timetable.model.repositories.MainRepository
 import com.senex.timetable.ui.fragments.groups.recycler.GroupsRecyclerAdapter
 
 class GroupsFragment : Fragment() {
@@ -44,7 +44,9 @@ class GroupsFragment : Fragment() {
         }
 
         groupsRecyclerView.layoutManager = LinearLayoutManager(requireContext())
-        groupsRecyclerView.adapter = GroupsRecyclerAdapter(EntityRepository.getGroups(10))
+        groupsRecyclerView.adapter = GroupsRecyclerAdapter().apply {
+            submitList(MainRepository.getGroups(20))
+        }
     }
 
     private fun navigateToGroupsFragment() {

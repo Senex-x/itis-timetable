@@ -2,20 +2,21 @@ package com.senex.timetable.ui.fragments.groups.recycler
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.senex.timetable.databinding.GroupListItemBinding
-import com.senex.timetable.models.entities.Group
+import com.senex.timetable.model.entities.Group
 
-class GroupsRecyclerAdapter(
-    private val items: List<Group>,
-) : RecyclerView.Adapter<GroupsRecyclerAdapter.ViewHolder>() {
-
+class GroupsRecyclerAdapter : ListAdapter<Group, GroupsRecyclerAdapter.ViewHolder>(
+    GroupDiffCallback
+) {
     inner class ViewHolder(
         private val binding: GroupListItemBinding,
     ) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(item: Group): Unit = with(binding) {
-            groupName.text = item.name
+            courseNumber.text = item.courseNumber.toString()
+            name.text = item.name
         }
     }
 
@@ -34,8 +35,6 @@ class GroupsRecyclerAdapter(
         holder: ViewHolder,
         position: Int,
     ) = holder.bind(
-        items[position]
+        getItem(position)
     )
-
-    override fun getItemCount() = items.size
 }
