@@ -16,8 +16,8 @@ data class Subject(
 }
 
 enum class SubjectType {
-    Lecture,
-    Seminar,
+    LECTURE,
+    SEMINAR,
 }
 
 

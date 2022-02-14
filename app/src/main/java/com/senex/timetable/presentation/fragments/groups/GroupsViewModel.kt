@@ -16,7 +16,7 @@ class GroupsViewModel : ViewModel() {
 
     fun getGroup(id: Long): Group  {
         val groupListItem = groups.find { item ->
-            item.getViewType() == GroupListItemType.Group.value
+            item.getViewType() == GroupListItemType.GROUP.value
                     && (item as GroupItem).group.id == id
         } ?: throw IllegalArgumentException()
 

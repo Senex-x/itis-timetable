@@ -50,7 +50,7 @@ class ScheduleRecyclerAdapter(
         parent: ViewGroup,
         viewType: Int,
     ) = when (viewType) {
-        ScheduleListItemType.Day.value ->
+        ScheduleListItemType.DAY.value ->
             DayViewHolder(
                 ScheduleDayListItemBinding.inflate(
                     LayoutInflater.from(parent.context),
@@ -58,7 +58,7 @@ class ScheduleRecyclerAdapter(
                     false
                 ))
 
-        ScheduleListItemType.Subject.value ->
+        ScheduleListItemType.SUBJECT.value ->
             SubjectViewHolder(
                 ScheduleListItemBinding.inflate(
                     LayoutInflater.from(parent.context),
@@ -73,11 +73,11 @@ class ScheduleRecyclerAdapter(
         holder: RecyclerView.ViewHolder,
         position: Int,
     ) = when (holder.itemViewType) {
-        ScheduleListItemType.Day.value ->
+        ScheduleListItemType.DAY.value ->
             (holder as DayViewHolder)
                 .bind(items[position])
 
-        ScheduleListItemType.Subject.value ->
+        ScheduleListItemType.SUBJECT.value ->
             (holder as SubjectViewHolder)
                 .bind(items[position])
 

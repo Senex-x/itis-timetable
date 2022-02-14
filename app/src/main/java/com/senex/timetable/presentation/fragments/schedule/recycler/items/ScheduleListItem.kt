@@ -5,6 +5,6 @@ interface ScheduleListItem {
 }
 
 internal enum class ScheduleListItemType(val value: Int) {
-    Day(1),
-    Subject(2),
+    DAY(1),
+    SUBJECT(2),
 }

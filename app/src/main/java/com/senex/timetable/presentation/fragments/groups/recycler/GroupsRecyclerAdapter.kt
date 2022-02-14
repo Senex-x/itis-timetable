@@ -49,14 +49,14 @@ class GroupsRecyclerAdapter : ListAdapter<GroupListItem, RecyclerView.ViewHolder
         parent: ViewGroup,
         viewType: Int,
     ) = when (viewType) {
-        GroupListItemType.Course.value -> CourseViewHolder(
+        GroupListItemType.COURSE.value -> CourseViewHolder(
             GroupCourseListItemBinding.inflate(
                 LayoutInflater.from(parent.context),
                 parent,
                 false
             )
         )
-        GroupListItemType.Group.value -> GroupViewHolder(
+        GroupListItemType.GROUP.value -> GroupViewHolder(
             GroupListItemBinding.inflate(
                 LayoutInflater.from(parent.context),
                 parent,
@@ -69,11 +69,11 @@ class GroupsRecyclerAdapter : ListAdapter<GroupListItem, RecyclerView.ViewHolder
         holder: RecyclerView.ViewHolder,
         position: Int,
     ) = when (holder.itemViewType) {
-        GroupListItemType.Course.value ->
+        GroupListItemType.COURSE.value ->
             (holder as CourseViewHolder)
                 .bind(getItem(position))
 
-        GroupListItemType.Group.value ->
+        GroupListItemType.GROUP.value ->
             (holder as GroupViewHolder)
                 .bind(getItem(position))
 

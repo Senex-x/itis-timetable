@@ -99,7 +99,7 @@ object MainRepository {
                         "8:30", "10:00",
                         "Mathematical analysis",
                         "1306",
-                        SubjectType.Seminar,
+                        SubjectType.SEMINAR,
                         true, true,
                         "Galeev", "Ruslan", "Tagirovich"
                     ),
@@ -107,7 +107,7 @@ object MainRepository {
                         "10:10", "11:40",
                         "Database science",
                         "1309",
-                        SubjectType.Seminar,
+                        SubjectType.SEMINAR,
                         true, true,
                         "Azat", "Ruslan", "Shavkatovich"
                     )
@@ -121,7 +121,7 @@ object MainRepository {
                         "8:30", "10:00",
                         "Mathematical analysis",
                         "1306",
-                        SubjectType.Seminar,
+                        SubjectType.SEMINAR,
                         true, true,
                         "Galeev", "Ruslan", "Tagirovich"
                     ),
@@ -129,7 +129,7 @@ object MainRepository {
                         "10:10", "11:40",
                         "Database science",
                         "1309",
-                        SubjectType.Seminar,
+                        SubjectType.SEMINAR,
                         true, true,
                         "Azat", "Ruslan", "Shavkatovich"
                     )

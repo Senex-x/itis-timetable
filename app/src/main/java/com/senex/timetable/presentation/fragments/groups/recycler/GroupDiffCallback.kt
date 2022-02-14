@@ -10,12 +10,12 @@ object GroupDiffCallback : DiffUtil.ItemCallback<GroupListItem>() {
     override fun areItemsTheSame(
         oldItem: GroupListItem,
         newItem: GroupListItem,
-    ) = if (oldItem.getViewType() == GroupListItemType.Course.value
-        && newItem.getViewType() == GroupListItemType.Course.value
+    ) = if (oldItem.getViewType() == GroupListItemType.COURSE.value
+        && newItem.getViewType() == GroupListItemType.COURSE.value
     ) {
         (oldItem as CourseItem).courseNumber == (newItem as CourseItem).courseNumber
-    } else if (oldItem.getViewType() == GroupListItemType.Group.value
-        && newItem.getViewType() == GroupListItemType.Group.value
+    } else if (oldItem.getViewType() == GroupListItemType.GROUP.value
+        && newItem.getViewType() == GroupListItemType.GROUP.value
     ) {
         (oldItem as GroupItem).group.id == (newItem as GroupItem).group.id
     } else {
@@ -25,12 +25,12 @@ object GroupDiffCallback : DiffUtil.ItemCallback<GroupListItem>() {
     override fun areContentsTheSame(
         oldItem: GroupListItem,
         newItem: GroupListItem,
-    ) = if (oldItem.getViewType() == GroupListItemType.Course.value
-        && newItem.getViewType() == GroupListItemType.Course.value
+    ) = if (oldItem.getViewType() == GroupListItemType.COURSE.value
+        && newItem.getViewType() == GroupListItemType.COURSE.value
     ) {
         (oldItem as CourseItem).courseNumber == (newItem as CourseItem).courseNumber
-    } else if (oldItem.getViewType() == GroupListItemType.Group.value
-        && newItem.getViewType() == GroupListItemType.Group.value
+    } else if (oldItem.getViewType() == GroupListItemType.GROUP.value
+        && newItem.getViewType() == GroupListItemType.GROUP.value
     ) {
         (oldItem as GroupItem).group == (newItem as GroupItem).group
     } else {

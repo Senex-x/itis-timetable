@@ -5,6 +5,6 @@ interface GroupListItem {
 }
 
 internal enum class GroupListItemType(val value: Int) {
-    Course(1),
-    Group(2),
+    COURSE(1),
+    GROUP(2),
 }

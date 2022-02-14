@@ -5,5 +5,5 @@ import com.senex.timetable.data.models.Subject
 internal class SubjectItem(
     val item: Subject
 ) : ScheduleListItem {
-    override fun getViewType() = ScheduleListItemType.Subject.value
+    override fun getViewType() = ScheduleListItemType.SUBJECT.value
 }
