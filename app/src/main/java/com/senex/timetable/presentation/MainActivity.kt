@@ -3,7 +3,7 @@ package com.senex.timetable.presentation
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.senex.timetable.databinding.ActivityMainBinding
-import com.senex.timetable.utils.SharedPreferencesUtil
+import com.senex.timetable.utils.SharedPreferencesHandler
 import com.senex.timetable.utils.log
 
 class MainActivity : AppCompatActivity() {
@@ -18,7 +18,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun doOptionalLogging() {
-        log(SharedPreferencesUtil(applicationContext)
+        log(SharedPreferencesHandler(applicationContext)
             .getSavedGroupId().toString()
         )
     }

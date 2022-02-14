@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.senex.timetable.R
 import com.senex.timetable.databinding.FragmentGroupsBinding
 import com.senex.timetable.presentation.groups.recycler.GroupsRecyclerAdapter
-import com.senex.timetable.utils.SharedPreferencesUtil
+import com.senex.timetable.utils.SharedPreferencesHandler
 import com.senex.timetable.utils.toast
 
 class GroupsFragment : Fragment() {
@@ -22,12 +22,12 @@ class GroupsFragment : Fragment() {
 
     private val viewModel: GroupsViewModel by viewModels()
 
-    private lateinit var preferences: SharedPreferencesUtil
+    private lateinit var preferences: SharedPreferencesHandler
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
 
-        preferences = SharedPreferencesUtil(context)
+        preferences = SharedPreferencesHandler(context)
     }
 
     override fun onCreateView(

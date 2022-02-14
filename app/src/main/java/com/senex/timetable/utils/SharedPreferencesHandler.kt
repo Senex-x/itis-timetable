@@ -8,7 +8,7 @@ private const val SHARED_PREFERENCES_FILE_NAME =
 private const val SHARED_PREFERENCES_GROUP_ID_KEY =
     "group-id"
 
-class SharedPreferencesUtil(
+class SharedPreferencesHandler(
     context: Context,
 ) {
     private val sharedPreferences: SharedPreferences = context.applicationContext
