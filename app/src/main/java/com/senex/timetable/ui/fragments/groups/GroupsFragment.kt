@@ -48,7 +48,7 @@ class GroupsFragment : Fragment() {
 
         groupsRecyclerView.layoutManager = LinearLayoutManager(requireContext())
         groupsRecyclerView.adapter = GroupsRecyclerAdapter().apply {
-            submitList(viewModel.getGroupList())
+            submitList(viewModel.groups)
             onItemClickListener = onGroupItemClick
         }
     }

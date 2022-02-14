@@ -1,6 +1,8 @@
 package com.senex.timetable.model.repositories
 
 import com.senex.timetable.model.entities.*
+import com.senex.timetable.ui.fragments.groups.recycler.items.CourseItem
+import com.senex.timetable.ui.fragments.groups.recycler.items.GroupItem
 import com.senex.timetable.ui.fragments.groups.recycler.items.GroupListItem
 import com.senex.timetable.ui.fragments.schedule.recycler.items.DayItem
 import com.senex.timetable.ui.fragments.schedule.recycler.items.ScheduleListItem
@@ -8,7 +10,7 @@ import com.senex.timetable.ui.fragments.schedule.recycler.items.SubjectItem
 import kotlin.random.Random
 
 object MainRepository {
-    fun getGroups(count: Int): List<Group> {
+    fun getGroupsList(count: Int): List<Group> {
         val list = mutableListOf<Group>()
 
         for (i in 1..count) {
@@ -23,16 +25,47 @@ object MainRepository {
         return list
     }
 
-    fun getAllGroups() {
-        val groups = getGroups(20)
-            .sortedWith(Comparator.comparingLong { group -> group.id!! })
+    fun getGroups(count: Int = 20): Map<Int, List<Group>> {
+        val map = mutableMapOf<Int, List<Group>>()
+        val intermediateMap = mutableMapOf<Int, MutableList<Group>>()
 
+        for (i in 1..count) {
+            val courseNumber = Random.nextInt(1, 5)
+
+            val group = Group(
+                Random.nextLong(),
+                Random.nextInt(10, 20).toString() + "-" +
+                        Random.nextInt(100, 1000).toString(),
+                courseNumber
+            )
+
+            intermediateMap
+                .getOrPut(courseNumber) { mutableListOf() }
+                .add(group)
+        }
+
+        for ((key, list) in intermediateMap) {
+            map[key] = list
+        }
+
+        return map
     }
 
     fun getGroupListItems(): List<GroupListItem> {
         val items = mutableListOf<GroupListItem>()
-        val groups = getGroups(20)
-            .sortedWith(Comparator.comparingLong { group -> group.id!! })
+        val groups = getGroups()
+
+        for(i in 1..4) {
+            val list = groups[i]
+
+            list?.let {
+                items.add(CourseItem(i))
+
+                for(group in list) {
+                    items.add(GroupItem(group))
+                }
+            }
+        }
 
         return items
     }

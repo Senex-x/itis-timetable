@@ -4,43 +4,79 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.senex.timetable.databinding.GroupCourseListItemBinding
 import com.senex.timetable.databinding.GroupListItemBinding
-import com.senex.timetable.model.entities.Group
+import com.senex.timetable.ui.fragments.groups.recycler.items.CourseItem
+import com.senex.timetable.ui.fragments.groups.recycler.items.GroupItem
+import com.senex.timetable.ui.fragments.groups.recycler.items.GroupListItem
+import com.senex.timetable.ui.fragments.groups.recycler.items.GroupListItemType
 
-class GroupsRecyclerAdapter : ListAdapter<Group, GroupsRecyclerAdapter.ViewHolder>(
+class GroupsRecyclerAdapter : ListAdapter<GroupListItem, RecyclerView.ViewHolder>(
     GroupDiffCallback
 ) {
     var onItemClickListener: ((Long) -> Unit)? = null
 
-    inner class ViewHolder(
+    inner class CourseViewHolder(
+        private val binding: GroupCourseListItemBinding,
+    ) : RecyclerView.ViewHolder(binding.root) {
+
+        fun bind(item: GroupListItem): Unit = with(binding) {
+            val courseItem = item as CourseItem
+
+            number.text = courseItem.courseNumber.toString()
+        }
+    }
+
+    inner class GroupViewHolder(
         private val binding: GroupListItemBinding,
     ) : RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(item: Group): Unit = with(binding) {
-            courseNumber.text = item.courseNumber.toString()
-            name.text = item.name
+        fun bind(item: GroupListItem): Unit = with(binding) {
+            val group = (item as GroupItem).group
+
+            name.text = group.name
 
             root.setOnClickListener {
-                onItemClickListener?.invoke(item.id!!)
+                onItemClickListener?.invoke(group.id!!)
             }
         }
     }
 
+    override fun getItemViewType(position: Int) =
+        getItem(position).getViewType()
+
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int,
-    ) = ViewHolder(
-        GroupListItemBinding.inflate(
-            LayoutInflater.from(parent.context),
-            parent,
-            false
+    ) = when (viewType) {
+        GroupListItemType.Course.value -> CourseViewHolder(
+            GroupCourseListItemBinding.inflate(
+                LayoutInflater.from(parent.context),
+                parent,
+                false
+            )
         )
-    )
+        GroupListItemType.Group.value -> GroupViewHolder(
+            GroupListItemBinding.inflate(
+                LayoutInflater.from(parent.context),
+                parent,
+                false
+            ))
+        else -> throw IllegalArgumentException()
+    }
 
     override fun onBindViewHolder(
-        holder: ViewHolder,
+        holder: RecyclerView.ViewHolder,
         position: Int,
-    ) = holder.bind(
-        getItem(position)
-    )
+    ) = when (holder.itemViewType) {
+        GroupListItemType.Course.value ->
+            (holder as CourseViewHolder)
+                .bind(getItem(position))
+
+        GroupListItemType.Group.value ->
+            (holder as GroupViewHolder)
+                .bind(getItem(position))
+
+        else -> throw IllegalArgumentException()
+    }
 }
