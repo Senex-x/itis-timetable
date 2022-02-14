@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.fragments.schedule.ScheduleFragment">
+    tools:context=".presentation.fragments.schedule.ScheduleFragment">
 
     <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/table_toolbar"

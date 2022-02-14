@@ -1,4 +1,4 @@
-package com.senex.timetable.ui.fragments.groups.recycler
+package com.senex.timetable.presentation.fragments.groups.recycler
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -6,10 +6,10 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.senex.timetable.databinding.GroupCourseListItemBinding
 import com.senex.timetable.databinding.GroupListItemBinding
-import com.senex.timetable.ui.fragments.groups.recycler.items.CourseItem
-import com.senex.timetable.ui.fragments.groups.recycler.items.GroupItem
-import com.senex.timetable.ui.fragments.groups.recycler.items.GroupListItem
-import com.senex.timetable.ui.fragments.groups.recycler.items.GroupListItemType
+import com.senex.timetable.presentation.fragments.groups.recycler.items.CourseItem
+import com.senex.timetable.presentation.fragments.groups.recycler.items.GroupItem
+import com.senex.timetable.presentation.fragments.groups.recycler.items.GroupListItem
+import com.senex.timetable.presentation.fragments.groups.recycler.items.GroupListItemType
 
 class GroupsRecyclerAdapter : ListAdapter<GroupListItem, RecyclerView.ViewHolder>(
     GroupDiffCallback

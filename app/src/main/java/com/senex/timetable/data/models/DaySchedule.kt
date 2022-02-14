@@ -1,4 +1,4 @@
-package com.senex.timetable.model.entities
+package com.senex.timetable.data.models
 
 data class DaySchedule(
     val numberInWeek: Int,

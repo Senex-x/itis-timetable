@@ -1,4 +1,4 @@
-package com.senex.timetable.ui.fragments.schedule.recycler.items
+package com.senex.timetable.presentation.fragments.schedule.recycler.items
 
 internal class DayItem(
     val name: String,

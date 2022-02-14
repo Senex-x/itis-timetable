@@ -1,4 +1,4 @@
-package com.senex.timetable.ui.fragments.groups.recycler.items
+package com.senex.timetable.presentation.fragments.groups.recycler.items
 
 interface GroupListItem {
     fun getViewType(): Int

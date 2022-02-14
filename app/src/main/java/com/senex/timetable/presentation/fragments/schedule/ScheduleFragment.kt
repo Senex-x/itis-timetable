@@ -1,4 +1,4 @@
-package com.senex.timetable.ui.fragments.schedule
+package com.senex.timetable.presentation.fragments.schedule
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,13 +7,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.senex.timetable.R
 import com.senex.timetable.databinding.FragmentScheduleBinding
-import com.senex.timetable.model.repositories.MainRepository
-import com.senex.timetable.ui.fragments.schedule.recycler.ScheduleRecyclerAdapter
-import com.senex.timetable.viewmodels.GroupsViewModel
-import com.senex.timetable.viewmodels.ScheduleViewModel
 
 class ScheduleFragment : Fragment() {
     private var _binding: FragmentScheduleBinding? = null
