@@ -1,4 +1,4 @@
-package com.senex.timetable.presentation.fragments.schedule.recycler
+package com.senex.timetable.presentation.schedule.recycler
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
@@ -6,10 +6,10 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.senex.timetable.databinding.ScheduleDayListItemBinding
 import com.senex.timetable.databinding.ScheduleListItemBinding
-import com.senex.timetable.presentation.fragments.schedule.recycler.items.DayItem
-import com.senex.timetable.presentation.fragments.schedule.recycler.items.ScheduleListItem
-import com.senex.timetable.presentation.fragments.schedule.recycler.items.ScheduleListItemType
-import com.senex.timetable.presentation.fragments.schedule.recycler.items.SubjectItem
+import com.senex.timetable.presentation.schedule.recycler.items.DayItem
+import com.senex.timetable.presentation.schedule.recycler.items.ScheduleListItem
+import com.senex.timetable.presentation.schedule.recycler.items.ScheduleListItemType
+import com.senex.timetable.presentation.schedule.recycler.items.SubjectItem
 
 class ScheduleRecyclerAdapter(
     private val items: List<ScheduleListItem>,

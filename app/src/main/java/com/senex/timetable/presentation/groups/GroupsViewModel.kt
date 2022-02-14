@@ -1,11 +1,11 @@
-package com.senex.timetable.presentation.fragments.groups
+package com.senex.timetable.presentation.groups
 
 import androidx.lifecycle.ViewModel
 import com.senex.timetable.data.models.Group
 import com.senex.timetable.data.repositories.MainRepository
-import com.senex.timetable.presentation.fragments.groups.recycler.items.GroupItem
-import com.senex.timetable.presentation.fragments.groups.recycler.items.GroupListItem
-import com.senex.timetable.presentation.fragments.groups.recycler.items.GroupListItemType
+import com.senex.timetable.presentation.groups.recycler.items.GroupItem
+import com.senex.timetable.presentation.groups.recycler.items.GroupListItem
+import com.senex.timetable.presentation.groups.recycler.items.GroupListItemType
 
 class GroupsViewModel : ViewModel() {
     val groups by lazy {

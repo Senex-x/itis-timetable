@@ -1,4 +1,4 @@
-package com.senex.timetable.presentation.fragments.groups
+package com.senex.timetable.presentation.groups
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,7 +10,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.senex.timetable.R
 import com.senex.timetable.databinding.FragmentGroupsBinding
-import com.senex.timetable.presentation.fragments.groups.recycler.GroupsRecyclerAdapter
+import com.senex.timetable.presentation.groups.recycler.GroupsRecyclerAdapter
 import com.senex.timetable.utils.toast
 
 class GroupsFragment : Fragment() {

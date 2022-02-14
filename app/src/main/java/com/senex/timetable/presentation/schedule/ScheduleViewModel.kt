@@ -1,4 +1,4 @@
-package com.senex.timetable.presentation.fragments.schedule
+package com.senex.timetable.presentation.schedule
 
 import androidx.lifecycle.ViewModel
 import com.senex.timetable.data.repositories.MainRepository

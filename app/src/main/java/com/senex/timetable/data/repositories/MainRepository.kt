@@ -1,12 +1,12 @@
 package com.senex.timetable.data.repositories
 
 import com.senex.timetable.data.models.*
-import com.senex.timetable.presentation.fragments.groups.recycler.items.CourseItem
-import com.senex.timetable.presentation.fragments.groups.recycler.items.GroupItem
-import com.senex.timetable.presentation.fragments.groups.recycler.items.GroupListItem
-import com.senex.timetable.presentation.fragments.schedule.recycler.items.DayItem
-import com.senex.timetable.presentation.fragments.schedule.recycler.items.ScheduleListItem
-import com.senex.timetable.presentation.fragments.schedule.recycler.items.SubjectItem
+import com.senex.timetable.presentation.groups.recycler.items.CourseItem
+import com.senex.timetable.presentation.groups.recycler.items.GroupItem
+import com.senex.timetable.presentation.groups.recycler.items.GroupListItem
+import com.senex.timetable.presentation.schedule.recycler.items.DayItem
+import com.senex.timetable.presentation.schedule.recycler.items.ScheduleListItem
+import com.senex.timetable.presentation.schedule.recycler.items.SubjectItem
 import kotlin.random.Random
 
 object MainRepository {

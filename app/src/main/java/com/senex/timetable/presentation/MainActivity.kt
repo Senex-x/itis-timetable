@@ -1,4 +1,4 @@
-package com.senex.timetable.presentation.activity
+package com.senex.timetable.presentation
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity

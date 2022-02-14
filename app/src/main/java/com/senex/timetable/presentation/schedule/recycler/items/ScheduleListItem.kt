@@ -1,4 +1,4 @@
-package com.senex.timetable.presentation.fragments.schedule.recycler.items
+package com.senex.timetable.presentation.schedule.recycler.items
 
 interface ScheduleListItem {
     fun getViewType(): Int

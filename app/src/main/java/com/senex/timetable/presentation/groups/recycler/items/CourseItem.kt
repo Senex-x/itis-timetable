@@ -1,4 +1,4 @@
-package com.senex.timetable.presentation.fragments.groups.recycler.items
+package com.senex.timetable.presentation.groups.recycler.items
 
 class CourseItem(
     val courseNumber: Int,
