@@ -1,5 +1,6 @@
 package com.senex.timetable.presentation.groups
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.senex.timetable.R
 import com.senex.timetable.databinding.FragmentGroupsBinding
 import com.senex.timetable.presentation.groups.recycler.GroupsRecyclerAdapter
+import com.senex.timetable.utils.SharedPreferencesUtil
 import com.senex.timetable.utils.toast
 
 class GroupsFragment : Fragment() {
@@ -19,6 +21,14 @@ class GroupsFragment : Fragment() {
         get() = _binding!!
 
     private val viewModel: GroupsViewModel by viewModels()
+
+    private lateinit var preferences: SharedPreferencesUtil
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+
+        preferences = SharedPreferencesUtil(context)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -55,6 +65,7 @@ class GroupsFragment : Fragment() {
     private val onGroupItemClick: (Long) -> Unit = {
         val group = viewModel.getGroup(it)
         requireContext().toast("Group ${group.name} selected")
+        preferences.saveGroupId(group.id)
     }
 
     private fun navigateToGroupsFragment() {
