@@ -89,6 +89,7 @@ object MainRepository {
     }
 
     private fun getGroupSchedule() = GroupSchedule(
+        1,
         "11-005",
         listOf(
             DaySchedule(
