@@ -21,13 +21,9 @@ class GroupsFragment : Fragment() {
         get() = _binding!!
 
     private val viewModel: GroupsViewModel by viewModels()
-
-    private lateinit var preferences: SharedPreferencesHandler
-
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-
-        preferences = SharedPreferencesHandler(context)
+    //TODO: move to viewmodel
+    private val preferences by lazy {
+        SharedPreferencesHandler(requireContext())
     }
 
     override fun onCreateView(
@@ -57,7 +53,9 @@ class GroupsFragment : Fragment() {
 
         groupsRecyclerView.layoutManager = LinearLayoutManager(requireContext())
         groupsRecyclerView.adapter = GroupsRecyclerAdapter().apply {
-            submitList(viewModel.groups)
+            viewModel.groups.observe(viewLifecycleOwner) {
+                submitList(it)
+            }
             onItemClickListener = onGroupItemClick
         }
     }
