@@ -3,9 +3,9 @@ package com.senex.timetable.utils
 import android.content.Context
 import android.content.SharedPreferences
 
-private const val SHARED_PREFERENCES_FILE_NAME =
+private const val PREF_FILE_NAME =
     "com.senex.timetable.MAIN_PREFERENCES"
-private const val SHARED_PREFERENCES_GROUP_ID_KEY =
+private const val PREF_GROUP_ID_KEY =
     "group-id"
 
 class SharedPreferencesHandler(
@@ -13,18 +13,18 @@ class SharedPreferencesHandler(
 ) {
     private val sharedPreferences: SharedPreferences = context.applicationContext
         .getSharedPreferences(
-            SHARED_PREFERENCES_FILE_NAME,
+            PREF_FILE_NAME,
             Context.MODE_PRIVATE
         )
 
     fun saveGroupId(id: Long) = sharedPreferences
         .edit()
-        .putLong(SHARED_PREFERENCES_GROUP_ID_KEY, id)
+        .putLong(PREF_GROUP_ID_KEY, id)
         .apply()
 
     fun getSavedGroupId(): Long? {
         val id = sharedPreferences
-            .getLong(SHARED_PREFERENCES_GROUP_ID_KEY, -1L)
+            .getLong(PREF_GROUP_ID_KEY, -1L)
         return if (id != -1L) id else null
     }
 }
