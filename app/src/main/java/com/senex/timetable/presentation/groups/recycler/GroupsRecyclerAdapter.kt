@@ -4,8 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.senex.timetable.databinding.GroupCourseListItemBinding
-import com.senex.timetable.databinding.GroupListItemBinding
+import com.senex.timetable.databinding.*
 import com.senex.timetable.presentation.groups.recycler.items.CourseRecyclerItem
 import com.senex.timetable.utils.recycler.TypedRecyclerItem
 import com.senex.timetable.presentation.groups.recycler.items.GroupRecyclerItemType
@@ -17,7 +16,7 @@ class GroupsRecyclerAdapter : ListAdapter<TypedRecyclerItem, RecyclerView.ViewHo
     var onItemClickListener: ((Long) -> Unit)? = null
 
     inner class CourseViewHolder(
-        private val binding: GroupCourseListItemBinding,
+        private val binding: ListItemCourseBinding,
     ) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(item: TypedRecyclerItem): Unit = with(binding) {
@@ -28,7 +27,7 @@ class GroupsRecyclerAdapter : ListAdapter<TypedRecyclerItem, RecyclerView.ViewHo
     }
 
     inner class GroupViewHolder(
-        private val binding: GroupListItemBinding,
+        private val binding: ListItemGroupBinding,
     ) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(item: TypedRecyclerItem): Unit = with(binding) {
@@ -50,14 +49,14 @@ class GroupsRecyclerAdapter : ListAdapter<TypedRecyclerItem, RecyclerView.ViewHo
         viewType: Int,
     ) = when (viewType) {
         GroupRecyclerItemType.COURSE.value -> CourseViewHolder(
-            GroupCourseListItemBinding.inflate(
+            ListItemCourseBinding.inflate(
                 LayoutInflater.from(parent.context),
                 parent,
                 false
             )
         )
         GroupRecyclerItemType.GROUP.value -> GroupViewHolder(
-            GroupListItemBinding.inflate(
+            ListItemGroupBinding.inflate(
                 LayoutInflater.from(parent.context),
                 parent,
                 false

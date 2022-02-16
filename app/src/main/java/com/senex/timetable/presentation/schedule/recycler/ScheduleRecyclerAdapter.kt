@@ -4,8 +4,7 @@ import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.senex.timetable.databinding.ScheduleDayListItemBinding
-import com.senex.timetable.databinding.ScheduleListItemBinding
+import com.senex.timetable.databinding.*
 import com.senex.timetable.presentation.schedule.recycler.items.*
 import com.senex.timetable.presentation.schedule.recycler.items.DayRecyclerItem
 import com.senex.timetable.presentation.schedule.recycler.items.ScheduleRecyclerItemType
@@ -17,7 +16,7 @@ class ScheduleRecyclerAdapter(
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     inner class DayViewHolder(
-        private val binding: ScheduleDayListItemBinding,
+        private val binding: ListItemDayBinding,
     ) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(item: TypedRecyclerItem): Unit = with(binding) {
@@ -28,7 +27,7 @@ class ScheduleRecyclerAdapter(
     }
 
     inner class SubjectViewHolder(
-        private val binding: ScheduleListItemBinding,
+        private val binding: ListItemScheduleBinding,
     ) : RecyclerView.ViewHolder(binding.root) {
 
         @SuppressLint("SetTextI18n")
@@ -53,7 +52,7 @@ class ScheduleRecyclerAdapter(
     ) = when (viewType) {
         ScheduleRecyclerItemType.DAY.value ->
             DayViewHolder(
-                ScheduleDayListItemBinding.inflate(
+                ListItemDayBinding.inflate(
                     LayoutInflater.from(parent.context),
                     parent,
                     false
@@ -61,7 +60,7 @@ class ScheduleRecyclerAdapter(
 
         ScheduleRecyclerItemType.SUBJECT.value ->
             SubjectViewHolder(
-                ScheduleListItemBinding.inflate(
+                ListItemScheduleBinding.inflate(
                     LayoutInflater.from(parent.context),
                     parent,
                     false
