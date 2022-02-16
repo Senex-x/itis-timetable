@@ -1,11 +1,17 @@
 package com.senex.timetable.data.models.schedule
 
-import androidx.room.ColumnInfo
-import androidx.room.Entity
-import androidx.room.Ignore
-import androidx.room.PrimaryKey
+import androidx.room.*
 
-@Entity(tableName = "subjects")
+@Entity(
+    tableName = "subjects",
+    foreignKeys = [
+        ForeignKey(
+            entity = DailyScheduleEntity::class,
+            parentColumns = ["id"],
+            childColumns = ["daily_schedule_id"]
+        )
+    ],
+)
 data class Subject(
     @PrimaryKey
     val id: Long,
