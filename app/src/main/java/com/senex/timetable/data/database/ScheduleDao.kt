@@ -13,11 +13,17 @@ interface ScheduleDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAll(vararg schedules: ScheduleEntity)
 
+    @Transaction
     @Query("SELECT * FROM schedules WHERE id = :id")
     fun get(id: Long): LiveData<Schedule>
 
+    @Transaction
     @Query("SELECT * FROM schedules WHERE group_id = :groupId")
-    fun getByGroupId(groupId: Long): LiveData<ScheduleEntity>
+    fun getByGroupId(groupId: Long): LiveData<Schedule>
+    
+    @Transaction
+    @Query("SELECT * FROM schedules")
+    fun getAll(): LiveData<Schedule>
 
     @Query("DELETE FROM schedules")
     suspend fun deleteAll()

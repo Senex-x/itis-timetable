@@ -19,9 +19,13 @@ import com.senex.timetable.data.models.schedule.Subject
     version = 1
 )
 abstract class AppDatabase : RoomDatabase() {
-    abstract fun groupDao(): GroupDao
-
     abstract fun scheduleDao(): ScheduleDao
+
+    abstract fun dailyScheduleDao(): DailyScheduleDao
+
+    abstract fun subjectDao(): SubjectDao
+
+    abstract fun groupDao(): GroupDao
 }
 
 object MainDatabase {

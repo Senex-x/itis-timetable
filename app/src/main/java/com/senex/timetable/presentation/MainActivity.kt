@@ -3,6 +3,7 @@ package com.senex.timetable.presentation
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.senex.timetable.data.database.MainDatabase
+import com.senex.timetable.data.models.schedule.ScheduleEntity
 import com.senex.timetable.databinding.ActivityMainBinding
 import com.senex.timetable.utils.SharedPreferencesHandler
 import com.senex.timetable.utils.log
@@ -34,6 +35,14 @@ class MainActivity : AppCompatActivity() {
                 .observe(this@MainActivity) {
                     log(it.toString())
                 }
+
+            db.scheduleDao().insert(
+                ScheduleEntity(
+                    1, 2
+                )
+            )
+
+
         }
 
         log(SharedPreferencesHandler(applicationContext)
