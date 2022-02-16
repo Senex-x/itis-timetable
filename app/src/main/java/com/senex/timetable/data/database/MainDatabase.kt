@@ -5,10 +5,13 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.senex.timetable.data.models.Group
+import com.senex.timetable.data.models.GroupSchedule
 
-@Database(entities = [Group::class], version = 1)
+@Database(entities = [Group::class, GroupSchedule::class], version = 1)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun groupDao(): GroupDao
+
+    abstract fun scheduleDao(): ScheduleDao
 }
 
 object MainDatabase {
