@@ -16,17 +16,21 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        MainDatabase.init(applicationContext)
+
         doOptionalStuff()
     }
 
     private fun doOptionalStuff() {
-        MainDatabase.init(applicationContext)
-        runBlocking {
-            /*MainDatabase().groupDao().insertAll(
-                *MainRepository.getGroupsList(10).toTypedArray()
-            )*/
 
-            MainDatabase().groupDao().getAll()
+        runBlocking {
+            val db = MainDatabase()
+            val dao = db.groupDao()
+
+            //dao.deleteAll()
+            //dao.insertAll(*MainRepository.getGroupsList(20).toTypedArray())
+
+            dao.getAll()
                 .observe(this@MainActivity) {
                     log(it.toString())
                 }

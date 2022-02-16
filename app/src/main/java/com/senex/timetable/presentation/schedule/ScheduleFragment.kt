@@ -45,7 +45,7 @@ class ScheduleFragment : Fragment() {
         }
 
         scheduleRecyclerView.layoutManager = LinearLayoutManager(requireContext())
-        scheduleRecyclerView.adapter = ScheduleRecyclerAdapter(viewModel.schedule)
+        //scheduleRecyclerView.adapter = ScheduleRecyclerAdapter(viewModel.schedule)
     }
 
     private fun navigateToTableFragment() {

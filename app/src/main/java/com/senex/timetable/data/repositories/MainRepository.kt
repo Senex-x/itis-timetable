@@ -1,11 +1,9 @@
 package com.senex.timetable.data.repositories
 
-import com.senex.timetable.data.models.*
+import com.senex.timetable.data.models.group.Group
 import com.senex.timetable.presentation.groups.recycler.items.CourseRecyclerItem
 import com.senex.timetable.presentation.groups.recycler.items.GroupRecyclerItem
 import com.senex.timetable.utils.recycler.TypedRecyclerItem
-import com.senex.timetable.presentation.schedule.recycler.items.DayRecyclerItem
-import com.senex.timetable.presentation.schedule.recycler.items.SubjectRecyclerItem
 import kotlin.random.Random
 
 object MainRepository {
@@ -14,7 +12,7 @@ object MainRepository {
 
         for (i in 1..count) {
             list.add(Group(
-                Random.nextLong(),
+                i.toLong(),
                 Random.nextInt(10, 20).toString() + "-" +
                         Random.nextInt(100, 1000).toString(),
                 Random.nextInt(1, 5)
@@ -32,7 +30,7 @@ object MainRepository {
             val courseNumber = Random.nextInt(1, 5)
 
             val group = Group(
-                Random.nextLong(),
+                i.toLong(),
                 Random.nextInt(10, 20).toString() + "-" +
                         Random.nextInt(100, 1000).toString(),
                 courseNumber
@@ -68,7 +66,7 @@ object MainRepository {
 
         return items
     }
-
+/*
     fun getScheduleListItems(): List<TypedRecyclerItem> {
         val items = mutableListOf<TypedRecyclerItem>()
         val groupSchedule = getGroupSchedule()
@@ -87,11 +85,11 @@ object MainRepository {
         return items
     }
 
-    private fun getGroupSchedule() = GroupSchedule(
+    private fun getGroupSchedule() = ScheduleEntity(
         1,
-        "11-005",
+        1,
         listOf(
-            DaySchedule(
+            DailyScheduleEntity(
                 1,
                 "Monday",
                 listOf(
@@ -113,7 +111,7 @@ object MainRepository {
                     )
                 )
             ),
-            DaySchedule(
+            DailyScheduleEntity(
                 2,
                 "Tuesday",
                 listOf(
@@ -136,5 +134,5 @@ object MainRepository {
                 )
             )
         )
-    )
+    )*/
 }

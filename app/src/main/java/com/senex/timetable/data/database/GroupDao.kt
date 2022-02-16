@@ -2,15 +2,15 @@ package com.senex.timetable.data.database
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
-import com.senex.timetable.data.models.Group
+import com.senex.timetable.data.models.group.Group
 
 @Dao
 interface GroupDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insert(note: Group): Long
+    suspend fun insert(group: Group): Long
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertAll(vararg notes: Group)
+    suspend fun insertAll(vararg groups: Group)
 
     @Query("SELECT * FROM groups WHERE id = :id")
     suspend fun get(id: Long): Group?
@@ -19,10 +19,10 @@ interface GroupDao {
     fun getAll(): LiveData<List<Group>>
 
     @Update
-    suspend fun update(note: Group)
+    suspend fun update(group: Group)
 
     @Delete
-    suspend fun delete(note: Group)
+    suspend fun delete(group: Group)
 
     @Query("DELETE FROM groups WHERE id = :id")
     suspend fun delete(id: Long)
