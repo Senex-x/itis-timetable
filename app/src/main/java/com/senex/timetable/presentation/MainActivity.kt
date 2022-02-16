@@ -3,7 +3,8 @@ package com.senex.timetable.presentation
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.senex.timetable.data.database.MainDatabase
-import com.senex.timetable.data.models.schedule.ScheduleEntity
+import com.senex.timetable.data.models.schedule.DailyScheduleEntity
+import com.senex.timetable.data.repositories.MainRepository
 import com.senex.timetable.databinding.ActivityMainBinding
 import com.senex.timetable.utils.SharedPreferencesHandler
 import com.senex.timetable.utils.log
@@ -24,6 +25,8 @@ class MainActivity : AppCompatActivity() {
 
     private fun doOptionalStuff() {
 
+        MainRepository.populateDatabase()
+
         runBlocking {
             val db = MainDatabase()
             val dao = db.groupDao()
@@ -33,16 +36,27 @@ class MainActivity : AppCompatActivity() {
 
             dao.getAll()
                 .observe(this@MainActivity) {
-                    log(it.toString())
+                    log("Observe: $it")
                 }
 
+            val schDao = db.scheduleDao()
+            /*
             db.scheduleDao().insert(
                 ScheduleEntity(
                     1, 2
                 )
-            )
+            )*/
 
+            val dDao = db.dailyScheduleDao()
+/*
+            dDao.insert(DailyScheduleEntity(
+                2,
+                2,
+                "name",
+                1
+            ))*/
 
+            log("Daily all: " + dDao.getAll().toString())
         }
 
         log(SharedPreferencesHandler(applicationContext)

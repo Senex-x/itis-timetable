@@ -1,9 +1,16 @@
 package com.senex.timetable.data.repositories
 
+import com.senex.timetable.data.database.MainDatabase
 import com.senex.timetable.data.models.group.Group
+import com.senex.timetable.data.models.schedule.DailyScheduleEntity
+import com.senex.timetable.data.models.schedule.ScheduleEntity
+import com.senex.timetable.data.models.schedule.Subject
+import com.senex.timetable.data.models.schedule.SubjectType
 import com.senex.timetable.presentation.groups.recycler.items.CourseRecyclerItem
 import com.senex.timetable.presentation.groups.recycler.items.GroupRecyclerItem
+import com.senex.timetable.utils.log
 import com.senex.timetable.utils.recycler.TypedRecyclerItem
+import kotlinx.coroutines.runBlocking
 import kotlin.random.Random
 
 object MainRepository {
@@ -52,13 +59,13 @@ object MainRepository {
         val items = mutableListOf<TypedRecyclerItem>()
         val groups = getGroups()
 
-        for(i in 1..4) {
+        for (i in 1..4) {
             val list = groups[i]
 
             list?.let {
                 items.add(CourseRecyclerItem(i))
 
-                for(group in list) {
+                for (group in list) {
                     items.add(GroupRecyclerItem(group))
                 }
             }
@@ -66,6 +73,94 @@ object MainRepository {
 
         return items
     }
+
+    fun populateDatabase() {
+        val db = MainDatabase()
+        log("Started populating database")
+
+        runBlocking {
+            db.subjectDao().deleteAll()
+            db.dailyScheduleDao().deleteAll()
+            db.scheduleDao().deleteAll()
+            db.groupDao().deleteAll()
+        }
+
+        for (i in 1..20L) {
+            runBlocking {
+                db.groupDao().insert(
+                    createGroup(i)
+                )
+            }
+        }
+        log("Groups created")
+
+        for (i in 1..20L) {
+            runBlocking {
+                db.scheduleDao().insert(
+                    createSchedule(i, i)
+                )
+            }
+        }
+        log("Schedules created")
+
+        for (i in 1..100L) {
+            runBlocking {
+                db.dailyScheduleDao().insert(
+                    createDailySchedule(
+                        i,
+                        i % 20 + 1
+                    )
+                )
+            }
+        }
+        log("Daily schedules created")
+
+        for (i in 1..500L) {
+            runBlocking {
+                db.subjectDao().insert(
+                    createSubject(
+                        i,
+                        i % 5 + 1
+                    )
+                )
+            }
+        }
+        log("Subjects created")
+    }
+
+    fun createGroup(id: Long) = Group(
+        id,
+        Random.nextInt(10, 20).toString() + "-" +
+                Random.nextInt(100, 1000).toString(),
+        Random.nextInt(1, 5)
+    )
+
+    fun createSchedule(id: Long, groupId: Long) = ScheduleEntity(
+        id,
+        groupId
+    )
+
+    private val dayNames =
+        listOf("Monday", "Tuesday", "Wednesday", "Thursday", "Saturday", "Friday", "Sunday")
+
+    fun createDailySchedule(id: Long, scheduleId: Long) = DailyScheduleEntity(
+        id,
+        scheduleId,
+        dayNames.random(),
+        Random.nextInt(1, 8)
+    )
+
+    fun createSubject(id: Long, dailyScheduleId: Long) = Subject(
+        id,
+        dailyScheduleId,
+        "8:30", "10:00",
+        "Computer Science",
+        "130" + Random.nextInt(0, 10),
+        SubjectType.values().random(),
+        true, true,
+        "Azat", "Vatafac", "Shavkatovich"
+    )
+
 /*
     fun getScheduleListItems(): List<TypedRecyclerItem> {
         val items = mutableListOf<TypedRecyclerItem>()
