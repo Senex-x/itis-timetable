@@ -1,6 +1,6 @@
 package com.senex.timetable.presentation.groups.recycler.items
 
-import com.senex.timetable.data.models.Group
+import com.senex.timetable.data.models.group.Group
 import com.senex.timetable.utils.recycler.TypedRecyclerItem
 
 class GroupRecyclerItem(
