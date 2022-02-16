@@ -6,21 +6,22 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.senex.timetable.databinding.ScheduleDayListItemBinding
 import com.senex.timetable.databinding.ScheduleListItemBinding
-import com.senex.timetable.presentation.schedule.recycler.items.DayItem
-import com.senex.timetable.presentation.schedule.recycler.items.ScheduleListItem
-import com.senex.timetable.presentation.schedule.recycler.items.ScheduleListItemType
-import com.senex.timetable.presentation.schedule.recycler.items.SubjectItem
+import com.senex.timetable.presentation.schedule.recycler.items.*
+import com.senex.timetable.presentation.schedule.recycler.items.DayRecyclerItem
+import com.senex.timetable.presentation.schedule.recycler.items.ScheduleRecyclerItemType
+import com.senex.timetable.presentation.schedule.recycler.items.SubjectRecyclerItem
+import com.senex.timetable.utils.recycler.TypedRecyclerItem
 
 class ScheduleRecyclerAdapter(
-    private val items: List<ScheduleListItem>,
+    private val items: List<TypedRecyclerItem>,
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     inner class DayViewHolder(
         private val binding: ScheduleDayListItemBinding,
     ) : RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(item: ScheduleListItem): Unit = with(binding) {
-            val dayItem = item as DayItem
+        fun bind(item: TypedRecyclerItem): Unit = with(binding) {
+            val dayItem = item as DayRecyclerItem
 
             name.text = dayItem.name
         }
@@ -31,8 +32,8 @@ class ScheduleRecyclerAdapter(
     ) : RecyclerView.ViewHolder(binding.root) {
 
         @SuppressLint("SetTextI18n")
-        fun bind(item: ScheduleListItem): Unit = with(binding) {
-            val subjectItem = item as SubjectItem
+        fun bind(item: TypedRecyclerItem): Unit = with(binding) {
+            val subjectItem = item as SubjectRecyclerItem
 
             period.text = subjectItem.item.startTime +
                     "\n" + subjectItem.item.endTime
@@ -50,7 +51,7 @@ class ScheduleRecyclerAdapter(
         parent: ViewGroup,
         viewType: Int,
     ) = when (viewType) {
-        ScheduleListItemType.DAY.value ->
+        ScheduleRecyclerItemType.DAY.value ->
             DayViewHolder(
                 ScheduleDayListItemBinding.inflate(
                     LayoutInflater.from(parent.context),
@@ -58,7 +59,7 @@ class ScheduleRecyclerAdapter(
                     false
                 ))
 
-        ScheduleListItemType.SUBJECT.value ->
+        ScheduleRecyclerItemType.SUBJECT.value ->
             SubjectViewHolder(
                 ScheduleListItemBinding.inflate(
                     LayoutInflater.from(parent.context),
@@ -73,11 +74,11 @@ class ScheduleRecyclerAdapter(
         holder: RecyclerView.ViewHolder,
         position: Int,
     ) = when (holder.itemViewType) {
-        ScheduleListItemType.DAY.value ->
+        ScheduleRecyclerItemType.DAY.value ->
             (holder as DayViewHolder)
                 .bind(items[position])
 
-        ScheduleListItemType.SUBJECT.value ->
+        ScheduleRecyclerItemType.SUBJECT.value ->
             (holder as SubjectViewHolder)
                 .bind(items[position])
 

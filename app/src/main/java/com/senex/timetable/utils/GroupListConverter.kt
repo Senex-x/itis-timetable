@@ -3,15 +3,15 @@ package com.senex.timetable.utils
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.senex.timetable.data.models.Group
-import com.senex.timetable.presentation.groups.recycler.items.CourseItem
-import com.senex.timetable.presentation.groups.recycler.items.GroupItem
-import com.senex.timetable.presentation.groups.recycler.items.GroupListItem
+import com.senex.timetable.presentation.groups.recycler.items.CourseRecyclerItem
+import com.senex.timetable.presentation.groups.recycler.items.GroupRecyclerItem
+import com.senex.timetable.utils.recycler.TypedRecyclerItem
 
 object GroupListConverter {
     fun convert(
         list: LiveData<List<Group>>,
-    ): LiveData<List<GroupListItem>> {
-        val liveListItems = MutableLiveData<List<GroupListItem>>()
+    ): LiveData<List<TypedRecyclerItem>> {
+        val liveListItems = MutableLiveData<List<TypedRecyclerItem>>()
 
         list.observeForever {
             liveListItems.value = convertList(it)
@@ -22,8 +22,8 @@ object GroupListConverter {
 
     private fun convertList(
         list: List<Group>
-    ): List<GroupListItem> {
-        val result = mutableListOf<GroupListItem>()
+    ): List<TypedRecyclerItem> {
+        val result = mutableListOf<TypedRecyclerItem>()
         val sortedGroupList = list.sortedWith(
             Comparator.comparingInt(Group::courseNumber)
         )
@@ -32,9 +32,9 @@ object GroupListConverter {
         for(group in sortedGroupList) {
             if(group.courseNumber != currentCourseNumber) {
                 currentCourseNumber = group.courseNumber
-                result.add(CourseItem(currentCourseNumber))
+                result.add(CourseRecyclerItem(currentCourseNumber))
             }
-            result.add(GroupItem(group))
+            result.add(GroupRecyclerItem(group))
         }
 
         return result

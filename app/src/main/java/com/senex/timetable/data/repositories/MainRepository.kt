@@ -1,12 +1,11 @@
 package com.senex.timetable.data.repositories
 
 import com.senex.timetable.data.models.*
-import com.senex.timetable.presentation.groups.recycler.items.CourseItem
-import com.senex.timetable.presentation.groups.recycler.items.GroupItem
-import com.senex.timetable.presentation.groups.recycler.items.GroupListItem
-import com.senex.timetable.presentation.schedule.recycler.items.DayItem
-import com.senex.timetable.presentation.schedule.recycler.items.ScheduleListItem
-import com.senex.timetable.presentation.schedule.recycler.items.SubjectItem
+import com.senex.timetable.presentation.groups.recycler.items.CourseRecyclerItem
+import com.senex.timetable.presentation.groups.recycler.items.GroupRecyclerItem
+import com.senex.timetable.utils.recycler.TypedRecyclerItem
+import com.senex.timetable.presentation.schedule.recycler.items.DayRecyclerItem
+import com.senex.timetable.presentation.schedule.recycler.items.SubjectRecyclerItem
 import kotlin.random.Random
 
 object MainRepository {
@@ -51,18 +50,18 @@ object MainRepository {
         return map
     }
 
-    fun getGroupListItems(): List<GroupListItem> {
-        val items = mutableListOf<GroupListItem>()
+    fun getGroupListItems(): List<TypedRecyclerItem> {
+        val items = mutableListOf<TypedRecyclerItem>()
         val groups = getGroups()
 
         for(i in 1..4) {
             val list = groups[i]
 
             list?.let {
-                items.add(CourseItem(i))
+                items.add(CourseRecyclerItem(i))
 
                 for(group in list) {
-                    items.add(GroupItem(group))
+                    items.add(GroupRecyclerItem(group))
                 }
             }
         }
@@ -70,16 +69,16 @@ object MainRepository {
         return items
     }
 
-    fun getScheduleListItems(): List<ScheduleListItem> {
-        val items = mutableListOf<ScheduleListItem>()
+    fun getScheduleListItems(): List<TypedRecyclerItem> {
+        val items = mutableListOf<TypedRecyclerItem>()
         val groupSchedule = getGroupSchedule()
 
         for (day in groupSchedule.dailySchedules) {
-            items.add(DayItem(
+            items.add(DayRecyclerItem(
                 day.name
             ))
             for (subject in day.subjects) {
-                items.add(SubjectItem(
+                items.add(SubjectRecyclerItem(
                     subject
                 ))
             }

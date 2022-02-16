@@ -6,12 +6,12 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.senex.timetable.databinding.GroupCourseListItemBinding
 import com.senex.timetable.databinding.GroupListItemBinding
-import com.senex.timetable.presentation.groups.recycler.items.CourseItem
-import com.senex.timetable.presentation.groups.recycler.items.GroupItem
-import com.senex.timetable.presentation.groups.recycler.items.GroupListItem
-import com.senex.timetable.presentation.groups.recycler.items.GroupListItemType
+import com.senex.timetable.presentation.groups.recycler.items.CourseRecyclerItem
+import com.senex.timetable.utils.recycler.TypedRecyclerItem
+import com.senex.timetable.presentation.groups.recycler.items.GroupRecyclerItemType
+import com.senex.timetable.presentation.groups.recycler.items.GroupRecyclerItem
 
-class GroupsRecyclerAdapter : ListAdapter<GroupListItem, RecyclerView.ViewHolder>(
+class GroupsRecyclerAdapter : ListAdapter<TypedRecyclerItem, RecyclerView.ViewHolder>(
     GroupDiffCallback
 ) {
     var onItemClickListener: ((Long) -> Unit)? = null
@@ -20,8 +20,8 @@ class GroupsRecyclerAdapter : ListAdapter<GroupListItem, RecyclerView.ViewHolder
         private val binding: GroupCourseListItemBinding,
     ) : RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(item: GroupListItem): Unit = with(binding) {
-            val courseItem = item as CourseItem
+        fun bind(item: TypedRecyclerItem): Unit = with(binding) {
+            val courseItem = item as CourseRecyclerItem
 
             number.text = courseItem.courseNumber.toString()
         }
@@ -31,13 +31,13 @@ class GroupsRecyclerAdapter : ListAdapter<GroupListItem, RecyclerView.ViewHolder
         private val binding: GroupListItemBinding,
     ) : RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(item: GroupListItem): Unit = with(binding) {
-            val group = (item as GroupItem).group
+        fun bind(item: TypedRecyclerItem): Unit = with(binding) {
+            val group = (item as GroupRecyclerItem).group
 
             name.text = group.name
 
             root.setOnClickListener {
-                onItemClickListener?.invoke(group.id!!)
+                onItemClickListener?.invoke(group.id)
             }
         }
     }
@@ -49,14 +49,14 @@ class GroupsRecyclerAdapter : ListAdapter<GroupListItem, RecyclerView.ViewHolder
         parent: ViewGroup,
         viewType: Int,
     ) = when (viewType) {
-        GroupListItemType.COURSE.value -> CourseViewHolder(
+        GroupRecyclerItemType.COURSE.value -> CourseViewHolder(
             GroupCourseListItemBinding.inflate(
                 LayoutInflater.from(parent.context),
                 parent,
                 false
             )
         )
-        GroupListItemType.GROUP.value -> GroupViewHolder(
+        GroupRecyclerItemType.GROUP.value -> GroupViewHolder(
             GroupListItemBinding.inflate(
                 LayoutInflater.from(parent.context),
                 parent,
@@ -69,11 +69,11 @@ class GroupsRecyclerAdapter : ListAdapter<GroupListItem, RecyclerView.ViewHolder
         holder: RecyclerView.ViewHolder,
         position: Int,
     ) = when (holder.itemViewType) {
-        GroupListItemType.COURSE.value ->
+        GroupRecyclerItemType.COURSE.value ->
             (holder as CourseViewHolder)
                 .bind(getItem(position))
 
-        GroupListItemType.GROUP.value ->
+        GroupRecyclerItemType.GROUP.value ->
             (holder as GroupViewHolder)
                 .bind(getItem(position))
 

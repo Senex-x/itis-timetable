@@ -1,38 +1,38 @@
 package com.senex.timetable.presentation.groups.recycler
 
 import androidx.recyclerview.widget.DiffUtil
-import com.senex.timetable.presentation.groups.recycler.items.CourseItem
-import com.senex.timetable.presentation.groups.recycler.items.GroupItem
-import com.senex.timetable.presentation.groups.recycler.items.GroupListItem
-import com.senex.timetable.presentation.groups.recycler.items.GroupListItemType
+import com.senex.timetable.presentation.groups.recycler.items.CourseRecyclerItem
+import com.senex.timetable.utils.recycler.TypedRecyclerItem
+import com.senex.timetable.presentation.groups.recycler.items.GroupRecyclerItemType
+import com.senex.timetable.presentation.groups.recycler.items.GroupRecyclerItem
 
-object GroupDiffCallback : DiffUtil.ItemCallback<GroupListItem>() {
+object GroupDiffCallback : DiffUtil.ItemCallback<TypedRecyclerItem>() {
     override fun areItemsTheSame(
-        oldItem: GroupListItem,
-        newItem: GroupListItem,
-    ) = if (oldItem.getViewType() == GroupListItemType.COURSE.value
-        && newItem.getViewType() == GroupListItemType.COURSE.value
+        oldItem: TypedRecyclerItem,
+        newItem: TypedRecyclerItem,
+    ) = if (oldItem.getViewType() == GroupRecyclerItemType.COURSE.value
+        && newItem.getViewType() == GroupRecyclerItemType.COURSE.value
     ) {
-        (oldItem as CourseItem).courseNumber == (newItem as CourseItem).courseNumber
-    } else if (oldItem.getViewType() == GroupListItemType.GROUP.value
-        && newItem.getViewType() == GroupListItemType.GROUP.value
+        (oldItem as CourseRecyclerItem).courseNumber == (newItem as CourseRecyclerItem).courseNumber
+    } else if (oldItem.getViewType() == GroupRecyclerItemType.GROUP.value
+        && newItem.getViewType() == GroupRecyclerItemType.GROUP.value
     ) {
-        (oldItem as GroupItem).group.id == (newItem as GroupItem).group.id
+        (oldItem as GroupRecyclerItem).group.id == (newItem as GroupRecyclerItem).group.id
     } else {
         false
     }
 
     override fun areContentsTheSame(
-        oldItem: GroupListItem,
-        newItem: GroupListItem,
-    ) = if (oldItem.getViewType() == GroupListItemType.COURSE.value
-        && newItem.getViewType() == GroupListItemType.COURSE.value
+        oldItem: TypedRecyclerItem,
+        newItem: TypedRecyclerItem,
+    ) = if (oldItem.getViewType() == GroupRecyclerItemType.COURSE.value
+        && newItem.getViewType() == GroupRecyclerItemType.COURSE.value
     ) {
-        (oldItem as CourseItem).courseNumber == (newItem as CourseItem).courseNumber
-    } else if (oldItem.getViewType() == GroupListItemType.GROUP.value
-        && newItem.getViewType() == GroupListItemType.GROUP.value
+        (oldItem as CourseRecyclerItem).courseNumber == (newItem as CourseRecyclerItem).courseNumber
+    } else if (oldItem.getViewType() == GroupRecyclerItemType.GROUP.value
+        && newItem.getViewType() == GroupRecyclerItemType.GROUP.value
     ) {
-        (oldItem as GroupItem).group == (newItem as GroupItem).group
+        (oldItem as GroupRecyclerItem).group == (newItem as GroupRecyclerItem).group
     } else {
         false
     }

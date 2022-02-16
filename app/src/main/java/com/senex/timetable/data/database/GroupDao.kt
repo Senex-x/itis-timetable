@@ -12,6 +12,12 @@ interface GroupDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAll(vararg notes: Group)
 
+    @Query("SELECT * FROM groups WHERE id = :id")
+    suspend fun get(id: Long): Group?
+
+    @Query("SELECT * FROM groups")
+    fun getAll(): LiveData<List<Group>>
+
     @Update
     suspend fun update(note: Group)
 
@@ -20,12 +26,6 @@ interface GroupDao {
 
     @Query("DELETE FROM groups WHERE id = :id")
     suspend fun delete(id: Long)
-
-    @Query("SELECT * FROM groups WHERE id = :id")
-    suspend fun get(id: Long): Group?
-
-    @Query("SELECT * FROM groups")
-    fun getAll(): LiveData<List<Group>>
 
     @Query("DELETE FROM groups")
     suspend fun deleteAll()
