@@ -5,13 +5,7 @@ import com.senex.timetable.data.models.schedule.DailySchedule
 import com.senex.timetable.data.models.schedule.DailyScheduleEntity
 
 @Dao
-interface DailyScheduleDao {
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insert(item: DailyScheduleEntity): Long
-
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertAll(vararg items: DailyScheduleEntity)
-
+interface DailyScheduleDao: BaseDao<DailyScheduleEntity> {
     @Transaction
     @Query("SELECT * FROM daily_schedules WHERE id = :id")
     suspend fun get(id: Long): DailySchedule
