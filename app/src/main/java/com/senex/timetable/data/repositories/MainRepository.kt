@@ -120,7 +120,7 @@ object MainRepository {
                 db.subjectDao().insert(
                     createSubject(
                         i,
-                        i % 5 + 1
+                        i % 100 + 1
                     )
                 )
             }
@@ -128,14 +128,14 @@ object MainRepository {
         log("Subjects created")
     }
 
-    fun createGroup(id: Long) = Group(
+    private fun createGroup(id: Long) = Group(
         id,
         Random.nextInt(10, 20).toString() + "-" +
                 Random.nextInt(100, 1000).toString(),
         Random.nextInt(1, 5)
     )
 
-    fun createSchedule(id: Long, groupId: Long) = ScheduleEntity(
+    private fun createSchedule(id: Long, groupId: Long) = ScheduleEntity(
         id,
         groupId
     )
@@ -143,14 +143,14 @@ object MainRepository {
     private val dayNames =
         listOf("Monday", "Tuesday", "Wednesday", "Thursday", "Saturday", "Friday", "Sunday")
 
-    fun createDailySchedule(id: Long, scheduleId: Long) = DailyScheduleEntity(
+    private fun createDailySchedule(id: Long, scheduleId: Long) = DailyScheduleEntity(
         id,
         scheduleId,
         dayNames.random(),
         Random.nextInt(1, 8)
     )
 
-    fun createSubject(id: Long, dailyScheduleId: Long) = Subject(
+    private fun createSubject(id: Long, dailyScheduleId: Long) = Subject(
         id,
         dailyScheduleId,
         "8:30", "10:00",
