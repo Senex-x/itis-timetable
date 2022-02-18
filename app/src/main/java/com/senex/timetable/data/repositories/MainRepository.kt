@@ -74,6 +74,10 @@ object MainRepository {
         return items
     }
 
+    fun clearDatabase() {
+        MainDatabase().clearAllTables()
+    }
+
     fun populateDatabase() {
         val db = MainDatabase()
         log("Started populating database")

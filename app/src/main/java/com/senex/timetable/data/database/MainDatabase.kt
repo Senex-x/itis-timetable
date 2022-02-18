@@ -4,10 +4,12 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.sqlite.db.SupportSQLiteDatabase
 import com.senex.timetable.data.models.group.Group
 import com.senex.timetable.data.models.schedule.DailyScheduleEntity
 import com.senex.timetable.data.models.schedule.ScheduleEntity
 import com.senex.timetable.data.models.schedule.Subject
+import com.senex.timetable.data.repositories.MainRepository
 
 @Database(
     entities = [
@@ -39,7 +41,12 @@ object MainDatabase {
                 context,
                 AppDatabase::class.java,
                 "database-main"
-            ).build()
+            ).addCallback(object : RoomDatabase.Callback() {
+                override fun onOpen(db: SupportSQLiteDatabase) {
+                    MainRepository.clearDatabase()
+                    MainRepository.populateDatabase()
+                }
+            }).build()
     }
 }
 
