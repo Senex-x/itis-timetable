@@ -1,16 +1,15 @@
 package com.senex.timetable.presentation.groups
 
 import androidx.lifecycle.ViewModel
-import com.senex.timetable.data.database.MainDatabase
 import com.senex.timetable.data.models.group.Group
-import com.senex.timetable.data.repositories.GroupsRepository
+import com.senex.timetable.data.repositories.GroupRepository
 import com.senex.timetable.presentation.groups.recycler.items.GroupRecyclerItemType
 import com.senex.timetable.presentation.groups.recycler.items.GroupRecyclerItem
 import com.senex.timetable.utils.recycler.GroupRecyclerItemConverter
 
 class GroupsViewModel : ViewModel() {
     val groups = GroupRecyclerItemConverter.convert(
-        GroupsRepository().getAllSorted()
+        GroupRepository().getAllSorted()
     )
 
     // Maybe just retrieve it from db instead?

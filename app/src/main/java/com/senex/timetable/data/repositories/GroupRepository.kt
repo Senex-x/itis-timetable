@@ -6,7 +6,7 @@ import com.senex.timetable.data.database.GroupDao
 import com.senex.timetable.data.database.MainDatabase
 import com.senex.timetable.data.models.group.Group
 
-class GroupsRepository(
+class GroupRepository(
     database: AppDatabase = MainDatabase(),
 ) : GroupDao by database.groupDao() {
     fun getAllSorted() = Transformations.map(getAll()) {

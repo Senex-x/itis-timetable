@@ -11,9 +11,11 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.senex.timetable.R
 import com.senex.timetable.databinding.FragmentGroupsBinding
+import com.senex.timetable.presentation.TimetableApplication
 import com.senex.timetable.presentation.groups.recycler.GroupsRecyclerAdapter
 import com.senex.timetable.utils.SharedPreferencesHandler
 import com.senex.timetable.utils.toast
+import javax.inject.Inject
 
 class GroupsFragment : Fragment() {
     private var _binding: FragmentGroupsBinding? = null
@@ -21,9 +23,21 @@ class GroupsFragment : Fragment() {
         get() = _binding!!
 
     private val viewModel: GroupsViewModel by viewModels()
+
     //TODO: move to viewmodel
     private val preferences by lazy {
-        SharedPreferencesHandler(requireContext())
+        SharedPreferencesHandler(applicationContext)
+    }
+
+    @Inject
+    lateinit var applicationContext: Context
+
+    override fun onAttach(context: Context) {
+        (context.applicationContext as TimetableApplication)
+            .component
+            .inject(this)
+
+        super.onAttach(context)
     }
 
     override fun onCreateView(
@@ -42,7 +56,7 @@ class GroupsFragment : Fragment() {
         savedInstanceState: Bundle?,
     ): Unit = with(binding) {
         groupsToolbar.setOnMenuItemClickListener {
-            when(it.itemId) {
+            when (it.itemId) {
                 R.id.action_open_schedule_fragment -> {
                     navigateToGroupsFragment()
                     true
