@@ -14,7 +14,7 @@ class ScheduleViewModel(application: Application) : AndroidViewModel(application
     private val preferencesHandler = SharedPreferencesHandler(context)
     val schedule = ScheduleRecyclerItemConverter.convert(
         preferencesHandler.getSavedGroupId()?.let {
-            scheduleRepository.getByGroupId(it)
+            scheduleRepository.getByGroupIdSorted(it)
         } ?: scheduleRepository.getFirst()
     )
 }
