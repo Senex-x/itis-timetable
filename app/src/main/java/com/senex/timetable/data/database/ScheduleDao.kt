@@ -12,8 +12,8 @@ interface ScheduleDao: BaseDao<ScheduleEntity> {
     fun get(id: Long): LiveData<Schedule>
 
     @Transaction
-    @Query("SELECT * FROM schedules WHERE id = :id")
-    suspend fun getSuspending(id: Long): Schedule
+    @Query("SELECT * FROM schedules LIMIT 1")
+    fun getFirst(): LiveData<Schedule>
 
     @Transaction
     @Query("SELECT * FROM schedules WHERE group_id = :groupId")

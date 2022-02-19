@@ -1,11 +1,10 @@
-package com.senex.timetable.utils
+package com.senex.timetable.utils.recycler
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.senex.timetable.data.models.group.Group
 import com.senex.timetable.presentation.groups.recycler.items.CourseRecyclerItem
 import com.senex.timetable.presentation.groups.recycler.items.GroupRecyclerItem
-import com.senex.timetable.utils.recycler.TypedRecyclerItem
 
 object GroupListConverter {
     fun convert(

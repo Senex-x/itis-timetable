@@ -25,7 +25,7 @@ class MainActivity : AppCompatActivity() {
             val scheduleDao = db.scheduleDao()
             val dailyScheduleDao = db.dailyScheduleDao()
 
-            log(scheduleDao.getSuspending(1).toString())
+            //log(scheduleDao.getSuspending(1).toString())
         }
     }
 }

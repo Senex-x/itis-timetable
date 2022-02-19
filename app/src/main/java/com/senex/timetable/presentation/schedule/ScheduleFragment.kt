@@ -35,7 +35,7 @@ class ScheduleFragment : Fragment() {
         savedInstanceState: Bundle?,
     ): Unit = with(binding) {
         tableToolbar.setOnMenuItemClickListener {
-            when(it.itemId) {
+            when (it.itemId) {
                 R.id.action_open_groups_fragment -> {
                     navigateToTableFragment()
                     true
@@ -45,7 +45,11 @@ class ScheduleFragment : Fragment() {
         }
 
         scheduleRecyclerView.layoutManager = LinearLayoutManager(requireContext())
-        //scheduleRecyclerView.adapter = ScheduleRecyclerAdapter(viewModel.schedule)
+
+        // TODO: refactor with ListAdapter
+        viewModel.schedule.observe(viewLifecycleOwner) {
+            scheduleRecyclerView.adapter = ScheduleRecyclerAdapter(it)
+        }
     }
 
     private fun navigateToTableFragment() {

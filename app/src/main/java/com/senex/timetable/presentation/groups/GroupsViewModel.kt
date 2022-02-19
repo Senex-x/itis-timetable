@@ -5,7 +5,7 @@ import com.senex.timetable.data.database.MainDatabase
 import com.senex.timetable.data.models.group.Group
 import com.senex.timetable.presentation.groups.recycler.items.GroupRecyclerItemType
 import com.senex.timetable.presentation.groups.recycler.items.GroupRecyclerItem
-import com.senex.timetable.utils.GroupListConverter
+import com.senex.timetable.utils.recycler.GroupListConverter
 
 class GroupsViewModel : ViewModel() {
     val groups = GroupListConverter.convert(
