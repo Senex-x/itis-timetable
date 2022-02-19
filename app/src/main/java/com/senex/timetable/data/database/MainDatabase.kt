@@ -10,6 +10,7 @@ import com.senex.timetable.data.models.schedule.DailyScheduleEntity
 import com.senex.timetable.data.models.schedule.ScheduleEntity
 import com.senex.timetable.data.models.schedule.Subject
 import com.senex.timetable.data.repositories.MainRepository
+import kotlinx.coroutines.*
 
 @Database(
     entities = [
@@ -43,8 +44,11 @@ object MainDatabase {
                 "database-main"
             ).addCallback(object : RoomDatabase.Callback() {
                 override fun onOpen(db: SupportSQLiteDatabase) {
-                    MainRepository.clearDatabase()
-                    MainRepository.populateDatabase()
+                    runBlocking { // TODO: remove after testing
+                        CoroutineScope(Dispatchers.Default).launch {
+                            MainRepository.populateDatabase()
+                        }
+                    }
                 }
             }).build()
     }

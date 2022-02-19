@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.senex.timetable.data.database.MainDatabase
 import com.senex.timetable.databinding.ActivityMainBinding
+import com.senex.timetable.utils.log
 import kotlinx.coroutines.runBlocking
 
 class MainActivity : AppCompatActivity() {
@@ -13,8 +14,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-        MainDatabase.init(applicationContext)
 
         doOptionalStuff()
     }
@@ -26,6 +25,7 @@ class MainActivity : AppCompatActivity() {
             val scheduleDao = db.scheduleDao()
             val dailyScheduleDao = db.dailyScheduleDao()
 
+            log(scheduleDao.getSuspending(1).toString())
         }
     }
 }

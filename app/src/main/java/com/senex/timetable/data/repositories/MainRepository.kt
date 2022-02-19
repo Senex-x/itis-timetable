@@ -132,7 +132,7 @@ object MainRepository {
         log("Subjects created")
     }
 
-    private fun createGroup(id: Long) = Group(
+    fun createGroup(id: Long) = Group(
         id,
         Random.nextInt(10, 20).toString() + "-" +
                 Random.nextInt(100, 1000).toString(),
