@@ -46,7 +46,7 @@ object MainDatabase {
                 override fun onOpen(db: SupportSQLiteDatabase) {
                     runBlocking { // TODO: remove after testing
                         CoroutineScope(Dispatchers.Default).launch {
-                            MainRepository.populateDatabase()
+                            //MainRepository.populateDatabase()
                         }
                     }
                 }
