@@ -7,24 +7,24 @@ import com.senex.timetable.presentation.schedule.recycler.items.DayRecyclerItem
 import com.senex.timetable.presentation.schedule.recycler.items.SubjectRecyclerItem
 
 object ScheduleRecyclerItemConverter {
-    fun convert(source: LiveData<Schedule>): LiveData<List<TypedRecyclerItem>> {
-        return Transformations.map(source) {
-            if (it == null) return@map emptyList()
+    fun convert(
+        source: LiveData<Schedule>,
+    ) = Transformations.map(source) {
+        if (it == null) return@map emptyList()
 
-            val items = mutableListOf<TypedRecyclerItem>()
+        val items = mutableListOf<TypedRecyclerItem>()
 
-            for (dailySchedule in it.dailySchedules) {
-                items.add(DayRecyclerItem(
-                    dailySchedule.dailySchedule.name
+        for (dailySchedule in it.dailySchedules) {
+            items.add(DayRecyclerItem(
+                dailySchedule.dailySchedule.name
+            ))
+            for (subject in dailySchedule.subjects) {
+                items.add(SubjectRecyclerItem(
+                    subject
                 ))
-                for (subject in dailySchedule.subjects) {
-                    items.add(SubjectRecyclerItem(
-                        subject
-                    ))
-                }
             }
-
-            items
         }
+
+        items
     }
 }
