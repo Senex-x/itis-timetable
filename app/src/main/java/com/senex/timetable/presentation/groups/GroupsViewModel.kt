@@ -3,11 +3,16 @@ package com.senex.timetable.presentation.groups
 import androidx.lifecycle.ViewModel
 import com.senex.timetable.data.models.group.Group
 import com.senex.timetable.data.repositories.GroupRepository
-import com.senex.timetable.presentation.groups.recycler.items.GroupRecyclerItemType
 import com.senex.timetable.presentation.groups.recycler.items.GroupRecyclerItem
+import com.senex.timetable.presentation.groups.recycler.items.GroupRecyclerItemType
+import com.senex.timetable.utils.SharedPreferencesHandler
 import com.senex.timetable.utils.recycler.GroupRecyclerItemConverter
+import javax.inject.Inject
 
-class GroupsViewModel : ViewModel() {
+class GroupsViewModel @Inject constructor(
+    private val preferencesHandler: SharedPreferencesHandler
+) : ViewModel() {
+
     val groups = GroupRecyclerItemConverter.convert(
         GroupRepository().getAllSorted()
     )
@@ -23,6 +28,6 @@ class GroupsViewModel : ViewModel() {
     }
 
     fun setPrimaryGroup(groupId: Long) {
-        // TODO: save state
+        preferencesHandler.saveGroupId(groupId)
     }
 }

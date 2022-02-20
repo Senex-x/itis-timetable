@@ -6,7 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.senex.timetable.R
@@ -17,25 +17,27 @@ import com.senex.timetable.utils.SharedPreferencesHandler
 import com.senex.timetable.utils.toast
 import javax.inject.Inject
 
+
 class GroupsFragment : Fragment() {
     private var _binding: FragmentGroupsBinding? = null
     private val binding
         get() = _binding!!
 
-    private val viewModel: GroupsViewModel by viewModels()
-
-    //TODO: move to viewmodel
-    private val preferences by lazy {
-        SharedPreferencesHandler(applicationContext)
-    }
+    lateinit var viewModel: GroupsViewModel
 
     @Inject
-    lateinit var applicationContext: Context
+    lateinit var factory: ViewModelProvider.Factory
+
+    @Inject
+    lateinit var preferences: SharedPreferencesHandler
 
     override fun onAttach(context: Context) {
         (context.applicationContext as TimetableApplication)
             .component
             .inject(this)
+
+
+        viewModel = ViewModelProvider(requireActivity(), factory)[GroupsViewModel::class.java]
 
         super.onAttach(context)
     }
@@ -75,9 +77,8 @@ class GroupsFragment : Fragment() {
     }
 
     private val onGroupItemClick: (Long) -> Unit = {
-        val group = viewModel.getGroup(it)
-        requireContext().toast("Group ${group.name} selected")
-        preferences.saveGroupId(group.id)
+        requireContext().toast("Group with id: $it selected")
+        viewModel.setPrimaryGroup(viewModel.getGroup(it).id)
     }
 
     private fun navigateToGroupsFragment() {

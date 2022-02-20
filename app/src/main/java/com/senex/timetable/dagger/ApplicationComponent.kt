@@ -5,7 +5,12 @@ import dagger.Component
 import javax.inject.Singleton
 
 @Singleton
-@Component(modules = [ContextModule::class])
+@Component(modules = [
+    ContextModule::class,
+    ViewModelModule::class,
+    DaggerViewModelFactoryModule::class,
+    PreferencesModule::class,
+])
 interface ApplicationComponent {
-    fun inject(application: GroupsFragment)
+    fun inject(groupsFragment: GroupsFragment)
 }
