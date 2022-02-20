@@ -10,6 +10,7 @@ import com.senex.timetable.data.models.schedule.Schedule
 class ScheduleRepository(
     database: AppDatabase = MainDatabase(),
 ) : ScheduleDao by database.scheduleDao() {
+
     fun getByGroupIdSorted(groupId: Long) =
         sortSchedule(getByGroupId(groupId))
 
@@ -21,6 +22,7 @@ class ScheduleRepository(
                 item.dailySchedule.numberInWeek
             }
         )
+
         for (dailySchedule in it.dailySchedules) {
             dailySchedule.subjects.sortedWith { subject1, subject2 ->
                 subject1.startTime.compareTo(subject2.startTime)

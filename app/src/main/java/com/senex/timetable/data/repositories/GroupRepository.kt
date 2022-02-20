@@ -9,6 +9,7 @@ import com.senex.timetable.data.models.group.Group
 class GroupRepository(
     database: AppDatabase = MainDatabase(),
 ) : GroupDao by database.groupDao() {
+
     fun getAllSorted() = Transformations.map(getAll()) {
         it.sortedWith(
             Comparator.comparingInt(Group::courseNumber)
