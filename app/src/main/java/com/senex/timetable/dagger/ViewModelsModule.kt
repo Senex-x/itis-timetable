@@ -2,7 +2,9 @@ package com.senex.timetable.dagger
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.senex.timetable.data.models.schedule.Schedule
 import com.senex.timetable.presentation.groups.GroupsViewModel
+import com.senex.timetable.presentation.schedule.ScheduleViewModel
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
@@ -19,5 +21,12 @@ abstract class ViewModelsModule {
     @ViewModelKey(GroupsViewModel::class)
     abstract fun bindGroupsViewModel(
         viewModel: GroupsViewModel
+    ): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(ScheduleViewModel::class)
+    abstract fun bindSchedulesViewModel(
+        viewModel: ScheduleViewModel
     ): ViewModel
 }

@@ -11,14 +11,10 @@ class RepositoryModule {
     @Provides
     fun provideScheduleRepository(
         database: AppDatabase,
-    ): ScheduleRepository {
-        return ScheduleRepository(database)
-    }
+    ) = ScheduleRepository(database)
 
     @Provides
     fun provideGroupRepository(
         database: AppDatabase,
-    ): GroupRepository {
-        return GroupRepository(database)
-    }
+    ) = GroupRepository(database)
 }

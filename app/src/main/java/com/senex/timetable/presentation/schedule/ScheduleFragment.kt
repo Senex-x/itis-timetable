@@ -1,23 +1,38 @@
 package com.senex.timetable.presentation.schedule
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.senex.timetable.R
 import com.senex.timetable.databinding.FragmentScheduleBinding
+import com.senex.timetable.presentation.TimetableApplication
+import com.senex.timetable.presentation.groups.GroupsViewModel
 import com.senex.timetable.presentation.schedule.recycler.ScheduleRecyclerAdapter
+import javax.inject.Inject
 
 class ScheduleFragment : Fragment() {
     private var _binding: FragmentScheduleBinding? = null
     private val binding
         get() = _binding!!
 
-    private val viewModel: ScheduleViewModel by viewModels()
+    @Inject
+    lateinit var factory: ViewModelProvider.Factory
+    private val viewModel: ScheduleViewModel by viewModels(factoryProducer = { factory })
+
+    override fun onAttach(context: Context) {
+        (context.applicationContext as TimetableApplication)
+            .daggerAppComponent
+            .inject(this)
+
+        super.onAttach(context)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,

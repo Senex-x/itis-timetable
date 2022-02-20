@@ -10,7 +10,5 @@ class PreferencesModule {
     @Provides
     fun providePreferencesHandler(
         context: Context,
-    ): SharedPreferencesHandler {
-        return SharedPreferencesHandler(context)
-    }
+    ) = SharedPreferencesHandler(context)
 }

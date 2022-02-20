@@ -10,11 +10,12 @@ import com.senex.timetable.utils.recycler.GroupRecyclerItemConverter
 import javax.inject.Inject
 
 class GroupsViewModel @Inject constructor(
-    private val preferences: SharedPreferencesHandler
+    private val preferences: SharedPreferencesHandler,
+    private val groupRepository: GroupRepository,
 ) : ViewModel() {
 
     val groups = GroupRecyclerItemConverter.convert(
-        GroupRepository().getAllSorted()
+        groupRepository.getAllSorted()
     )
 
     // Maybe just retrieve it from db instead?
