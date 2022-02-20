@@ -7,8 +7,8 @@ import javax.inject.Singleton
 @Singleton
 @Component(modules = [
     ContextModule::class,
-    ViewModelModule::class,
-    DaggerViewModelFactoryModule::class,
+    ViewModelsModule::class,
+    ViewModelFactoryModule::class,
     PreferencesModule::class,
 ])
 interface ApplicationComponent {

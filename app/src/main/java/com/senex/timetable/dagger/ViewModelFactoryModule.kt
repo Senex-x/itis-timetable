@@ -7,14 +7,16 @@ import javax.inject.Inject
 import javax.inject.Provider
 
 @Module
-class DaggerViewModelFactoryModule @Inject constructor(
-    private val viewModelProviders: Map<Class<out ViewModel>, @JvmSuppressWildcards Provider<ViewModel>>,
+class ViewModelFactoryModule @Inject constructor(
+    private val providers: Map<Class<out ViewModel>, @JvmSuppressWildcards Provider<ViewModel>>,
 ) : ViewModelProvider.Factory {
 
     @Suppress("UNCHECKED_CAST")
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        val provider = viewModelProviders[modelClass]
-            ?: viewModelProviders.entries.first { modelClass.isAssignableFrom(it.key) }.value
+        val provider = providers[modelClass]
+            ?: providers.entries.first {
+                modelClass.isAssignableFrom(it.key)
+            }.value
 
         return provider.get() as T
     }

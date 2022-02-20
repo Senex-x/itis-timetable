@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -13,31 +14,22 @@ import com.senex.timetable.R
 import com.senex.timetable.databinding.FragmentGroupsBinding
 import com.senex.timetable.presentation.TimetableApplication
 import com.senex.timetable.presentation.groups.recycler.GroupsRecyclerAdapter
-import com.senex.timetable.utils.SharedPreferencesHandler
 import com.senex.timetable.utils.toast
 import javax.inject.Inject
-
 
 class GroupsFragment : Fragment() {
     private var _binding: FragmentGroupsBinding? = null
     private val binding
         get() = _binding!!
 
-    lateinit var viewModel: GroupsViewModel
-
     @Inject
     lateinit var factory: ViewModelProvider.Factory
-
-    @Inject
-    lateinit var preferences: SharedPreferencesHandler
+    private val viewModel: GroupsViewModel by viewModels(factoryProducer = { factory })
 
     override fun onAttach(context: Context) {
         (context.applicationContext as TimetableApplication)
-            .component
+            .daggerAppComponent
             .inject(this)
-
-
-        viewModel = ViewModelProvider(requireActivity(), factory)[GroupsViewModel::class.java]
 
         super.onAttach(context)
     }

@@ -10,7 +10,7 @@ import com.senex.timetable.utils.recycler.GroupRecyclerItemConverter
 import javax.inject.Inject
 
 class GroupsViewModel @Inject constructor(
-    private val preferencesHandler: SharedPreferencesHandler
+    private val preferences: SharedPreferencesHandler
 ) : ViewModel() {
 
     val groups = GroupRecyclerItemConverter.convert(
@@ -28,6 +28,6 @@ class GroupsViewModel @Inject constructor(
     }
 
     fun setPrimaryGroup(groupId: Long) {
-        preferencesHandler.saveGroupId(groupId)
+        preferences.saveGroupId(groupId)
     }
 }

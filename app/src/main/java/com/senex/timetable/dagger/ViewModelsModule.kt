@@ -8,11 +8,10 @@ import dagger.Module
 import dagger.multibindings.IntoMap
 
 @Module
-abstract class ViewModelModule {
-
+abstract class ViewModelsModule {
     @Binds
     abstract fun bindViewModelFactory(
-        factory: DaggerViewModelFactoryModule
+        factory: ViewModelFactoryModule
     ): ViewModelProvider.Factory
 
     @Binds

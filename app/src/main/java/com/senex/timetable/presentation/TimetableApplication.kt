@@ -7,12 +7,12 @@ import com.senex.timetable.dagger.DaggerApplicationComponent
 import com.senex.timetable.data.database.MainDatabase
 
 class TimetableApplication : Application() {
-    lateinit var component: ApplicationComponent
+    lateinit var daggerAppComponent: ApplicationComponent
 
     override fun onCreate() {
         super.onCreate()
 
-        component = DaggerApplicationComponent.builder()
+        daggerAppComponent = DaggerApplicationComponent.builder()
             .contextModule(ContextModule(this))
             .build()
 
