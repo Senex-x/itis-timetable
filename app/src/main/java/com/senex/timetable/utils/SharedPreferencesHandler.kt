@@ -2,13 +2,14 @@ package com.senex.timetable.utils
 
 import android.content.Context
 import android.content.SharedPreferences
+import javax.inject.Inject
 
 private const val PREF_FILE_NAME =
     "com.senex.timetable.MAIN_PREFERENCES"
 private const val PREF_GROUP_ID_KEY =
     "group-id"
 
-class SharedPreferencesHandler(
+class SharedPreferencesHandler @Inject constructor(
     context: Context,
 ) {
     private val sharedPreferences: SharedPreferences = context.applicationContext

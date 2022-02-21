@@ -6,9 +6,10 @@ import com.senex.timetable.data.database.AppDatabase
 import com.senex.timetable.data.database.MainDatabase
 import com.senex.timetable.data.database.ScheduleDao
 import com.senex.timetable.data.models.schedule.Schedule
+import javax.inject.Inject
 
-class ScheduleRepository(
-    database: AppDatabase = MainDatabase(),
+class ScheduleRepository @Inject constructor(
+    database: AppDatabase,
 ) : ScheduleDao by database.scheduleDao() {
 
     fun getByGroupIdSorted(groupId: Long) =

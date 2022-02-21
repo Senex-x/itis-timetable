@@ -5,9 +5,10 @@ import com.senex.timetable.data.database.AppDatabase
 import com.senex.timetable.data.database.GroupDao
 import com.senex.timetable.data.database.MainDatabase
 import com.senex.timetable.data.models.group.Group
+import javax.inject.Inject
 
-class GroupRepository(
-    database: AppDatabase = MainDatabase(),
+class GroupRepository @Inject constructor(
+    database: AppDatabase,
 ) : GroupDao by database.groupDao() {
 
     fun getAllSorted() = Transformations.map(getAll()) {
