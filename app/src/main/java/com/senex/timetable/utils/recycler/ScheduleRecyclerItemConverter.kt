@@ -8,7 +8,7 @@ import com.senex.timetable.presentation.schedule.recycler.items.SubjectRecyclerI
 
 object ScheduleRecyclerItemConverter {
     fun convert(
-        source: LiveData<Schedule>,
+        source: LiveData<Schedule?>,
     ) = Transformations.map(source) {
         if (it == null) return@map emptyList()
 

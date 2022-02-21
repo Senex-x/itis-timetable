@@ -10,7 +10,7 @@ interface GroupDao: BaseDao<Group> {
     suspend fun get(id: Long): Group?
 
     @Query("SELECT * FROM groups")
-    fun getAll(): LiveData<List<Group>>
+    fun getAll(): LiveData<List<Group>?>
 
     @Query("DELETE FROM groups WHERE id = :id")
     suspend fun delete(id: Long)

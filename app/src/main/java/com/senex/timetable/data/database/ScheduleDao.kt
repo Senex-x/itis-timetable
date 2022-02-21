@@ -9,19 +9,19 @@ import com.senex.timetable.data.models.schedule.ScheduleEntity
 interface ScheduleDao: BaseDao<ScheduleEntity> {
     @Transaction
     @Query("SELECT * FROM schedules WHERE id = :id")
-    fun get(id: Long): LiveData<Schedule>
+    fun get(id: Long): LiveData<Schedule?>
 
     @Transaction
     @Query("SELECT * FROM schedules LIMIT 1")
-    fun getFirst(): LiveData<Schedule>
+    fun getFirst(): LiveData<Schedule?>
 
     @Transaction
     @Query("SELECT * FROM schedules WHERE group_id = :groupId")
-    fun getByGroupId(groupId: Long): LiveData<Schedule>
+    fun getByGroupId(groupId: Long): LiveData<Schedule?>
     
     @Transaction
     @Query("SELECT * FROM schedules")
-    fun getAll(): LiveData<Schedule>
+    fun getAll(): LiveData<Schedule?>
 
     @Query("DELETE FROM schedules")
     suspend fun deleteAll()

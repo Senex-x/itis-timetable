@@ -15,6 +15,7 @@ import com.senex.timetable.databinding.FragmentScheduleBinding
 import com.senex.timetable.presentation.TimetableApplication
 import com.senex.timetable.presentation.groups.GroupsViewModel
 import com.senex.timetable.presentation.schedule.recycler.ScheduleRecyclerAdapter
+import com.senex.timetable.utils.log
 import javax.inject.Inject
 
 class ScheduleFragment : Fragment() {
@@ -63,6 +64,7 @@ class ScheduleFragment : Fragment() {
 
         // TODO: refactor with ListAdapter
         viewModel.schedule.observe(viewLifecycleOwner) {
+            log("Schedule live data was updated")
             scheduleRecyclerView.adapter = ScheduleRecyclerAdapter(it)
         }
     }

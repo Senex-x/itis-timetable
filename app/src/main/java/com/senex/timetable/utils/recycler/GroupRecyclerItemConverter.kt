@@ -8,7 +8,7 @@ import com.senex.timetable.presentation.groups.recycler.items.GroupRecyclerItem
 
 object GroupRecyclerItemConverter {
     fun convert(
-        source: LiveData<List<Group>>,
+        source: LiveData<List<Group>?>,
     ) = Transformations.map(source) {
         if(it == null) return@map emptyList()
 
