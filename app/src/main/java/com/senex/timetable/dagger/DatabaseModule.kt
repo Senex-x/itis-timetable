@@ -18,7 +18,7 @@ import javax.inject.Singleton
 class DatabaseModule {
     @Singleton
     @Provides
-    fun provideMainDatabase(
+    fun provideAppDatabase(
         appContext: Context,
         databaseLazy: Lazy<AppDatabase>,
     ): AppDatabase {
@@ -31,8 +31,8 @@ class DatabaseModule {
                 CoroutineScope(Dispatchers.Default).launch {
                     val databaseFiller = DatabaseFiller(databaseLazy.get())
 
-                    databaseFiller.clearDatabase()
-                    databaseFiller.populateDatabase()
+                    //databaseFiller.clearDatabase()
+                    //databaseFiller.populateDatabase()
                 }
             }
         }).build()

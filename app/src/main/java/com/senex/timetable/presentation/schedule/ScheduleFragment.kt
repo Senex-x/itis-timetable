@@ -12,8 +12,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.senex.timetable.R
 import com.senex.timetable.databinding.FragmentScheduleBinding
-import com.senex.timetable.presentation.TimetableApplication
-import com.senex.timetable.presentation.groups.GroupsViewModel
+import com.senex.timetable.presentation.daggerAppComponent
 import com.senex.timetable.presentation.schedule.recycler.ScheduleRecyclerAdapter
 import com.senex.timetable.utils.log
 import javax.inject.Inject
@@ -28,9 +27,7 @@ class ScheduleFragment : Fragment() {
     private val viewModel: ScheduleViewModel by viewModels(factoryProducer = { factory })
 
     override fun onAttach(context: Context) {
-        (context.applicationContext as TimetableApplication)
-            .daggerAppComponent
-            .inject(this)
+        context.daggerAppComponent.inject(this)
 
         super.onAttach(context)
     }

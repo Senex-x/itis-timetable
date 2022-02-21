@@ -11,13 +11,11 @@ import javax.inject.Inject
 import kotlin.random.Random
 
 class DatabaseFiller @Inject constructor(
-    private val database: AppDatabase
-    ) {
+    private val database: AppDatabase,
+) {
     fun clearDatabase() = database.clearAllTables()
 
     fun populateDatabase() {
-        log("Started populating database")
-
         for (i in 1..20L) {
             runBlocking {
                 database.groupDao().insert(
@@ -25,7 +23,6 @@ class DatabaseFiller @Inject constructor(
                 )
             }
         }
-        log("Groups created")
 
         for (i in 1..20L) {
             runBlocking {
@@ -34,7 +31,6 @@ class DatabaseFiller @Inject constructor(
                 )
             }
         }
-        log("Schedules created")
 
         for (i in 1..100L) {
             runBlocking {
@@ -46,7 +42,6 @@ class DatabaseFiller @Inject constructor(
                 )
             }
         }
-        log("Daily schedules created")
 
         for (i in 1..500L) {
             runBlocking {
@@ -58,7 +53,8 @@ class DatabaseFiller @Inject constructor(
                 )
             }
         }
-        log("Subjects created")
+
+        log("Database was populated successfully")
     }
 
     // TODO: make private after testing
