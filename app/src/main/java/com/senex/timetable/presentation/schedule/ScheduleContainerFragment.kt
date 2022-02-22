@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.tabs.TabLayoutMediator
 import com.senex.timetable.R
 import com.senex.timetable.databinding.FragmentScheduleContainerBinding
 
@@ -40,7 +41,11 @@ class ScheduleContainerFragment : Fragment() {
         }
 
         val pagerAdapter = SchedulePagerAdapter(requireActivity())
-        binding.pager.adapter = pagerAdapter
+        pager.adapter = pagerAdapter
+
+        TabLayoutMediator(tabLayout, pager) { tab, position ->
+            tab.text = "OBJECT ${(position + 1)}"
+        }.attach()
     }
 
     private fun navigateToTableFragment() {
