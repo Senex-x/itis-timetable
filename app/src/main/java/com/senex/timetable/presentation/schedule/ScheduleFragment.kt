@@ -47,16 +47,6 @@ class ScheduleFragment : Fragment() {
         view: View,
         savedInstanceState: Bundle?,
     ): Unit = with(binding) {
-        tableToolbar.setOnMenuItemClickListener {
-            when (it.itemId) {
-                R.id.action_open_groups_fragment -> {
-                    navigateToTableFragment()
-                    true
-                }
-                else -> false
-            }
-        }
-
         scheduleRecyclerView.layoutManager = LinearLayoutManager(requireContext())
 
         // TODO: refactor with ListAdapter
@@ -67,11 +57,7 @@ class ScheduleFragment : Fragment() {
     }
 
 
-    private fun navigateToTableFragment() {
-        findNavController().navigate(
-            R.id.action_tableFragment_to_scheduleContainerFragment
-        )
-    }
+
 
     override fun onDestroyView() {
         super.onDestroyView()

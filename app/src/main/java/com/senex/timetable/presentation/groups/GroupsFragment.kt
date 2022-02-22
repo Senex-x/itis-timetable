@@ -50,7 +50,7 @@ class GroupsFragment : Fragment() {
         groupsToolbar.setOnMenuItemClickListener {
             when (it.itemId) {
                 R.id.action_open_schedule_fragment -> {
-                    //navigateToGroupsFragment()
+                    navigateToGroupsFragment()
                     true
                 }
                 else -> false
@@ -70,10 +70,10 @@ class GroupsFragment : Fragment() {
         requireContext().toast("Group with id: $it selected")
         viewModel.setPrimaryGroup(viewModel.getGroup(it).id)
     }
-/*
+
     private fun navigateToGroupsFragment() {
         findNavController().navigate(
-            R.id.action_groupsFragment_to_tableFragment
+            R.id.action_groupsFragment_to_scheduleContainerFragment
         )
-    }*/
+    }
 }
