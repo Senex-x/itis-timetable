@@ -66,9 +66,15 @@ class ScheduleFragment : Fragment() {
         }
     }
 
+
     private fun navigateToTableFragment() {
         findNavController().navigate(
-            R.id.action_tableFragment_to_groupsFragment
+            R.id.action_tableFragment_to_scheduleContainerFragment
         )
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

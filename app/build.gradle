@@ -64,6 +64,8 @@ dependencies {
     implementation "com.google.dagger:dagger:$dagger_version"
     kapt "com.google.dagger:dagger-compiler:$dagger_version"
 
+    implementation "androidx.viewpager2:viewpager2:1.0.0"
+
     implementation 'com.google.code.gson:gson:2.9.0'
 
     testImplementation 'junit:junit:4.13.2'

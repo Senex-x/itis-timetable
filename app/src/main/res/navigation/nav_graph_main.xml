@@ -6,21 +6,22 @@
     app:startDestination="@id/tableFragment">
 
     <fragment
-        android:id="@+id/scheduleFragment"
-        android:name="com.senex.timetable.presentation.groups.GroupsFragment"
-        android:label="fragment_groups"
-        tools:layout="@layout/fragment_groups" >
-        <action
-            android:id="@+id/action_groupsFragment_to_tableFragment"
-            app:destination="@id/tableFragment" />
-    </fragment>
-    <fragment
         android:id="@+id/tableFragment"
         android:name="com.senex.timetable.presentation.schedule.ScheduleFragment"
         android:label="fragment_table"
-        tools:layout="@layout/fragment_schedule" >
+        tools:layout="@layout/fragment_schedule">
         <action
-            android:id="@+id/action_tableFragment_to_groupsFragment"
-            app:destination="@id/scheduleFragment" />
+            android:id="@+id/action_tableFragment_to_scheduleContainerFragment"
+            app:destination="@id/scheduleContainerFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/scheduleContainerFragment"
+        android:name="com.senex.timetable.presentation.schedule.ScheduleContainerFragment"
+        android:label="ScheduleContainerFragment"
+        tools:layout="@layout/fragment_schedule_container" >
+        <action
+            android:id="@+id/action_scheduleContainerFragment_to_tableFragment"
+            app:destination="@id/tableFragment" />
     </fragment>
 </navigation>
