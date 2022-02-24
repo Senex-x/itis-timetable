@@ -25,7 +25,10 @@ class DailyScheduleFragment(
 
     @Inject
     lateinit var factory: ViewModelProvider.Factory
-    private val viewModel: ScheduleViewModel by viewModels(factoryProducer = { factory })
+    private val viewModel: ScheduleViewModel by viewModels(
+        { requireParentFragment() },
+        { factory },
+    )
 
     override fun onAttach(context: Context) {
         context.daggerAppComponent.inject(this)
@@ -49,8 +52,6 @@ class DailyScheduleFragment(
         savedInstanceState: Bundle?,
     ): Unit = with(binding) {
         scheduleRecyclerView.layoutManager = LinearLayoutManager(requireContext())
-
-        (parentFragment as ScheduleFragment)
 
         // TODO: refactor with ListAdapter
         viewModel.schedule.observe(viewLifecycleOwner) {

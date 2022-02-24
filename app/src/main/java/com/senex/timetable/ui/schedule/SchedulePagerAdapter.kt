@@ -6,8 +6,8 @@ import androidx.viewpager2.adapter.FragmentStateAdapter
 import java.time.DayOfWeek
 
 class SchedulePagerAdapter(
-    fa: FragmentActivity,
-) : FragmentStateAdapter(fa) {
+    fragment: Fragment,
+) : FragmentStateAdapter(fragment) {
     override fun getItemCount(): Int = 7
 
     override fun createFragment(position: Int): Fragment =
