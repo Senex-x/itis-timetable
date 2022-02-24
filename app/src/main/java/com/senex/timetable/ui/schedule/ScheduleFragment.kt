@@ -6,9 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.senex.timetable.R
 import com.senex.timetable.databinding.FragmentScheduleBinding
+import java.time.DayOfWeek
 
 class ScheduleFragment : Fragment() {
     private var _binding: FragmentScheduleBinding? = null
@@ -43,16 +45,16 @@ class ScheduleFragment : Fragment() {
         val pagerAdapter = SchedulePagerAdapter(requireActivity())
         pager.adapter = pagerAdapter
 
+        tabLayout.tabMode = TabLayout.MODE_SCROLLABLE
         TabLayoutMediator(tabLayout, pager) { tab, position ->
-            tab.text = "OBJECT ${(position + 1)}"
+            tab.text = DayOfWeek.of(position + 1).name
         }.attach()
     }
 
-    private fun navigateToTableFragment() {
+    private fun navigateToTableFragment() =
         findNavController().navigate(
             R.id.action_scheduleContainerFragment_to_groupsFragment
         )
-    }
 
     override fun onDestroyView() {
         super.onDestroyView()

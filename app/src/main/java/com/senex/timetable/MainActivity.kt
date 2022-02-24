@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.senex.timetable.databinding.ActivityMainBinding
 import kotlinx.coroutines.runBlocking
+import java.time.DayOfWeek
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -18,7 +19,6 @@ class MainActivity : AppCompatActivity() {
 
     private fun doOptionalStuff() {
         runBlocking {
-
             //log(scheduleDao.getSuspending(1).toString())
         }
     }

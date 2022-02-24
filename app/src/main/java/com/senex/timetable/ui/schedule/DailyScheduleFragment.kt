@@ -9,13 +9,16 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.senex.timetable.databinding.FragmentDailyScheduleBinding
-import com.senex.timetable.daggerAppComponent
-import com.senex.timetable.ui.schedule.recycler.ScheduleRecyclerAdapter
 import com.senex.timetable.common.log
+import com.senex.timetable.daggerAppComponent
+import com.senex.timetable.databinding.FragmentDailyScheduleBinding
+import com.senex.timetable.ui.schedule.recycler.ScheduleRecyclerAdapter
+import java.time.DayOfWeek
 import javax.inject.Inject
 
-class DailyScheduleFragment : Fragment() {
+class DailyScheduleFragment(
+    private val dayOfWeek: DayOfWeek,
+) : Fragment() {
     private var _binding: FragmentDailyScheduleBinding? = null
     private val binding
         get() = _binding!!
@@ -47,14 +50,14 @@ class DailyScheduleFragment : Fragment() {
     ): Unit = with(binding) {
         scheduleRecyclerView.layoutManager = LinearLayoutManager(requireContext())
 
+        (parentFragment as ScheduleFragment)
+
         // TODO: refactor with ListAdapter
         viewModel.schedule.observe(viewLifecycleOwner) {
             log("Schedule live data was updated")
             scheduleRecyclerView.adapter = ScheduleRecyclerAdapter(it)
         }
     }
-
-
 
 
     override fun onDestroyView() {
