@@ -22,24 +22,5 @@ class ScheduleViewModel @Inject constructor(
         )
 
     fun getDailySubjects(dayOfWeek: DayOfWeek) =
-        dailySubjects[dayOfWeek.value]
-
-/*
-    private val schedule = scheduleRepository.getByGroupIdSorted(
-        preferencesHandler.getSavedGroupId()
-    )
-
-    fun getDailySubjects(
-        dayOfWeek: DayOfWeek,
-    ) = schedule.map { schedule ->
-        if(schedule == null) {
-            emptyList()
-        } else {
-            schedule.dailySchedules.find { dailySchedule ->
-                dailySchedule.dailyScheduleEntity.numberInWeek == dayOfWeek.value
-            }?.subjects ?: emptyList()
-        }
-    }*/
-
-
+        dailySubjects[dayOfWeek.value - 1]
 }

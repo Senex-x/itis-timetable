@@ -9,9 +9,10 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.senex.timetable.common.log
 import com.senex.timetable.daggerAppComponent
 import com.senex.timetable.databinding.FragmentDailyScheduleBinding
-import com.senex.timetable.ui.schedule.recycler.ScheduleRecyclerAdapter
+import com.senex.timetable.ui.schedule.recycler.SubjectRecyclerAdapter
 import java.time.DayOfWeek
 import javax.inject.Inject
 
@@ -52,10 +53,13 @@ class DailyScheduleFragment(
     ): Unit = with(binding) {
         scheduleRecyclerView.layoutManager = LinearLayoutManager(requireContext())
 
-        // TODO: refactor with ListAdapter
+        val recyclerAdapter = SubjectRecyclerAdapter()
+        scheduleRecyclerView.adapter = recyclerAdapter
+
         viewModel.getDailySubjects(dayOfWeek)
             .observe(viewLifecycleOwner) {
-                scheduleRecyclerView.adapter = ScheduleRecyclerAdapter(it)
+                log("Got new subject list")
+                recyclerAdapter.submitList(it)
             }
     }
 

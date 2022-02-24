@@ -3,13 +3,14 @@ package com.senex.timetable.ui.schedule.recycler
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.senex.timetable.data.models.schedule.Subject
 import com.senex.timetable.databinding.ListItemSubjectBinding
 
-class ScheduleRecyclerAdapter(
-    private val subjects: List<Subject>,
-) : RecyclerView.Adapter<ScheduleRecyclerAdapter.SubjectViewHolder>() {
+class SubjectRecyclerAdapter : ListAdapter<Subject, SubjectRecyclerAdapter.SubjectViewHolder>(
+    SubjectDiffCallback
+) {
 
     inner class SubjectViewHolder(
         private val binding: ListItemSubjectBinding,
@@ -35,12 +36,8 @@ class ScheduleRecyclerAdapter(
             false
         ))
 
-
     override fun onBindViewHolder(
-        holder: ScheduleRecyclerAdapter.SubjectViewHolder,
+        holder: SubjectRecyclerAdapter.SubjectViewHolder,
         position: Int,
-    ) = holder.bind(subjects[position])
-
-
-    override fun getItemCount() = subjects.size
+    ) = holder.bind(getItem(position))
 }
