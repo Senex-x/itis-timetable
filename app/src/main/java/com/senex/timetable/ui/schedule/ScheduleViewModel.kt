@@ -1,30 +1,25 @@
 package com.senex.timetable.ui.schedule
 
-import android.app.Application
-import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.map
+import androidx.lifecycle.ViewModel
 import com.senex.timetable.common.SharedPreferencesHandler
-import com.senex.timetable.common.log
-import com.senex.timetable.data.models.schedule.Subject
 import com.senex.timetable.data.repositories.ScheduleRepository
+import com.senex.timetable.data.repositories.SubjectRepository
 import java.time.DayOfWeek
 import javax.inject.Inject
 
 class ScheduleViewModel @Inject constructor(
     private val preferencesHandler: SharedPreferencesHandler,
     private val scheduleRepository: ScheduleRepository,
-    application: Application,
-) : AndroidViewModel(application) {
+    private val subjectRepository: SubjectRepository,
+) : ViewModel() {
 
-    private val schedule = preferencesHandler.getSavedGroupId()?.let {
-        scheduleRepository.getByGroupIdSorted(it)
-    } ?: scheduleRepository.getFirst()
-
+    private val schedule = scheduleRepository.getByGroupIdSorted(
+        preferencesHandler.getSavedGroupId()
+    )
+/*
     fun getDailySubjects(
         dayOfWeek: DayOfWeek,
     ) = schedule.map { schedule ->
-        log("Got update for daily subjects")
-
         if(schedule == null) {
             emptyList()
         } else {
@@ -32,5 +27,11 @@ class ScheduleViewModel @Inject constructor(
                 dailySchedule.dailyScheduleEntity.numberInWeek == dayOfWeek.value
             }?.subjects ?: emptyList()
         }
-    }
+    }*/
+
+    fun getDailySubjects(dayOfWeek: DayOfWeek) = subjectRepository
+        .getAllByGroupIdAndDayNumber(
+            preferencesHandler.getSavedGroupId(),
+            dayOfWeek.value,
+        )
 }

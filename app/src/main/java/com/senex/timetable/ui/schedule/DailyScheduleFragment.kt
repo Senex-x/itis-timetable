@@ -53,9 +53,10 @@ class DailyScheduleFragment(
         scheduleRecyclerView.layoutManager = LinearLayoutManager(requireContext())
 
         // TODO: refactor with ListAdapter
-        viewModel.getDailySubjects(dayOfWeek).observe(viewLifecycleOwner) {
-            scheduleRecyclerView.adapter = ScheduleRecyclerAdapter(it)
-        }
+        viewModel.getDailySubjects(dayOfWeek)
+            .observe(viewLifecycleOwner) {
+                scheduleRecyclerView.adapter = ScheduleRecyclerAdapter(it)
+            }
     }
 
 
