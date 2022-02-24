@@ -7,16 +7,16 @@
 
     <fragment
         android:id="@+id/scheduleContainerFragment"
-        android:name="com.senex.timetable.presentation.schedule.ScheduleContainerFragment"
+        android:name="com.senex.timetable.ui.schedule.ScheduleFragment"
         android:label="ScheduleContainerFragment"
-        tools:layout="@layout/fragment_schedule_container" >
+        tools:layout="@layout/fragment_schedule" >
         <action
             android:id="@+id/action_scheduleContainerFragment_to_groupsFragment"
             app:destination="@id/groupsFragment" />
     </fragment>
     <fragment
         android:id="@+id/groupsFragment"
-        android:name="com.senex.timetable.presentation.groups.GroupsFragment"
+        android:name="com.senex.timetable.ui.groups.GroupsFragment"
         android:label="fragment_groups"
         tools:layout="@layout/fragment_groups" >
         <action

@@ -5,7 +5,7 @@ import com.senex.timetable.data.models.schedule.DailyScheduleEntity
 import com.senex.timetable.data.models.schedule.ScheduleEntity
 import com.senex.timetable.data.models.schedule.Subject
 import com.senex.timetable.data.models.schedule.SubjectType
-import com.senex.timetable.utils.log
+import com.senex.timetable.common.log
 import kotlinx.coroutines.runBlocking
 import javax.inject.Inject
 import kotlin.random.Random

@@ -3,7 +3,7 @@
     package="com.senex.timetable">
 
     <application
-        android:name=".presentation.TimetableApplication"
+        android:name=".ui.TimetableApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -11,7 +11,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ITISTimetable">
         <activity
-            android:name=".presentation.MainActivity"
+            android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
