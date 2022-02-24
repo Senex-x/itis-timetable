@@ -2,6 +2,7 @@ package com.senex.timetable.data.repositories
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Transformations
+import androidx.lifecycle.map
 import com.senex.timetable.data.database.AppDatabase
 import com.senex.timetable.data.database.ScheduleDao
 import com.senex.timetable.data.models.schedule.Schedule
@@ -16,11 +17,11 @@ class ScheduleRepository @Inject constructor(
 
     private fun sortSchedule(
         source: LiveData<Schedule?>,
-    ) = Transformations.map(source) {
+    ) = source.map {
         it?.apply {
             it.dailySchedules.sortedWith(
                 Comparator.comparingInt { item ->
-                    item.dailySchedule.numberInWeek
+                    item.dailyScheduleEntity.numberInWeek
                 }
             )
 

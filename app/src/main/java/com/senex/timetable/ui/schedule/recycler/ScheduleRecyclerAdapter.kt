@@ -4,84 +4,43 @@ import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.senex.timetable.databinding.*
-import com.senex.timetable.ui.schedule.recycler.items.DayRecyclerItem
-import com.senex.timetable.ui.schedule.recycler.items.ScheduleRecyclerItemType
-import com.senex.timetable.ui.schedule.recycler.items.SubjectRecyclerItem
-import com.senex.timetable.common.recycler.TypedRecyclerItem
+import com.senex.timetable.data.models.schedule.Subject
+import com.senex.timetable.databinding.ListItemSubjectBinding
 
 class ScheduleRecyclerAdapter(
-    private val items: List<TypedRecyclerItem>,
-) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
-
-    inner class DayViewHolder(
-        private val binding: ListItemDayBinding,
-    ) : RecyclerView.ViewHolder(binding.root) {
-
-        fun bind(item: TypedRecyclerItem): Unit = with(binding) {
-            val dayItem = item as DayRecyclerItem
-
-            name.text = dayItem.name
-        }
-    }
+    private val subjects: List<Subject>,
+) : RecyclerView.Adapter<ScheduleRecyclerAdapter.SubjectViewHolder>() {
 
     inner class SubjectViewHolder(
-        private val binding: ListItemScheduleBinding,
+        private val binding: ListItemSubjectBinding,
     ) : RecyclerView.ViewHolder(binding.root) {
 
         @SuppressLint("SetTextI18n")
-        fun bind(item: TypedRecyclerItem): Unit = with(binding) {
-            val subjectItem = item as SubjectRecyclerItem
-
-            period.text = subjectItem.item.startTime +
-                    "\n" + subjectItem.item.endTime
-            name.text = subjectItem.item.name
-            type.text = subjectItem.item.type.name
-            roomNumber.text = subjectItem.item.room
-
+        fun bind(item: Subject): Unit = with(binding) {
+            period.text = item.startTime +
+                    "\n" + item.endTime
+            name.text = item.name
+            type.text = item.type.name
+            roomNumber.text = item.room
         }
     }
-
-    override fun getItemViewType(position: Int) =
-        items[position].getViewType()
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int,
-    ) = when (viewType) {
-        ScheduleRecyclerItemType.DAY.value ->
-            DayViewHolder(
-                ListItemDayBinding.inflate(
-                    LayoutInflater.from(parent.context),
-                    parent,
-                    false
-                ))
+    ) = SubjectViewHolder(
+        ListItemSubjectBinding.inflate(
+            LayoutInflater.from(parent.context),
+            parent,
+            false
+        ))
 
-        ScheduleRecyclerItemType.SUBJECT.value ->
-            SubjectViewHolder(
-                ListItemScheduleBinding.inflate(
-                    LayoutInflater.from(parent.context),
-                    parent,
-                    false
-                ))
-
-        else -> throw IllegalArgumentException()
-    }
 
     override fun onBindViewHolder(
-        holder: RecyclerView.ViewHolder,
+        holder: ScheduleRecyclerAdapter.SubjectViewHolder,
         position: Int,
-    ) = when (holder.itemViewType) {
-        ScheduleRecyclerItemType.DAY.value ->
-            (holder as DayViewHolder)
-                .bind(items[position])
+    ) = holder.bind(subjects[position])
 
-        ScheduleRecyclerItemType.SUBJECT.value ->
-            (holder as SubjectViewHolder)
-                .bind(items[position])
 
-        else -> throw IllegalArgumentException()
-    }
-
-    override fun getItemCount() = items.size
+    override fun getItemCount() = subjects.size
 }

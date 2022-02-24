@@ -5,7 +5,7 @@ import androidx.room.Relation
 
 data class DailySchedule(
     @Embedded
-    val dailySchedule: DailyScheduleEntity,
+    val dailyScheduleEntity: DailyScheduleEntity,
     @Relation(
         parentColumn = "id",
         entityColumn = "daily_schedule_id",

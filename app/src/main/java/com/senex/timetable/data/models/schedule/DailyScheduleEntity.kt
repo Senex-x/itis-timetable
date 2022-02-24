@@ -20,7 +20,7 @@ data class DailyScheduleEntity(
     val id: Long,
     @ColumnInfo(name = "schedule_id")
     val scheduleId: Long,
-    val name: String,
+    val dayName: String,
     @ColumnInfo(name = "number_in_week")
     val numberInWeek: Int,
 )

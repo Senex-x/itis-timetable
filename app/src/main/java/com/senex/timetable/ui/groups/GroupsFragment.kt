@@ -11,6 +11,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.senex.timetable.R
+import com.senex.timetable.common.log
 import com.senex.timetable.databinding.FragmentGroupsBinding
 import com.senex.timetable.ui.groups.recycler.GroupsRecyclerAdapter
 import com.senex.timetable.common.toast

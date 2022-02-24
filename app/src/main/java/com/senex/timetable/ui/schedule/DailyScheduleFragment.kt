@@ -9,7 +9,6 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.senex.timetable.common.log
 import com.senex.timetable.daggerAppComponent
 import com.senex.timetable.databinding.FragmentDailyScheduleBinding
 import com.senex.timetable.ui.schedule.recycler.ScheduleRecyclerAdapter
@@ -54,8 +53,7 @@ class DailyScheduleFragment(
         scheduleRecyclerView.layoutManager = LinearLayoutManager(requireContext())
 
         // TODO: refactor with ListAdapter
-        viewModel.schedule.observe(viewLifecycleOwner) {
-            log("Schedule live data was updated")
+        viewModel.getDailySubjects(dayOfWeek).observe(viewLifecycleOwner) {
             scheduleRecyclerView.adapter = ScheduleRecyclerAdapter(it)
         }
     }

@@ -11,9 +11,8 @@ import javax.inject.Inject
 
 class GroupsViewModel @Inject constructor(
     private val preferences: SharedPreferencesHandler,
-    private val groupRepository: GroupRepository,
+    groupRepository: GroupRepository,
 ) : ViewModel() {
-
     val groups = GroupRecyclerItemConverter.convert(
         groupRepository.getAllSorted()
     )
