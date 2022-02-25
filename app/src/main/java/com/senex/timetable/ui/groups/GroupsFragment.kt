@@ -47,7 +47,7 @@ class GroupsFragment : Fragment() {
     override fun onViewCreated(
         view: View,
         savedInstanceState: Bundle?,
-    ): Unit = with(binding) {
+    ) = with(binding) {
         groupsToolbar.setOnMenuItemClickListener {
             when (it.itemId) {
                 R.id.action_open_schedule_fragment -> {

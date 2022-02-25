@@ -5,24 +5,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.senex.timetable.R
 import com.senex.timetable.databinding.FragmentScheduleBinding
 import java.time.DayOfWeek
-import javax.inject.Inject
 
 class ScheduleFragment : Fragment() {
     private var _binding: FragmentScheduleBinding? = null
     private val binding
         get() = _binding!!
-
-    @Inject
-    lateinit var factory: ViewModelProvider.Factory
-    private val viewModel: ScheduleViewModel by viewModels<ScheduleViewModel>(factoryProducer = { factory })
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -38,7 +31,13 @@ class ScheduleFragment : Fragment() {
     override fun onViewCreated(
         view: View,
         savedInstanceState: Bundle?,
-    ): Unit = with(binding) {
+    ) = with(binding) {
+        initToolbar()
+        initViewPager()
+        initTabBar()
+    }
+
+    private fun FragmentScheduleBinding.initToolbar() {
         tableToolbar.setOnMenuItemClickListener {
             when (it.itemId) {
                 R.id.action_open_groups_fragment -> {
@@ -48,10 +47,14 @@ class ScheduleFragment : Fragment() {
                 else -> false
             }
         }
+    }
 
+    private fun FragmentScheduleBinding.initViewPager() {
         val pagerAdapter = SchedulePagerAdapter(this@ScheduleFragment)
         pager.adapter = pagerAdapter
+    }
 
+    private fun FragmentScheduleBinding.initTabBar() {
         tabLayout.tabMode = TabLayout.MODE_SCROLLABLE
         TabLayoutMediator(tabLayout, pager) { tab, position ->
             tab.text = DayOfWeek.of(position + 1).name

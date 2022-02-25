@@ -1,4 +1,4 @@
-package com.senex.timetable.ui.schedule.recycler
+package com.senex.timetable.ui.schedule.daily.recycler
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater

@@ -1,4 +1,4 @@
-package com.senex.timetable.ui.schedule
+package com.senex.timetable.ui.schedule.daily
 
 import android.content.Context
 import android.os.Bundle
@@ -12,7 +12,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.senex.timetable.common.log
 import com.senex.timetable.daggerAppComponent
 import com.senex.timetable.databinding.FragmentDailyScheduleBinding
-import com.senex.timetable.ui.schedule.recycler.SubjectRecyclerAdapter
+import com.senex.timetable.ui.schedule.ScheduleViewModel
+import com.senex.timetable.ui.schedule.daily.recycler.SubjectRecyclerAdapter
 import java.time.DayOfWeek
 import javax.inject.Inject
 
@@ -50,7 +51,7 @@ class DailyScheduleFragment(
     override fun onViewCreated(
         view: View,
         savedInstanceState: Bundle?,
-    ): Unit = with(binding) {
+    ) = with(binding) {
         scheduleRecyclerView.layoutManager = LinearLayoutManager(requireContext())
 
         val recyclerAdapter = SubjectRecyclerAdapter()
@@ -58,11 +59,10 @@ class DailyScheduleFragment(
 
         viewModel.getDailySubjects(dayOfWeek)
             .observe(viewLifecycleOwner) {
-                log("Got new subject list")
+                //log("Got new subject list for day: $dayOfWeek")
                 recyclerAdapter.submitList(it)
             }
     }
-
 
     override fun onDestroyView() {
         super.onDestroyView()

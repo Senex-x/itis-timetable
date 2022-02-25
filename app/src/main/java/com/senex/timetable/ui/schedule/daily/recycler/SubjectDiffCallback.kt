@@ -1,11 +1,7 @@
-package com.senex.timetable.ui.schedule.recycler
+package com.senex.timetable.ui.schedule.daily.recycler
 
 import androidx.recyclerview.widget.DiffUtil
-import com.senex.timetable.ui.groups.recycler.items.CourseRecyclerItem
-import com.senex.timetable.common.recycler.TypedRecyclerItem
 import com.senex.timetable.data.models.schedule.Subject
-import com.senex.timetable.ui.groups.recycler.items.GroupRecyclerItemType
-import com.senex.timetable.ui.groups.recycler.items.GroupRecyclerItem
 
 // TODO: Handle payloads
 object SubjectDiffCallback : DiffUtil.ItemCallback<Subject>() {

@@ -17,7 +17,7 @@ class GroupsViewModel @Inject constructor(
         groupRepository.getAllSorted()
     )
 
-    // Maybe just retrieve it from db instead?
+    // TODO: Retrieve directly from database
     fun getGroup(id: Long): Group {
         val groupListItem = groups.value?.find { item ->
             item.getViewType() == GroupRecyclerItemType.GROUP.value
