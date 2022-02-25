@@ -67,8 +67,7 @@ dependencies {
 
     implementation 'com.google.code.gson:gson:2.9.0'
 
-    implementation 'org.apache.xmlbeans:xmlbeans:5.0.3'
-    implementation 'org.apache.commons:commons-collections4:4.4'
+    implementation 'com.hannesdorfmann:adapterdelegates4-kotlin-dsl:4.3.1'
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'

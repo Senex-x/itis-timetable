@@ -22,6 +22,6 @@ object GroupRecyclerItemConverter {
             result.add(GroupRecyclerItem(group))
         }
 
-        result
+        result.toList()
     }
 }

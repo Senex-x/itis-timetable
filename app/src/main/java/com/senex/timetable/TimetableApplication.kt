@@ -13,8 +13,10 @@ import javax.inject.Inject
 
 class TimetableApplication : Application() {
     lateinit var daggerAppComponent: AppComponent
+
     @Inject
     lateinit var preferencesHandler: SharedPreferencesHandler
+
     @Inject
     lateinit var groupRepository: Lazy<GroupRepository>
 
@@ -24,13 +26,13 @@ class TimetableApplication : Application() {
             .build()
         daggerAppComponent.inject(this)
 
-       if(preferencesHandler.isGroupNotSaved) {
-           runBlocking {
-               preferencesHandler.saveGroupId(
-                   groupRepository.get().getRandomId()
-               )
-           }
-       }
+        if (preferencesHandler.isGroupNotSaved) {
+            runBlocking {
+                preferencesHandler.saveGroupId(
+                    groupRepository.get().getRandomId()
+                )
+            }
+        }
 
         super.onCreate()
     }

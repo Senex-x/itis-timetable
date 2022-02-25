@@ -11,11 +11,10 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.senex.timetable.R
-import com.senex.timetable.common.log
-import com.senex.timetable.databinding.FragmentGroupsBinding
-import com.senex.timetable.ui.groups.recycler.GroupsRecyclerAdapter
 import com.senex.timetable.common.toast
 import com.senex.timetable.daggerAppComponent
+import com.senex.timetable.databinding.FragmentGroupsBinding
+import com.senex.timetable.ui.groups.recycler.GroupsRecyclerDelegationAdapter
 import javax.inject.Inject
 
 class GroupsFragment : Fragment() {
@@ -59,11 +58,10 @@ class GroupsFragment : Fragment() {
         }
 
         groupsRecyclerView.layoutManager = LinearLayoutManager(requireContext())
-        groupsRecyclerView.adapter = GroupsRecyclerAdapter().apply {
+        groupsRecyclerView.adapter = GroupsRecyclerDelegationAdapter(onGroupItemClick).apply {
             viewModel.groups.observe(viewLifecycleOwner) {
-                submitList(it)
+                items = it
             }
-            onItemClickListener = onGroupItemClick
         }
     }
 
