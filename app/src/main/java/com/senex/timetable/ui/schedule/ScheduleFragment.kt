@@ -41,7 +41,7 @@ class ScheduleFragment : Fragment() {
         tableToolbar.setOnMenuItemClickListener {
             when (it.itemId) {
                 R.id.action_open_groups_fragment -> {
-                    navigateToTableFragment()
+                    navigateToGroupsFragment()
                     true
                 }
                 else -> false
@@ -61,9 +61,9 @@ class ScheduleFragment : Fragment() {
         }.attach()
     }
 
-    private fun navigateToTableFragment() =
+    private fun navigateToGroupsFragment() =
         findNavController().navigate(
-            R.id.action_scheduleContainerFragment_to_groupsFragment
+            R.id.action_scheduleFragment_to_groupsFragment
         )
 
     override fun onDestroyView() {

@@ -72,7 +72,7 @@ class GroupsFragment : Fragment() {
 
     private fun navigateToGroupsFragment() {
         findNavController().navigate(
-            R.id.action_groupsFragment_to_scheduleContainerFragment
+            R.id.action_groupsFragment_to_scheduleFragment
         )
     }
 }

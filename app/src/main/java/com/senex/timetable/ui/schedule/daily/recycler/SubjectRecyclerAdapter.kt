@@ -11,6 +11,7 @@ import com.senex.timetable.databinding.ListItemSubjectBinding
 class SubjectRecyclerAdapter : ListAdapter<Subject, SubjectRecyclerAdapter.SubjectViewHolder>(
     SubjectDiffCallback
 ) {
+    var onItemClickListener: ((Long) -> Unit)? = null
 
     inner class SubjectViewHolder(
         private val binding: ListItemSubjectBinding,
@@ -23,6 +24,10 @@ class SubjectRecyclerAdapter : ListAdapter<Subject, SubjectRecyclerAdapter.Subje
             name.text = item.name
             type.text = item.type.name
             roomNumber.text = item.room
+
+            root.setOnClickListener {
+                onItemClickListener?.invoke(item.id)
+            }
         }
     }
 

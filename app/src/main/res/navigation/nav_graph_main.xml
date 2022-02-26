@@ -3,19 +3,19 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph_main"
-    app:startDestination="@id/scheduleContainerFragment">
+    app:startDestination="@id/scheduleFragment">
 
     <fragment
-        android:id="@+id/scheduleContainerFragment"
+        android:id="@+id/scheduleFragment"
         android:name="com.senex.timetable.ui.schedule.ScheduleFragment"
         android:label="ScheduleContainerFragment"
         tools:layout="@layout/fragment_schedule" >
         <action
-            android:id="@+id/action_scheduleContainerFragment_to_groupsFragment"
-            app:destination="@id/groupsFragment" />
-        <action
-            android:id="@+id/action_scheduleContainerFragment_to_subjectFragment"
+            android:id="@+id/action_scheduleFragment_to_subjectFragment"
             app:destination="@id/subjectFragment" />
+        <action
+            android:id="@+id/action_scheduleFragment_to_groupsFragment"
+            app:destination="@id/groupsFragment" />
     </fragment>
     <fragment
         android:id="@+id/groupsFragment"
@@ -23,8 +23,8 @@
         android:label="fragment_groups"
         tools:layout="@layout/fragment_groups" >
         <action
-            android:id="@+id/action_groupsFragment_to_scheduleContainerFragment"
-            app:destination="@id/scheduleContainerFragment" />
+            android:id="@+id/action_groupsFragment_to_scheduleFragment"
+            app:destination="@id/scheduleFragment" />
     </fragment>
     <fragment
         android:id="@+id/subjectFragment"
@@ -32,7 +32,7 @@
         android:label="SubjectFragment"
         tools:layout="@layout/fragment_subject">
         <action
-            android:id="@+id/action_subjectFragment_to_scheduleContainerFragment"
-            app:destination="@id/scheduleContainerFragment" />
+            android:id="@+id/action_subjectFragment_to_scheduleFragment"
+            app:destination="@id/scheduleFragment" />
     </fragment>
 </navigation>
