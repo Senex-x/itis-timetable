@@ -11,5 +11,5 @@ class SchedulePagerAdapter(
     override fun getItemCount(): Int = 7
 
     override fun createFragment(position: Int): Fragment =
-        DailyScheduleFragment(DayOfWeek.of(position + 1))
+        DailyScheduleFragment.newInstance(DayOfWeek.of(position + 1))
 }
