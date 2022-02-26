@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_scheduleContainerFragment_to_groupsFragment"
             app:destination="@id/groupsFragment" />
+        <action
+            android:id="@+id/action_scheduleContainerFragment_to_subjectFragment"
+            app:destination="@id/subjectFragment" />
     </fragment>
     <fragment
         android:id="@+id/groupsFragment"
@@ -21,6 +24,15 @@
         tools:layout="@layout/fragment_groups" >
         <action
             android:id="@+id/action_groupsFragment_to_scheduleContainerFragment"
+            app:destination="@id/scheduleContainerFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/subjectFragment"
+        android:name="com.senex.timetable.ui.subject.SubjectFragment"
+        android:label="SubjectFragment"
+        tools:layout="@layout/fragment_subject">
+        <action
+            android:id="@+id/action_subjectFragment_to_scheduleContainerFragment"
             app:destination="@id/scheduleContainerFragment" />
     </fragment>
 </navigation>
