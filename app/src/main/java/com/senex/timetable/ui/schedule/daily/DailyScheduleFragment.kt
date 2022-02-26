@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.senex.timetable.R
 import com.senex.timetable.daggerAppComponent
 import com.senex.timetable.databinding.FragmentDailyScheduleBinding
+import com.senex.timetable.ui.schedule.ScheduleFragmentDirections
 import com.senex.timetable.ui.schedule.ScheduleViewModel
 import com.senex.timetable.ui.schedule.daily.recycler.SubjectRecyclerAdapter
 import java.time.DayOfWeek
@@ -60,7 +61,7 @@ class DailyScheduleFragment : Fragment() {
         val recyclerAdapter = SubjectRecyclerAdapter()
         scheduleRecyclerView.adapter = recyclerAdapter
         recyclerAdapter.onItemClickListener = {
-            navigateToSubjectFragment()
+            navigateToSubjectFragment(it)
         }
 
         viewModel.getDailySubjects(dayOfWeek)
@@ -70,9 +71,11 @@ class DailyScheduleFragment : Fragment() {
             }
     }
 
-    private fun navigateToSubjectFragment() =
+    private fun navigateToSubjectFragment(subjectId: Long) =
         findNavController().navigate(
-            R.id.action_scheduleFragment_to_subjectFragment
+            ScheduleFragmentDirections.actionScheduleFragmentToSubjectFragment(
+               subjectId
+            )
         )
 
     override fun onDestroyView() {
