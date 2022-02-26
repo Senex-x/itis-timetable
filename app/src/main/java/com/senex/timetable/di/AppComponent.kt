@@ -4,6 +4,7 @@ import com.senex.timetable.MainActivity
 import com.senex.timetable.TimetableApplication
 import com.senex.timetable.ui.groups.GroupsFragment
 import com.senex.timetable.ui.schedule.daily.DailyScheduleFragment
+import com.senex.timetable.ui.subject.SubjectFragment
 import dagger.Component
 import javax.inject.Singleton
 
@@ -18,7 +19,7 @@ interface AppComponent {
 
     fun inject(groupsFragment: GroupsFragment)
 
-    fun inject(activity: MainActivity)
+    fun inject(subjectFragment: SubjectFragment)
 
     fun inject(app: TimetableApplication)
 }

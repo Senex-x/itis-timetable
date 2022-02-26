@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.senex.timetable.ui.groups.GroupsViewModel
 import com.senex.timetable.ui.schedule.ScheduleViewModel
+import com.senex.timetable.ui.subject.SubjectViewModel
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
@@ -25,7 +26,14 @@ abstract class ViewModelsModule {
     @Binds
     @IntoMap
     @ViewModelKey(ScheduleViewModel::class)
-    abstract fun bindSchedulesViewModel(
+    abstract fun bindScheduleViewModel(
         viewModel: ScheduleViewModel
+    ): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(SubjectViewModel::class)
+    abstract fun bindSubjectViewModel(
+        viewModel: SubjectViewModel
     ): ViewModel
 }
