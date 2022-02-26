@@ -56,6 +56,9 @@ class SubjectFragment : Fragment() {
 
         val subject = viewModel.getSubject()
 
+        hideSubjectButton.setOnClickListener {
+
+        }
     }
 
     private fun FragmentSubjectBinding.initToolbar() {
@@ -70,7 +73,6 @@ class SubjectFragment : Fragment() {
         }
     }
 
-    private fun navigateToGroupsFragment() = findNavController().navigate(
-        SubjectFragmentDirections.actionSubjectFragmentToScheduleFragment()
-    )
+    private fun navigateToGroupsFragment() =
+        findNavController().popBackStack()
 }

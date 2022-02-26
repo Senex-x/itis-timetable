@@ -8,7 +8,6 @@ import javax.inject.Inject
 class SubjectViewModel @Inject constructor(
     private val subjectRepository: SubjectRepository,
 ) : ViewModel() {
-
     private var subject: Subject? = null
 
     suspend fun setSubject(subjectId: Long) {

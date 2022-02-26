@@ -8,7 +8,7 @@ import java.time.DayOfWeek
 class SchedulePagerAdapter(
     fragment: Fragment,
 ) : FragmentStateAdapter(fragment) {
-    override fun getItemCount(): Int = 7
+    override fun getItemCount(): Int = DayOfWeek.values().size
 
     override fun createFragment(position: Int): Fragment =
         DailyScheduleFragment.newInstance(DayOfWeek.of(position + 1))
