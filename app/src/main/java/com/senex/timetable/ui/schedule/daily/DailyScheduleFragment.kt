@@ -10,7 +10,6 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.senex.timetable.R
 import com.senex.timetable.daggerAppComponent
 import com.senex.timetable.databinding.FragmentDailyScheduleBinding
 import com.senex.timetable.ui.schedule.ScheduleFragmentDirections
@@ -71,12 +70,11 @@ class DailyScheduleFragment : Fragment() {
             }
     }
 
-    private fun navigateToSubjectFragment(subjectId: Long) =
-        findNavController().navigate(
-            ScheduleFragmentDirections.actionScheduleFragmentToSubjectFragment(
-               subjectId
-            )
+    private fun navigateToSubjectFragment(subjectId: Long) = findNavController().navigate(
+        ScheduleFragmentDirections.actionScheduleFragmentToSubjectFragment(
+            subjectId
         )
+    )
 
     override fun onDestroyView() {
         super.onDestroyView()

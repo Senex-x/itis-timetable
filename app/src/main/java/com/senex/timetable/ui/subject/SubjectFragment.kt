@@ -8,10 +8,12 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.senex.timetable.R
 import com.senex.timetable.daggerAppComponent
 import com.senex.timetable.databinding.FragmentSubjectBinding
-import kotlinx.coroutines.*
+import kotlinx.coroutines.runBlocking
 import javax.inject.Inject
 
 class SubjectFragment : Fragment() {
@@ -50,7 +52,25 @@ class SubjectFragment : Fragment() {
         view: View,
         savedInstanceState: Bundle?,
     ) = with(binding) {
+        initToolbar()
+
         val subject = viewModel.getSubject()
 
     }
+
+    private fun FragmentSubjectBinding.initToolbar() {
+        groupsToolbar.setOnMenuItemClickListener {
+            when (it.itemId) {
+                R.id.action_open_schedule_fragment -> {
+                    navigateToGroupsFragment()
+                    true
+                }
+                else -> false
+            }
+        }
+    }
+
+    private fun navigateToGroupsFragment() = findNavController().navigate(
+        SubjectFragmentDirections.actionSubjectFragmentToScheduleFragment()
+    )
 }

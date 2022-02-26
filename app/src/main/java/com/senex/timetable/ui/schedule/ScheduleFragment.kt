@@ -61,10 +61,9 @@ class ScheduleFragment : Fragment() {
         }.attach()
     }
 
-    private fun navigateToGroupsFragment() =
-        findNavController().navigate(
-            R.id.action_scheduleFragment_to_groupsFragment
-        )
+    private fun navigateToGroupsFragment() = findNavController().navigate(
+        ScheduleFragmentDirections.actionScheduleFragmentToGroupsFragment()
+    )
 
     override fun onDestroyView() {
         super.onDestroyView()
