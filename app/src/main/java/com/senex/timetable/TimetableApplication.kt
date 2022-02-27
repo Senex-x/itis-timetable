@@ -3,12 +3,14 @@ package com.senex.timetable
 import android.app.Application
 import android.content.Context
 import com.senex.timetable.common.SharedPreferencesHandler
-import com.senex.timetable.data.repositories.GroupRepository
+import com.senex.timetable.common.log
+import com.senex.timetable.data.database.AppDatabase
 import com.senex.timetable.di.AppComponent
 import com.senex.timetable.di.ContextModule
 import com.senex.timetable.di.DaggerAppComponent
-import dagger.Lazy
-import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class TimetableApplication : Application() {
@@ -18,7 +20,7 @@ class TimetableApplication : Application() {
     lateinit var preferencesHandler: SharedPreferencesHandler
 
     @Inject
-    lateinit var groupRepository: Lazy<GroupRepository>
+    lateinit var databse: AppDatabase
 
     override fun onCreate() {
         daggerAppComponent = DaggerAppComponent.builder()
@@ -26,7 +28,15 @@ class TimetableApplication : Application() {
             .build()
         daggerAppComponent.inject(this)
 
+        debugDatabase()
+
         super.onCreate()
+    }
+
+    private fun debugDatabase() {
+        CoroutineScope(Dispatchers.Default).launch {
+            //databse.hiddenSubjectDao().getAll().toString().log()
+        }
     }
 }
 

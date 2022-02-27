@@ -17,3 +17,6 @@ internal fun log(message: String?) =
 
 internal fun Fragment.log(message: String?) =
     Log.d(DEBUG_PREFIX + ": " + this::class.java.simpleName, message ?: "null")
+
+@JvmName(name = "logExt")
+internal fun String.log() = log(this)

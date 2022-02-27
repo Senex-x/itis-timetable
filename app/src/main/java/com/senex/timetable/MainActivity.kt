@@ -11,15 +11,5 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-        doOptionalStuff()
-    }
-
-    private fun doOptionalStuff() {
-        /*
-        subjectRepository.getAllByGroupIdAndDayNumber(1, 1)
-            .observe(this) {
-            log(it.toString())
-        }*/
     }
 }

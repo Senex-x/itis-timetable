@@ -24,6 +24,7 @@ class SubjectRecyclerAdapter : ListAdapter<Subject, SubjectRecyclerAdapter.Subje
             name.text = item.name
             type.text = item.type.name
             roomNumber.text = item.room
+            id.text = item.id.toString()
 
             root.setOnClickListener {
                 onItemClickListener?.invoke(item.id)
