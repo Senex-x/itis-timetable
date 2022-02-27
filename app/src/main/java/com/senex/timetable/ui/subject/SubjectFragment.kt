@@ -11,6 +11,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.senex.timetable.R
+import com.senex.timetable.common.log
 import com.senex.timetable.daggerAppComponent
 import com.senex.timetable.databinding.FragmentSubjectBinding
 import kotlinx.coroutines.runBlocking
@@ -51,13 +52,28 @@ class SubjectFragment : Fragment() {
     override fun onViewCreated(
         view: View,
         savedInstanceState: Bundle?,
-    ) = with(binding) {
+    ): Unit = with(binding) {
         initToolbar()
 
-        val subject = viewModel.getSubject()
+        val subject = viewModel.subject
+        idText.text = subject.id.toString()
+
+        viewModel.subjectVisibilityChangeListener = { isVisible ->
+            if (isVisible) {
+                showSubjectButton.visibility = View.INVISIBLE
+                hideSubjectButton.visibility = View.VISIBLE
+            } else {
+                showSubjectButton.visibility = View.VISIBLE
+                hideSubjectButton.visibility = View.INVISIBLE
+            }
+        }
 
         hideSubjectButton.setOnClickListener {
+            viewModel.setSubjectVisibility(isVisible = false)
+        }
 
+        showSubjectButton.setOnClickListener {
+            viewModel.setSubjectVisibility(isVisible = true)
         }
     }
 
