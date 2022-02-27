@@ -2,7 +2,6 @@ package com.senex.timetable.ui.schedule
 
 import androidx.lifecycle.ViewModel
 import com.senex.timetable.common.SharedPreferencesHandler
-import com.senex.timetable.data.repositories.ScheduleRepository
 import com.senex.timetable.data.repositories.SubjectRepository
 import java.time.DayOfWeek
 import javax.inject.Inject
@@ -16,7 +15,7 @@ class ScheduleViewModel @Inject constructor(
     }
 
     private fun getDailySubjectsFromDatabase(dayOfWeek: DayOfWeek) = subjectRepository
-        .getAllByGroupIdAndDayNumber(
+        .getAll(
             preferencesHandler.getSavedGroupId(),
             dayOfWeek.value,
         )

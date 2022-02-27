@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.senex.timetable.data.models.schedule.Subject
+import com.senex.timetable.data.models.subject.Subject
 import com.senex.timetable.databinding.ListItemSubjectBinding
 
 class SubjectRecyclerAdapter : ListAdapter<Subject, SubjectRecyclerAdapter.SubjectViewHolder>(

@@ -1,6 +1,7 @@
-package com.senex.timetable.data.models.schedule
+package com.senex.timetable.data.models.subject
 
 import androidx.room.*
+import com.senex.timetable.data.models.schedule.DailyScheduleEntity
 
 @Entity(
     tableName = "subjects",
@@ -8,7 +9,7 @@ import androidx.room.*
         ForeignKey(
             entity = DailyScheduleEntity::class,
             parentColumns = ["id"],
-            childColumns = ["daily_schedule_id"]
+            childColumns = ["daily_schedule_id"],
         )
     ],
 )

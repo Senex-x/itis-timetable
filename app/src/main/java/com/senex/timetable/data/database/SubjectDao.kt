@@ -4,9 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Query
 import androidx.room.Transaction
-import com.senex.timetable.data.models.schedule.DailySchedule
-import com.senex.timetable.data.models.schedule.DailyScheduleEntity
-import com.senex.timetable.data.models.schedule.Subject
+import com.senex.timetable.data.models.subject.Subject
 
 @Dao
 interface SubjectDao : BaseDao<Subject> {
@@ -16,7 +14,6 @@ interface SubjectDao : BaseDao<Subject> {
     @Query("SELECT * FROM subjects")
     suspend fun getAll(): List<Subject>
 
-    @Transaction
     @Query("""
         SELECT *
         FROM subjects
@@ -34,7 +31,30 @@ interface SubjectDao : BaseDao<Subject> {
         ON dailyScheduleIds.id == subjects.daily_schedule_id
         """
     )
-    fun getAllByGroupIdAndDayNumber(
+    fun getAll(
+        groupId: Long,
+        dayNumberInWeek: Int,
+    ): LiveData<List<Subject>>
+
+    @Query("""
+        SELECT *
+        FROM subjects
+        INNER JOIN (
+            SELECT daily_schedules.id 
+            FROM daily_schedules
+            INNER JOIN (
+                SELECT schedules.id
+                FROM schedules
+                WHERE group_id == :groupId
+            ) AS scheduleIds 
+            ON scheduleIds.id == daily_schedules.schedule_id
+            AND daily_schedules.number_in_week == :dayNumberInWeek
+        ) AS dailyScheduleIds
+        ON dailyScheduleIds.id == subjects.daily_schedule_id
+        AND subjects.id NOT IN hidden_subjects
+        """
+    )
+    fun getAllExcludingHidden(
         groupId: Long,
         dayNumberInWeek: Int,
     ): LiveData<List<Subject>>

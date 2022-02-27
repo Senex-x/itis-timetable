@@ -27,14 +27,23 @@ class DatabaseModule {
             AppDatabase::class.java,
             "database-main"
         ).addCallback(object : RoomDatabase.Callback() {
+            override fun onCreate(db: SupportSQLiteDatabase) {
+                CoroutineScope(Dispatchers.Default).launch {
+                    //prepareDatabase(databaseLazy.get())
+                }
+            }
             override fun onOpen(db: SupportSQLiteDatabase) {
                 CoroutineScope(Dispatchers.Default).launch {
-                    val databaseFiller = DatabaseFiller(databaseLazy.get())
-
-                    //databaseFiller.clearDatabase()
-                    //databaseFiller.populateDatabase()
+                    //prepareDatabase(databaseLazy.get())
                 }
             }
         }).build()
+    }
+
+    private fun prepareDatabase(
+        database: AppDatabase,
+    ) = with(DatabaseFiller(database)) {
+        clearDatabase()
+        populateDatabase()
     }
 }

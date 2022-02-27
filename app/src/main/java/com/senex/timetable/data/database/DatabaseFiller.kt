@@ -3,8 +3,8 @@ package com.senex.timetable.data.database
 import com.senex.timetable.data.models.group.Group
 import com.senex.timetable.data.models.schedule.DailyScheduleEntity
 import com.senex.timetable.data.models.schedule.ScheduleEntity
-import com.senex.timetable.data.models.schedule.Subject
-import com.senex.timetable.data.models.schedule.SubjectType
+import com.senex.timetable.data.models.subject.Subject
+import com.senex.timetable.data.models.subject.SubjectType
 import com.senex.timetable.common.log
 import kotlinx.coroutines.runBlocking
 import javax.inject.Inject
