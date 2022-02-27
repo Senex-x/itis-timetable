@@ -5,4 +5,6 @@
     <string name="placeholders">%1$s %2$d</string>
     <string name="course_text">Course</string>
     <string name="select_group_hint">Select a group to view schedules</string>
+    <string name="hide_from_schedule_title">Hide from schedule</string>
+    <string name="show_in_schedule_title">Show in schedule</string>
 </resources>
