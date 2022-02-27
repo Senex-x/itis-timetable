@@ -26,14 +26,6 @@ class TimetableApplication : Application() {
             .build()
         daggerAppComponent.inject(this)
 
-        if (preferencesHandler.isGroupNotSaved) {
-            runBlocking {
-                preferencesHandler.saveGroupId(
-                    groupRepository.get().getRandomId()
-                )
-            }
-        }
-
         super.onCreate()
     }
 }

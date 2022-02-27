@@ -1,5 +1,6 @@
 package com.senex.timetable.ui.schedule
 
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.senex.timetable.common.SharedPreferencesHandler
 import com.senex.timetable.data.repositories.SubjectRepository
@@ -14,11 +15,13 @@ class ScheduleViewModel @Inject constructor(
         getDailySubjectsFromDatabase(DayOfWeek.of(it + 1))
     }
 
-    private fun getDailySubjectsFromDatabase(dayOfWeek: DayOfWeek) = subjectRepository
-        .getAll(
-            preferencesHandler.getSavedGroupId(),
-            dayOfWeek.value,
-        )
+    private fun getDailySubjectsFromDatabase(dayOfWeek: DayOfWeek) =
+        preferencesHandler.getSavedGroupId()?.let {
+            subjectRepository.getAll(
+                it,
+                dayOfWeek.value,
+            )
+        } ?: MutableLiveData()
 
     fun getDailySubjects(dayOfWeek: DayOfWeek) =
         dailySubjects[dayOfWeek.value - 1]

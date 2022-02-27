@@ -29,7 +29,7 @@ class DatabaseModule {
         ).addCallback(object : RoomDatabase.Callback() {
             override fun onCreate(db: SupportSQLiteDatabase) {
                 CoroutineScope(Dispatchers.Default).launch {
-                    //prepareDatabase(databaseLazy.get())
+                    prepareDatabase(databaseLazy.get())
                 }
             }
             override fun onOpen(db: SupportSQLiteDatabase) {

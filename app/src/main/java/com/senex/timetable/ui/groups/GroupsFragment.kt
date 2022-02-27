@@ -68,6 +68,7 @@ class GroupsFragment : Fragment() {
     private val onGroupItemClick: (Long) -> Unit = {
         requireContext().toast("Group with id: $it selected")
         viewModel.setPrimaryGroup(viewModel.getGroup(it).id)
+        navigateToScheduleFragment()
     }
 
     private fun navigateToScheduleFragment() = findNavController().navigate(

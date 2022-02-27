@@ -1,6 +1,5 @@
 package com.senex.timetable.di
 
-import com.senex.timetable.MainActivity
 import com.senex.timetable.TimetableApplication
 import com.senex.timetable.ui.groups.GroupsFragment
 import com.senex.timetable.ui.schedule.daily.DailyScheduleFragment
@@ -13,6 +12,7 @@ import javax.inject.Singleton
     ContextModule::class,
     ViewModelsModule::class,
     DatabaseModule::class,
+    PreferencesModule::class,
 ])
 interface AppComponent {
     fun inject(dailyScheduleFragment: DailyScheduleFragment)
