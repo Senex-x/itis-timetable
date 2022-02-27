@@ -4,14 +4,14 @@ import androidx.room.*
 
 interface BaseDao<T> {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insert(group: T)
+    suspend fun insert(item: T)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertAll(vararg groups: T)
+    suspend fun insertAll(vararg item: T)
 
     @Update
-    suspend fun update(group: T)
+    suspend fun update(item: T)
 
     @Delete
-    suspend fun delete(group: T)
+    suspend fun delete(item: T)
 }
