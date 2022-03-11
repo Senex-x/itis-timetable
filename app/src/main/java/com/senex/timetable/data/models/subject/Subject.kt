@@ -18,6 +18,8 @@ data class Subject(
     val id: Long,
     @ColumnInfo(name = "daily_schedule_id")
     val dailyScheduleId: Long,
+    @ColumnInfo(name = "number_in_day")
+    val numberInDay: Int,
     @ColumnInfo(name = "start_time")
     val startTime: String,
     @ColumnInfo(name = "end_time")

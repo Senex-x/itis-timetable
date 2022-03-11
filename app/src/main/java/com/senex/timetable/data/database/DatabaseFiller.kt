@@ -83,6 +83,7 @@ class DatabaseFiller @Inject constructor(
     private fun createSubject(id: Long, dailyScheduleId: Long) = Subject(
         id,
         dailyScheduleId,
+        Random.nextInt(1, 10),
         "8:30", "10:00",
         "Computer Science",
         "130" + Random.nextInt(0, 10),
