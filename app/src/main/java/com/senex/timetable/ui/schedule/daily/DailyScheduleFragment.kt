@@ -30,8 +30,8 @@ class DailyScheduleFragment : Fragment() {
     @Inject
     lateinit var factory: ViewModelProvider.Factory
     private val viewModel: ScheduleViewModel by viewModels(
-        { requireParentFragment() },
-        { factory },
+        ownerProducer = { requireParentFragment() },
+        factoryProducer = { factory },
     )
 
     override fun onAttach(context: Context) {
