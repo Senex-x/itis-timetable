@@ -6,14 +6,20 @@ import com.senex.timetable.domain.model.subject.HiddenSubject
 import com.senex.timetable.domain.model.subject.Subject
 import com.senex.timetable.data.repository.local.HiddenSubjectRepositoryImpl
 import com.senex.timetable.data.repository.local.SubjectRepositoryImpl
+import com.senex.timetable.domain.usecase.DeleteHiddenSubjectById
+import com.senex.timetable.domain.usecase.GetHiddenSubjectById
+import com.senex.timetable.domain.usecase.GetSubjectById
+import com.senex.timetable.domain.usecase.InsertHiddenSubject
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class SubjectViewModel @Inject constructor(
-    private val subjectRepository: SubjectRepositoryImpl,
-    private val hiddenSubjectRepository: HiddenSubjectRepositoryImpl,
+    private val getSubjectById: GetSubjectById,
+    private val getHiddenSubjectById: GetHiddenSubjectById,
+    private val insertHiddenSubject: InsertHiddenSubject,
+    private val deleteHiddenSubjectById: DeleteHiddenSubjectById,
 ) : ViewModel() {
     lateinit var subject: Subject
         private set
@@ -21,7 +27,7 @@ class SubjectViewModel @Inject constructor(
     private var isSubjectVisible: Boolean = true
 
     private suspend fun isSubjectVisible() =
-        hiddenSubjectRepository.get(subject.id) == null
+        getHiddenSubjectById(subject.id) == null
 
     var subjectVisibilityChangeListener: ((Boolean) -> Unit)? = null
         set(listener) = listener.let {
@@ -30,7 +36,7 @@ class SubjectViewModel @Inject constructor(
         }
 
     suspend fun setSubject(subjectId: Long) {
-        subject = subjectRepository.get(subjectId)!!
+        subject = getSubjectById(subjectId)!!
         isSubjectVisible = isSubjectVisible()
     }
 
@@ -47,13 +53,13 @@ class SubjectViewModel @Inject constructor(
 
     private fun hideSubject(subjectId: Long) {
         CoroutineScope(Dispatchers.Default).launch {
-            hiddenSubjectRepository.insert(HiddenSubject(subjectId))
+            insertHiddenSubject(HiddenSubject(subjectId))
         }
     }
 
     private fun showSubject(subjectId: Long) {
         CoroutineScope(Dispatchers.Default).launch {
-            hiddenSubjectRepository.delete(subjectId)
+            deleteHiddenSubjectById(subjectId)
         }
     }
 }
