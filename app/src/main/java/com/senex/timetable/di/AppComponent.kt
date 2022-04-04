@@ -17,6 +17,7 @@ import javax.inject.Singleton
     RetrofitModule::class,
     PreferencesModule::class,
     FragmentModule::class,
+    RepositoryModule::class,
 ])
 interface AppComponent : AndroidInjector<TimetableApplication> {
 
