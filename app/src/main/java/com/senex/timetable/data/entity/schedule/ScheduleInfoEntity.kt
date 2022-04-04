@@ -1,10 +1,10 @@
-package com.senex.timetable.data.model.schedule
+package com.senex.timetable.data.entity.schedule
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.PrimaryKey
-import com.senex.timetable.data.model.group.GroupEntity
+import com.senex.timetable.data.entity.group.GroupEntity
 
 @Entity(
     tableName = "schedules",

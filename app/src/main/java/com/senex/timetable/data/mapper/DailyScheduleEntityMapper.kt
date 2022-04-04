@@ -1,7 +1,7 @@
 package com.senex.timetable.data.mapper
 
-import com.senex.timetable.data.model.schedule.DailyScheduleEntity
-import com.senex.timetable.domain.entities.schedule.DailySchedule
+import com.senex.timetable.data.entity.schedule.DailyScheduleEntity
+import com.senex.timetable.domain.model.schedule.DailySchedule
 
 internal fun DailyScheduleEntity.transform() = DailySchedule(
     dailyScheduleInfoEntity.transform(),

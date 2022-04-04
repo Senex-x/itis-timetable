@@ -1,4 +1,4 @@
-package com.senex.timetable.domain.entities.schedule
+package com.senex.timetable.domain.model.schedule
 
 data class ScheduleInfo(
     val id: Long,

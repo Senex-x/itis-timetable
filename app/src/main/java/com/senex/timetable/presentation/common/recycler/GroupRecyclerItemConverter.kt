@@ -1,8 +1,8 @@
-package com.senex.timetable.common.recycler
+package com.senex.timetable.presentation.common.recycler
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.map
-import com.senex.timetable.domain.entities.group.Group
+import com.senex.timetable.domain.model.group.Group
 import com.senex.timetable.presentation.ui.groups.recycler.items.CourseRecyclerItem
 import com.senex.timetable.presentation.ui.groups.recycler.items.GroupRecyclerItem
 

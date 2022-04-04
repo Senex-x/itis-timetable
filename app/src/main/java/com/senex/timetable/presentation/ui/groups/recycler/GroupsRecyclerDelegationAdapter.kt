@@ -1,7 +1,7 @@
 package com.senex.timetable.presentation.ui.groups.recycler
 
 import com.hannesdorfmann.adapterdelegates4.AsyncListDifferDelegationAdapter
-import com.senex.timetable.common.recycler.TypedRecyclerItem
+import com.senex.timetable.presentation.common.recycler.TypedRecyclerItem
 
 class GroupsRecyclerDelegationAdapter(
     private val onItemClickListener: ((Long) -> Unit)? = null

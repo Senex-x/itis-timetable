@@ -1,4 +1,4 @@
-package com.senex.timetable.data.model.subject
+package com.senex.timetable.data.entity.subject
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity

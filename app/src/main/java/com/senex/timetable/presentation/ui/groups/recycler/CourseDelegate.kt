@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.hannesdorfmann.adapterdelegates4.AbsListItemAdapterDelegate
-import com.senex.timetable.common.recycler.TypedRecyclerItem
+import com.senex.timetable.presentation.common.recycler.TypedRecyclerItem
 import com.senex.timetable.databinding.ListItemCourseBinding
 import com.senex.timetable.presentation.ui.groups.recycler.items.CourseRecyclerItem
 

@@ -1,6 +1,6 @@
-package com.senex.timetable.domain.entities.schedule
+package com.senex.timetable.domain.model.schedule
 
-import com.senex.timetable.domain.entities.group.Group
+import com.senex.timetable.domain.model.group.Group
 
 data class Schedule(
     val scheduleInfo: ScheduleInfo,

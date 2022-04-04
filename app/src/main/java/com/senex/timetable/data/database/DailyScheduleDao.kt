@@ -4,8 +4,8 @@ import androidx.room.Dao
 import androidx.room.Query
 import androidx.room.Transaction
 import com.senex.timetable.data.database.util.BaseDao
-import com.senex.timetable.data.model.schedule.DailyScheduleEntity
-import com.senex.timetable.data.model.schedule.DailyScheduleInfoEntity
+import com.senex.timetable.data.entity.schedule.DailyScheduleEntity
+import com.senex.timetable.data.entity.schedule.DailyScheduleInfoEntity
 
 @Dao
 interface DailyScheduleDao: BaseDao<DailyScheduleInfoEntity> {

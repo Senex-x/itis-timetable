@@ -3,7 +3,7 @@ package com.senex.timetable.presentation.ui.schedule
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
-import com.senex.timetable.common.SharedPreferencesHandler
+import com.senex.timetable.presentation.common.SharedPreferencesHandler
 import com.senex.timetable.data.repository.local.SubjectRepositoryImpl
 import java.time.DayOfWeek
 import javax.inject.Inject

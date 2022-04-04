@@ -2,7 +2,7 @@ package com.senex.timetable.data.repository.local
 
 import com.senex.timetable.data.database.SubjectDao
 import com.senex.timetable.data.mapper.transform
-import com.senex.timetable.domain.entities.subject.Subject
+import com.senex.timetable.domain.model.subject.Subject
 import com.senex.timetable.domain.repository.SubjectRepository
 import javax.inject.Inject
 

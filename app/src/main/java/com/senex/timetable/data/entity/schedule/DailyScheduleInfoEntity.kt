@@ -1,4 +1,4 @@
-package com.senex.timetable.data.model.schedule
+package com.senex.timetable.data.entity.schedule
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity

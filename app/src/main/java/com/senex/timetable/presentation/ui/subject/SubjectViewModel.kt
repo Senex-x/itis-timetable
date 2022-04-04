@@ -1,9 +1,9 @@
 package com.senex.timetable.presentation.ui.subject
 
 import androidx.lifecycle.ViewModel
-import com.senex.timetable.common.log
-import com.senex.timetable.domain.entities.subject.HiddenSubject
-import com.senex.timetable.domain.entities.subject.Subject
+import com.senex.timetable.presentation.common.log
+import com.senex.timetable.domain.model.subject.HiddenSubject
+import com.senex.timetable.domain.model.subject.Subject
 import com.senex.timetable.data.repository.local.HiddenSubjectRepositoryImpl
 import com.senex.timetable.data.repository.local.SubjectRepositoryImpl
 import kotlinx.coroutines.CoroutineScope

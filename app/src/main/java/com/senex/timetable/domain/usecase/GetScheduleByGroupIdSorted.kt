@@ -1,7 +1,7 @@
 package com.senex.timetable.domain.usecase
 
-import com.senex.timetable.domain.entities.schedule.DailySchedule
-import com.senex.timetable.domain.entities.schedule.Schedule
+import com.senex.timetable.domain.model.schedule.DailySchedule
+import com.senex.timetable.domain.model.schedule.Schedule
 import com.senex.timetable.domain.repository.ScheduleRepository
 
 class GetScheduleByGroupIdSorted(

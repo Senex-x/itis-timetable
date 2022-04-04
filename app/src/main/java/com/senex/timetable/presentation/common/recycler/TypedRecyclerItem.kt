@@ -1,4 +1,4 @@
-package com.senex.timetable.common.recycler
+package com.senex.timetable.presentation.common.recycler
 
 interface TypedRecyclerItem {
     fun getViewType(): Int

@@ -1,8 +1,8 @@
-package com.senex.timetable.data.model.schedule
+package com.senex.timetable.data.entity.schedule
 
 import androidx.room.Embedded
 import androidx.room.Relation
-import com.senex.timetable.data.model.subject.SubjectEntity
+import com.senex.timetable.data.entity.subject.SubjectEntity
 
 data class DailyScheduleEntity(
     @Embedded

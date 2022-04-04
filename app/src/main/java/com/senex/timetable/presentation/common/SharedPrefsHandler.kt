@@ -1,4 +1,4 @@
-package com.senex.timetable.common
+package com.senex.timetable.presentation.common
 
 import android.content.SharedPreferences
 import javax.inject.Inject

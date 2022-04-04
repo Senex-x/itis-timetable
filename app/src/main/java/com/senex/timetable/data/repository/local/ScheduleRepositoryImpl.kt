@@ -2,7 +2,7 @@ package com.senex.timetable.data.repository.local
 
 import com.senex.timetable.data.database.ScheduleDao
 import com.senex.timetable.data.mapper.transform
-import com.senex.timetable.domain.entities.schedule.ScheduleInfo
+import com.senex.timetable.domain.model.schedule.ScheduleInfo
 import com.senex.timetable.domain.repository.ScheduleRepository
 import javax.inject.Inject
 

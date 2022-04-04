@@ -1,8 +1,8 @@
-package com.senex.timetable.data.model.subject
+package com.senex.timetable.data.entity.subject
 
 import androidx.room.*
-import com.senex.timetable.data.model.schedule.DailyScheduleInfoEntity
-import com.senex.timetable.domain.entities.subject.SubjectType
+import com.senex.timetable.data.entity.schedule.DailyScheduleInfoEntity
+import com.senex.timetable.domain.model.subject.SubjectType
 
 @Entity(
     tableName = "subjects",

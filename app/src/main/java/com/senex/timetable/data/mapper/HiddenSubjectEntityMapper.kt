@@ -1,7 +1,7 @@
 package com.senex.timetable.data.mapper
 
-import com.senex.timetable.data.model.subject.HiddenSubjectEntity
-import com.senex.timetable.domain.entities.subject.HiddenSubject
+import com.senex.timetable.data.entity.subject.HiddenSubjectEntity
+import com.senex.timetable.domain.model.subject.HiddenSubject
 
 internal fun HiddenSubjectEntity.transform() = HiddenSubject(
     subjectId,

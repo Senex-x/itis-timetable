@@ -1,6 +1,6 @@
 package com.senex.timetable.presentation.ui.groups.recycler.items
 
-import com.senex.timetable.common.recycler.TypedRecyclerItem
+import com.senex.timetable.presentation.common.recycler.TypedRecyclerItem
 
 class CourseRecyclerItem(
     val courseNumber: Int,

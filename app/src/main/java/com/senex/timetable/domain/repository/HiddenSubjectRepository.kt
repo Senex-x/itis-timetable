@@ -1,6 +1,6 @@
 package com.senex.timetable.domain.repository
 
-import com.senex.timetable.domain.entities.subject.HiddenSubject
+import com.senex.timetable.domain.model.subject.HiddenSubject
 
 interface HiddenSubjectRepository : BaseRepository<HiddenSubject> {
     suspend fun get(id: Long): HiddenSubject?

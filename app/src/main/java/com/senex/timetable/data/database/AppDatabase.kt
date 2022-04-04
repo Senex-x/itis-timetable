@@ -2,11 +2,11 @@ package com.senex.timetable.data.database
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
-import com.senex.timetable.data.model.group.GroupEntity
-import com.senex.timetable.data.model.schedule.DailyScheduleInfoEntity
-import com.senex.timetable.data.model.schedule.ScheduleInfoEntity
-import com.senex.timetable.data.model.subject.HiddenSubjectEntity
-import com.senex.timetable.data.model.subject.SubjectEntity
+import com.senex.timetable.data.entity.group.GroupEntity
+import com.senex.timetable.data.entity.schedule.DailyScheduleInfoEntity
+import com.senex.timetable.data.entity.schedule.ScheduleInfoEntity
+import com.senex.timetable.data.entity.subject.HiddenSubjectEntity
+import com.senex.timetable.data.entity.subject.SubjectEntity
 
 @Database(
     entities = [

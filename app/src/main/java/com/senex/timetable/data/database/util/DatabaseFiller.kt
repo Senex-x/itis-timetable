@@ -1,12 +1,12 @@
 package com.senex.timetable.data.database.util
 
-import com.senex.timetable.common.log
+import com.senex.timetable.presentation.common.log
 import com.senex.timetable.data.database.AppDatabase
-import com.senex.timetable.domain.entities.group.Group
-import com.senex.timetable.domain.entities.schedule.DailyScheduleInfo
-import com.senex.timetable.domain.entities.schedule.ScheduleInfo
-import com.senex.timetable.domain.entities.subject.Subject
-import com.senex.timetable.domain.entities.subject.SubjectType
+import com.senex.timetable.domain.model.group.Group
+import com.senex.timetable.domain.model.schedule.DailyScheduleInfo
+import com.senex.timetable.domain.model.schedule.ScheduleInfo
+import com.senex.timetable.domain.model.subject.Subject
+import com.senex.timetable.domain.model.subject.SubjectType
 import com.senex.timetable.domain.repository.DailyScheduleRepository
 import com.senex.timetable.domain.repository.GroupRepository
 import com.senex.timetable.domain.repository.ScheduleRepository

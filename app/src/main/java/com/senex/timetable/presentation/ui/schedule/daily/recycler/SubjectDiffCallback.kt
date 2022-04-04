@@ -1,7 +1,7 @@
 package com.senex.timetable.presentation.ui.schedule.daily.recycler
 
 import androidx.recyclerview.widget.DiffUtil
-import com.senex.timetable.domain.entities.subject.Subject
+import com.senex.timetable.domain.model.subject.Subject
 
 // TODO: Handle payloads
 object SubjectDiffCallback : DiffUtil.ItemCallback<Subject>() {

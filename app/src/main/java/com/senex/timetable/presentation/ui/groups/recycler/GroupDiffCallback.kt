@@ -2,7 +2,7 @@ package com.senex.timetable.presentation.ui.groups.recycler
 
 import androidx.recyclerview.widget.DiffUtil
 import com.senex.timetable.presentation.ui.groups.recycler.items.CourseRecyclerItem
-import com.senex.timetable.common.recycler.TypedRecyclerItem
+import com.senex.timetable.presentation.common.recycler.TypedRecyclerItem
 import com.senex.timetable.presentation.ui.groups.recycler.items.GroupRecyclerItemType
 import com.senex.timetable.presentation.ui.groups.recycler.items.GroupRecyclerItem
 

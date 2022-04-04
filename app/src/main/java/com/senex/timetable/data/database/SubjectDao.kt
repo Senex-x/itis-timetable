@@ -3,7 +3,7 @@ package com.senex.timetable.data.database
 import androidx.room.Dao
 import androidx.room.Query
 import com.senex.timetable.data.database.util.BaseDao
-import com.senex.timetable.data.model.subject.SubjectEntity
+import com.senex.timetable.data.entity.subject.SubjectEntity
 
 @Dao
 interface SubjectDao : BaseDao<SubjectEntity> {

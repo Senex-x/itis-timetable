@@ -1,4 +1,4 @@
-package com.senex.timetable.domain.entities.group
+package com.senex.timetable.domain.model.group
 
 data class Group (
     val id: Long,
