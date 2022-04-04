@@ -1,4 +1,4 @@
-package com.senex.timetable.data.repositories.remote
+package com.senex.timetable.data.repository.remote
 
 import androidx.lifecycle.liveData
 import com.senex.timetable.data.api.ScheduleService
