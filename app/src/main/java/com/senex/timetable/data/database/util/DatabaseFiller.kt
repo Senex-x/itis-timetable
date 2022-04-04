@@ -1,8 +1,8 @@
 package com.senex.timetable.data.database.util
 
 import com.senex.timetable.domain.entities.group.Group
-import com.senex.timetable.domain.entities.schedule.DailyScheduleEntity
-import com.senex.timetable.domain.entities.schedule.ScheduleEntity
+import com.senex.timetable.domain.entities.schedule.DailyScheduleInfo
+import com.senex.timetable.domain.entities.schedule.ScheduleInfo
 import com.senex.timetable.domain.entities.subject.Subject
 import com.senex.timetable.domain.entities.subject.SubjectType
 import com.senex.timetable.common.log
@@ -66,7 +66,7 @@ class DatabaseFiller @Inject constructor(
         Random.nextInt(1, 5)
     )
 
-    private fun createSchedule(id: Long, groupId: Long) = ScheduleEntity(
+    private fun createSchedule(id: Long, groupId: Long) = ScheduleInfo(
         id,
         groupId
     )
@@ -74,7 +74,7 @@ class DatabaseFiller @Inject constructor(
     private val dayNames =
         listOf("Monday", "Tuesday", "Wednesday", "Thursday", "Saturday", "Friday", "Sunday")
 
-    private fun createDailySchedule(id: Long, scheduleId: Long) = DailyScheduleEntity(
+    private fun createDailySchedule(id: Long, scheduleId: Long) = DailyScheduleInfo(
         id,
         scheduleId,
         dayNames.random(),

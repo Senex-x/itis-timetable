@@ -18,11 +18,11 @@ class GetScheduleByGroupIdSorted(
         sortDailySchedules(dailySchedulesSorted)
 
         dailySchedulesSorted.sortWith(
-            Comparator.comparingInt { it.dailyScheduleEntity.numberInWeek }
+            Comparator.comparingInt { it.dailyScheduleInfo.numberInWeek }
         )
 
         copy(
-            schedule = schedule,
+            scheduleInfo = scheduleInfo,
             group = group,
             dailySchedules = dailySchedulesSorted
         )
@@ -32,7 +32,7 @@ class GetScheduleByGroupIdSorted(
         for ((i, dailySchedule) in dailySchedulesSorted.withIndex()) {
             val subjectsSorted = sortSubjects(dailySchedule)
             val dailyScheduleSorted = dailySchedule.copy(
-                dailyScheduleEntity = dailySchedule.dailyScheduleEntity,
+                dailyScheduleInfo = dailySchedule.dailyScheduleInfo,
                 subjects = subjectsSorted
             )
             dailySchedulesSorted.add(i, dailyScheduleSorted)

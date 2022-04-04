@@ -5,10 +5,10 @@ import androidx.room.Query
 import androidx.room.Transaction
 import com.senex.timetable.data.database.util.BaseDao
 import com.senex.timetable.domain.entities.schedule.Schedule
-import com.senex.timetable.domain.entities.schedule.ScheduleEntity
+import com.senex.timetable.domain.entities.schedule.ScheduleInfo
 
 @Dao
-interface ScheduleDao : BaseDao<ScheduleEntity> {
+interface ScheduleDao : BaseDao<ScheduleInfo> {
     @Transaction
     @Query("SELECT * FROM schedules WHERE id = :id")
     suspend fun get(id: Long): Schedule?

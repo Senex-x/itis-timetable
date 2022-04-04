@@ -4,19 +4,18 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.PrimaryKey
-import com.senex.timetable.domain.entities.subject.Subject
 
 @Entity(
     tableName = "hidden_subjects",
     foreignKeys = [
         ForeignKey(
-            entity = Subject::class,
+            entity = SubjectEntity::class,
             parentColumns = ["id"],
             childColumns = ["subject_id"],
         )
     ]
 )
-data class HiddenSubject(
+data class HiddenSubjectEntity(
     @PrimaryKey
     @ColumnInfo(name = "subject_id")
     val subjectId: Long,

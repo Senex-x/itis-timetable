@@ -1,25 +1,22 @@
 package com.senex.timetable.data.model.schedule
 
-import androidx.room.ColumnInfo
-import androidx.room.Entity
-import androidx.room.ForeignKey
-import androidx.room.PrimaryKey
+import androidx.room.Embedded
+import androidx.room.Relation
+import com.senex.timetable.data.model.group.GroupEntity
 import com.senex.timetable.domain.entities.group.Group
 
-@Entity(
-    tableName = "schedules",
-    foreignKeys = [
-        ForeignKey(
-            entity = Group::class,
-            parentColumns = ["id"],
-            childColumns = ["group_id"]
-        )
-    ],
-)
 data class ScheduleEntity(
-    @PrimaryKey
-    val id: Long,
-    @ColumnInfo(name = "group_id")
-    val groupId: Long,
+    @Embedded
+    val scheduleInfoEntity: ScheduleInfoEntity,
+    @Relation(
+        parentColumn = "group_id",
+        entityColumn = "id",
+    )
+    val groupEntity: GroupEntity,
+    @Relation(
+        entity = DailyScheduleInfoEntity::class,
+        parentColumn = "id",
+        entityColumn = "schedule_id",
+    )
+    val dailyScheduleEntities: List<DailyScheduleEntity>,
 )
-
