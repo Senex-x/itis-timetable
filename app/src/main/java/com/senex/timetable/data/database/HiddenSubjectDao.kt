@@ -2,7 +2,8 @@ package com.senex.timetable.data.database
 
 import androidx.room.Dao
 import androidx.room.Query
-import com.senex.timetable.data.models.subject.HiddenSubject
+import com.senex.timetable.data.database.util.BaseDao
+import com.senex.timetable.data.model.subject.HiddenSubject
 
 @Dao
 interface HiddenSubjectDao: BaseDao<HiddenSubject> {

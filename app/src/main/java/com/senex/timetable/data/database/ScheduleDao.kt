@@ -1,27 +1,25 @@
 package com.senex.timetable.data.database
 
-import androidx.lifecycle.LiveData
-import androidx.room.*
-import com.senex.timetable.data.models.schedule.Schedule
-import com.senex.timetable.data.models.schedule.ScheduleEntity
+import androidx.room.Dao
+import androidx.room.Query
+import androidx.room.Transaction
+import com.senex.timetable.data.database.util.BaseDao
+import com.senex.timetable.data.model.schedule.Schedule
+import com.senex.timetable.data.model.schedule.ScheduleEntity
 
 @Dao
-interface ScheduleDao: BaseDao<ScheduleEntity> {
+interface ScheduleDao : BaseDao<ScheduleEntity> {
     @Transaction
     @Query("SELECT * FROM schedules WHERE id = :id")
-    fun get(id: Long): LiveData<Schedule?>
-
-    @Transaction
-    @Query("SELECT * FROM schedules LIMIT 1")
-    fun getFirst(): LiveData<Schedule?>
+    suspend fun get(id: Long): Schedule?
 
     @Transaction
     @Query("SELECT * FROM schedules WHERE group_id = :groupId")
-    fun getByGroupId(groupId: Long): LiveData<Schedule?>
-    
+    suspend fun getByGroupId(groupId: Long): Schedule?
+
     @Transaction
     @Query("SELECT * FROM schedules")
-    fun getAll(): LiveData<Schedule?>
+    suspend fun getAll(): List<Schedule>
 
     @Query("DELETE FROM schedules")
     suspend fun deleteAll()

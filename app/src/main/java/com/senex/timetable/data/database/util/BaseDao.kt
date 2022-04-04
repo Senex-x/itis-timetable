@@ -1,4 +1,4 @@
-package com.senex.timetable.data.database
+package com.senex.timetable.data.database.util
 
 import androidx.room.*
 

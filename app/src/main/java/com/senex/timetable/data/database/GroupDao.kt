@@ -1,9 +1,9 @@
 package com.senex.timetable.data.database
 
-import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Query
-import com.senex.timetable.data.models.group.Group
+import com.senex.timetable.data.database.util.BaseDao
+import com.senex.timetable.data.model.group.Group
 
 @Dao
 interface GroupDao: BaseDao<Group> {
@@ -11,10 +11,7 @@ interface GroupDao: BaseDao<Group> {
     suspend fun get(id: Long): Group?
 
     @Query("SELECT * FROM groups")
-    fun getAll(): LiveData<List<Group>?>
-
-    @Query("SELECT id FROM groups LIMIT 1")
-    suspend fun getRandomId(): Long
+    suspend fun getAll(): List<Group>
 
     @Query("DELETE FROM groups WHERE id = :id")
     suspend fun delete(id: Long)

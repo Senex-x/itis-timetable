@@ -1,10 +1,9 @@
 package com.senex.timetable.data.database
 
-import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Query
-import androidx.room.Transaction
-import com.senex.timetable.data.models.subject.Subject
+import com.senex.timetable.data.database.util.BaseDao
+import com.senex.timetable.data.model.subject.Subject
 
 @Dao
 interface SubjectDao : BaseDao<Subject> {
@@ -31,10 +30,10 @@ interface SubjectDao : BaseDao<Subject> {
         ON dailyScheduleIds.id == subjects.daily_schedule_id
         """
     )
-    fun getAll(
+    suspend fun getAll(
         groupId: Long,
         dayNumberInWeek: Int,
-    ): LiveData<List<Subject>>
+    ): List<Subject>
 
     @Query("""
         SELECT *
@@ -54,13 +53,10 @@ interface SubjectDao : BaseDao<Subject> {
         AND subjects.id NOT IN hidden_subjects
         """
     )
-    fun getAllExcludingHidden(
+    suspend fun getAllExcludingHidden(
         groupId: Long,
         dayNumberInWeek: Int,
-    ): LiveData<List<Subject>>
-
-    @Query("SELECT id FROM groups LIMIT 1")
-    suspend fun getIdOfFirst(): Long
+    ): List<Subject>
 
     @Query("DELETE FROM subjects WHERE id = :id")
     suspend fun delete(id: Long)
