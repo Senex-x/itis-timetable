@@ -1,24 +1,22 @@
 package com.senex.timetable.ui.schedule.daily
 
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.senex.timetable.daggerAppComponent
 import com.senex.timetable.databinding.FragmentDailyScheduleBinding
 import com.senex.timetable.ui.schedule.ScheduleFragmentDirections
 import com.senex.timetable.ui.schedule.ScheduleViewModel
 import com.senex.timetable.ui.schedule.daily.recycler.SubjectRecyclerAdapter
+import dagger.android.support.DaggerFragment
 import java.time.DayOfWeek
 import javax.inject.Inject
 
-class DailyScheduleFragment : Fragment() {
+class DailyScheduleFragment : DaggerFragment() {
     private var _binding: FragmentDailyScheduleBinding? = null
     private val binding
         get() = _binding!!
@@ -33,12 +31,6 @@ class DailyScheduleFragment : Fragment() {
         ownerProducer = { requireParentFragment() },
         factoryProducer = { factory },
     )
-
-    override fun onAttach(context: Context) {
-        context.daggerAppComponent.inject(this)
-
-        super.onAttach(context)
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater,

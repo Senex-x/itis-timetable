@@ -1,19 +1,19 @@
 package com.senex.timetable
 
-import android.app.Application
 import android.content.Context
 import com.senex.timetable.common.SharedPreferencesHandler
-import com.senex.timetable.common.log
 import com.senex.timetable.data.database.AppDatabase
 import com.senex.timetable.di.AppComponent
-import com.senex.timetable.di.ContextModule
 import com.senex.timetable.di.DaggerAppComponent
+import dagger.android.DaggerApplication
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-class TimetableApplication : Application() {
+class TimetableApplication : DaggerApplication() {
+    override fun applicationInjector() = DaggerAppComponent.builder().application(this).build()
+
     lateinit var daggerAppComponent: AppComponent
 
     @Inject
@@ -23,10 +23,6 @@ class TimetableApplication : Application() {
     lateinit var databse: AppDatabase
 
     override fun onCreate() {
-        daggerAppComponent = DaggerAppComponent.builder()
-            .contextModule(ContextModule(this))
-            .build()
-        daggerAppComponent.inject(this)
 
         debugDatabase()
 
@@ -39,9 +35,3 @@ class TimetableApplication : Application() {
         }
     }
 }
-
-val Context.daggerAppComponent: AppComponent
-    get() = when (this) {
-        is TimetableApplication -> daggerAppComponent
-        else -> applicationContext.daggerAppComponent
-    }

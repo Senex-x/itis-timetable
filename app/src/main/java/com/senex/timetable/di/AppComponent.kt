@@ -1,27 +1,31 @@
 package com.senex.timetable.di
 
+import android.app.Application
 import com.senex.timetable.TimetableApplication
-import com.senex.timetable.ui.groups.GroupsFragment
-import com.senex.timetable.ui.schedule.daily.DailyScheduleFragment
-import com.senex.timetable.ui.subject.SubjectFragment
+import dagger.BindsInstance
 import dagger.Component
+import dagger.android.AndroidInjectionModule
+import dagger.android.AndroidInjector
 import javax.inject.Singleton
 
 @Singleton
 @Component(modules = [
+    AndroidInjectionModule::class,
     ContextModule::class,
     ViewModelsModule::class,
     DatabaseModule::class,
     RetrofitModule::class,
     PreferencesModule::class,
+    FragmentModule::class,
 ])
-interface AppComponent {
+interface AppComponent : AndroidInjector<TimetableApplication> {
 
-    fun inject(dailyScheduleFragment: DailyScheduleFragment)
+    override fun inject(app: TimetableApplication)
 
-    fun inject(groupsFragment: GroupsFragment)
-
-    fun inject(subjectFragment: SubjectFragment)
-
-    fun inject(app: TimetableApplication)
+    @Component.Builder
+    interface Builder {
+        @BindsInstance
+        fun application(app: Application): Builder
+        fun build(): AppComponent
+    }
 }
