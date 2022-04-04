@@ -15,6 +15,9 @@ class ScheduleViewModel @Inject constructor(
         getDailySubjectsFromDatabase(DayOfWeek.of(it + 1))
     }
 
+    fun getDailySubjects(dayOfWeek: DayOfWeek) =
+        dailySubjects[dayOfWeek.value - 1]
+
     private fun getDailySubjectsFromDatabase(dayOfWeek: DayOfWeek) =
         preferencesHandler.getSavedGroupId()?.let {
             subjectRepository.getAll(
@@ -22,7 +25,4 @@ class ScheduleViewModel @Inject constructor(
                 dayOfWeek.value,
             )
         } ?: MutableLiveData()
-
-    fun getDailySubjects(dayOfWeek: DayOfWeek) =
-        dailySubjects[dayOfWeek.value - 1]
 }

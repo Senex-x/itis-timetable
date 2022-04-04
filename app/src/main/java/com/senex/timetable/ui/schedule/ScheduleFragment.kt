@@ -9,8 +9,11 @@ import androidx.navigation.fragment.findNavController
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.senex.timetable.R
+import com.senex.timetable.common.log
+import com.senex.timetable.data.repositories.remote.ScheduleRemoteRepository
 import com.senex.timetable.databinding.FragmentScheduleBinding
 import java.time.DayOfWeek
+import javax.inject.Inject
 
 class ScheduleFragment : Fragment() {
     private var _binding: FragmentScheduleBinding? = null

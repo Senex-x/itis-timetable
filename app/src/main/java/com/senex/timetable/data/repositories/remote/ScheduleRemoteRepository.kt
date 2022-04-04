@@ -8,15 +8,15 @@ import javax.inject.Inject
 class ScheduleRemoteRepository @Inject constructor(
     private val scheduleService: ScheduleService,
 ) {
-    fun getSchedule(groupId: Long) = liveData<Schedule?> {
-        scheduleService.getSchedule(groupId)
+    fun getSchedule(groupId: Long) = liveData {
+        emit(scheduleService.getSchedule(groupId))
     }
 
     suspend fun getScheduleSuspending(groupId: Long) =
         scheduleService.getSchedule(groupId)
 
-    fun getSchedule(groupName: String) = liveData<Schedule?> {
-        scheduleService.getSchedule(groupName)
+    fun getSchedule(groupName: String) = liveData {
+        emit(scheduleService.getSchedule(groupName))
     }
 
     suspend fun getScheduleSuspending(groupName: String) =

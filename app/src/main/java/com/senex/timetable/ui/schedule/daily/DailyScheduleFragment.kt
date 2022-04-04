@@ -8,6 +8,8 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.senex.timetable.common.log
+import com.senex.timetable.data.repositories.remote.ScheduleRemoteRepository
 import com.senex.timetable.databinding.FragmentDailyScheduleBinding
 import com.senex.timetable.ui.schedule.ScheduleFragmentDirections
 import com.senex.timetable.ui.schedule.ScheduleViewModel

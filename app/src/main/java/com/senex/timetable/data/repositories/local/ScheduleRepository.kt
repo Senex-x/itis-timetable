@@ -18,13 +18,13 @@ class ScheduleRepository @Inject constructor(
         source: LiveData<Schedule?>,
     ) = source.map {
         it?.apply {
-            it.dailySchedules.sortedWith(
+            dailySchedules.sortedWith(
                 Comparator.comparingInt { item ->
                     item.dailyScheduleEntity.numberInWeek
                 }
             )
 
-            for (dailySchedule in it.dailySchedules) {
+            for (dailySchedule in dailySchedules) {
                 dailySchedule.subjects.sortedWith { subject1, subject2 ->
                     subject1.startTime.compareTo(subject2.startTime)
                 }
