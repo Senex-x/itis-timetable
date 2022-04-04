@@ -1,8 +1,8 @@
 package com.senex.timetable.di
 
-import com.senex.timetable.ui.groups.GroupsFragment
-import com.senex.timetable.ui.schedule.daily.DailyScheduleFragment
-import com.senex.timetable.ui.subject.SubjectFragment
+import com.senex.timetable.presentation.ui.groups.GroupsFragment
+import com.senex.timetable.presentation.ui.schedule.daily.DailyScheduleFragment
+import com.senex.timetable.presentation.ui.subject.SubjectFragment
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 

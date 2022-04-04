@@ -1,6 +1,6 @@
 package com.senex.timetable.data.api
 
-import com.senex.timetable.data.models.schedule.Schedule
+import com.senex.timetable.data.model.schedule.Schedule
 import retrofit2.http.GET
 import retrofit2.http.Path
 

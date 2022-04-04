@@ -5,7 +5,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
 import com.senex.timetable.data.database.AppDatabase
-import com.senex.timetable.data.database.DatabaseFiller
+import com.senex.timetable.data.database.util.DatabaseFiller
 import dagger.Lazy
 import dagger.Module
 import dagger.Provides

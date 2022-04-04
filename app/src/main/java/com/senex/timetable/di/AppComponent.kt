@@ -1,7 +1,7 @@
 package com.senex.timetable.di
 
 import android.app.Application
-import com.senex.timetable.TimetableApplication
+import com.senex.timetable.presentation.TimetableApplication
 import dagger.BindsInstance
 import dagger.Component
 import dagger.android.AndroidInjectionModule
