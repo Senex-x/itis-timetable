@@ -8,3 +8,9 @@ internal fun ScheduleEntity.transform() = Schedule(
     groupEntity.transform(),
     dailyScheduleEntities.map { it.transform() },
 )
+
+internal fun Schedule.transform() = ScheduleEntity(
+    scheduleInfo.transform(),
+    group.transform(),
+    dailySchedules.map { it.transform() },
+)

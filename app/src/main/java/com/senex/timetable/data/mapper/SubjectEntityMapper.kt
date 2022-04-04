@@ -18,3 +18,19 @@ internal fun SubjectEntity.transform() = Subject(
     teacherSurname,
     teacherPatronymic,
 )
+
+internal fun Subject.transform() = SubjectEntity(
+    id,
+    dailyScheduleId,
+    numberInDay,
+    startTime,
+    endTime,
+    name,
+    room,
+    type,
+    isOnEvenWeeks,
+    isOnOddWeeks,
+    teacherName,
+    teacherSurname,
+    teacherPatronymic,
+)

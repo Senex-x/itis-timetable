@@ -1,17 +1,25 @@
 package com.senex.timetable.data.database.util
 
+import com.senex.timetable.common.log
+import com.senex.timetable.data.database.AppDatabase
 import com.senex.timetable.domain.entities.group.Group
 import com.senex.timetable.domain.entities.schedule.DailyScheduleInfo
 import com.senex.timetable.domain.entities.schedule.ScheduleInfo
 import com.senex.timetable.domain.entities.subject.Subject
 import com.senex.timetable.domain.entities.subject.SubjectType
-import com.senex.timetable.common.log
-import com.senex.timetable.data.database.AppDatabase
+import com.senex.timetable.domain.repository.DailyScheduleRepository
+import com.senex.timetable.domain.repository.GroupRepository
+import com.senex.timetable.domain.repository.ScheduleRepository
+import com.senex.timetable.domain.repository.SubjectRepository
 import kotlinx.coroutines.runBlocking
 import javax.inject.Inject
 import kotlin.random.Random
 
 class DatabaseFiller @Inject constructor(
+    private val groupRepository: GroupRepository,
+    private val scheduleRepository: ScheduleRepository,
+    private val dailyScheduleRepository: DailyScheduleRepository,
+    private val subjectRepository: SubjectRepository,
     private val database: AppDatabase,
 ) {
     fun clearDatabase() = database.clearAllTables()
@@ -19,7 +27,7 @@ class DatabaseFiller @Inject constructor(
     fun populateDatabase() {
         for (i in 1..20L) {
             runBlocking {
-                database.groupDao().insert(
+                groupRepository.insert(
                     createGroup(i)
                 )
             }
@@ -27,7 +35,7 @@ class DatabaseFiller @Inject constructor(
 
         for (i in 1..20L) {
             runBlocking {
-                database.scheduleDao().insert(
+                scheduleRepository.insert(
                     createSchedule(i, i)
                 )
             }
@@ -35,7 +43,7 @@ class DatabaseFiller @Inject constructor(
 
         for (i in 1..100L) {
             runBlocking {
-                database.dailyScheduleDao().insert(
+                dailyScheduleRepository.insert(
                     createDailySchedule(
                         i,
                         i % 20 + 1
@@ -46,7 +54,7 @@ class DatabaseFiller @Inject constructor(
 
         for (i in 1..500L) {
             runBlocking {
-                database.subjectDao().insert(
+                subjectRepository.insert(
                     createSubject(
                         i,
                         i % 100 + 1

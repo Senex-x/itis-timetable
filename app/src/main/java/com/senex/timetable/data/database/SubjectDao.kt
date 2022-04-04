@@ -3,15 +3,15 @@ package com.senex.timetable.data.database
 import androidx.room.Dao
 import androidx.room.Query
 import com.senex.timetable.data.database.util.BaseDao
-import com.senex.timetable.domain.entities.subject.Subject
+import com.senex.timetable.data.model.subject.SubjectEntity
 
 @Dao
-interface SubjectDao : BaseDao<Subject> {
+interface SubjectDao : BaseDao<SubjectEntity> {
     @Query("SELECT * FROM subjects WHERE id = :id")
-    suspend fun get(id: Long): Subject?
+    suspend fun get(id: Long): SubjectEntity?
 
     @Query("SELECT * FROM subjects")
-    suspend fun getAll(): List<Subject>
+    suspend fun getAll(): List<SubjectEntity>
 
     @Query("""
         SELECT *
@@ -33,7 +33,7 @@ interface SubjectDao : BaseDao<Subject> {
     suspend fun getAll(
         groupId: Long,
         dayNumberInWeek: Int,
-    ): List<Subject>
+    ): List<SubjectEntity>
 
     @Query("""
         SELECT *
@@ -56,7 +56,7 @@ interface SubjectDao : BaseDao<Subject> {
     suspend fun getAllExcludingHidden(
         groupId: Long,
         dayNumberInWeek: Int,
-    ): List<Subject>
+    ): List<SubjectEntity>
 
     @Query("DELETE FROM subjects WHERE id = :id")
     suspend fun delete(id: Long)

@@ -14,13 +14,13 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Singleton
 
-@Module
+@Module(includes = [DaoModule::class])
 class DatabaseModule {
     @Singleton
     @Provides
     fun provideAppDatabase(
         appContext: Context,
-        databaseLazy: Lazy<AppDatabase>,
+        databaseFiller: Lazy<DatabaseFiller>,
     ): AppDatabase {
         return Room.databaseBuilder(
             appContext,
@@ -29,9 +29,10 @@ class DatabaseModule {
         ).addCallback(object : RoomDatabase.Callback() {
             override fun onCreate(db: SupportSQLiteDatabase) {
                 CoroutineScope(Dispatchers.Default).launch {
-                    prepareDatabase(databaseLazy.get())
+                    databaseFiller.get().prepareDatabase()
                 }
             }
+
             override fun onOpen(db: SupportSQLiteDatabase) {
                 CoroutineScope(Dispatchers.Default).launch {
                     //prepareDatabase(databaseLazy.get())
@@ -40,9 +41,7 @@ class DatabaseModule {
         }).build()
     }
 
-    private fun prepareDatabase(
-        database: AppDatabase,
-    ) = with(DatabaseFiller(database)) {
+    private fun DatabaseFiller.prepareDatabase() {
         clearDatabase()
         populateDatabase()
     }

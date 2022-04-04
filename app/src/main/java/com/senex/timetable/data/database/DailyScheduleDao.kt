@@ -4,18 +4,18 @@ import androidx.room.Dao
 import androidx.room.Query
 import androidx.room.Transaction
 import com.senex.timetable.data.database.util.BaseDao
-import com.senex.timetable.domain.entities.schedule.DailySchedule
-import com.senex.timetable.domain.entities.schedule.DailyScheduleInfo
+import com.senex.timetable.data.model.schedule.DailyScheduleEntity
+import com.senex.timetable.data.model.schedule.DailyScheduleInfoEntity
 
 @Dao
-interface DailyScheduleDao: BaseDao<DailyScheduleInfo> {
+interface DailyScheduleDao: BaseDao<DailyScheduleInfoEntity> {
     @Transaction
     @Query("SELECT * FROM daily_schedules WHERE id = :id")
-    suspend fun get(id: Long): DailySchedule?
+    suspend fun get(id: Long): DailyScheduleEntity?
 
     @Transaction
     @Query("SELECT * FROM daily_schedules")
-    suspend fun getAll(): List<DailySchedule>
+    suspend fun getAll(): List<DailyScheduleEntity>
 
     @Transaction
     @Query("""
@@ -33,7 +33,7 @@ interface DailyScheduleDao: BaseDao<DailyScheduleInfo> {
     suspend fun getAllByGroupIdAndDayNumber(
         groupId: Long,
         dayNumberInWeek: Int,
-    ): List<DailySchedule>
+    ): List<DailyScheduleEntity>
 
     @Query("DELETE FROM daily_schedules")
     suspend fun deleteAll()

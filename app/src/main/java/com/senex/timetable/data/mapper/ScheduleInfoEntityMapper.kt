@@ -8,5 +8,8 @@ internal fun ScheduleInfoEntity.transform() = ScheduleInfo(
     groupId,
 )
 
-
+internal fun ScheduleInfo.transform() = ScheduleInfoEntity(
+    id,
+    groupId,
+)
 

@@ -3,15 +3,15 @@ package com.senex.timetable.data.database
 import androidx.room.Dao
 import androidx.room.Query
 import com.senex.timetable.data.database.util.BaseDao
-import com.senex.timetable.domain.entities.subject.HiddenSubject
+import com.senex.timetable.data.model.subject.HiddenSubjectEntity
 
 @Dao
-interface HiddenSubjectDao: BaseDao<HiddenSubject> {
+interface HiddenSubjectDao: BaseDao<HiddenSubjectEntity> {
     @Query("SELECT * FROM hidden_subjects WHERE subject_id = :id")
-    suspend fun get(id: Long): HiddenSubject?
+    suspend fun get(id: Long): HiddenSubjectEntity?
 
     @Query("SELECT * FROM hidden_subjects")
-    suspend fun getAll(): List<HiddenSubject>
+    suspend fun getAll(): List<HiddenSubjectEntity>
 
     @Query("DELETE FROM hidden_subjects WHERE subject_id = :id")
     suspend fun delete(id: Long)
