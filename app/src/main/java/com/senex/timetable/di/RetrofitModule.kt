@@ -7,7 +7,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
 
-@Module
+@Module(includes = [ApiServiceModule::class])
 class RetrofitModule {
     @Singleton
     @Provides
@@ -18,6 +18,6 @@ class RetrofitModule {
         .build()
 
     companion object {
-        private const val BASE_URL = "192.168.0.112:8080/"
+        private const val BASE_URL = "http://192.168.0.112:8080/"
     }
 }

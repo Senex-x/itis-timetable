@@ -4,8 +4,8 @@ import androidx.lifecycle.ViewModel
 import com.senex.timetable.common.log
 import com.senex.timetable.data.models.subject.HiddenSubject
 import com.senex.timetable.data.models.subject.Subject
-import com.senex.timetable.data.repositories.HiddenSubjectRepository
-import com.senex.timetable.data.repositories.SubjectRepository
+import com.senex.timetable.data.repositories.local.HiddenSubjectRepository
+import com.senex.timetable.data.repositories.local.SubjectRepository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

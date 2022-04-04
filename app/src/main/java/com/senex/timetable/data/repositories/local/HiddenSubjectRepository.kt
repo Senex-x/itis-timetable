@@ -1,4 +1,4 @@
-package com.senex.timetable.data.repositories
+package com.senex.timetable.data.repositories.local
 
 import com.senex.timetable.data.database.AppDatabase
 import com.senex.timetable.data.database.HiddenSubjectDao

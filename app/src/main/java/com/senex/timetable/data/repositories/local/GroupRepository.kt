@@ -1,6 +1,5 @@
-package com.senex.timetable.data.repositories
+package com.senex.timetable.data.repositories.local
 
-import androidx.lifecycle.Transformations
 import androidx.lifecycle.map
 import com.senex.timetable.data.database.AppDatabase
 import com.senex.timetable.data.database.GroupDao
