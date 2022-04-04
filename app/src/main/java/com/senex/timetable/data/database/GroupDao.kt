@@ -3,7 +3,7 @@ package com.senex.timetable.data.database
 import androidx.room.Dao
 import androidx.room.Query
 import com.senex.timetable.data.database.util.BaseDao
-import com.senex.timetable.data.model.group.Group
+import com.senex.timetable.domain.entities.group.Group
 
 @Dao
 interface GroupDao: BaseDao<Group> {

@@ -1,10 +1,10 @@
 package com.senex.timetable.data.database.util
 
-import com.senex.timetable.data.model.group.Group
-import com.senex.timetable.data.model.schedule.DailyScheduleEntity
-import com.senex.timetable.data.model.schedule.ScheduleEntity
-import com.senex.timetable.data.model.subject.Subject
-import com.senex.timetable.data.model.subject.SubjectType
+import com.senex.timetable.domain.entities.group.Group
+import com.senex.timetable.domain.entities.schedule.DailyScheduleEntity
+import com.senex.timetable.domain.entities.schedule.ScheduleEntity
+import com.senex.timetable.domain.entities.subject.Subject
+import com.senex.timetable.domain.entities.subject.SubjectType
 import com.senex.timetable.common.log
 import com.senex.timetable.data.database.AppDatabase
 import kotlinx.coroutines.runBlocking

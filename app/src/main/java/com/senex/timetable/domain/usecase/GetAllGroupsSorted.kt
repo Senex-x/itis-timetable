@@ -1,6 +1,6 @@
 package com.senex.timetable.domain.usecase
 
-import com.senex.timetable.data.model.group.Group
+import com.senex.timetable.domain.entities.group.Group
 import com.senex.timetable.domain.repository.GroupRepository
 
 class GetAllGroupsSorted(
@@ -13,13 +13,13 @@ class GetAllGroupsSorted(
         val courseNumber2 = group2.courseNumber
         val compareCourseNumbersResult = courseNumber1.compareTo(courseNumber2)
 
-        if (compareCourseNumbersResult != 0) {
-            return@Comparator compareCourseNumbersResult
+        return@Comparator if (compareCourseNumbersResult != 0) {
+            compareCourseNumbersResult
         } else {
             val groupNumber1 = group1.name.substring(3) // 11-005
             val groupNumber2 = group2.name.substring(3)
 
-            return@Comparator groupNumber1.compareTo(groupNumber2)
+            groupNumber1.compareTo(groupNumber2)
         }
     }
 }

@@ -1,7 +1,7 @@
 package com.senex.timetable.domain.repository
 
-import com.senex.timetable.data.model.schedule.Schedule
-import com.senex.timetable.data.model.schedule.ScheduleEntity
+import com.senex.timetable.domain.entities.schedule.Schedule
+import com.senex.timetable.domain.entities.schedule.ScheduleEntity
 
 interface ScheduleRepository : BaseRepository<ScheduleEntity> {
     suspend fun get(id: Long): Schedule?

@@ -1,4 +1,4 @@
-package com.senex.timetable.data.model.subject
+package com.senex.timetable.domain.entities.subject
 
 enum class SubjectType {
     LECTURE,

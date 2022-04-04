@@ -2,7 +2,10 @@ package com.senex.timetable.data.model.schedule
 
 import androidx.room.Embedded
 import androidx.room.Relation
-import com.senex.timetable.data.model.group.Group
+import com.senex.timetable.domain.entities.group.Group
+import com.senex.timetable.domain.entities.schedule.DailySchedule
+import com.senex.timetable.domain.entities.schedule.DailyScheduleEntity
+import com.senex.timetable.domain.entities.schedule.ScheduleEntity
 
 data class Schedule(
     @Embedded

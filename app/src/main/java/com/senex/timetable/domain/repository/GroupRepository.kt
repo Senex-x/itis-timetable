@@ -1,6 +1,6 @@
 package com.senex.timetable.domain.repository
 
-import com.senex.timetable.data.model.group.Group
+import com.senex.timetable.domain.entities.group.Group
 
 interface GroupRepository: BaseRepository<Group> {
     suspend fun get(id: Long): Group?

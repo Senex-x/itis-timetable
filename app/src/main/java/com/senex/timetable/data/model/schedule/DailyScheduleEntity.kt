@@ -4,6 +4,7 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.PrimaryKey
+import com.senex.timetable.domain.entities.schedule.ScheduleEntity
 
 @Entity(
     tableName = "daily_schedules",

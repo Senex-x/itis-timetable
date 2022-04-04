@@ -2,7 +2,7 @@ package com.senex.timetable.presentation.ui.groups
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
-import com.senex.timetable.data.model.group.Group
+import com.senex.timetable.domain.entities.group.Group
 import com.senex.timetable.presentation.ui.groups.recycler.items.GroupRecyclerItem
 import com.senex.timetable.presentation.ui.groups.recycler.items.GroupRecyclerItemType
 import com.senex.timetable.common.SharedPreferencesHandler
