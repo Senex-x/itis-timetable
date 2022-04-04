@@ -11,7 +11,7 @@ import javax.inject.Singleton
 class RetrofitModule {
     @Singleton
     @Provides
-    fun provideRetrofit() = Retrofit.Builder()
+    fun provideRetrofit(): Retrofit = Retrofit.Builder()
         .baseUrl(BASE_URL)
         .addConverterFactory(GsonConverterFactory.create())
         .client(OkHttpClient.Builder().build())

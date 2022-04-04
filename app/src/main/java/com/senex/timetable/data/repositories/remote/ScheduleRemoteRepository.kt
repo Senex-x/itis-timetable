@@ -2,7 +2,6 @@ package com.senex.timetable.data.repositories.remote
 
 import androidx.lifecycle.liveData
 import com.senex.timetable.data.api.ScheduleService
-import com.senex.timetable.data.models.schedule.Schedule
 import javax.inject.Inject
 
 class ScheduleRemoteRepository @Inject constructor(

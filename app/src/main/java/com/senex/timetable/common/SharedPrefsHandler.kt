@@ -1,8 +1,6 @@
 package com.senex.timetable.common
 
-import android.content.Context
 import android.content.SharedPreferences
-import java.lang.IllegalStateException
 import javax.inject.Inject
 
 private const val PREF_GROUP_ID_KEY =
@@ -11,7 +9,6 @@ private const val PREF_GROUP_ID_KEY =
 class SharedPreferencesHandler @Inject constructor(
     private val sharedPreferences: SharedPreferences
 ) {
-
     val isGroupSaved
         get() = getSavedGroupId() != null
 

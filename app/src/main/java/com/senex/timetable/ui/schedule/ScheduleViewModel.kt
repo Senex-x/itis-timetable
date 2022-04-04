@@ -11,7 +11,7 @@ class ScheduleViewModel @Inject constructor(
     private val preferencesHandler: SharedPreferencesHandler,
     private val subjectRepository: SubjectRepository,
 ) : ViewModel() {
-    private val dailySubjects = Array(7) {
+    private val dailySubjects = Array(6) {
         getDailySubjectsFromDatabase(DayOfWeek.of(it + 1))
     }
 
