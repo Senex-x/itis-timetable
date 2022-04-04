@@ -12,9 +12,11 @@ import javax.inject.Singleton
     ContextModule::class,
     ViewModelsModule::class,
     DatabaseModule::class,
+    RetrofitModule::class,
     PreferencesModule::class,
 ])
 interface AppComponent {
+
     fun inject(dailyScheduleFragment: DailyScheduleFragment)
 
     fun inject(groupsFragment: GroupsFragment)
