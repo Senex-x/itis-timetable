@@ -41,23 +41,23 @@ class DatabaseFiller @Inject constructor(
             }
         }
 
-        for (i in 1..100L) {
+        for (i in 1..120L) {
             runBlocking {
                 dailyScheduleRepository.insert(
                     createDailySchedule(
                         i,
-                        i % 20 + 1
+                        (i - 1) % 20 + 1
                     )
                 )
             }
         }
 
-        for (i in 1..500L) {
+        for (i in 1..600L) {
             runBlocking {
                 subjectRepository.insert(
                     createSubject(
                         i,
-                        i % 100 + 1
+                        (i - 1) % 120 + 1
                     )
                 )
             }
@@ -71,7 +71,7 @@ class DatabaseFiller @Inject constructor(
         id,
         Random.nextInt(10, 20).toString() + "-" +
                 Random.nextInt(100, 1000).toString(),
-        Random.nextInt(1, 5)
+        Random.nextInt(1, 6)
     )
 
     private fun createSchedule(id: Long, groupId: Long) = ScheduleInfo(
@@ -80,13 +80,13 @@ class DatabaseFiller @Inject constructor(
     )
 
     private val dayNames =
-        listOf("Monday", "Tuesday", "Wednesday", "Thursday", "Saturday", "Friday", "Sunday")
+        listOf("Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday")
 
     private fun createDailySchedule(id: Long, scheduleId: Long) = DailyScheduleInfo(
         id,
         scheduleId,
         dayNames.random(),
-        Random.nextInt(1, 8)
+        (id / 20).toInt()
     )
 
     private fun createSubject(id: Long, dailyScheduleId: Long) = Subject(
