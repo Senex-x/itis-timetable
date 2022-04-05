@@ -4,6 +4,7 @@ import com.senex.timetable.data.database.GroupDao
 import com.senex.timetable.data.mapper.transform
 import com.senex.timetable.domain.model.group.Group
 import com.senex.timetable.domain.repository.GroupRepository
+import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
 class GroupRepositoryImpl @Inject constructor(
@@ -25,8 +26,8 @@ class GroupRepositoryImpl @Inject constructor(
     override suspend fun get(id: Long) =
         groupDao.get(id)?.transform()
 
-    override suspend fun getAll() =
-        groupDao.getAll().map { it.transform() }
+    override fun getAll() =
+        groupDao.getAll().map { list -> list.map { it.transform() } }
 
     override suspend fun deleteById(id: Long) =
         groupDao.delete(id)

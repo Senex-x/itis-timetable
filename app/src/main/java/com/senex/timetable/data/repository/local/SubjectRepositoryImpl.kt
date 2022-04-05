@@ -4,6 +4,7 @@ import com.senex.timetable.data.database.SubjectDao
 import com.senex.timetable.data.mapper.transform
 import com.senex.timetable.domain.model.subject.Subject
 import com.senex.timetable.domain.repository.SubjectRepository
+import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
 class SubjectRepositoryImpl @Inject constructor(
@@ -25,8 +26,8 @@ class SubjectRepositoryImpl @Inject constructor(
     override suspend fun get(id: Long): Subject? =
         subjectDao.get(id)?.transform()
 
-    override suspend fun getAll() =
-        subjectDao.getAll().map { it.transform() }
+    override fun getAll() =
+        subjectDao.getAll().map { list -> list.map { it.transform() } }
 
     override suspend fun getAll(groupId: Long, dayIndexInWeek: Int) =
         subjectDao.getAll(groupId, dayIndexInWeek).map { it.transform() }

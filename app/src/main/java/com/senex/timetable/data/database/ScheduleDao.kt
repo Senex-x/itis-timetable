@@ -6,6 +6,7 @@ import androidx.room.Transaction
 import com.senex.timetable.data.database.util.BaseDao
 import com.senex.timetable.data.entity.schedule.ScheduleEntity
 import com.senex.timetable.data.entity.schedule.ScheduleInfoEntity
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface ScheduleDao : BaseDao<ScheduleInfoEntity> {
@@ -19,7 +20,7 @@ interface ScheduleDao : BaseDao<ScheduleInfoEntity> {
 
     @Transaction
     @Query("SELECT * FROM schedules")
-    suspend fun getAll(): List<ScheduleEntity>
+    fun getAll(): Flow<List<ScheduleEntity>>
 
     @Query("DELETE FROM schedules WHERE id = :id")
     suspend fun delete(id: Long)

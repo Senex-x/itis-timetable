@@ -5,6 +5,7 @@ import com.senex.timetable.data.mapper.transform
 import com.senex.timetable.domain.model.schedule.Schedule
 import com.senex.timetable.domain.model.schedule.ScheduleInfo
 import com.senex.timetable.domain.repository.ScheduleRepository
+import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
 class ScheduleRepositoryImpl @Inject constructor(
@@ -32,8 +33,8 @@ class ScheduleRepositoryImpl @Inject constructor(
     override suspend fun getByGroupId(groupId: Long) =
         scheduleDao.getByGroupId(groupId)?.transform()
 
-    override suspend fun getAll() =
-        scheduleDao.getAll().map { it.transform() }
+    override fun getAll() =
+        scheduleDao.getAll().map { list -> list.map { it.transform() } }
 
     override suspend fun deleteAll() =
         scheduleDao.deleteAll()

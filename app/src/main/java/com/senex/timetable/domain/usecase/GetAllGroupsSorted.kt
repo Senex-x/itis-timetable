@@ -2,12 +2,15 @@ package com.senex.timetable.domain.usecase
 
 import com.senex.timetable.domain.model.group.Group
 import com.senex.timetable.domain.repository.GroupRepository
+import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
 class GetAllGroupsSorted @Inject constructor(
     private val groupRepository: GroupRepository,
 ) {
-    suspend operator fun invoke() = groupRepository.getAll().sortedWith(groupComparator)
+    operator fun invoke() = groupRepository.getAll().map { list ->
+        list.sortedWith(groupComparator)
+    }
 
     private val groupComparator = Comparator<Group> { group1, group2 ->
         val courseNumber1 = group1.courseNumber

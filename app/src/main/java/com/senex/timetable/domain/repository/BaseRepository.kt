@@ -1,9 +1,11 @@
 package com.senex.timetable.domain.repository
 
+import kotlinx.coroutines.flow.Flow
+
 interface BaseRepository<in T, out E, K> {
     suspend fun get(id: K): E?
 
-    suspend fun getAll(): List<E>
+    fun getAll(): Flow<List<E>>
 
     suspend fun insert(item: T)
 

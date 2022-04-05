@@ -6,6 +6,7 @@ import androidx.room.Transaction
 import com.senex.timetable.data.database.util.BaseDao
 import com.senex.timetable.data.entity.schedule.DailyScheduleEntity
 import com.senex.timetable.data.entity.schedule.DailyScheduleInfoEntity
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface DailyScheduleDao: BaseDao<DailyScheduleInfoEntity> {
@@ -15,7 +16,7 @@ interface DailyScheduleDao: BaseDao<DailyScheduleInfoEntity> {
 
     @Transaction
     @Query("SELECT * FROM daily_schedules")
-    suspend fun getAll(): List<DailyScheduleEntity>
+    fun getAll(): Flow<List<DailyScheduleEntity>>
 
     @Transaction
     @Query("""

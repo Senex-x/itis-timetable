@@ -4,6 +4,7 @@ import androidx.room.Dao
 import androidx.room.Query
 import com.senex.timetable.data.database.util.BaseDao
 import com.senex.timetable.data.entity.group.GroupEntity
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface GroupDao: BaseDao<GroupEntity> {
@@ -11,7 +12,7 @@ interface GroupDao: BaseDao<GroupEntity> {
     suspend fun get(id: Long): GroupEntity?
 
     @Query("SELECT * FROM groups")
-    suspend fun getAll(): List<GroupEntity>
+    fun getAll(): Flow<List<GroupEntity>>
 
     @Query("DELETE FROM groups WHERE id = :id")
     suspend fun delete(id: Long)

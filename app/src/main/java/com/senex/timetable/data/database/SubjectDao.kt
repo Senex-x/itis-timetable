@@ -4,6 +4,7 @@ import androidx.room.Dao
 import androidx.room.Query
 import com.senex.timetable.data.database.util.BaseDao
 import com.senex.timetable.data.entity.subject.SubjectEntity
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface SubjectDao : BaseDao<SubjectEntity> {
@@ -11,7 +12,7 @@ interface SubjectDao : BaseDao<SubjectEntity> {
     suspend fun get(id: Long): SubjectEntity?
 
     @Query("SELECT * FROM subjects")
-    suspend fun getAll(): List<SubjectEntity>
+    fun getAll(): Flow<List<SubjectEntity>>
 
     @Query("""
         SELECT *

@@ -25,8 +25,6 @@ class ScheduleViewModel @Inject constructor(
             emit(emptyList())
         } else {
             val schedule = getScheduleByGroupIdSorted(groupId)
-            log(schedule.scheduleInfo.toString())
-            log(schedule.dailySchedules.map { it.dailyScheduleInfo }.toString())
             val dailySchedule = schedule.getDailySchedule(dayIndexInWeek)
                 ?: throw IllegalArgumentException()
             emit(dailySchedule.subjects)
