@@ -9,6 +9,7 @@ import javax.inject.Inject
 class SubjectRepositoryImpl @Inject constructor(
     private val subjectDao: SubjectDao,
 ) : SubjectRepository {
+
     override suspend fun insert(item: Subject) =
         subjectDao.insert(item.transform())
 

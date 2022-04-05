@@ -11,16 +11,19 @@ class DailyScheduleRepositoryImpl @Inject constructor(
     private val dailyScheduleDao: DailyScheduleDao,
 ) : DailyScheduleRepository {
 
-    override suspend fun insert(item: DailySchedule) =
+    override suspend fun deleteById(id: Long) =
+        dailyScheduleDao.delete(id)
+
+    override suspend fun insert(item: DailyScheduleInfo) =
         dailyScheduleDao.insert(item.transform())
 
-    override suspend fun insertAll(vararg items: DailySchedule) =
+    override suspend fun insertAll(vararg items: DailyScheduleInfo) =
         dailyScheduleDao.insertAll(*items.map { it.transform() }.toTypedArray())
 
-    override suspend fun update(item: DailySchedule) =
+    override suspend fun update(item: DailyScheduleInfo) =
         dailyScheduleDao.update(item.transform())
 
-    override suspend fun delete(item: DailySchedule) =
+    override suspend fun delete(item: DailyScheduleInfo) =
         dailyScheduleDao.delete(item.transform())
 
     override suspend fun get(id: Long) =

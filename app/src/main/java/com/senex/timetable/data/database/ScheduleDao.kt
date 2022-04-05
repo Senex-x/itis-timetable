@@ -8,7 +8,7 @@ import com.senex.timetable.data.entity.schedule.ScheduleEntity
 import com.senex.timetable.data.entity.schedule.ScheduleInfoEntity
 
 @Dao
-interface ScheduleDao : BaseDao<ScheduleEntity> {
+interface ScheduleDao : BaseDao<ScheduleInfoEntity> {
     @Transaction
     @Query("SELECT * FROM schedules WHERE id = :id")
     suspend fun get(id: Long): ScheduleEntity?
