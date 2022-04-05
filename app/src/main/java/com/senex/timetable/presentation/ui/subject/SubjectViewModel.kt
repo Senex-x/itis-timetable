@@ -40,7 +40,6 @@ class SubjectViewModel @Inject constructor(
 
     fun setSubjectVisibility(isVisible: Boolean) {
         isSubjectVisible = isVisible
-        log(subjectVisibilityChangeListener.toString())
         subjectVisibilityChangeListener?.invoke(isVisible)
 
         if (isVisible)

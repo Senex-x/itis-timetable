@@ -7,5 +7,5 @@ class DeleteHiddenSubjectById @Inject constructor(
     private val hiddenSubjectRepository: HiddenSubjectRepository
 ) {
     suspend operator fun invoke(id: Long) =
-        hiddenSubjectRepository.delete(id)
+        hiddenSubjectRepository.deleteById(id)
 }

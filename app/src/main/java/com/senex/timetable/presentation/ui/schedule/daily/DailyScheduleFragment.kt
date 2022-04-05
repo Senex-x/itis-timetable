@@ -55,14 +55,13 @@ class DailyScheduleFragment : DaggerFragment() {
             navigateToSubjectFragment(it)
         }
 
-        viewModel.getDailySubjects(dayOfWeek)
-            .observe(viewLifecycleOwner) {
-                //log("Got new subject list for day: $dayOfWeek")
-                emptyListHint.visibility =
-                    if (it.isEmpty()) View.VISIBLE else View.GONE
-
-                recyclerAdapter.submitList(it)
-            }
+        viewModel.getDailySubjects(dayOfWeek).observe(viewLifecycleOwner) {
+            //log("Got new subject list for day: $dayOfWeek")
+            emptyListHint.visibility =
+                if (it.isEmpty()) View.VISIBLE else View.GONE
+            
+            recyclerAdapter.submitList(it)
+        }
     }
 
     private fun navigateToSubjectFragment(subjectId: Long) = findNavController().navigate(

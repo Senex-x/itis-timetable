@@ -12,6 +12,6 @@ class GetAllSubjectsByGroupIdAndDay @Inject constructor(
         dayOfWeek: DayOfWeek,
     ) = subjectRepository.getAll(
         groupId,
-        dayOfWeek.value,
+        dayIndexInWeek = dayOfWeek.value - 1,
     )
 }

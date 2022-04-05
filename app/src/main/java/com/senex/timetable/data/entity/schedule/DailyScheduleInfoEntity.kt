@@ -21,6 +21,6 @@ data class DailyScheduleInfoEntity(
     @ColumnInfo(name = "schedule_id")
     val scheduleId: Long,
     val dayName: String,
-    @ColumnInfo(name = "number_in_week")
-    val numberInWeek: Int,
+    @ColumnInfo(name = "index_in_week")
+    val indexInWeek: Int,
 )

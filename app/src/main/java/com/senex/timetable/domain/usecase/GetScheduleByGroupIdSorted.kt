@@ -10,34 +10,37 @@ class GetScheduleByGroupIdSorted @Inject constructor(
 ) {
     suspend operator fun invoke(groupId: Long) =
         sortSchedule(scheduleRepository.getByGroupId(groupId))
+            ?: throw IllegalArgumentException("Schedule for groupId: $groupId not found")
 
     private fun sortSchedule(
         source: Schedule?,
     ) = source?.run {
-        val dailySchedulesSorted = dailySchedules.toMutableList()
+        val dailySchedulesSortedInside = sortDailySchedulesInside(dailySchedules)
 
-        sortDailySchedules(dailySchedulesSorted)
-
-        dailySchedulesSorted.sortWith(
-            Comparator.comparingInt { it.dailyScheduleInfo.numberInWeek }
+        dailySchedulesSortedInside.sortWith(
+            Comparator.comparingInt { it.dailyScheduleInfo.indexInWeek }
         )
 
         copy(
             scheduleInfo = scheduleInfo,
             group = group,
-            dailySchedules = dailySchedulesSorted
+            dailySchedules = dailySchedulesSortedInside
         )
     }
 
-    private fun sortDailySchedules(dailySchedulesSorted: MutableList<DailySchedule>) {
-        for ((i, dailySchedule) in dailySchedulesSorted.withIndex()) {
+    private fun sortDailySchedulesInside(dailySchedules: List<DailySchedule>): MutableList<DailySchedule> {
+        val dailySchedulesSorted = mutableListOf<DailySchedule>()
+
+        for (dailySchedule in dailySchedules) {
             val subjectsSorted = sortSubjects(dailySchedule)
             val dailyScheduleSorted = dailySchedule.copy(
                 dailyScheduleInfo = dailySchedule.dailyScheduleInfo,
                 subjects = subjectsSorted
             )
-            dailySchedulesSorted.add(i, dailyScheduleSorted)
+            dailySchedulesSorted.add(dailyScheduleSorted)
         }
+
+        return dailySchedulesSorted
     }
 
     private fun sortSubjects(dailySchedule: DailySchedule) =

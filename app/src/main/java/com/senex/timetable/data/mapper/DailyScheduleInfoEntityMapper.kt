@@ -7,12 +7,12 @@ internal fun DailyScheduleInfoEntity.transform() = DailyScheduleInfo(
     id,
     scheduleId,
     dayName,
-    numberInWeek,
+    indexInWeek,
 )
 
 internal fun DailyScheduleInfo.transform() = DailyScheduleInfoEntity(
     id,
     scheduleId,
     dayName,
-    numberInWeek,
+    indexInWeek,
 )
