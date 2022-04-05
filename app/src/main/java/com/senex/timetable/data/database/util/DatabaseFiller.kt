@@ -1,6 +1,6 @@
 package com.senex.timetable.data.database.util
 
-import com.senex.timetable.presentation.common.log
+import com.senex.timetable.domain.util.log
 import com.senex.timetable.data.database.AppDatabase
 import com.senex.timetable.domain.model.group.Group
 import com.senex.timetable.domain.model.schedule.DailyScheduleInfo

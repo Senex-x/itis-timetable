@@ -1,4 +1,4 @@
-package com.senex.timetable.presentation.common
+package com.senex.timetable.domain.util
 
 import android.content.Context
 import android.util.Log

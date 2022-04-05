@@ -9,7 +9,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.senex.timetable.R
-import com.senex.timetable.presentation.common.toast
+import com.senex.timetable.domain.util.toast
 import com.senex.timetable.databinding.FragmentGroupsBinding
 import com.senex.timetable.presentation.ui.groups.recycler.GroupsRecyclerDelegationAdapter
 import dagger.android.support.DaggerFragment

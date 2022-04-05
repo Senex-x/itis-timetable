@@ -17,25 +17,25 @@ abstract class RepositoryModule {
 
     @Singleton
     @Binds
-    abstract fun bindsGroupRepository(
+    abstract fun bindGroupRepository(
         groupRepositoryImpl: GroupRepositoryImpl,
     ): GroupRepository
 
     @Singleton
     @Binds
-    abstract fun bindsHiddenSubjectRepository(
+    abstract fun bindHiddenSubjectRepository(
         hiddenSubjectRepositoryImpl: HiddenSubjectRepositoryImpl,
     ): HiddenSubjectRepository
 
     @Singleton
     @Binds
-    abstract fun bindsScheduleRepository(
+    abstract fun bindScheduleRepository(
         scheduleRepositoryImpl: ScheduleRepositoryImpl,
     ): ScheduleRepository
 
     @Singleton
     @Binds
-    abstract fun bindsSubjectRepository(
+    abstract fun bindSubjectRepository(
         subjectRepositoryImpl: SubjectRepositoryImpl,
     ): SubjectRepository
 }

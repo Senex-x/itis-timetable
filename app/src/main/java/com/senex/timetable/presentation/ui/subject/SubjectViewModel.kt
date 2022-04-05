@@ -1,11 +1,9 @@
 package com.senex.timetable.presentation.ui.subject
 
 import androidx.lifecycle.ViewModel
-import com.senex.timetable.presentation.common.log
+import com.senex.timetable.domain.util.log
 import com.senex.timetable.domain.model.subject.HiddenSubject
 import com.senex.timetable.domain.model.subject.Subject
-import com.senex.timetable.data.repository.local.HiddenSubjectRepositoryImpl
-import com.senex.timetable.data.repository.local.SubjectRepositoryImpl
 import com.senex.timetable.domain.usecase.DeleteHiddenSubjectById
 import com.senex.timetable.domain.usecase.GetHiddenSubjectById
 import com.senex.timetable.domain.usecase.GetSubjectById
