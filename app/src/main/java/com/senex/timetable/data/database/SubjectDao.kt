@@ -25,14 +25,14 @@ interface SubjectDao : BaseDao<SubjectEntity> {
                 WHERE group_id == :groupId
             ) AS scheduleIds 
             ON scheduleIds.id == daily_schedules.schedule_id
-            AND daily_schedules.number_in_week == :dayNumberInWeek
+            AND daily_schedules.index_in_week == :dayIndexInWeek
         ) AS dailyScheduleIds
         ON dailyScheduleIds.id == subjects.daily_schedule_id
         """
     )
     suspend fun getAll(
         groupId: Long,
-        dayNumberInWeek: Int,
+        dayIndexInWeek: Int,
     ): List<SubjectEntity>
 
     @Query("""
@@ -47,7 +47,7 @@ interface SubjectDao : BaseDao<SubjectEntity> {
                 WHERE group_id == :groupId
             ) AS scheduleIds 
             ON scheduleIds.id == daily_schedules.schedule_id
-            AND daily_schedules.number_in_week == :dayNumberInWeek
+            AND daily_schedules.index_in_week == :dayIndexInWeek
         ) AS dailyScheduleIds
         ON dailyScheduleIds.id == subjects.daily_schedule_id
         AND subjects.id NOT IN hidden_subjects
@@ -55,7 +55,7 @@ interface SubjectDao : BaseDao<SubjectEntity> {
     )
     suspend fun getAllExcludingHidden(
         groupId: Long,
-        dayNumberInWeek: Int,
+        dayIndexInWeek: Int,
     ): List<SubjectEntity>
 
     @Query("DELETE FROM subjects WHERE id = :id")

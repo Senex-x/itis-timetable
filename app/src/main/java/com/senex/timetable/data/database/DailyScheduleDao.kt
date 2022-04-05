@@ -8,7 +8,7 @@ import com.senex.timetable.data.entity.schedule.DailyScheduleEntity
 import com.senex.timetable.data.entity.schedule.DailyScheduleInfoEntity
 
 @Dao
-interface DailyScheduleDao: BaseDao<DailyScheduleInfoEntity> {
+interface DailyScheduleDao: BaseDao<DailyScheduleEntity> {
     @Transaction
     @Query("SELECT * FROM daily_schedules WHERE id = :id")
     suspend fun get(id: Long): DailyScheduleEntity?
@@ -27,13 +27,16 @@ interface DailyScheduleDao: BaseDao<DailyScheduleInfoEntity> {
             WHERE group_id == :groupId
         ) AS scheduleIds 
         ON scheduleIds.id == daily_schedules.schedule_id
-        AND daily_schedules.number_in_week == :dayNumberInWeek
+        AND daily_schedules.index_in_week == :dayIndexInWeek
        """
     )
-    suspend fun getAllByGroupIdAndDayNumber(
+    suspend fun getAllByGroupIdAndDayIndex(
         groupId: Long,
-        dayNumberInWeek: Int,
+        dayIndexInWeek: Int,
     ): List<DailyScheduleEntity>
+
+    @Query("DELETE FROM daily_schedules WHERE id = :id")
+    suspend fun delete(id: Long)
 
     @Query("DELETE FROM daily_schedules")
     suspend fun deleteAll()

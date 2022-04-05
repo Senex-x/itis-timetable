@@ -27,13 +27,13 @@ class SubjectRepositoryImpl @Inject constructor(
     override suspend fun getAll() =
         subjectDao.getAll().map { it.transform() }
 
-    override suspend fun getAll(groupId: Long, dayNumberInWeek: Int) =
-        subjectDao.getAll(groupId, dayNumberInWeek).map { it.transform() }
+    override suspend fun getAll(groupId: Long, dayIndexInWeek: Int) =
+        subjectDao.getAll(groupId, dayIndexInWeek).map { it.transform() }
 
-    override suspend fun getAllExcludingHidden(groupId: Long, dayNumberInWeek: Int) =
-        subjectDao.getAllExcludingHidden(groupId, dayNumberInWeek).map { it.transform() }
+    override suspend fun getAllExcludingHidden(groupId: Long, dayIndexInWeek: Int) =
+        subjectDao.getAllExcludingHidden(groupId, dayIndexInWeek).map { it.transform() }
 
-    override suspend fun delete(id: Long) =
+    override suspend fun deleteById(id: Long) =
         subjectDao.delete(id)
 
     override suspend fun deleteAll() =

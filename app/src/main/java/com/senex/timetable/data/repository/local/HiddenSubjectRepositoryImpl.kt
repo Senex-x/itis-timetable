@@ -28,7 +28,7 @@ class HiddenSubjectRepositoryImpl @Inject constructor(
     override suspend fun getAll() =
         hiddenSubjectDao.getAll().map { it.transform() }
 
-    override suspend fun delete(id: Long) =
+    override suspend fun deleteById(id: Long) =
         hiddenSubjectDao.delete(id)
 
     override suspend fun deleteAll() =
