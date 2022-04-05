@@ -23,8 +23,8 @@ class GroupRepositoryImpl @Inject constructor(
     override suspend fun delete(item: Group) =
         groupDao.delete(item.transform())
 
-    override suspend fun get(id: Long) =
-        groupDao.get(id)?.transform()
+    override fun get(id: Long) =
+        groupDao.get(id).map { it?.transform() }
 
     override fun getAll() =
         groupDao.getAll().map { list -> list.map { it.transform() } }

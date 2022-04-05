@@ -24,14 +24,14 @@ class ScheduleRepositoryImpl @Inject constructor(
     override suspend fun delete(item: ScheduleInfo) =
         scheduleDao.delete(item.transform())
 
-    override suspend fun get(id: Long) =
-        scheduleDao.get(id)?.transform()
+    override fun get(id: Long) =
+        scheduleDao.get(id).map { it?.transform() }
 
     override suspend fun deleteById(id: Long) =
         scheduleDao.delete(id)
 
-    override suspend fun getByGroupId(groupId: Long) =
-        scheduleDao.getByGroupId(groupId)?.transform()
+    override fun getByGroupId(groupId: Long) =
+        scheduleDao.getByGroupId(groupId).map { it?.transform() }
 
     override fun getAll() =
         scheduleDao.getAll().map { list -> list.map { it.transform() } }

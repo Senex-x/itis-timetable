@@ -3,8 +3,8 @@ package com.senex.timetable.presentation.ui.schedule
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
 import com.senex.timetable.domain.usecase.GetScheduleByGroupIdSorted
-import com.senex.timetable.domain.util.log
 import com.senex.timetable.presentation.common.SharedPreferencesHandler
+import kotlinx.coroutines.flow.collect
 import java.time.DayOfWeek
 import javax.inject.Inject
 
@@ -24,10 +24,11 @@ class ScheduleViewModel @Inject constructor(
         if (groupId == null) {
             emit(emptyList())
         } else {
-            val schedule = getScheduleByGroupIdSorted(groupId)
-            val dailySchedule = schedule.getDailySchedule(dayIndexInWeek)
-                ?: throw IllegalArgumentException()
-            emit(dailySchedule.subjects)
+            getScheduleByGroupIdSorted(groupId).collect {
+                val dailySchedule = it.getDailySchedule(dayIndexInWeek)
+                    ?: throw IllegalArgumentException()
+                emit(dailySchedule.subjects)
+            }
         }
     }
 }

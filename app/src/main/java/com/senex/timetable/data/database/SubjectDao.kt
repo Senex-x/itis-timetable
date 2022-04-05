@@ -9,7 +9,7 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface SubjectDao : BaseDao<SubjectEntity> {
     @Query("SELECT * FROM subjects WHERE id = :id")
-    suspend fun get(id: Long): SubjectEntity?
+    fun get(id: Long): Flow<SubjectEntity?>
 
     @Query("SELECT * FROM subjects")
     fun getAll(): Flow<List<SubjectEntity>>
@@ -31,10 +31,10 @@ interface SubjectDao : BaseDao<SubjectEntity> {
         ON dailyScheduleIds.id == subjects.daily_schedule_id
         """
     )
-    suspend fun getAll(
+    fun getAll(
         groupId: Long,
         dayIndexInWeek: Int,
-    ): List<SubjectEntity>
+    ): Flow<List<SubjectEntity>>
 
     @Query("""
         SELECT *
@@ -54,10 +54,10 @@ interface SubjectDao : BaseDao<SubjectEntity> {
         AND subjects.id NOT IN hidden_subjects
         """
     )
-    suspend fun getAllExcludingHidden(
+    fun getAllExcludingHidden(
         groupId: Long,
         dayIndexInWeek: Int,
-    ): List<SubjectEntity>
+    ): Flow<List<SubjectEntity>>
 
     @Query("DELETE FROM subjects WHERE id = :id")
     suspend fun delete(id: Long)

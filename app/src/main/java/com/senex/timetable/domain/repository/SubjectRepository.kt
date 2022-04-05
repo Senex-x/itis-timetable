@@ -1,15 +1,16 @@
 package com.senex.timetable.domain.repository
 
 import com.senex.timetable.domain.model.subject.Subject
+import kotlinx.coroutines.flow.Flow
 
 interface SubjectRepository : BaseRepository<Subject, Subject, Long> {
-    suspend fun getAll(
+    fun getAll(
         groupId: Long,
         dayIndexInWeek: Int,
-    ): List<Subject>
+    ): Flow<List<Subject>>
 
-    suspend fun getAllExcludingHidden(
+    fun getAllExcludingHidden(
         groupId: Long,
         dayIndexInWeek: Int,
-    ): List<Subject>
+    ): Flow<List<Subject>>
 }

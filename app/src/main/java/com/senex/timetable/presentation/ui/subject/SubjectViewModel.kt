@@ -1,15 +1,19 @@
 package com.senex.timetable.presentation.ui.subject
 
 import androidx.lifecycle.ViewModel
-import com.senex.timetable.domain.util.log
 import com.senex.timetable.domain.model.subject.HiddenSubject
 import com.senex.timetable.domain.model.subject.Subject
 import com.senex.timetable.domain.usecase.DeleteHiddenSubjectById
 import com.senex.timetable.domain.usecase.GetHiddenSubjectById
 import com.senex.timetable.domain.usecase.GetSubjectById
 import com.senex.timetable.domain.usecase.InsertHiddenSubject
+import com.senex.timetable.domain.util.log
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.flow.last
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -25,7 +29,7 @@ class SubjectViewModel @Inject constructor(
     private var isSubjectVisible: Boolean = true
 
     private suspend fun isSubjectVisible() =
-        getHiddenSubjectById(subject.id) == null
+        getHiddenSubjectById(subject.id).first() == null
 
     var subjectVisibilityChangeListener: ((Boolean) -> Unit)? = null
         set(listener) = listener.let {
@@ -34,7 +38,7 @@ class SubjectViewModel @Inject constructor(
         }
 
     suspend fun setSubject(subjectId: Long) {
-        subject = getSubjectById(subjectId)!!
+        subject = getSubjectById(subjectId).first()!!
         isSubjectVisible = isSubjectVisible()
     }
 

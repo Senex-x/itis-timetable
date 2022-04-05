@@ -3,14 +3,16 @@ package com.senex.timetable.domain.usecase
 import com.senex.timetable.domain.model.schedule.DailySchedule
 import com.senex.timetable.domain.model.schedule.Schedule
 import com.senex.timetable.domain.repository.ScheduleRepository
+import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
 class GetScheduleByGroupIdSorted @Inject constructor(
     private val scheduleRepository: ScheduleRepository,
 ) {
-    suspend operator fun invoke(groupId: Long) =
-        sortSchedule(scheduleRepository.getByGroupId(groupId))
+    operator fun invoke(groupId: Long) = scheduleRepository.getByGroupId(groupId).map {
+        sortSchedule(it)
             ?: throw IllegalArgumentException("Schedule for groupId: $groupId not found")
+    }
 
     private fun sortSchedule(
         source: Schedule?,

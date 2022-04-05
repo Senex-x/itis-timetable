@@ -12,7 +12,7 @@ import kotlinx.coroutines.flow.Flow
 interface DailyScheduleDao: BaseDao<DailyScheduleInfoEntity> {
     @Transaction
     @Query("SELECT * FROM daily_schedules WHERE id = :id")
-    suspend fun get(id: Long): DailyScheduleEntity?
+    fun get(id: Long): Flow<DailyScheduleEntity?>
 
     @Transaction
     @Query("SELECT * FROM daily_schedules")
@@ -31,10 +31,10 @@ interface DailyScheduleDao: BaseDao<DailyScheduleInfoEntity> {
         AND daily_schedules.index_in_week == :dayIndexInWeek
        """
     )
-    suspend fun getAllByGroupIdAndDayIndex(
+    fun getAllByGroupIdAndDayIndex(
         groupId: Long,
         dayIndexInWeek: Int,
-    ): List<DailyScheduleEntity>
+    ): Flow<List<DailyScheduleEntity>>
 
     @Query("DELETE FROM daily_schedules WHERE id = :id")
     suspend fun delete(id: Long)

@@ -9,7 +9,7 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface GroupDao: BaseDao<GroupEntity> {
     @Query("SELECT * FROM groups WHERE id = :id")
-    suspend fun get(id: Long): GroupEntity?
+    fun get(id: Long): Flow<GroupEntity?>
 
     @Query("SELECT * FROM groups")
     fun getAll(): Flow<List<GroupEntity>>

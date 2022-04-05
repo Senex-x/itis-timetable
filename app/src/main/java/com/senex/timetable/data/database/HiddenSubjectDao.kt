@@ -9,7 +9,7 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface HiddenSubjectDao: BaseDao<HiddenSubjectEntity> {
     @Query("SELECT * FROM hidden_subjects WHERE subject_id = :id")
-    suspend fun get(id: Long): HiddenSubjectEntity?
+    fun get(id: Long): Flow<HiddenSubjectEntity?>
 
     @Query("SELECT * FROM hidden_subjects")
     fun getAll(): Flow<List<HiddenSubjectEntity>>

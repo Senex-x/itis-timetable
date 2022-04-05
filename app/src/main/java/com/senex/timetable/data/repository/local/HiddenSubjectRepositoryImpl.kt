@@ -23,8 +23,8 @@ class HiddenSubjectRepositoryImpl @Inject constructor(
     override suspend fun delete(item: HiddenSubject) =
         hiddenSubjectDao.delete(item.transform())
 
-    override suspend fun get(id: Long) =
-        hiddenSubjectDao.get(id)?.transform()
+    override fun get(id: Long) =
+        hiddenSubjectDao.get(id).map { it?.transform() }
 
     override fun getAll() =
         hiddenSubjectDao.getAll().map { list -> list.map { it.transform() } }

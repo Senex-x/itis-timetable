@@ -54,13 +54,6 @@ class GroupsFragment : DaggerFragment() {
             }
         }
 
-        log("Waiting for flow")
-        viewLifecycleOwner.lifecycleScope.launch {
-            viewModel.groupsFlow.collect {
-                log(it.toString())
-            }
-        }
-
         groupsRecyclerView.layoutManager = LinearLayoutManager(requireContext())
         groupsRecyclerView.adapter = GroupsRecyclerDelegationAdapter(onGroupItemClick).apply {
             viewModel.groups.observe(viewLifecycleOwner) {

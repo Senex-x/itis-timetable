@@ -11,6 +11,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.senex.timetable.R
 import com.senex.timetable.databinding.FragmentSubjectBinding
+import com.senex.timetable.domain.util.log
 import dagger.android.support.DaggerFragment
 import kotlinx.coroutines.runBlocking
 import javax.inject.Inject
@@ -27,11 +28,10 @@ class SubjectFragment : DaggerFragment() {
     private val args: SubjectFragmentArgs by navArgs()
 
     override fun onAttach(context: Context) {
+        super.onAttach(context)
         runBlocking {
             viewModel.setSubject(args.subjectId)
         }
-
-        super.onAttach(context)
     }
 
     override fun onCreateView(

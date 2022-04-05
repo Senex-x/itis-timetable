@@ -12,11 +12,11 @@ import kotlinx.coroutines.flow.Flow
 interface ScheduleDao : BaseDao<ScheduleInfoEntity> {
     @Transaction
     @Query("SELECT * FROM schedules WHERE id = :id")
-    suspend fun get(id: Long): ScheduleEntity?
+    fun get(id: Long): Flow<ScheduleEntity?>
 
     @Transaction
     @Query("SELECT * FROM schedules WHERE group_id = :groupId")
-    suspend fun getByGroupId(groupId: Long): ScheduleEntity?
+    fun getByGroupId(groupId: Long): Flow<ScheduleEntity?>
 
     @Transaction
     @Query("SELECT * FROM schedules")
