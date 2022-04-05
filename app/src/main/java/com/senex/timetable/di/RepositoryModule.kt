@@ -6,7 +6,7 @@ import dagger.Binds
 import dagger.Module
 import javax.inject.Singleton
 
-@Module(includes = [UseCaseModule::class])
+@Module
 abstract class RepositoryModule {
 
     @Singleton

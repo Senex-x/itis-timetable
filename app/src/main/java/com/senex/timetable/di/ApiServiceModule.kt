@@ -10,5 +10,6 @@ import javax.inject.Singleton
 class ApiServiceModule {
    @Singleton
    @Provides
-   fun provideScheduleService(retrofit: Retrofit) = retrofit.create(ScheduleService::class.java)
+   fun provideScheduleService(retrofit: Retrofit): ScheduleService =
+      retrofit.create(ScheduleService::class.java)
 }

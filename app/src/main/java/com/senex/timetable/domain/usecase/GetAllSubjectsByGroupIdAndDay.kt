@@ -2,8 +2,9 @@ package com.senex.timetable.domain.usecase
 
 import com.senex.timetable.domain.repository.SubjectRepository
 import java.time.DayOfWeek
+import javax.inject.Inject
 
-class GetAllSubjectsByGroupIdAndDay(
+class GetAllSubjectsByGroupIdAndDay @Inject constructor(
     private val subjectRepository: SubjectRepository,
 ) {
     suspend operator fun invoke(

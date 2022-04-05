@@ -2,8 +2,9 @@ package com.senex.timetable.domain.usecase
 
 import com.senex.timetable.domain.model.group.Group
 import com.senex.timetable.domain.repository.GroupRepository
+import javax.inject.Inject
 
-class GetAllGroupsSorted(
+class GetAllGroupsSorted @Inject constructor(
     private val groupRepository: GroupRepository,
 ) {
     suspend operator fun invoke() = groupRepository.getAll().sortedWith(groupComparator)

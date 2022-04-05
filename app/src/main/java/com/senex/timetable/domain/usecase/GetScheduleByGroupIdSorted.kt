@@ -3,8 +3,9 @@ package com.senex.timetable.domain.usecase
 import com.senex.timetable.domain.model.schedule.DailySchedule
 import com.senex.timetable.domain.model.schedule.Schedule
 import com.senex.timetable.domain.repository.ScheduleRepository
+import javax.inject.Inject
 
-class GetScheduleByGroupIdSorted(
+class GetScheduleByGroupIdSorted @Inject constructor(
     private val scheduleRepository: ScheduleRepository,
 ) {
     suspend operator fun invoke(groupId: Long) =
