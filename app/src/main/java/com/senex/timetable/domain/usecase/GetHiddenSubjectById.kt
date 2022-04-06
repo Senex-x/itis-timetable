@@ -6,6 +6,6 @@ import javax.inject.Inject
 class GetHiddenSubjectById @Inject constructor(
     private val hiddenSubjectRepository: HiddenSubjectRepository,
 ) {
-    suspend operator fun invoke(id: Long) =
+    operator fun invoke(id: Long) =
         hiddenSubjectRepository.get(id)
 }

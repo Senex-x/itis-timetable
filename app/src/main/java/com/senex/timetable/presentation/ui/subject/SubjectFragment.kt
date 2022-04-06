@@ -1,17 +1,18 @@
 package com.senex.timetable.presentation.ui.subject
 
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.senex.timetable.R
 import com.senex.timetable.databinding.FragmentSubjectBinding
 import com.senex.timetable.presentation.common.assistedViewModel
 import dagger.android.support.DaggerFragment
-import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class SubjectFragment : DaggerFragment() {
@@ -25,13 +26,6 @@ class SubjectFragment : DaggerFragment() {
     lateinit var factory: SubjectViewModel.Factory
     private val viewModel: SubjectViewModel by assistedViewModel {
         factory.create(args.subjectId)
-    }
-
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        runBlocking {
-            viewModel.setSubject(args.subjectId)
-        }
     }
 
     override fun onCreateView(
@@ -52,15 +46,24 @@ class SubjectFragment : DaggerFragment() {
         initToolbar()
 
         val subject = viewModel.subject
-        idText.text = subject.id.toString()
+        lifecycleScope.launch {
+            subject.collect {
+                // Draw ui
+                idText.text = it.id.toString()
+            }
+        }
 
-        viewModel.subjectVisibilityChangeListener = { isVisible ->
-            if (isVisible) {
-                showSubjectButton.visibility = View.INVISIBLE
-                hideSubjectButton.visibility = View.VISIBLE
-            } else {
-                showSubjectButton.visibility = View.VISIBLE
-                hideSubjectButton.visibility = View.INVISIBLE
+        val isVisible = viewModel.isSubjectVisible
+        lifecycleScope.launch {
+            isVisible.collect {
+                // Handle visibility changes
+                if (it) {
+                    showSubjectButton.visibility = View.INVISIBLE
+                    hideSubjectButton.visibility = View.VISIBLE
+                } else {
+                    showSubjectButton.visibility = View.VISIBLE
+                    hideSubjectButton.visibility = View.INVISIBLE
+                }
             }
         }
 
