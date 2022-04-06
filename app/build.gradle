@@ -59,7 +59,6 @@ dependencies {
     def room_version = "2.4.2"
     implementation "androidx.room:room-runtime:$room_version"
     implementation "androidx.room:room-ktx:$room_version"
-    annotationProcessor "androidx.room:room-compiler:$room_version"
     kapt "androidx.room:room-compiler:$room_version"
 
     def dagger_version = "2.41"
@@ -78,6 +77,10 @@ dependencies {
     implementation 'com.google.code.gson:gson:2.9.0'
 
     implementation 'com.hannesdorfmann:adapterdelegates4-kotlin-dsl:4.3.1'
+
+    def view_model_inject_version = "0.3.3"
+    implementation "com.vikingsen.inject:viewmodel-inject:$view_model_inject_version"
+    kapt "com.vikingsen.inject:viewmodel-inject-processor:$view_model_inject_version"
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
