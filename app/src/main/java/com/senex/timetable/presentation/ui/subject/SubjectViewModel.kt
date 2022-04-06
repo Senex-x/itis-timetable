@@ -8,20 +8,20 @@ import com.senex.timetable.domain.usecase.GetHiddenSubjectById
 import com.senex.timetable.domain.usecase.GetSubjectById
 import com.senex.timetable.domain.usecase.InsertHiddenSubject
 import com.senex.timetable.domain.util.log
+import dagger.assisted.Assisted
+import dagger.assisted.AssistedFactory
+import dagger.assisted.AssistedInject
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.first
-import kotlinx.coroutines.flow.last
 import kotlinx.coroutines.launch
-import javax.inject.Inject
 
-class SubjectViewModel @Inject constructor(
+class SubjectViewModel @AssistedInject constructor(
     private val getSubjectById: GetSubjectById,
     private val getHiddenSubjectById: GetHiddenSubjectById,
     private val insertHiddenSubject: InsertHiddenSubject,
     private val deleteHiddenSubjectById: DeleteHiddenSubjectById,
+    @Assisted private val subjectId: Long,
 ) : ViewModel() {
     lateinit var subject: Subject
         private set
@@ -46,6 +46,8 @@ class SubjectViewModel @Inject constructor(
         isSubjectVisible = isVisible
         subjectVisibilityChangeListener?.invoke(isVisible)
 
+        log(subjectId.toString())
+
         if (isVisible)
             showSubject(subject.id)
         else
@@ -62,5 +64,10 @@ class SubjectViewModel @Inject constructor(
         CoroutineScope(Dispatchers.Default).launch {
             deleteHiddenSubjectById(subjectId)
         }
+    }
+
+    @AssistedFactory
+    interface Factory {
+        fun create(subjectId: Long): SubjectViewModel
     }
 }

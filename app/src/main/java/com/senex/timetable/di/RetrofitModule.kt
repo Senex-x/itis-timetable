@@ -1,5 +1,6 @@
 package com.senex.timetable.di
 
+import com.senex.timetable.presentation.ui.subject.SubjectViewModel
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient

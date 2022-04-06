@@ -5,13 +5,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.senex.timetable.R
 import com.senex.timetable.databinding.FragmentSubjectBinding
-import com.senex.timetable.domain.util.log
+import com.senex.timetable.presentation.common.assistedViewModel
 import dagger.android.support.DaggerFragment
 import kotlinx.coroutines.runBlocking
 import javax.inject.Inject
@@ -21,11 +19,13 @@ class SubjectFragment : DaggerFragment() {
     private val binding
         get() = _binding!!
 
-    @Inject
-    lateinit var factory: ViewModelProvider.Factory
-    private val viewModel: SubjectViewModel by viewModels(factoryProducer = { factory })
-
     private val args: SubjectFragmentArgs by navArgs()
+
+    @Inject
+    lateinit var factory: SubjectViewModel.Factory
+    private val viewModel: SubjectViewModel by assistedViewModel {
+        factory.create(args.subjectId)
+    }
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
