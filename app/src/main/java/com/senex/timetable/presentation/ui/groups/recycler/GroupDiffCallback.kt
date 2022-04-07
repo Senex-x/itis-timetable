@@ -1,39 +1,34 @@
 package com.senex.timetable.presentation.ui.groups.recycler
 
 import androidx.recyclerview.widget.DiffUtil
-import com.senex.timetable.presentation.common.recycler.TypedRecyclerItem
-import com.senex.timetable.presentation.ui.groups.recycler.items.CourseRecyclerItem
-import com.senex.timetable.presentation.ui.groups.recycler.items.GroupRecyclerItem
-import com.senex.timetable.presentation.ui.groups.recycler.items.GroupRecyclerItemType
+import com.senex.timetable.presentation.ui.groups.recycler.items.GroupsRecyclerItem
+import com.senex.timetable.presentation.ui.groups.recycler.items.GroupsRecyclerItem.CourseItem
+import com.senex.timetable.presentation.ui.groups.recycler.items.GroupsRecyclerItem.GroupItem
 
-object GroupDiffCallback : DiffUtil.ItemCallback<TypedRecyclerItem>() {
+object GroupDiffCallback : DiffUtil.ItemCallback<GroupsRecyclerItem>() {
     override fun areItemsTheSame(
-        oldItem: TypedRecyclerItem,
-        newItem: TypedRecyclerItem,
+        oldItem: GroupsRecyclerItem,
+        newItem: GroupsRecyclerItem,
     ) = when (oldItem) {
-        is CourseRecyclerItem ->
-            newItem is CourseRecyclerItem
+        is CourseItem ->
+            newItem is CourseItem
                     && oldItem.courseNumber == newItem.courseNumber
 
-        is GroupRecyclerItem ->
-            newItem is GroupRecyclerItem
+        is GroupItem ->
+            newItem is GroupItem
                     && oldItem.group.id == newItem.group.id
-
-        else -> false
     }
 
     override fun areContentsTheSame(
-        oldItem: TypedRecyclerItem,
-        newItem: TypedRecyclerItem,
+        oldItem: GroupsRecyclerItem,
+        newItem: GroupsRecyclerItem,
     ) = when (oldItem) {
-        is CourseRecyclerItem ->
-        newItem is CourseRecyclerItem
+        is CourseItem ->
+        newItem is CourseItem
                 && oldItem.courseNumber == newItem.courseNumber
 
-        is GroupRecyclerItem ->
-        newItem is GroupRecyclerItem
+        is GroupItem ->
+        newItem is GroupItem
                 && oldItem.group == newItem.group
-
-        else -> false
     }
 }
