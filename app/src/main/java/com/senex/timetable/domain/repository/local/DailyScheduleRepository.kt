@@ -1,4 +1,4 @@
-package com.senex.timetable.domain.repository
+package com.senex.timetable.domain.repository.local
 
 import com.senex.timetable.domain.model.schedule.DailySchedule
 import com.senex.timetable.domain.model.schedule.DailyScheduleInfo

@@ -3,7 +3,7 @@ package com.senex.timetable.data.repository.local
 import com.senex.timetable.data.database.DailyScheduleDao
 import com.senex.timetable.data.mapper.transform
 import com.senex.timetable.domain.model.schedule.DailyScheduleInfo
-import com.senex.timetable.domain.repository.DailyScheduleRepository
+import com.senex.timetable.domain.repository.local.DailyScheduleRepository
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 

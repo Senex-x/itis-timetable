@@ -1,6 +1,6 @@
 package com.senex.timetable.domain.usecase
 
-import com.senex.timetable.domain.repository.SubjectRepository
+import com.senex.timetable.domain.repository.local.SubjectRepository
 import java.time.DayOfWeek
 import javax.inject.Inject
 

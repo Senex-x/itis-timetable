@@ -2,9 +2,8 @@ package com.senex.timetable.data.repository.local
 
 import com.senex.timetable.data.database.ScheduleDao
 import com.senex.timetable.data.mapper.transform
-import com.senex.timetable.domain.model.schedule.Schedule
 import com.senex.timetable.domain.model.schedule.ScheduleInfo
-import com.senex.timetable.domain.repository.ScheduleRepository
+import com.senex.timetable.domain.repository.local.ScheduleRepository
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 

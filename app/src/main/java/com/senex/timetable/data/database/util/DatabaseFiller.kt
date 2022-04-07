@@ -7,10 +7,10 @@ import com.senex.timetable.domain.model.schedule.DailyScheduleInfo
 import com.senex.timetable.domain.model.schedule.ScheduleInfo
 import com.senex.timetable.domain.model.subject.Subject
 import com.senex.timetable.domain.model.subject.SubjectType
-import com.senex.timetable.domain.repository.DailyScheduleRepository
-import com.senex.timetable.domain.repository.GroupRepository
-import com.senex.timetable.domain.repository.ScheduleRepository
-import com.senex.timetable.domain.repository.SubjectRepository
+import com.senex.timetable.domain.repository.local.DailyScheduleRepository
+import com.senex.timetable.domain.repository.local.GroupRepository
+import com.senex.timetable.domain.repository.local.ScheduleRepository
+import com.senex.timetable.domain.repository.local.SubjectRepository
 import kotlinx.coroutines.runBlocking
 import javax.inject.Inject
 import kotlin.random.Random

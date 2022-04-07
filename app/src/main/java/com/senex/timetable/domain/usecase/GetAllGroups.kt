@@ -1,6 +1,6 @@
 package com.senex.timetable.domain.usecase
 
-import com.senex.timetable.domain.repository.GroupRepository
+import com.senex.timetable.domain.repository.local.GroupRepository
 import javax.inject.Inject
 
 class GetAllGroups @Inject constructor(

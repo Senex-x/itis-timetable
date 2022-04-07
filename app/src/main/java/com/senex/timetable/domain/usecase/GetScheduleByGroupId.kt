@@ -1,6 +1,6 @@
 package com.senex.timetable.domain.usecase
 
-import com.senex.timetable.domain.repository.ScheduleRepository
+import com.senex.timetable.domain.repository.local.ScheduleRepository
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 

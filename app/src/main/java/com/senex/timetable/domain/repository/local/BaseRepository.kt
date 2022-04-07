@@ -1,4 +1,4 @@
-package com.senex.timetable.domain.repository
+package com.senex.timetable.domain.repository.local
 
 import kotlinx.coroutines.flow.Flow
 

@@ -3,7 +3,7 @@ package com.senex.timetable.data.repository.local
 import com.senex.timetable.data.database.GroupDao
 import com.senex.timetable.data.mapper.transform
 import com.senex.timetable.domain.model.group.Group
-import com.senex.timetable.domain.repository.GroupRepository
+import com.senex.timetable.domain.repository.local.GroupRepository
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
