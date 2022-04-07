@@ -6,9 +6,9 @@ import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
 class GetAllGroupsSorted @Inject constructor(
-    private val groupRepository: GroupRepository,
+    private val getAllGroups: GetAllGroups,
 ) {
-    operator fun invoke() = groupRepository.getAll().map { list ->
+    operator fun invoke() = getAllGroups().map { list ->
         list.sortedWith(groupComparator)
     }
 

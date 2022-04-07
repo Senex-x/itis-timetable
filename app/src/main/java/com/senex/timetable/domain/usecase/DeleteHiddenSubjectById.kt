@@ -6,6 +6,5 @@ import javax.inject.Inject
 class DeleteHiddenSubjectById @Inject constructor(
     private val hiddenSubjectRepository: HiddenSubjectRepository
 ) {
-    suspend operator fun invoke(id: Long) =
-        hiddenSubjectRepository.deleteById(id)
+    suspend operator fun invoke(id: Long) = hiddenSubjectRepository.deleteById(id)
 }

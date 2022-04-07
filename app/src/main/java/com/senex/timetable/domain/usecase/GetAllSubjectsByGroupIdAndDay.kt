@@ -7,7 +7,7 @@ import javax.inject.Inject
 class GetAllSubjectsByGroupIdAndDay @Inject constructor(
     private val subjectRepository: SubjectRepository,
 ) {
-    suspend operator fun invoke(
+    operator fun invoke(
         groupId: Long,
         dayOfWeek: DayOfWeek,
     ) = subjectRepository.getAll(

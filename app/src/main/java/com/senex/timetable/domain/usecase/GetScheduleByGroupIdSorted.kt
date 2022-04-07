@@ -7,9 +7,9 @@ import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
 class GetScheduleByGroupIdSorted @Inject constructor(
-    private val scheduleRepository: ScheduleRepository,
+    private val getScheduleByGroupId: GetScheduleByGroupId,
 ) {
-    operator fun invoke(groupId: Long) = scheduleRepository.getByGroupId(groupId).map {
+    operator fun invoke(groupId: Long) = getScheduleByGroupId(groupId).map {
         sortSchedule(it)
             ?: throw IllegalArgumentException("Schedule for groupId: $groupId not found")
     }
