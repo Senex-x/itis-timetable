@@ -1,16 +1,15 @@
 package com.senex.timetable.data.api
 
-import com.senex.timetable.domain.model.schedule.Schedule
-import com.senex.timetable.domain.repository.remote.ScheduleRemoteRepository
+import com.senex.timetable.data.entity.schedule.ScheduleEntity
 import kotlinx.coroutines.flow.Flow
 import retrofit2.http.GET
 import retrofit2.http.Path
 
-interface ScheduleService : ScheduleRemoteRepository {
+interface ScheduleService {
 
     @GET("/schedule/{groupId}")
-    override fun getSchedule(@Path("groupId") groupId: Long): Flow<Schedule?>
+    fun getSchedule(@Path("groupId") groupId: Long): Flow<ScheduleEntity?>
 
     @GET("/schedule/{groupName}")
-    override fun getSchedule(@Path("groupName") groupName: String): Flow<Schedule?>
+    fun getSchedule(@Path("groupName") groupName: String): Flow<ScheduleEntity?>
 }
