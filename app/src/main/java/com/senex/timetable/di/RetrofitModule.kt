@@ -1,12 +1,13 @@
 package com.senex.timetable.di
 
-import com.senex.timetable.presentation.ui.subject.SubjectViewModel
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
+
 
 @Module(includes = [ApiServiceModule::class])
 class RetrofitModule {
@@ -15,7 +16,11 @@ class RetrofitModule {
     fun provideRetrofit(): Retrofit = Retrofit.Builder()
         .baseUrl(BASE_URL)
         .addConverterFactory(GsonConverterFactory.create())
-        .client(OkHttpClient.Builder().build())
+        .client(okHttpClient)
+        .build()
+
+    private val okHttpClient = OkHttpClient.Builder()
+        .connectTimeout(5, TimeUnit.SECONDS)
         .build()
 
     companion object {
