@@ -1,14 +1,15 @@
 package com.senex.timetable.data.api
 
 import com.senex.timetable.data.entity.schedule.ScheduleEntity
+import kotlinx.coroutines.flow.Flow
 import retrofit2.http.GET
 import retrofit2.http.Path
 
 interface ScheduleService {
 
     @GET("/schedule/{groupId}")
-    suspend fun getSchedule(@Path("groupId") groupId: Long): ScheduleEntity?
+    fun getSchedule(@Path("groupId") groupId: Long): Flow<ScheduleEntity?>
 
     @GET("/schedule/{groupName}")
-    suspend fun getSchedule(@Path("groupName") groupName: String): ScheduleEntity?
+    fun getSchedule(@Path("groupName") groupName: String): Flow<ScheduleEntity?>
 }
