@@ -3,7 +3,7 @@ package com.senex.timetable.presentation.common.recycler
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.map
 import com.senex.timetable.domain.model.group.Group
-import com.senex.timetable.presentation.ui.groups.recycler.items.GroupsRecyclerItem
+import com.senex.timetable.presentation.ui.groups.recycler.GroupsRecyclerItem
 
 object GroupRecyclerItemConverter {
     fun convert(

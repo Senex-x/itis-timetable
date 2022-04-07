@@ -1,4 +1,4 @@
-package com.senex.timetable.presentation.ui.groups.recycler.items
+package com.senex.timetable.presentation.ui.groups.recycler
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -14,8 +14,8 @@ sealed class GroupsRecyclerItem {
     ) : GroupsRecyclerItem() {
 
         companion object {
-            fun getAdapter(
-                itemClickedListener: ((Long) -> Unit)? = null,
+            fun getDelegate(
+                itemClickedListener: (Long) -> Unit,
             ) = adapterDelegateViewBinding<GroupItem, GroupsRecyclerItem, ListItemGroupBinding>(
                 { layoutInflater, root ->
                     inflateBinding(layoutInflater, root, ListItemGroupBinding::inflate)
@@ -23,7 +23,7 @@ sealed class GroupsRecyclerItem {
 
             ) {
                 binding.root.setOnClickListener {
-                    itemClickedListener?.invoke(item.group.id)
+                    itemClickedListener(item.group.id)
                 }
 
                 bind {
@@ -33,12 +33,12 @@ sealed class GroupsRecyclerItem {
         }
     }
 
-    class CourseItem(
+    data class CourseItem(
         val courseNumber: Int,
     ) : GroupsRecyclerItem() {
 
         companion object {
-            fun getAdapter() =
+            fun getDelegate() =
                 adapterDelegateViewBinding<CourseItem, GroupsRecyclerItem, ListItemCourseBinding>(
                     { layoutInflater, root ->
                         inflateBinding(layoutInflater, root, ListItemCourseBinding::inflate)

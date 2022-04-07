@@ -8,10 +8,12 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.hannesdorfmann.adapterdelegates4.AsyncListDifferDelegationAdapter
 import com.senex.timetable.R
 import com.senex.timetable.databinding.FragmentGroupsBinding
 import com.senex.timetable.domain.util.toast
-import com.senex.timetable.presentation.ui.groups.recycler.GroupsRecyclerDelegationAdapter
+import com.senex.timetable.presentation.ui.groups.recycler.GroupsRecyclerItem
+import com.senex.timetable.presentation.ui.groups.recycler.GroupsRecyclerItemDiffCallback
 import dagger.android.support.DaggerFragment
 import javax.inject.Inject
 
@@ -50,7 +52,11 @@ class GroupsFragment : DaggerFragment() {
         }
 
         groupsRecyclerView.layoutManager = LinearLayoutManager(requireContext())
-        groupsRecyclerView.adapter = GroupsRecyclerDelegationAdapter(onGroupItemClick).apply {
+        groupsRecyclerView.adapter = AsyncListDifferDelegationAdapter(
+            GroupsRecyclerItemDiffCallback,
+            GroupsRecyclerItem.GroupItem.getDelegate(onGroupItemClick),
+            GroupsRecyclerItem.CourseItem.getDelegate(),
+        ).apply {
             viewModel.groups.observe(viewLifecycleOwner) {
                 items = it
             }

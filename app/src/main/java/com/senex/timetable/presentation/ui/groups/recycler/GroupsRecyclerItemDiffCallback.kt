@@ -1,11 +1,10 @@
 package com.senex.timetable.presentation.ui.groups.recycler
 
 import androidx.recyclerview.widget.DiffUtil
-import com.senex.timetable.presentation.ui.groups.recycler.items.GroupsRecyclerItem
-import com.senex.timetable.presentation.ui.groups.recycler.items.GroupsRecyclerItem.CourseItem
-import com.senex.timetable.presentation.ui.groups.recycler.items.GroupsRecyclerItem.GroupItem
+import com.senex.timetable.presentation.ui.groups.recycler.GroupsRecyclerItem.CourseItem
+import com.senex.timetable.presentation.ui.groups.recycler.GroupsRecyclerItem.GroupItem
 
-object GroupDiffCallback : DiffUtil.ItemCallback<GroupsRecyclerItem>() {
+object GroupsRecyclerItemDiffCallback : DiffUtil.ItemCallback<GroupsRecyclerItem>() {
     override fun areItemsTheSame(
         oldItem: GroupsRecyclerItem,
         newItem: GroupsRecyclerItem,

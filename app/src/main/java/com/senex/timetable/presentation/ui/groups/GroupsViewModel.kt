@@ -7,7 +7,7 @@ import com.senex.timetable.domain.model.group.Group
 import com.senex.timetable.domain.usecase.GetAllGroupsSorted
 import com.senex.timetable.presentation.common.SharedPreferencesHandler
 import com.senex.timetable.presentation.common.recycler.GroupRecyclerItemConverter
-import com.senex.timetable.presentation.ui.groups.recycler.items.GroupsRecyclerItem
+import com.senex.timetable.presentation.ui.groups.recycler.GroupsRecyclerItem
 import javax.inject.Inject
 
 class GroupsViewModel @Inject constructor(
