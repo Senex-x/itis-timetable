@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.hannesdorfmann.adapterdelegates4.AsyncListDifferDelegationAdapter
@@ -15,6 +16,8 @@ import com.senex.timetable.domain.util.toast
 import com.senex.timetable.presentation.ui.groups.recycler.GroupsRecyclerItem
 import com.senex.timetable.presentation.ui.groups.recycler.GroupsRecyclerItemDiffCallback
 import dagger.android.support.DaggerFragment
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class GroupsFragment : DaggerFragment() {
@@ -57,15 +60,17 @@ class GroupsFragment : DaggerFragment() {
             GroupsRecyclerItem.GroupItem.getDelegate(onGroupItemClick),
             GroupsRecyclerItem.CourseItem.getDelegate(),
         ).apply {
-            viewModel.groups.observe(viewLifecycleOwner) {
-                items = it
+            viewLifecycleOwner.lifecycleScope.launch {
+                viewModel.groups.collect {
+                    items = it
+                }
             }
         }
     }
 
     private val onGroupItemClick: (Long) -> Unit = {
         requireContext().toast("GroupEntity with id: $it selected")
-        viewModel.setPrimaryGroup(viewModel.getGroup(it).id)
+        viewModel.setPrimaryGroup(it)
         navigateToScheduleFragment()
     }
 
