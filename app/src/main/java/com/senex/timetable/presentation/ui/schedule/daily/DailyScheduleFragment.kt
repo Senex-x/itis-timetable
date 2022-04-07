@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.senex.timetable.databinding.FragmentDailyScheduleBinding
@@ -13,6 +14,8 @@ import com.senex.timetable.presentation.ui.schedule.ScheduleFragmentDirections
 import com.senex.timetable.presentation.ui.schedule.ScheduleViewModel
 import com.senex.timetable.presentation.ui.schedule.daily.recycler.SubjectRecyclerAdapter
 import dagger.android.support.DaggerFragment
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 import java.time.DayOfWeek
 import javax.inject.Inject
 
@@ -46,7 +49,7 @@ class DailyScheduleFragment : DaggerFragment() {
     override fun onViewCreated(
         view: View,
         savedInstanceState: Bundle?,
-    ) = with(binding) {
+    ): Unit = with(binding) {
         scheduleRecyclerView.layoutManager = LinearLayoutManager(requireContext())
 
         val recyclerAdapter = SubjectRecyclerAdapter()
@@ -55,13 +58,11 @@ class DailyScheduleFragment : DaggerFragment() {
             navigateToSubjectFragment(it)
         }
 
-        viewModel.getDailySubjects(dayOfWeek).observe(viewLifecycleOwner) {
-            //log("Got new subject list for day: $dayOfWeek")
-            emptyListHint.visibility =
-                if (it.isEmpty()) View.VISIBLE else View.GONE
-            
+        viewModel.getDailySubjects(dayOfWeek).onEach {
+            emptyListHint.visibility = if (it.isEmpty()) View.VISIBLE else View.GONE
+
             recyclerAdapter.submitList(it)
-        }
+        }.launchIn(viewLifecycleOwner.lifecycleScope)
     }
 
     private fun navigateToSubjectFragment(subjectId: Long) = findNavController().navigate(
