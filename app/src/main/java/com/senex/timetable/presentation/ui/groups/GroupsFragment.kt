@@ -6,18 +6,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.senex.timetable.R
-import com.senex.timetable.domain.util.toast
 import com.senex.timetable.databinding.FragmentGroupsBinding
-import com.senex.timetable.domain.util.log
+import com.senex.timetable.domain.util.toast
 import com.senex.timetable.presentation.ui.groups.recycler.GroupsRecyclerDelegationAdapter
 import dagger.android.support.DaggerFragment
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class GroupsFragment : DaggerFragment() {

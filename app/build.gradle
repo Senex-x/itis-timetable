@@ -74,9 +74,11 @@ dependencies {
     def okhttp_version = "5.0.0-alpha.6"
     implementation "com.squareup.okhttp3:okhttp:$okhttp_version"
 
-    implementation 'com.google.code.gson:gson:2.9.0'
+    def adapter_delegates_version = "4.3.2"
+    implementation "com.hannesdorfmann:adapterdelegates4-kotlin-dsl:$adapter_delegates_version"
+    implementation "com.hannesdorfmann:adapterdelegates4-kotlin-dsl-viewbinding:$adapter_delegates_version"
 
-    implementation 'com.hannesdorfmann:adapterdelegates4-kotlin-dsl:4.3.1'
+    implementation 'com.google.code.gson:gson:2.9.0'
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
