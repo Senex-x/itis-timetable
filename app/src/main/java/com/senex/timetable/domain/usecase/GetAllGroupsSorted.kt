@@ -1,7 +1,6 @@
 package com.senex.timetable.domain.usecase
 
 import com.senex.timetable.domain.model.group.Group
-import com.senex.timetable.domain.repository.GroupRepository
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 

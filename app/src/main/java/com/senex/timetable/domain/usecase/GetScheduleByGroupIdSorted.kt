@@ -2,7 +2,6 @@ package com.senex.timetable.domain.usecase
 
 import com.senex.timetable.domain.model.schedule.DailySchedule
 import com.senex.timetable.domain.model.schedule.Schedule
-import com.senex.timetable.domain.repository.ScheduleRepository
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
