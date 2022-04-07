@@ -10,6 +10,7 @@ import androidx.navigation.fragment.navArgs
 import com.senex.timetable.R
 import com.senex.timetable.databinding.FragmentSubjectBinding
 import com.senex.timetable.presentation.common.assistedViewModel
+import com.senex.timetable.presentation.common.inflateBinding
 import dagger.android.support.DaggerFragment
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
@@ -32,11 +33,8 @@ class SubjectFragment : DaggerFragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?,
-    ): View {
-        _binding = FragmentSubjectBinding.inflate(
-            inflater, container, false
-        )
-        return binding.root
+    ) = inflateBinding(FragmentSubjectBinding::inflate, inflater, container) {
+        _binding = it
     }
 
     override fun onViewCreated(

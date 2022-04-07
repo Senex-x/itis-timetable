@@ -13,6 +13,7 @@ import com.hannesdorfmann.adapterdelegates4.AsyncListDifferDelegationAdapter
 import com.senex.timetable.R
 import com.senex.timetable.databinding.FragmentGroupsBinding
 import com.senex.timetable.domain.util.toast
+import com.senex.timetable.presentation.common.inflateBinding
 import com.senex.timetable.presentation.ui.groups.recycler.GroupsRecyclerItem
 import com.senex.timetable.presentation.ui.groups.recycler.GroupsRecyclerItemDiffCallback
 import dagger.android.support.DaggerFragment
@@ -33,11 +34,8 @@ class GroupsFragment : DaggerFragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?,
-    ): View {
-        _binding = FragmentGroupsBinding.inflate(
-            inflater, container, false
-        )
-        return binding.root
+    ) = inflateBinding(FragmentGroupsBinding::inflate, inflater, container) {
+        _binding = it
     }
 
     override fun onViewCreated(

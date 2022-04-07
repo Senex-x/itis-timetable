@@ -2,6 +2,7 @@ package com.senex.timetable.presentation.ui.groups.recycler
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.viewbinding.ViewBinding
 import com.hannesdorfmann.adapterdelegates4.dsl.adapterDelegateViewBinding
 import com.senex.timetable.databinding.ListItemCourseBinding
 import com.senex.timetable.databinding.ListItemGroupBinding
@@ -17,10 +18,7 @@ sealed class GroupsRecyclerItem {
             fun getDelegate(
                 itemClickedListener: (Long) -> Unit,
             ) = adapterDelegateViewBinding<GroupItem, GroupsRecyclerItem, ListItemGroupBinding>(
-                { layoutInflater, root ->
-                    inflateBinding(layoutInflater, root, ListItemGroupBinding::inflate)
-                }
-
+                Inflater(ListItemGroupBinding::inflate)::inflate
             ) {
                 binding.root.setOnClickListener {
                     itemClickedListener(item.group.id)
@@ -40,9 +38,7 @@ sealed class GroupsRecyclerItem {
         companion object {
             fun getDelegate() =
                 adapterDelegateViewBinding<CourseItem, GroupsRecyclerItem, ListItemCourseBinding>(
-                    { layoutInflater, root ->
-                        inflateBinding(layoutInflater, root, ListItemCourseBinding::inflate)
-                    }
+                    Inflater(ListItemCourseBinding::inflate)::inflate
                 ) {
                     bind {
                         binding.number.text = item.courseNumber.toString()
@@ -51,11 +47,10 @@ sealed class GroupsRecyclerItem {
         }
     }
 
-    companion object {
-        private fun <T> inflateBinding(
-            layoutInflater: LayoutInflater,
-            root: ViewGroup,
-            bindingInflater: (LayoutInflater, ViewGroup, Boolean) -> T,
-        ) = bindingInflater.invoke(layoutInflater, root, false)
+    private class Inflater<T : ViewBinding>(
+        private val bindingInflater: (LayoutInflater, ViewGroup, Boolean) -> T,
+    ) {
+        fun inflate(layoutInflater: LayoutInflater, root: ViewGroup) =
+            bindingInflater(layoutInflater, root, false)
     }
 }

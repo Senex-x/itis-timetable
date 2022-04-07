@@ -10,6 +10,7 @@ import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.senex.timetable.R
 import com.senex.timetable.databinding.FragmentScheduleBinding
+import com.senex.timetable.presentation.common.inflateBinding
 import java.time.DayOfWeek
 
 class ScheduleFragment : Fragment() {
@@ -21,11 +22,8 @@ class ScheduleFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?,
-    ): View {
-        _binding = FragmentScheduleBinding.inflate(
-            inflater, container, false
-        )
-        return binding.root
+    ) = inflateBinding(FragmentScheduleBinding::inflate, inflater, container) {
+        _binding = it
     }
 
     override fun onViewCreated(
