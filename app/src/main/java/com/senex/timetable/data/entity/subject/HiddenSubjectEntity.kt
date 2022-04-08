@@ -12,6 +12,7 @@ import androidx.room.PrimaryKey
             entity = SubjectEntity::class,
             parentColumns = ["id"],
             childColumns = ["subject_id"],
+            onDelete = ForeignKey.CASCADE,
         )
     ]
 )

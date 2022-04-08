@@ -11,6 +11,7 @@ import com.senex.timetable.domain.model.subject.SubjectType
             entity = DailyScheduleInfoEntity::class,
             parentColumns = ["id"],
             childColumns = ["daily_schedule_id"],
+            onDelete = ForeignKey.CASCADE,
         )
     ],
 )

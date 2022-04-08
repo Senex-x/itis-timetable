@@ -12,7 +12,8 @@ import com.senex.timetable.data.entity.group.GroupEntity
         ForeignKey(
             entity = GroupEntity::class,
             parentColumns = ["id"],
-            childColumns = ["group_id"]
+            childColumns = ["group_id"],
+            onDelete = ForeignKey.CASCADE,
         )
     ],
 )

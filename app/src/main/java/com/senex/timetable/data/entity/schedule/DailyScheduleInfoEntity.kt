@@ -11,7 +11,8 @@ import androidx.room.PrimaryKey
         ForeignKey(
             entity = ScheduleInfoEntity::class,
             parentColumns = ["id"],
-            childColumns = ["schedule_id"]
+            childColumns = ["schedule_id"],
+            onDelete = ForeignKey.CASCADE,
         )
     ],
 )
