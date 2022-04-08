@@ -10,7 +10,6 @@ class GetScheduleByGroupIdSorted @Inject constructor(
 ) {
     operator fun invoke(groupId: Long) = getScheduleByGroupId(groupId).map {
         sortSchedule(it)
-            ?: throw IllegalArgumentException("Schedule for groupId: $groupId not found")
     }
 
     private fun sortSchedule(

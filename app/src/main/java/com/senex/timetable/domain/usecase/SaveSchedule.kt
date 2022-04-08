@@ -12,7 +12,7 @@ class SaveSchedule @Inject constructor(
     suspend operator fun invoke(schedule: Schedule) {
         // Do not change the order
         saveGroup(schedule.group)
-        saveDailyScheduleList(schedule.dailySchedules)
         scheduleRepository.insert(schedule.scheduleInfo)
+        saveDailyScheduleList(schedule.dailySchedules)
     }
 }

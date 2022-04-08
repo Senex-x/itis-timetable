@@ -7,7 +7,5 @@ import javax.inject.Inject
 class GetScheduleByGroupId @Inject constructor(
     private val scheduleRepository: ScheduleRepository,
 ) {
-    operator fun invoke(groupId: Long) = scheduleRepository.getByGroupId(groupId).map {
-        it ?: throw IllegalArgumentException("Schedule for groupId: $groupId not found")
-    }
+    operator fun invoke(groupId: Long) = scheduleRepository.getByGroupId(groupId)
 }
