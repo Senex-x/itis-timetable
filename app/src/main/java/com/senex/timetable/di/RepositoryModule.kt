@@ -1,8 +1,10 @@
 package com.senex.timetable.di
 
 import com.senex.timetable.data.repository.local.*
+import com.senex.timetable.data.repository.remote.GroupRemoteRepositoryImpl
 import com.senex.timetable.data.repository.remote.ScheduleRemoteRepositoryImpl
 import com.senex.timetable.domain.repository.local.*
+import com.senex.timetable.domain.repository.remote.GroupRemoteRepository
 import com.senex.timetable.domain.repository.remote.ScheduleRemoteRepository
 import dagger.Binds
 import dagger.Module
@@ -46,4 +48,10 @@ abstract class RepositoryModule {
     abstract fun bindScheduleRemoteRepository(
         scheduleRemoteRepositoryImpl: ScheduleRemoteRepositoryImpl
     ): ScheduleRemoteRepository
+
+    @Singleton
+    @Binds
+    abstract fun bindGroupRemoteRepository(
+        groupRemoteRepositoryImpl: GroupRemoteRepositoryImpl,
+    ): GroupRemoteRepository
 }

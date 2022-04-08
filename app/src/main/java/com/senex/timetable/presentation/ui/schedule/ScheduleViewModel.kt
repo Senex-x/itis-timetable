@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import com.senex.timetable.domain.model.subject.Subject
 import com.senex.timetable.domain.usecase.GetScheduleByGroupIdSorted
 import com.senex.timetable.domain.usecase.SyncScheduleByGroupId
+import com.senex.timetable.domain.util.log
 import com.senex.timetable.presentation.common.SharedPreferencesHandler
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -42,6 +43,7 @@ class ScheduleViewModel @Inject constructor(
         } else {
             getScheduleByGroupIdSorted(groupId).collect {
                 val dailySchedule = it?.getDailySchedule(dayIndexInWeek)
+                log("Schedule is: $it")
                 emit(dailySchedule?.subjects ?: emptyList())
             }
         }
