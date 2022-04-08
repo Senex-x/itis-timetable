@@ -1,11 +1,9 @@
 package com.senex.timetable.presentation.ui.schedule
 
 import androidx.lifecycle.ViewModel
-import com.senex.timetable.data.database.AppDatabase
 import com.senex.timetable.domain.model.subject.Subject
 import com.senex.timetable.domain.usecase.GetScheduleByGroupIdSorted
-import com.senex.timetable.domain.usecase.SyncLocalScheduleByGroupId
-import com.senex.timetable.domain.util.log
+import com.senex.timetable.domain.usecase.SyncScheduleByGroupId
 import com.senex.timetable.presentation.common.SharedPreferencesHandler
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -18,7 +16,7 @@ import javax.inject.Inject
 
 class ScheduleViewModel @Inject constructor(
     private val getScheduleByGroupIdSorted: GetScheduleByGroupIdSorted,
-    private val syncLocalScheduleByGroupId: SyncLocalScheduleByGroupId,
+    private val syncScheduleByGroupId: SyncScheduleByGroupId,
     preferencesHandler: SharedPreferencesHandler,
 ) : ViewModel() {
     private val groupId = preferencesHandler.getSavedGroupId()
@@ -26,8 +24,7 @@ class ScheduleViewModel @Inject constructor(
     init {
         groupId?.let {
             CoroutineScope(Dispatchers.Default).launch {
-                log("Syncing")
-                syncLocalScheduleByGroupId(it)
+                syncScheduleByGroupId(it)
             }
         }
     }
