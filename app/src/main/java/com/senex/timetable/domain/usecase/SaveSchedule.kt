@@ -7,12 +7,12 @@ import javax.inject.Inject
 class SaveSchedule @Inject constructor(
     private val scheduleRepository: ScheduleRepository,
     private val saveGroup: SaveGroup,
-    private val saveDailyScheduleList: SaveDailyScheduleList,
+    private val saveAllDailySchedules: SaveAllDailySchedules,
 ) {
     suspend operator fun invoke(schedule: Schedule) {
         // Do not change the order
         saveGroup(schedule.group)
         scheduleRepository.insert(schedule.scheduleInfo)
-        saveDailyScheduleList(schedule.dailySchedules)
+        saveAllDailySchedules(schedule.dailySchedules)
     }
 }

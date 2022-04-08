@@ -11,7 +11,7 @@ class GroupRemoteRepositoryImpl @Inject constructor(
     private val groupService: GroupService,
 ) : GroupRemoteRepository {
 
-    override suspend fun getAll() = suspendCoroutine<List<GroupEntity>> {
+    override suspend fun getAll() = suspendCoroutine<List<GroupEntity>?> {
         groupService.getAllGroups().enqueue(listContinuationCallback(it))
-    }.map { it.transform() }
+    }?.map { it.transform() }
 }

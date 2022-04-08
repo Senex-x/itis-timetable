@@ -16,24 +16,30 @@ fun <T> continuationCallback(
         response: Response<T>,
     ) = continuation.resume(response.body())
 
-    override fun onFailure(call: Call<T>, t: Throwable) {
+    override fun onFailure(
+        call: Call<T>,
+        t: Throwable
+    ) {
         log(FAIL_MESSAGE)
         continuation.resume(null)
     }
 }
 
 fun <T> listContinuationCallback(
-    continuation: Continuation<List<T>>,
+    continuation: Continuation<List<T>?>,
 ) = object : Callback<List<T>> {
 
     override fun onResponse(
         call: Call<List<T>>,
         response: Response<List<T>>,
-    ) = continuation.resume(response.body() ?: emptyList())
+    ) = continuation.resume(response.body())
 
-    override fun onFailure(call: Call<List<T>>, t: Throwable) {
+    override fun onFailure(
+        call: Call<List<T>>,
+        t: Throwable,
+    ) {
         log(FAIL_MESSAGE)
-        continuation.resume(emptyList())
+        continuation.resume(null)
     }
 }
 

@@ -5,7 +5,7 @@ import com.senex.timetable.domain.model.subject.HiddenSubject
 import com.senex.timetable.domain.usecase.DeleteHiddenSubjectById
 import com.senex.timetable.domain.usecase.GetHiddenSubjectById
 import com.senex.timetable.domain.usecase.GetSubjectById
-import com.senex.timetable.domain.usecase.InsertHiddenSubject
+import com.senex.timetable.domain.usecase.SaveHiddenSubject
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedFactory
 import dagger.assisted.AssistedInject
@@ -16,7 +16,7 @@ import kotlinx.coroutines.launch
 
 class SubjectViewModel @AssistedInject constructor(
     @Assisted private val subjectId: Long,
-    private val insertHiddenSubject: InsertHiddenSubject,
+    private val saveHiddenSubject: SaveHiddenSubject,
     private val deleteHiddenSubjectById: DeleteHiddenSubjectById,
     getSubjectById: GetSubjectById,
     getHiddenSubjectById: GetHiddenSubjectById,
@@ -39,7 +39,7 @@ class SubjectViewModel @AssistedInject constructor(
     }
 
     private suspend fun hideSubject(subjectId: Long) =
-        insertHiddenSubject(HiddenSubject(subjectId))
+        saveHiddenSubject(HiddenSubject(subjectId))
 
     private suspend fun showSubject(subjectId: Long) =
         deleteHiddenSubjectById(subjectId)
