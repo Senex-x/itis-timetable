@@ -5,6 +5,8 @@ import androidx.room.RoomDatabase
 import com.senex.timetable.data.entity.group.GroupEntity
 import com.senex.timetable.data.entity.schedule.DailyScheduleInfoEntity
 import com.senex.timetable.data.entity.schedule.ScheduleInfoEntity
+import com.senex.timetable.data.entity.subject.ElectiveSubjectEntity
+import com.senex.timetable.data.entity.subject.EnglishSubjectEntity
 import com.senex.timetable.data.entity.subject.HiddenSubjectEntity
 import com.senex.timetable.data.entity.subject.SubjectEntity
 
@@ -14,6 +16,8 @@ import com.senex.timetable.data.entity.subject.SubjectEntity
         DailyScheduleInfoEntity::class,
         SubjectEntity::class,
         HiddenSubjectEntity::class,
+        ElectiveSubjectEntity::class,
+        EnglishSubjectEntity::class,
         GroupEntity::class,
     ],
     version = 1
@@ -28,5 +32,9 @@ abstract class AppDatabase : RoomDatabase() {
     abstract fun groupDao(): GroupDao
 
     abstract fun hiddenSubjectDao(): HiddenSubjectDao
+
+    abstract fun electiveSubjectDao(): ElectiveSubjectDao
+
+    abstract fun englishSubjectDao(): EnglishSubjectDao
 }
 

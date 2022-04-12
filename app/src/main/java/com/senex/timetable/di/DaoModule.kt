@@ -29,11 +29,23 @@ class DaoModule {
     @Provides
     fun provideHiddenSubjectDao(
         appDatabase: AppDatabase,
-    ) = appDatabase.hiddenSubjectDao()
+    ) = appDatabase.englishSubjectDao()
 
     @Singleton
     @Provides
     fun provideDailySubjectDao(
         appDatabase: AppDatabase,
     ) = appDatabase.subjectDao()
+
+    @Singleton
+    @Provides
+    fun provideElectiveSubjectDao(
+        appDatabase: AppDatabase,
+    ) = appDatabase.electiveSubjectDao()
+
+    @Singleton
+    @Provides
+    fun provideEnglishSubjectDao(
+        appDatabase: AppDatabase,
+    ) = appDatabase.englishSubjectDao()
 }
