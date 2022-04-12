@@ -7,7 +7,7 @@ import androidx.room.PrimaryKey
 import com.senex.timetable.data.entity.schedule.DailyScheduleInfoEntity
 
 @Entity(
-    tableName = "varied_subjects",
+    tableName = "elective_subjects",
     foreignKeys = [
         ForeignKey(
             entity = DailyScheduleInfoEntity::class,
@@ -17,7 +17,7 @@ import com.senex.timetable.data.entity.schedule.DailyScheduleInfoEntity
         )
     ],
 )
-data class VariedSubjectEntity(
+data class ElectiveSubjectEntity(
     @PrimaryKey
     val id: Long,
     @ColumnInfo(name = "daily_schedule_id")
