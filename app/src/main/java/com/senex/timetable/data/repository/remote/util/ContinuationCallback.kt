@@ -1,4 +1,4 @@
-package com.senex.timetable.data.repository.remote
+package com.senex.timetable.data.repository.remote.util
 
 import com.senex.timetable.domain.util.log
 import retrofit2.Call
@@ -9,7 +9,7 @@ import kotlin.coroutines.resume
 
 fun <T> continuationCallback(
     continuation: Continuation<T?>,
-) = object : Callback<T> {
+): Callback<T> = object : Callback<T> {
 
     override fun onResponse(
         call: Call<T>,

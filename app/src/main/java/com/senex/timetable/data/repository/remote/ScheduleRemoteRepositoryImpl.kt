@@ -3,6 +3,7 @@ package com.senex.timetable.data.repository.remote
 import com.senex.timetable.data.api.ScheduleService
 import com.senex.timetable.data.entity.schedule.ScheduleEntity
 import com.senex.timetable.data.mapper.transform
+import com.senex.timetable.data.repository.remote.util.continuationCallback
 import com.senex.timetable.domain.repository.remote.ScheduleRemoteRepository
 import javax.inject.Inject
 import kotlin.coroutines.suspendCoroutine

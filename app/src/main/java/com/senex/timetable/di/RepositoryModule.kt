@@ -54,4 +54,16 @@ abstract class RepositoryModule {
     abstract fun bindGroupRemoteRepository(
         groupRemoteRepositoryImpl: GroupRemoteRepositoryImpl,
     ): GroupRemoteRepository
+
+    @Singleton
+    @Binds
+    abstract fun bindElectiveSubjectRepository(
+        electiveSubjectRepositoryImpl: ElectiveSubjectRepositoryImpl,
+    ): ElectiveSubjectRepository
+
+    @Singleton
+    @Binds
+    abstract fun bindEnglishSubjectRepository(
+        englishSubjectRepositoryImpl: EnglishSubjectRepositoryImpl,
+    ): EnglishSubjectRepository
 }
