@@ -8,14 +8,25 @@ data class Subject(
     val endTime: String,
     val name: String,
     val room: String,
-    val type: SubjectType,
-    val isOnEvenWeeks: Boolean,
-    val isOnOddWeeks: Boolean,
+    val type: Type,
+    val kind: Kind,
     val teacherName: String,
     val teacherSurname: String,
     val teacherPatronymic: String,
 ) {
-    val isOnEveryWeek = isOnEvenWeeks && isOnOddWeeks
+    enum class Type {
+        LECTURE,
+        SEMINAR
+    }
+
+    enum class Kind {
+        ORDINARY,
+        PHYSICAL,
+        ENGLISH,
+        ELECTIVE,
+        BLOCK
+    }
 }
+
 
 

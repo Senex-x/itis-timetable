@@ -1,8 +1,11 @@
 package com.senex.timetable.data.entity.subject
 
-import androidx.room.*
+import androidx.room.ColumnInfo
+import androidx.room.Entity
+import androidx.room.ForeignKey
+import androidx.room.PrimaryKey
 import com.senex.timetable.data.entity.schedule.DailyScheduleInfoEntity
-import com.senex.timetable.domain.model.subject.SubjectType
+import com.senex.timetable.domain.model.subject.Subject
 
 @Entity(
     tableName = "subjects",
@@ -28,11 +31,8 @@ data class SubjectEntity(
     val endTime: String,
     val name: String,
     val room: String,
-    val type: SubjectType,
-    @ColumnInfo(name = "is_on_even_weeks")
-    val isOnEvenWeeks: Boolean,
-    @ColumnInfo(name = "is_on_odd_weeks")
-    val isOnOddWeeks: Boolean,
+    val type: Subject.Type,
+    val kind: Subject.Kind,
     @ColumnInfo(name = "teacher_name")
     val teacherName: String,
     @ColumnInfo(name = "teacher_surname")
@@ -40,8 +40,7 @@ data class SubjectEntity(
     @ColumnInfo(name = "teacher_patronymic")
     val teacherPatronymic: String,
 ) {
-    @Ignore
-    val isOnEveryWeek = isOnEvenWeeks && isOnOddWeeks
+
 }
 
 
