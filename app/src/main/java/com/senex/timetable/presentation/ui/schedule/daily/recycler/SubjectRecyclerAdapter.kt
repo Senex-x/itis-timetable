@@ -5,8 +5,8 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.senex.timetable.databinding.ListItemOrdinarySubjectBinding
 import com.senex.timetable.domain.model.subject.Subject
-import com.senex.timetable.databinding.ListItemSubjectBinding
 
 class SubjectRecyclerAdapter : ListAdapter<Subject, SubjectRecyclerAdapter.SubjectViewHolder>(
     SubjectDiffCallback
@@ -14,7 +14,7 @@ class SubjectRecyclerAdapter : ListAdapter<Subject, SubjectRecyclerAdapter.Subje
     var onItemClickListener: ((Long) -> Unit)? = null
 
     inner class SubjectViewHolder(
-        private val binding: ListItemSubjectBinding,
+        private val binding: ListItemOrdinarySubjectBinding,
     ) : RecyclerView.ViewHolder(binding.root) {
 
         @SuppressLint("SetTextI18n")
@@ -36,7 +36,7 @@ class SubjectRecyclerAdapter : ListAdapter<Subject, SubjectRecyclerAdapter.Subje
         parent: ViewGroup,
         viewType: Int,
     ) = SubjectViewHolder(
-        ListItemSubjectBinding.inflate(
+        ListItemOrdinarySubjectBinding.inflate(
             LayoutInflater.from(parent.context),
             parent,
             false

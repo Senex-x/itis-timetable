@@ -11,7 +11,6 @@ sealed class GroupsRecyclerItem {
     data class GroupItem(
         val group: Group,
     ) : GroupsRecyclerItem() {
-
         companion object {
             fun getDelegate(
                 itemClickedListener: (Long) -> Unit,
@@ -32,7 +31,6 @@ sealed class GroupsRecyclerItem {
     data class CourseItem(
         val courseNumber: Int,
     ) : GroupsRecyclerItem() {
-
         companion object {
             fun getDelegate() =
                 adapterDelegateViewBinding<CourseItem, GroupsRecyclerItem, ListItemCourseBinding>(
