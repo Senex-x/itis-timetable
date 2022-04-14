@@ -6,6 +6,8 @@ import javax.inject.Inject
 
 class SaveAllDailySchedules @Inject constructor(
     private val dailyScheduleRepository: DailyScheduleRepository,
+    private val saveAllElectiveSubjects: SaveAllElectiveSubjects,
+    private val saveAllEnglishSubjects: SaveAllEnglishSubjects,
     private val saveAllSubjects: SaveAllSubjects,
 ) {
     suspend operator fun invoke(dailySchedules: List<DailySchedule>) {
@@ -14,6 +16,8 @@ class SaveAllDailySchedules @Inject constructor(
             *dailySchedules.map { it.dailyScheduleInfo }.toTypedArray()
         )
         for(dailySchedule in dailySchedules) {
+            saveAllElectiveSubjects(dailySchedule.electiveSubjects)
+            saveAllEnglishSubjects(dailySchedule.englishSubjects)
             saveAllSubjects(dailySchedule.subjects)
         }
     }
