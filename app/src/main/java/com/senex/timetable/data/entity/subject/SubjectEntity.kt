@@ -5,7 +5,6 @@ import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.PrimaryKey
 import com.senex.timetable.data.entity.schedule.DailyScheduleInfoEntity
-import com.senex.timetable.domain.model.subject.Subject
 
 @Entity(
     tableName = "subjects",
@@ -15,7 +14,19 @@ import com.senex.timetable.domain.model.subject.Subject
             parentColumns = ["id"],
             childColumns = ["daily_schedule_id"],
             onDelete = ForeignKey.CASCADE,
-        )
+        ),
+        ForeignKey(
+            entity = ElectiveSubjectEntity::class,
+            parentColumns = ["id"],
+            childColumns = ["elective_subject_id"],
+            onDelete = ForeignKey.CASCADE,
+        ),
+        ForeignKey(
+            entity = EnglishSubjectEntity::class,
+            parentColumns = ["id"],
+            childColumns = ["english_subject_id"],
+            onDelete = ForeignKey.CASCADE,
+        ),
     ],
 )
 data class SubjectEntity(
@@ -23,16 +34,20 @@ data class SubjectEntity(
     val id: Long,
     @ColumnInfo(name = "daily_schedule_id")
     val dailyScheduleId: Long,
+    @ColumnInfo(name = "elective_subject_id")
+    val electiveSubjectId: Long?,
+    @ColumnInfo(name = "english_subject_id")
+    val englishSubjectId: Long?,
     @ColumnInfo(name = "number_in_day")
-    val numberInDay: Int,
+    val indexInDay: Int,
     @ColumnInfo(name = "start_time")
     val startTime: String,
     @ColumnInfo(name = "end_time")
     val endTime: String,
     val name: String,
     val room: String,
-    val type: Subject.Type,
-    val kind: Subject.Kind,
+    val type: Type,
+    val kind: Kind,
     @ColumnInfo(name = "teacher_name")
     val teacherName: String,
     @ColumnInfo(name = "teacher_surname")
@@ -40,7 +55,18 @@ data class SubjectEntity(
     @ColumnInfo(name = "teacher_patronymic")
     val teacherPatronymic: String,
 ) {
+    enum class Type {
+        LECTURE,
+        SEMINAR
+    }
 
+    enum class Kind {
+        ORDINARY,
+        PHYSICAL,
+        ENGLISH,
+        ELECTIVE,
+        BLOCK
+    }
 }
 
 

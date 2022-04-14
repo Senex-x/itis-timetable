@@ -2,17 +2,20 @@ package com.senex.timetable.data.mapper
 
 import com.senex.timetable.data.entity.subject.SubjectEntity
 import com.senex.timetable.domain.model.subject.Subject
+import com.senex.timetable.domain.util.log
 
 internal fun SubjectEntity.transform() = Subject(
     id,
     dailyScheduleId,
-    numberInDay,
+    electiveSubjectId,
+    englishSubjectId,
+    indexInDay,
     startTime,
     endTime,
     name,
     room,
-    type,
-    kind,
+    type.transform(),
+    kind.transform(),
     teacherName,
     teacherSurname,
     teacherPatronymic,
@@ -21,14 +24,28 @@ internal fun SubjectEntity.transform() = Subject(
 internal fun Subject.transform() = SubjectEntity(
     id,
     dailyScheduleId,
-    numberInDay,
+    electiveSubjectId,
+    englishSubjectId,
+    indexInDay,
     startTime,
     endTime,
     name,
     room,
-    type,
-    kind,
+    type.transform(),
+    kind.transform(),
     teacherName,
     teacherSurname,
     teacherPatronymic,
 )
+
+private fun Subject.Kind.transform() =
+    SubjectEntity.Kind.values().find { it.name == name }!!
+
+private fun Subject.Type.transform() =
+    SubjectEntity.Type.values().find { it.name == name }!!
+
+private fun SubjectEntity.Kind.transform() =
+    Subject.Kind.values().find { it.name == name }!!
+
+private fun SubjectEntity.Type.transform() =
+    Subject.Type.values().find { it.name == name }!!

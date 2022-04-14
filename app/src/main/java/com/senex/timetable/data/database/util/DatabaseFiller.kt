@@ -6,7 +6,6 @@ import com.senex.timetable.domain.model.group.Group
 import com.senex.timetable.domain.model.schedule.DailyScheduleInfo
 import com.senex.timetable.domain.model.schedule.ScheduleInfo
 import com.senex.timetable.domain.model.subject.Subject
-import com.senex.timetable.domain.model.subject.SubjectType
 import com.senex.timetable.domain.repository.local.DailyScheduleRepository
 import com.senex.timetable.domain.repository.local.GroupRepository
 import com.senex.timetable.domain.repository.local.ScheduleRepository
@@ -91,13 +90,12 @@ class DatabaseFiller @Inject constructor(
 
     private fun createSubject(id: Long, dailyScheduleId: Long) = Subject(
         id,
-        dailyScheduleId,
+        dailyScheduleId, null, null,
         Random.nextInt(1, 10),
         "8:30", "10:00",
         "Computer Science",
         "130" + Random.nextInt(0, 10),
-        SubjectType.values().random(),
-        true, true,
+        Subject.Type.values().random(), Subject.Kind.values().random(),
         "Azat", "Vatafac", "Shavkatovich"
     )
 }

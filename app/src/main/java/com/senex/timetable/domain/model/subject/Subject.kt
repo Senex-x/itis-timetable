@@ -3,7 +3,9 @@ package com.senex.timetable.domain.model.subject
 data class Subject(
     val id: Long,
     val dailyScheduleId: Long,
-    val numberInDay: Int,
+    val electiveSubjectId: Long?,
+    val englishSubjectId: Long?,
+    val indexInDay: Int,
     val startTime: String,
     val endTime: String,
     val name: String,
