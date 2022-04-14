@@ -18,7 +18,8 @@ data class Subject(
 ) {
     enum class Type {
         LECTURE,
-        SEMINAR
+        SEMINAR,
+        UNDEFINED,
     }
 
     enum class Kind {

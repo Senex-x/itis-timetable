@@ -57,7 +57,8 @@ data class SubjectEntity(
 ) {
     enum class Type {
         LECTURE,
-        SEMINAR
+        SEMINAR,
+        UNDEFINED,
     }
 
     enum class Kind {

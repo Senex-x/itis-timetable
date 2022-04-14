@@ -43,7 +43,7 @@ class ScheduleViewModel @Inject constructor(
         } else {
             getScheduleByGroupIdSorted(groupId).collect {
                 val dailySchedule = it?.getDailySchedule(dayIndexInWeek)
-                log("Schedule is: $it")
+                //log("Schedule is: $it")
                 emit(dailySchedule?.subjects ?: emptyList())
             }
         }
