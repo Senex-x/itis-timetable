@@ -24,7 +24,7 @@ class GroupsViewModel @Inject constructor(
         }
     }
 
-    val groups = getAllGroupsSorted().map {
+    val groupsRecyclerItems = getAllGroupsSorted().map {
         it.toGroupsRecyclerItemList()
     }
 

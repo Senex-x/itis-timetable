@@ -9,10 +9,12 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.hannesdorfmann.adapterdelegates4.AsyncListDifferDelegationAdapter
 import com.senex.timetable.databinding.FragmentDailyScheduleBinding
+import com.senex.timetable.domain.util.toast
 import com.senex.timetable.presentation.ui.schedule.ScheduleFragmentDirections
 import com.senex.timetable.presentation.ui.schedule.ScheduleViewModel
-import com.senex.timetable.presentation.ui.schedule.daily.recycler.SubjectRecyclerAdapter
+import com.senex.timetable.presentation.ui.schedule.daily.recycler.*
 import dagger.android.support.DaggerFragment
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -52,17 +54,21 @@ class DailyScheduleFragment : DaggerFragment() {
     ): Unit = with(binding) {
         scheduleRecyclerView.layoutManager = LinearLayoutManager(requireContext())
 
-        val recyclerAdapter = SubjectRecyclerAdapter()
-        scheduleRecyclerView.adapter = recyclerAdapter
-        recyclerAdapter.onItemClickListener = {
-            navigateToSubjectFragment(it)
+        //val recyclerAdapter = SubjectRecyclerAdapter()
+        scheduleRecyclerView.adapter = AsyncListDifferDelegationAdapter(
+            SubjectsRecyclerItemDiffCallback,
+            SubjectsRecyclerItem.OrdinaryItem.getDelegate { requireContext().toast("Ordinary item") },
+            SubjectsRecyclerItem.ElectiveItem.getDelegate { requireContext().toast("Elective item") },
+            SubjectsRecyclerItem.EnglishItem.getDelegate { requireContext().toast("English item") },
+            SubjectsRecyclerItem.PhysicalItem.getDelegate { requireContext().toast("Physical item") },
+            SubjectsRecyclerItem.BlockItem.getDelegate { requireContext().toast("Block item") },
+        ).apply {
+            viewModel.getDailySubjectRecyclerItems(dayOfWeek).onEach {
+                emptyListHint.visibility = if (it.isEmpty()) View.VISIBLE else View.GONE
+
+                items = it
+            }.launchIn(viewLifecycleOwner.lifecycleScope)
         }
-
-        viewModel.getDailySubjects(dayOfWeek).onEach {
-            emptyListHint.visibility = if (it.isEmpty()) View.VISIBLE else View.GONE
-
-            recyclerAdapter.submitList(it)
-        }.launchIn(viewLifecycleOwner.lifecycleScope)
     }
 
     private fun navigateToSubjectFragment(subjectId: Long) = findNavController().navigate(

@@ -59,7 +59,7 @@ class GroupsFragment : DaggerFragment() {
             GroupsRecyclerItem.CourseItem.getDelegate(),
         ).apply {
             viewLifecycleOwner.lifecycleScope.launch {
-                viewModel.groups.collect {
+                viewModel.groupsRecyclerItems.collect {
                     items = it
                 }
             }
