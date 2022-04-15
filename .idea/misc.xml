@@ -17,15 +17,16 @@
         <entry key="..\:/Projects/Android/ITIStimetable/app/src/main/res/layout/list_item_course.xml" value="0.33" />
         <entry key="..\:/Projects/Android/ITIStimetable/app/src/main/res/layout/list_item_day.xml" value="0.36614583333333334" />
         <entry key="..\:/Projects/Android/ITIStimetable/app/src/main/res/layout/list_item_elective.xml" value="0.36666666666666664" />
-        <entry key="..\:/Projects/Android/ITIStimetable/app/src/main/res/layout/list_item_elective_subject.xml" value="0.67" />
+        <entry key="..\:/Projects/Android/ITIStimetable/app/src/main/res/layout/list_item_elective_subject.xml" value="0.33" />
         <entry key="..\:/Projects/Android/ITIStimetable/app/src/main/res/layout/list_item_english_subject.xml" value="0.36666666666666664" />
         <entry key="..\:/Projects/Android/ITIStimetable/app/src/main/res/layout/list_item_group.xml" value="0.36614583333333334" />
-        <entry key="..\:/Projects/Android/ITIStimetable/app/src/main/res/layout/list_item_ordinary_subject.xml" value="0.5" />
+        <entry key="..\:/Projects/Android/ITIStimetable/app/src/main/res/layout/list_item_ordinary_subject.xml" value="0.33" />
         <entry key="..\:/Projects/Android/ITIStimetable/app/src/main/res/layout/list_item_physical_subject.xml" value="0.36666666666666664" />
         <entry key="..\:/Projects/Android/ITIStimetable/app/src/main/res/layout/list_item_schedule.xml" value="0.36666666666666664" />
         <entry key="..\:/Projects/Android/ITIStimetable/app/src/main/res/layout/list_item_subject.xml" value="0.67" />
         <entry key="..\:/Projects/Android/ITIStimetable/app/src/main/res/layout/schedule_day_list_item.xml" value="0.36666666666666664" />
         <entry key="..\:/Projects/Android/ITIStimetable/app/src/main/res/layout/schedule_list_item.xml" value="0.36666666666666664" />
+        <entry key="..\:/Projects/Android/ITIStimetable/app/src/main/res/layout/subject_time_period.xml" value="0.36666666666666664" />
         <entry key="..\:/Projects/Android/ITIStimetable/app/src/main/res/layout/table_fragment.xml" value="0.36666666666666664" />
         <entry key="..\:/Projects/Android/ITIStimetable/app/src/main/res/layout/table_list_item.xml" value="0.36666666666666664" />
         <entry key="..\:/Projects/Android/ITIStimetable/app/src/main/res/menu/groups_fragment_toolbar_menu.xml" value="0.36666666666666664" />

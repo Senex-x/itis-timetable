@@ -8,4 +8,5 @@
     <string name="hide_from_schedule_title">Hide from schedule</string>
     <string name="show_in_schedule_title">Show in schedule</string>
     <string name="elective_course_is_not_selected">Elective course is not selected yet</string>
+    <string name="english_subject_is_not_selected">English group is not selected yet</string>
 </resources>

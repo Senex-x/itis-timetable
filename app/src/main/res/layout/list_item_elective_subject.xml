@@ -4,40 +4,55 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@color/gray_lighter"
     android:foreground="?android:attr/selectableItemBackground"
     android:padding="16dp">
 
+    <include
+        android:id="@+id/time_period"
+        layout="@layout/subject_time_period"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <androidx.constraintlayout.widget.Group
+        android:id="@+id/unselected_subject_content"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:constraint_referenced_ids="empty_subject_warning_image, empty_subject_hint" />
+        app:constraint_referenced_ids="unselected_subject_warning_image, unselected_subject_hint" />
 
     <ImageView
-        android:id="@+id/empty_subject_warning_image"
+        android:id="@+id/unselected_subject_warning_image"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_error_24"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:tint="@color/primary" />
 
     <TextView
-        android:id="@+id/empty_subject_hint"
+        android:id="@+id/unselected_subject_hint"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:text="@string/elective_course_is_not_selected"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/empty_subject_warning_image"
+        app:layout_constraintStart_toEndOf="@+id/time_period"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/primary_subject_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:visibility="gone"
+        app:constraint_referenced_ids="primary_subject_name" />
+
     <TextView
-        android:id="@+id/subject_name"
+        android:id="@+id/primary_subject_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="subject name"
-        android:visibility="gone" />
+        tools:text="subject name" />
 </androidx.constraintlayout.widget.ConstraintLayout>

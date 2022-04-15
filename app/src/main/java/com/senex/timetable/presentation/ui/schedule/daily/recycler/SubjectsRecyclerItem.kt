@@ -1,6 +1,7 @@
 package com.senex.timetable.presentation.ui.schedule.daily.recycler
 
 import android.annotation.SuppressLint
+import android.view.View
 import com.hannesdorfmann.adapterdelegates4.dsl.adapterDelegateViewBinding
 import com.senex.timetable.databinding.*
 import com.senex.timetable.domain.model.subject.Subject
@@ -24,8 +25,8 @@ sealed class SubjectsRecyclerItem {
                     bind {
                         with(binding) {
                             subjectName.text = item.subject.name
-                            startTime.text = item.subject.startTime
-                            endTime.text = item.subject.endTime
+                            timePeriod.startTime.text = item.subject.startTime
+                            timePeriod.endTime.text = item.subject.endTime
                             type.text = item.subject.type.name
                             roomNumber.text = item.subject.room
                         }
@@ -51,7 +52,28 @@ sealed class SubjectsRecyclerItem {
 
                     bind {
                         with(binding) {
-                            subjectName.text = item.electiveSubjects.first().name
+                            val firstSubject = item.electiveSubjects.first()
+                            timePeriod.startTime.text = firstSubject.startTime
+                            timePeriod.endTime.text = firstSubject.endTime
+
+                            when {
+                                item.isHidden -> { // Treat like empty subject
+                                    primarySubjectContent.visibility = View.GONE
+                                    unselectedSubjectContent.visibility = View.GONE
+
+                                }
+                                item.primarySubject == null -> { // Not selected yet
+                                    primarySubjectContent.visibility = View.GONE
+                                    unselectedSubjectContent.visibility = View.VISIBLE
+
+                                }
+                                else -> { // Has primary and selected
+                                    primarySubjectContent.visibility = View.VISIBLE
+                                    unselectedSubjectContent.visibility = View.GONE
+
+                                    primarySubjectName.text = firstSubject.name
+                                }
+                            }
                         }
                     }
                 }
@@ -75,7 +97,28 @@ sealed class SubjectsRecyclerItem {
 
                     bind {
                         with(binding) {
-                            subjectName.text = item.englishSubjects.first().name
+                            val firstSubject = item.englishSubjects.first()
+                            timePeriod.startTime.text = firstSubject.startTime
+                            timePeriod.endTime.text = firstSubject.endTime
+
+                            when {
+                                item.isHidden -> { // Treat like empty subject
+                                    primarySubjectContent.visibility = View.GONE
+                                    unselectedSubjectContent.visibility = View.GONE
+
+                                }
+                                item.primarySubject == null -> { // Not selected yet
+                                    primarySubjectContent.visibility = View.GONE
+                                    unselectedSubjectContent.visibility = View.VISIBLE
+
+                                }
+                                else -> { // Has primary and selected
+                                    primarySubjectContent.visibility = View.VISIBLE
+                                    unselectedSubjectContent.visibility = View.GONE
+
+                                    primarySubjectName.text = firstSubject.name
+                                }
+                            }
                         }
                     }
                 }
