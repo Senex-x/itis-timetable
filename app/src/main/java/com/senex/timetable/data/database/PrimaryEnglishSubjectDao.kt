@@ -12,6 +12,9 @@ interface PrimaryEnglishSubjectDao: BaseDao<PrimaryEnglishSubjectEntity> {
     @Query("SELECT * FROM primary_english_subjects WHERE subject_id = :id")
     fun get(id: Long): Flow<PrimaryEnglishSubjectEntity?>
 
+    @Query(" SELECT * FROM primary_english_subjects WHERE english_subject_id = :englishSubjectId")
+    fun getByEnglishSubjectId(englishSubjectId: Long): Flow<PrimaryEnglishSubjectEntity?>
+
     @Query("SELECT * FROM primary_english_subjects")
     fun getAll(): Flow<List<PrimaryEnglishSubjectEntity>>
 

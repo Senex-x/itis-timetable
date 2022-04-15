@@ -59,6 +59,7 @@ sealed class SubjectsRecyclerItem {
 
     data class EnglishItem(
         val englishSubjectId: Long,
+        val primarySubject: Subject?,
         val englishSubjects: List<Subject>,
     ) : SubjectsRecyclerItem() {
         companion object {

@@ -4,6 +4,7 @@ import com.senex.timetable.data.database.PrimaryElectiveSubjectDao
 import com.senex.timetable.data.mapper.transform
 import com.senex.timetable.domain.model.subject.PrimaryElectiveSubject
 import com.senex.timetable.domain.repository.local.PrimaryElectiveSubjectRepository
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 

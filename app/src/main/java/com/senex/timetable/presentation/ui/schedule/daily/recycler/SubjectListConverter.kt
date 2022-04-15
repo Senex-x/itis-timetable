@@ -3,6 +3,7 @@ package com.senex.timetable.presentation.ui.schedule.daily.recycler
 import com.senex.timetable.domain.model.subject.Subject
 import com.senex.timetable.domain.usecase.GetPrimaryElectiveSubjectByElectiveSubjectId
 import com.senex.timetable.domain.usecase.GetPrimarySubjectByElectiveSubjectId
+import com.senex.timetable.domain.usecase.GetPrimarySubjectByEnglishSubjectId
 import com.senex.timetable.domain.util.log
 import kotlinx.coroutines.flow.first
 
@@ -12,6 +13,7 @@ import kotlinx.coroutines.flow.first
  */
 suspend fun List<Subject>.toSubjectsRecyclerItemList(
     getPrimarySubjectByElectiveSubjectId: GetPrimarySubjectByElectiveSubjectId,
+    getPrimarySubjectByEnglishSubjectId: GetPrimarySubjectByEnglishSubjectId,
 ) = buildList {
     var lastElectiveSubjectId = -1L
     var lastEnglishSubjectId = -1L
@@ -25,13 +27,13 @@ suspend fun List<Subject>.toSubjectsRecyclerItemList(
                 getPrimarySubjectByElectiveSubjectId(lastElectiveSubjectId).first(),
                 electiveSubjects,
             ))
-            log("$lastElectiveSubjectId == ${electiveSubjects.first().electiveSubjectId}")
             electiveSubjects = mutableListOf()
         }
         if (englishSubjects.isNotEmpty()) {
             add(SubjectsRecyclerItem.EnglishItem(
                 lastEnglishSubjectId,
-                englishSubjects
+                getPrimarySubjectByEnglishSubjectId(lastEnglishSubjectId).first(),
+                englishSubjects,
             ))
             englishSubjects = mutableListOf()
         }
