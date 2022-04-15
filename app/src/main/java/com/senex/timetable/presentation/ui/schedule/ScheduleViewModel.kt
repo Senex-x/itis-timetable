@@ -1,6 +1,7 @@
 package com.senex.timetable.presentation.ui.schedule
 
 import androidx.lifecycle.ViewModel
+import com.senex.timetable.domain.usecase.GetPrimarySubjectByElectiveSubjectId
 import com.senex.timetable.domain.usecase.GetScheduleByGroupIdSorted
 import com.senex.timetable.domain.usecase.SyncScheduleByGroupId
 import com.senex.timetable.presentation.common.SharedPreferencesHandler
@@ -16,6 +17,7 @@ import javax.inject.Inject
 class ScheduleViewModel @Inject constructor(
     private val getScheduleByGroupIdSorted: GetScheduleByGroupIdSorted,
     private val syncScheduleByGroupId: SyncScheduleByGroupId,
+    private val getPrimarySubjectByElectiveSubjectId: GetPrimarySubjectByElectiveSubjectId,
     preferencesHandler: SharedPreferencesHandler,
 ) : ViewModel() {
     private val groupId = preferencesHandler.getSavedGroupId()
@@ -39,7 +41,7 @@ class ScheduleViewModel @Inject constructor(
     private fun getDailySubjectRecyclerItems(
         dayIndexInWeek: Int,
     ) = scheduleFlow.map {
-        it?.getDailySchedule(dayIndexInWeek)?.subjects?.toSubjectsRecyclerItemList()
+        it?.getDailySchedule(dayIndexInWeek)?.subjects?.toSubjectsRecyclerItemList(getPrimarySubjectByElectiveSubjectId)
             ?: emptyList()
     }
 

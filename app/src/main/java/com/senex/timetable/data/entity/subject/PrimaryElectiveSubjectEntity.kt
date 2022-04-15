@@ -1,9 +1,6 @@
 package com.senex.timetable.data.entity.subject
 
-import androidx.room.ColumnInfo
-import androidx.room.Entity
-import androidx.room.ForeignKey
-import androidx.room.PrimaryKey
+import androidx.room.*
 import com.senex.timetable.data.entity.schedule.DailyScheduleInfoEntity
 
 @Entity(
@@ -27,7 +24,10 @@ import com.senex.timetable.data.entity.schedule.DailyScheduleInfoEntity
             childColumns = ["elective_subject_id"],
             onDelete = ForeignKey.CASCADE,
         ),
-    ]
+    ],
+    indices = [
+        Index("elective_subject_id", unique = true)
+    ],
 )
 data class PrimaryElectiveSubjectEntity(
     @PrimaryKey

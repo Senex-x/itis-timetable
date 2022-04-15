@@ -95,7 +95,7 @@ class DatabaseFiller @Inject constructor(
         "8:30", "10:00",
         "Computer Science",
         "130" + Random.nextInt(0, 10),
-        Subject.Type.values().random(), Subject.Kind.values().random(),
+        Subject.Type.values().random(), Subject.Kind.ORDINARY,
         "Azat", "Vatafac", "Shavkatovich"
     )
 }

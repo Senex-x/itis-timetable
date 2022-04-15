@@ -26,6 +26,9 @@ class PrimaryElectiveSubjectRepositoryImpl @Inject constructor(
     override fun get(id: Long) =
         dao.get(id).map { it?.transform() }
 
+    override fun getByElectiveSubjectId(electiveSubjectId: Long) =
+        dao.getByElectiveSubjectId(electiveSubjectId).map { it?.transform() }
+
     override fun getAll() =
         dao.getAll().map { list -> list.map { it.transform() } }
 

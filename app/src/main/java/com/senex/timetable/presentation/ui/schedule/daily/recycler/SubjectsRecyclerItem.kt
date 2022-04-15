@@ -36,6 +36,7 @@ sealed class SubjectsRecyclerItem {
 
     data class ElectiveItem(
         val electiveSubjectId: Long,
+        val primarySubject: Subject?,
         val electiveSubjects: List<Subject>,
     ) : SubjectsRecyclerItem() {
         companion object {

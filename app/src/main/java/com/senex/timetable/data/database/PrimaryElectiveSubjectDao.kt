@@ -11,6 +11,9 @@ interface PrimaryElectiveSubjectDao: BaseDao<PrimaryElectiveSubjectEntity> {
     @Query("SELECT * FROM primary_elective_subjects WHERE subject_id = :id")
     fun get(id: Long): Flow<PrimaryElectiveSubjectEntity?>
 
+    @Query(" SELECT * FROM primary_elective_subjects WHERE elective_subject_id = :electiveSubjectId")
+    fun getByElectiveSubjectId(electiveSubjectId: Long): Flow<PrimaryElectiveSubjectEntity?>
+
     @Query("SELECT * FROM primary_elective_subjects")
     fun getAll(): Flow<List<PrimaryElectiveSubjectEntity>>
 

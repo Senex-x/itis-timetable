@@ -1,23 +1,28 @@
 package com.senex.timetable.presentation.ui.schedule.daily.recycler
 
 import com.senex.timetable.domain.model.subject.Subject
+import com.senex.timetable.domain.usecase.GetPrimaryElectiveSubjectByElectiveSubjectId
+import com.senex.timetable.domain.usecase.GetPrimarySubjectByElectiveSubjectId
 import com.senex.timetable.domain.util.log
+import kotlinx.coroutines.flow.first
 
 /**
  * Maps daily subjects.
  * Works properly only if the list items are sorted by indexInDay property.
  */
-fun List<Subject>.toSubjectsRecyclerItemList() = buildList {
+suspend fun List<Subject>.toSubjectsRecyclerItemList(
+    getPrimarySubjectByElectiveSubjectId: GetPrimarySubjectByElectiveSubjectId,
+) = buildList {
     var lastElectiveSubjectId = -1L
     var lastEnglishSubjectId = -1L
     var electiveSubjects = mutableListOf<Subject>()
     var englishSubjects = mutableListOf<Subject>()
 
-    fun flushSubjectLists() { // Always call before changing id variables
+    suspend fun flushSubjectLists() { // Always call before changing id variables
         if (electiveSubjects.isNotEmpty()) {
             add(SubjectsRecyclerItem.ElectiveItem(
                 lastElectiveSubjectId,
-                null,
+                getPrimarySubjectByElectiveSubjectId(lastElectiveSubjectId).first(),
                 electiveSubjects,
             ))
             log("$lastElectiveSubjectId == ${electiveSubjects.first().electiveSubjectId}")
@@ -46,6 +51,7 @@ fun List<Subject>.toSubjectsRecyclerItemList() = buildList {
                 electiveSubjects.add(subject)
             }
             Subject.Kind.ENGLISH -> {
+                subject.toString().log()
                 if (lastEnglishSubjectId != subject.englishSubjectId) {
                     flushSubjectLists()
                     lastEnglishSubjectId = subject.englishSubjectId!! // Not gonna be null
