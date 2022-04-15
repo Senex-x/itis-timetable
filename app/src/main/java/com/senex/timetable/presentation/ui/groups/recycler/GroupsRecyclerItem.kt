@@ -37,7 +37,7 @@ sealed class GroupsRecyclerItem {
                     DelegateInflater(ListItemCourseBinding::inflate)::inflate
                 ) {
                     bind {
-                        binding.number.text = item.courseNumber.toString()
+                        binding.courseNumber.text = item.courseNumber.toString()
                     }
                 }
         }
