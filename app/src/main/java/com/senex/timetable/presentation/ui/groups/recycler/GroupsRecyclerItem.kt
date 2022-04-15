@@ -22,7 +22,7 @@ sealed class GroupsRecyclerItem {
                 }
 
                 bind {
-                    binding.name.text = item.group.name
+                    binding.subjectName.text = item.group.name
                 }
             }
         }

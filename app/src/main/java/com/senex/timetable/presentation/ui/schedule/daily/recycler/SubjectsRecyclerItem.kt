@@ -23,11 +23,11 @@ sealed class SubjectsRecyclerItem {
 
                     bind {
                         with(binding) {
-                            name.text = item.subject.name
-                            period.text = item.subject.startTime + "\n" + item.subject.endTime
+                            subjectName.text = item.subject.name
+                            startTime.text = item.subject.startTime
+                            endTime.text = item.subject.endTime
                             type.text = item.subject.type.name
                             roomNumber.text = item.subject.room
-                            id.text = item.subject.id.toString()
                         }
                     }
                 }
@@ -50,7 +50,7 @@ sealed class SubjectsRecyclerItem {
 
                     bind {
                         with(binding) {
-                            name.text = item.electiveSubjects.first().name
+                            subjectName.text = item.electiveSubjects.first().name
                         }
                     }
                 }
@@ -73,7 +73,7 @@ sealed class SubjectsRecyclerItem {
 
                     bind {
                         with(binding) {
-                            name.text = item.englishSubjects.first().name
+                            subjectName.text = item.englishSubjects.first().name
                         }
                     }
                 }
@@ -94,7 +94,7 @@ sealed class SubjectsRecyclerItem {
 
                     bind {
                         with(binding) {
-                            name.text = item.physicalSubject.name
+                            subjectName.text = item.physicalSubject.name
                         }
                     }
                 }
@@ -115,7 +115,7 @@ sealed class SubjectsRecyclerItem {
 
                     bind {
                         with(binding) {
-                            name.text = item.blockSubject.name
+                            subjectName.text = item.blockSubject.name
                         }
                     }
                 }
