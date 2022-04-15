@@ -1,8 +1,9 @@
 package com.senex.timetable.domain.usecase.subject.english.hidden
 
 import kotlinx.coroutines.flow.first
+import javax.inject.Inject
 
-class IsEnglishSubjectHidden(
+class IsEnglishSubjectHidden @Inject constructor(
     private val getHiddenEnglishSubject: GetHiddenEnglishSubject,
 ) {
     suspend operator fun invoke(englishSubjectId: Long) =

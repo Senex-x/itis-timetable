@@ -36,6 +36,7 @@ sealed class SubjectsRecyclerItem {
 
     data class ElectiveItem(
         val electiveSubjectId: Long,
+        val isHidden: Boolean,
         val primarySubject: Subject?,
         val electiveSubjects: List<Subject>,
     ) : SubjectsRecyclerItem() {
@@ -59,6 +60,7 @@ sealed class SubjectsRecyclerItem {
 
     data class EnglishItem(
         val englishSubjectId: Long,
+        val isHidden: Boolean,
         val primarySubject: Subject?,
         val englishSubjects: List<Subject>,
     ) : SubjectsRecyclerItem() {

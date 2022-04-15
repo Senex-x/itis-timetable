@@ -1,7 +1,9 @@
 package com.senex.timetable.presentation.ui.schedule.daily.recycler
 
 import com.senex.timetable.domain.model.subject.Subject
+import com.senex.timetable.domain.usecase.subject.elective.hidden.IsElectiveSubjectHidden
 import com.senex.timetable.domain.usecase.subject.elective.primary.GetPrimarySubjectByElectiveSubjectId
+import com.senex.timetable.domain.usecase.subject.english.hidden.IsEnglishSubjectHidden
 import com.senex.timetable.domain.usecase.subject.english.primary.GetPrimarySubjectByEnglishSubjectId
 import com.senex.timetable.domain.util.log
 import kotlinx.coroutines.flow.first
@@ -13,6 +15,8 @@ import kotlinx.coroutines.flow.first
 suspend fun List<Subject>.toSubjectsRecyclerItemList(
     getPrimarySubjectByElectiveSubjectId: GetPrimarySubjectByElectiveSubjectId,
     getPrimarySubjectByEnglishSubjectId: GetPrimarySubjectByEnglishSubjectId,
+    isElectiveSubjectHidden: IsElectiveSubjectHidden,
+    isEnglishSubjectHidden: IsEnglishSubjectHidden,
 ) = buildList {
     var lastElectiveSubjectId = -1L
     var lastEnglishSubjectId = -1L
@@ -23,6 +27,7 @@ suspend fun List<Subject>.toSubjectsRecyclerItemList(
         if (electiveSubjects.isNotEmpty()) {
             add(SubjectsRecyclerItem.ElectiveItem(
                 lastElectiveSubjectId,
+                isElectiveSubjectHidden(lastElectiveSubjectId),
                 getPrimarySubjectByElectiveSubjectId(lastElectiveSubjectId).first(),
                 electiveSubjects,
             ))
@@ -31,6 +36,7 @@ suspend fun List<Subject>.toSubjectsRecyclerItemList(
         if (englishSubjects.isNotEmpty()) {
             add(SubjectsRecyclerItem.EnglishItem(
                 lastEnglishSubjectId,
+                isEnglishSubjectHidden(lastEnglishSubjectId),
                 getPrimarySubjectByEnglishSubjectId(lastEnglishSubjectId).first(),
                 englishSubjects,
             ))
