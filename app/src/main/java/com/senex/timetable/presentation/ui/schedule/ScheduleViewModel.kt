@@ -1,10 +1,10 @@
 package com.senex.timetable.presentation.ui.schedule
 
 import androidx.lifecycle.ViewModel
-import com.senex.timetable.domain.usecase.GetPrimarySubjectByElectiveSubjectId
-import com.senex.timetable.domain.usecase.GetPrimarySubjectByEnglishSubjectId
-import com.senex.timetable.domain.usecase.GetScheduleByGroupIdSorted
-import com.senex.timetable.domain.usecase.SyncScheduleByGroupId
+import com.senex.timetable.domain.usecase.subject.elective.primary.GetPrimarySubjectByElectiveSubjectId
+import com.senex.timetable.domain.usecase.subject.english.primary.GetPrimarySubjectByEnglishSubjectId
+import com.senex.timetable.domain.usecase.schedule.GetScheduleByGroupIdSorted
+import com.senex.timetable.domain.usecase.schedule.SyncScheduleByGroupId
 import com.senex.timetable.presentation.common.SharedPreferencesHandler
 import com.senex.timetable.presentation.ui.schedule.daily.recycler.toSubjectsRecyclerItemList
 import kotlinx.coroutines.CoroutineScope

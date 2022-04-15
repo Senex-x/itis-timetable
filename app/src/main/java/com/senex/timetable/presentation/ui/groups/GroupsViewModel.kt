@@ -1,9 +1,8 @@
 package com.senex.timetable.presentation.ui.groups
 
 import androidx.lifecycle.ViewModel
-import com.senex.timetable.domain.usecase.GetAllGroupsSorted
-import com.senex.timetable.domain.usecase.SyncAllGroups
-import com.senex.timetable.domain.util.log
+import com.senex.timetable.domain.usecase.group.GetAllGroupsSorted
+import com.senex.timetable.domain.usecase.group.SyncAllGroups
 import com.senex.timetable.presentation.common.SharedPreferencesHandler
 import com.senex.timetable.presentation.ui.groups.recycler.toGroupsRecyclerItemList
 import kotlinx.coroutines.CoroutineScope

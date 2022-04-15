@@ -2,10 +2,10 @@ package com.senex.timetable.presentation.ui.subject
 
 import androidx.lifecycle.ViewModel
 import com.senex.timetable.domain.model.subject.HiddenSubject
-import com.senex.timetable.domain.usecase.DeleteHiddenSubjectById
-import com.senex.timetable.domain.usecase.GetHiddenSubject
-import com.senex.timetable.domain.usecase.GetSubjectById
-import com.senex.timetable.domain.usecase.SaveHiddenSubject
+import com.senex.timetable.domain.usecase.subject.DeleteHiddenSubjectById
+import com.senex.timetable.domain.usecase.subject.GetHiddenSubject
+import com.senex.timetable.domain.usecase.subject.GetSubjectById
+import com.senex.timetable.domain.usecase.subject.SaveHiddenSubject
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedFactory
 import dagger.assisted.AssistedInject

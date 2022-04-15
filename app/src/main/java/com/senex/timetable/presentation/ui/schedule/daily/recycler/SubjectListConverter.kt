@@ -1,9 +1,8 @@
 package com.senex.timetable.presentation.ui.schedule.daily.recycler
 
 import com.senex.timetable.domain.model.subject.Subject
-import com.senex.timetable.domain.usecase.GetPrimaryElectiveSubjectByElectiveSubjectId
-import com.senex.timetable.domain.usecase.GetPrimarySubjectByElectiveSubjectId
-import com.senex.timetable.domain.usecase.GetPrimarySubjectByEnglishSubjectId
+import com.senex.timetable.domain.usecase.subject.elective.primary.GetPrimarySubjectByElectiveSubjectId
+import com.senex.timetable.domain.usecase.subject.english.primary.GetPrimarySubjectByEnglishSubjectId
 import com.senex.timetable.domain.util.log
 import kotlinx.coroutines.flow.first
 
