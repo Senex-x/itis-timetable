@@ -18,6 +18,8 @@ import com.senex.timetable.data.entity.subject.*
         EnglishSubjectEntity::class,
         PrimaryElectiveSubjectEntity::class,
         PrimaryEnglishSubjectEntity::class,
+        HiddenElectiveSubjectEntity::class,
+        HiddenEnglishSubjectEntity::class,
         GroupEntity::class,
     ],
     version = 1
@@ -40,5 +42,9 @@ abstract class AppDatabase : RoomDatabase() {
     abstract fun primaryElectiveSubjectDao(): PrimaryElectiveSubjectDao
 
     abstract fun primaryEnglishSubjectDao(): PrimaryEnglishSubjectDao
+
+    abstract fun hiddenElectiveSubjectDao(): HiddenElectiveSubjectDao
+
+    abstract fun hiddenEnglishSubjectDao(): HiddenEnglishSubjectDao
 }
 
