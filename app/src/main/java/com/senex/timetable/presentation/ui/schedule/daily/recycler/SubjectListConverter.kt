@@ -17,7 +17,8 @@ fun List<Subject>.toSubjectsRecyclerItemList() = buildList {
         if (electiveSubjects.isNotEmpty()) {
             add(SubjectsRecyclerItem.ElectiveItem(
                 lastElectiveSubjectId,
-                electiveSubjects
+                null,
+                electiveSubjects,
             ))
             log("$lastElectiveSubjectId == ${electiveSubjects.first().electiveSubjectId}")
             electiveSubjects = mutableListOf()
