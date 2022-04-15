@@ -1,6 +1,5 @@
 package com.senex.timetable.data.database.util
 
-import com.senex.timetable.domain.util.log
 import com.senex.timetable.data.database.AppDatabase
 import com.senex.timetable.domain.model.group.Group
 import com.senex.timetable.domain.model.schedule.DailyScheduleInfo
@@ -10,7 +9,7 @@ import com.senex.timetable.domain.repository.local.DailyScheduleRepository
 import com.senex.timetable.domain.repository.local.GroupRepository
 import com.senex.timetable.domain.repository.local.ScheduleRepository
 import com.senex.timetable.domain.repository.local.SubjectRepository
-import kotlinx.coroutines.runBlocking
+import com.senex.timetable.domain.util.log
 import javax.inject.Inject
 import kotlin.random.Random
 
@@ -20,46 +19,42 @@ class DatabaseFiller @Inject constructor(
     private val dailyScheduleRepository: DailyScheduleRepository,
     private val subjectRepository: SubjectRepository,
     private val database: AppDatabase,
+    private val databaseLogger: DatabaseLogger,
 ) {
     fun clearDatabase() = database.clearAllTables()
 
-    fun populateDatabase() {
+    suspend fun populateDatabase() {
+        log("Populating database...")
+
         for (i in 1..20L) {
-            runBlocking {
-                groupRepository.insert(
-                    createGroup(i)
-                )
-            }
+            groupRepository.insert(
+                createGroup(i)
+            )
         }
 
         for (i in 1..20L) {
-            runBlocking {
-                scheduleRepository.insert(
-                    createSchedule(i, i)
-                )
-            }
+
+            scheduleRepository.insert(
+                createSchedule(i, i)
+            )
         }
 
         for (i in 1..120L) {
-            runBlocking {
-                dailyScheduleRepository.insert(
-                    createDailySchedule(
-                        i,
-                        (i - 1) % 20 + 1
-                    )
+            dailyScheduleRepository.insert(
+                createDailySchedule(
+                    i,
+                    (i - 1) % 20 + 1
                 )
-            }
+            )
         }
 
         for (i in 1..600L) {
-            runBlocking {
-                subjectRepository.insert(
-                    createSubject(
-                        i,
-                        (i - 1) % 120 + 1
-                    )
+            subjectRepository.insert(
+                createSubject(
+                    i,
+                    (i - 1) % 120 + 1
                 )
-            }
+            )
         }
 
         log("Database was populated successfully")

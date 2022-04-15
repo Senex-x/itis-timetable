@@ -58,7 +58,6 @@ suspend fun List<Subject>.toSubjectsRecyclerItemList(
                 electiveSubjects.add(subject)
             }
             Subject.Kind.ENGLISH -> {
-                subject.toString().log()
                 if (lastEnglishSubjectId != subject.englishSubjectId) {
                     flushSubjectLists()
                     lastEnglishSubjectId = subject.englishSubjectId!! // Not gonna be null

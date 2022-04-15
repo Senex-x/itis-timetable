@@ -1,7 +1,10 @@
 package com.senex.timetable.presentation
 
+import com.senex.timetable.data.database.AppDatabase
 import com.senex.timetable.di.DaggerAppComponent
+import com.senex.timetable.domain.util.log
 import dagger.android.DaggerApplication
+import javax.inject.Inject
 
 class TimetableApplication : DaggerApplication() {
     override fun applicationInjector() = DaggerAppComponent.builder()
@@ -10,10 +13,10 @@ class TimetableApplication : DaggerApplication() {
 
     override fun onCreate() {
         super.onCreate()
-        test()
+        debug()
     }
 
-    private fun test() {
+    private fun debug() {
 
     }
 }
