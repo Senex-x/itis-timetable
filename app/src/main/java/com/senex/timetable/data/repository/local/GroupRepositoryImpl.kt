@@ -30,7 +30,7 @@ class GroupRepositoryImpl @Inject constructor(
         groupDao.getAll().map { list -> list.map { it.transform() } }
 
     override suspend fun deleteById(id: Long) =
-        groupDao.delete(id)
+        groupDao.deleteById(id)
 
     override suspend fun deleteAll() =
         groupDao.deleteAll()

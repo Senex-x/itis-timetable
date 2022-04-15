@@ -7,16 +7,16 @@ import com.senex.timetable.data.entity.group.GroupEntity
 import kotlinx.coroutines.flow.Flow
 
 @Dao
-interface GroupDao: BaseDao<GroupEntity> {
+interface GroupDao: BaseDao<GroupEntity, GroupEntity> {
     @Query("SELECT * FROM groups WHERE id = :id")
-    fun get(id: Long): Flow<GroupEntity?>
+    override fun get(id: Long): Flow<GroupEntity?>
 
     @Query("SELECT * FROM groups")
-    fun getAll(): Flow<List<GroupEntity>>
+    override fun getAll(): Flow<List<GroupEntity>>
 
     @Query("DELETE FROM groups WHERE id = :id")
-    suspend fun delete(id: Long)
+    override suspend fun deleteById(id: Long)
 
     @Query("DELETE FROM groups")
-    suspend fun deleteAll()
+    override suspend fun deleteAll()
 }

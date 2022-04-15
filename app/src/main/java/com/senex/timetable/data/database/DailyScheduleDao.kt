@@ -9,14 +9,14 @@ import com.senex.timetable.data.entity.schedule.DailyScheduleInfoEntity
 import kotlinx.coroutines.flow.Flow
 
 @Dao
-interface DailyScheduleDao: BaseDao<DailyScheduleInfoEntity> {
+interface DailyScheduleDao: BaseDao<DailyScheduleInfoEntity, DailyScheduleEntity> {
     @Transaction
     @Query("SELECT * FROM daily_schedules WHERE id = :id")
-    fun get(id: Long): Flow<DailyScheduleEntity?>
+    override fun get(id: Long): Flow<DailyScheduleEntity?>
 
     @Transaction
     @Query("SELECT * FROM daily_schedules")
-    fun getAll(): Flow<List<DailyScheduleEntity>>
+    override fun getAll(): Flow<List<DailyScheduleEntity>>
 
     @Transaction
     @Query("""
@@ -37,8 +37,8 @@ interface DailyScheduleDao: BaseDao<DailyScheduleInfoEntity> {
     ): Flow<List<DailyScheduleEntity>>
 
     @Query("DELETE FROM daily_schedules WHERE id = :id")
-    suspend fun delete(id: Long)
+    override suspend fun deleteById(id: Long)
 
     @Query("DELETE FROM daily_schedules")
-    suspend fun deleteAll()
+    override suspend fun deleteAll()
 }

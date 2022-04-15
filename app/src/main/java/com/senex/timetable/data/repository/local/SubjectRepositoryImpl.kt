@@ -36,7 +36,7 @@ class SubjectRepositoryImpl @Inject constructor(
         subjectDao.getAllExcludingHidden(groupId, dayIndexInWeek).map { list -> list.map { it.transform() } }
 
     override suspend fun deleteById(id: Long) =
-        subjectDao.delete(id)
+        subjectDao.deleteById(id)
 
     override suspend fun deleteAll() =
         subjectDao.deleteAll()

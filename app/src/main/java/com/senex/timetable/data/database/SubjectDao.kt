@@ -7,12 +7,12 @@ import com.senex.timetable.data.entity.subject.SubjectEntity
 import kotlinx.coroutines.flow.Flow
 
 @Dao
-interface SubjectDao : BaseDao<SubjectEntity> {
+interface SubjectDao : BaseDao<SubjectEntity, SubjectEntity> {
     @Query("SELECT * FROM subjects WHERE id = :id")
-    fun get(id: Long): Flow<SubjectEntity?>
+    override fun get(id: Long): Flow<SubjectEntity?>
 
     @Query("SELECT * FROM subjects")
-    fun getAll(): Flow<List<SubjectEntity>>
+    override fun getAll(): Flow<List<SubjectEntity>>
 
     @Query("""
         SELECT *
@@ -60,8 +60,8 @@ interface SubjectDao : BaseDao<SubjectEntity> {
     ): Flow<List<SubjectEntity>>
 
     @Query("DELETE FROM subjects WHERE id = :id")
-    suspend fun delete(id: Long)
+    override suspend fun deleteById(id: Long)
 
     @Query("DELETE FROM subjects")
-    suspend fun deleteAll()
+    override suspend fun deleteAll()
 }

@@ -9,10 +9,10 @@ import com.senex.timetable.data.entity.schedule.ScheduleInfoEntity
 import kotlinx.coroutines.flow.Flow
 
 @Dao
-interface ScheduleDao : BaseDao<ScheduleInfoEntity> {
+interface ScheduleDao : BaseDao<ScheduleInfoEntity, ScheduleEntity> {
     @Transaction
     @Query("SELECT * FROM schedules WHERE id = :id")
-    fun get(id: Long): Flow<ScheduleEntity?>
+    override fun get(id: Long): Flow<ScheduleEntity?>
 
     @Transaction
     @Query("SELECT * FROM schedules WHERE group_id = :groupId")
@@ -20,11 +20,11 @@ interface ScheduleDao : BaseDao<ScheduleInfoEntity> {
 
     @Transaction
     @Query("SELECT * FROM schedules")
-    fun getAll(): Flow<List<ScheduleEntity>>
+    override fun getAll(): Flow<List<ScheduleEntity>>
 
     @Query("DELETE FROM schedules WHERE id = :id")
-    suspend fun delete(id: Long)
+    override suspend fun deleteById(id: Long)
 
     @Query("DELETE FROM schedules")
-    suspend fun deleteAll()
+    override suspend fun deleteAll()
 }

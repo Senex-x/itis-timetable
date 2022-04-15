@@ -12,7 +12,7 @@ class DailyScheduleRepositoryImpl @Inject constructor(
 ) : DailyScheduleRepository {
 
     override suspend fun deleteById(id: Long) =
-        dailyScheduleDao.delete(id)
+        dailyScheduleDao.deleteById(id)
 
     override suspend fun insert(item: DailyScheduleInfo) =
         dailyScheduleDao.insert(item.transform())

@@ -4,6 +4,7 @@ import androidx.room.Database
 import androidx.room.RoomDatabase
 import com.senex.timetable.data.entity.group.GroupEntity
 import com.senex.timetable.data.entity.schedule.DailyScheduleInfoEntity
+import com.senex.timetable.data.entity.subject.ElectiveSubjectEntity
 import com.senex.timetable.data.entity.schedule.ScheduleInfoEntity
 import com.senex.timetable.data.entity.subject.*
 

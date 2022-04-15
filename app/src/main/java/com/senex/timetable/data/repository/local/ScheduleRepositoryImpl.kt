@@ -27,7 +27,7 @@ class ScheduleRepositoryImpl @Inject constructor(
         scheduleDao.get(id).map { it?.transform() }
 
     override suspend fun deleteById(id: Long) =
-        scheduleDao.delete(id)
+        scheduleDao.deleteById(id)
 
     override fun getByGroupId(groupId: Long) =
         scheduleDao.getByGroupId(groupId).map { it?.transform() }

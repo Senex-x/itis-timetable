@@ -30,7 +30,7 @@ class ElectiveSubjectRepositoryImpl @Inject constructor(
         electiveSubjectDao.getAll().map { list -> list.map { it.transform() } }
 
     override suspend fun deleteById(id: Long) =
-        electiveSubjectDao.delete(id)
+        electiveSubjectDao.deleteById(id)
 
     override suspend fun deleteAll() =
         electiveSubjectDao.deleteAll()

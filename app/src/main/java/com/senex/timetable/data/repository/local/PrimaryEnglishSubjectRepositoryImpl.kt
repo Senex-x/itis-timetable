@@ -33,7 +33,7 @@ class PrimaryEnglishSubjectRepositoryImpl @Inject constructor(
         dao.getAll().map { list -> list.map { it.transform() } }
 
     override suspend fun deleteById(id: Long) =
-        dao.delete(id)
+        dao.deleteById(id)
 
     override suspend fun deleteAll() =
         dao.deleteAll()

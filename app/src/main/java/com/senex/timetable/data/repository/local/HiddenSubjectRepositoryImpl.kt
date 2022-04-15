@@ -30,7 +30,7 @@ class HiddenSubjectRepositoryImpl @Inject constructor(
         hiddenSubjectDao.getAll().map { list -> list.map { it.transform() } }
 
     override suspend fun deleteById(id: Long) =
-        hiddenSubjectDao.delete(id)
+        hiddenSubjectDao.deleteById(id)
 
     override suspend fun deleteAll() =
         hiddenSubjectDao.deleteAll()

@@ -7,16 +7,16 @@ import com.senex.timetable.data.entity.subject.HiddenSubjectEntity
 import kotlinx.coroutines.flow.Flow
 
 @Dao
-interface HiddenSubjectDao: BaseDao<HiddenSubjectEntity> {
+interface HiddenSubjectDao: BaseDao<HiddenSubjectEntity, HiddenSubjectEntity> {
     @Query("SELECT * FROM hidden_subjects WHERE subject_id = :id")
-    fun get(id: Long): Flow<HiddenSubjectEntity?>
+    override fun get(id: Long): Flow<HiddenSubjectEntity?>
 
     @Query("SELECT * FROM hidden_subjects")
-    fun getAll(): Flow<List<HiddenSubjectEntity>>
+    override fun getAll(): Flow<List<HiddenSubjectEntity>>
 
     @Query("DELETE FROM hidden_subjects WHERE subject_id = :id")
-    suspend fun delete(id: Long)
+    override suspend fun deleteById(id: Long)
 
     @Query("DELETE FROM hidden_subjects")
-    suspend fun deleteAll()
+    override suspend fun deleteAll()
 }

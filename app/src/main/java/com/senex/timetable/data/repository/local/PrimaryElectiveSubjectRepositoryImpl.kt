@@ -4,7 +4,6 @@ import com.senex.timetable.data.database.PrimaryElectiveSubjectDao
 import com.senex.timetable.data.mapper.transform
 import com.senex.timetable.domain.model.subject.PrimaryElectiveSubject
 import com.senex.timetable.domain.repository.local.PrimaryElectiveSubjectRepository
-import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
@@ -34,7 +33,7 @@ class PrimaryElectiveSubjectRepositoryImpl @Inject constructor(
         dao.getAll().map { list -> list.map { it.transform() } }
 
     override suspend fun deleteById(id: Long) =
-        dao.delete(id)
+        dao.deleteById(id)
 
     override suspend fun deleteAll() =
         dao.deleteAll()
