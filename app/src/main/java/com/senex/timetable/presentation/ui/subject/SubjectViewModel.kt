@@ -3,7 +3,7 @@ package com.senex.timetable.presentation.ui.subject
 import androidx.lifecycle.ViewModel
 import com.senex.timetable.domain.model.subject.HiddenSubject
 import com.senex.timetable.domain.usecase.DeleteHiddenSubjectById
-import com.senex.timetable.domain.usecase.GetHiddenSubjectById
+import com.senex.timetable.domain.usecase.GetHiddenSubject
 import com.senex.timetable.domain.usecase.GetSubjectById
 import com.senex.timetable.domain.usecase.SaveHiddenSubject
 import dagger.assisted.Assisted
@@ -19,13 +19,13 @@ class SubjectViewModel @AssistedInject constructor(
     private val saveHiddenSubject: SaveHiddenSubject,
     private val deleteHiddenSubjectById: DeleteHiddenSubjectById,
     getSubjectById: GetSubjectById,
-    getHiddenSubjectById: GetHiddenSubjectById,
+    getHiddenSubject: GetHiddenSubject,
 ) : ViewModel() {
     val subject = getSubjectById(subjectId).map {
         it ?: throw IllegalArgumentException("Given subjectId: $subjectId is invalid")
     }
 
-    val isSubjectVisible = getHiddenSubjectById(subjectId).map {
+    val isSubjectVisible = getHiddenSubject(subjectId).map {
         it == null
     }
 

@@ -78,4 +78,16 @@ abstract class RepositoryModule {
     abstract fun bindPrimaryEnglishSubjectRepository(
         repository: PrimaryEnglishSubjectRepositoryImpl,
     ): PrimaryEnglishSubjectRepository
+
+    @Singleton
+    @Binds
+    abstract fun bindHiddenElectiveSubjectRepository(
+        repository: HiddenElectiveSubjectRepositoryImpl,
+    ): HiddenElectiveSubjectRepository
+
+    @Singleton
+    @Binds
+    abstract fun bindHiddenEnglishSubjectRepository(
+        repository: HiddenEnglishSubjectRepositoryImpl,
+    ): HiddenEnglishSubjectRepository
 }
