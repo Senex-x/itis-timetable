@@ -1,5 +1,6 @@
 package com.senex.timetable.presentation.ui.schedule.daily.recycler
 
+import com.senex.timetable.domain.model.schedule.DailySchedule
 import com.senex.timetable.domain.model.subject.Subject
 import com.senex.timetable.domain.usecase.subject.english.hidden.IsEnglishSubjectHidden
 import com.senex.timetable.domain.usecase.subject.english.primary.GetPrimarySubjectByEnglishSubjectId
@@ -9,10 +10,13 @@ import kotlinx.coroutines.flow.first
  * Maps daily subjects.
  * Works properly only if the list items are sorted by indexInDay property.
  */
-suspend fun List<Subject>.toSubjectsRecyclerItemList(
+suspend fun DailySchedule.toSubjectsRecyclerItems(
     getPrimarySubjectByEnglishSubjectId: GetPrimarySubjectByEnglishSubjectId,
     isEnglishSubjectHidden: IsEnglishSubjectHidden,
 ) = buildList {
+    val dailySchedule = this@toSubjectsRecyclerItems
+    val subjects = dailySchedule.subjects
+
     var lastElectiveSubjectId = -1L
     var lastEnglishSubjectId = -1L
     var electiveSubjects = mutableListOf<Subject>()
@@ -20,10 +24,14 @@ suspend fun List<Subject>.toSubjectsRecyclerItemList(
 
     suspend fun flushSubjectLists() { // Always call before changing id variables
         if (electiveSubjects.isNotEmpty()) {
+            val electiveSubject = dailySchedule.electiveSubjects.find {
+                it.id == lastElectiveSubjectId
+            }!!
+
             add(SubjectsRecyclerItem.ElectiveItem(
                 lastElectiveSubjectId,
-                false, //isElectiveSubjectHidden(lastElectiveSubjectId),
-                null, //getPrimarySubjectByElectiveSubjectId(lastElectiveSubjectId).first(),
+                electiveSubject.isVisible,
+                electiveSubjects.find { it.id == electiveSubject.primarySubjectId },
                 electiveSubjects,
             ))
             electiveSubjects = mutableListOf()
@@ -39,7 +47,7 @@ suspend fun List<Subject>.toSubjectsRecyclerItemList(
         }
     }
 
-    for (subject in this@toSubjectsRecyclerItemList) {
+    for (subject in subjects) {
         when (subject.kind) {
             Subject.Kind.ORDINARY -> {
                 flushSubjectLists()
@@ -72,4 +80,3 @@ suspend fun List<Subject>.toSubjectsRecyclerItemList(
 
     flushSubjectLists()
 }
-

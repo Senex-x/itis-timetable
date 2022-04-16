@@ -6,7 +6,7 @@ import com.senex.timetable.domain.usecase.schedule.SyncScheduleByGroupId
 import com.senex.timetable.domain.usecase.subject.english.hidden.IsEnglishSubjectHidden
 import com.senex.timetable.domain.usecase.subject.english.primary.GetPrimarySubjectByEnglishSubjectId
 import com.senex.timetable.presentation.common.SharedPreferencesHandler
-import com.senex.timetable.presentation.ui.schedule.daily.recycler.toSubjectsRecyclerItemList
+import com.senex.timetable.presentation.ui.schedule.daily.recycler.toSubjectsRecyclerItems
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.flowOf
@@ -43,7 +43,7 @@ class ScheduleViewModel @Inject constructor(
     private fun getDailySubjectRecyclerItems(
         dayIndexInWeek: Int,
     ) = scheduleFlow.map {
-        it?.getDailySchedule(dayIndexInWeek)?.subjects?.toSubjectsRecyclerItemList(
+        it?.getDailySchedule(dayIndexInWeek)?.toSubjectsRecyclerItems(
             getPrimarySubjectByEnglishSubjectId,
             isEnglishSubjectHidden,
         ) ?: emptyList()

@@ -1,6 +1,7 @@
 package com.senex.timetable.domain.usecase.schedule
 
 import com.senex.timetable.domain.usecase.group.DeleteGroupById
+import com.senex.timetable.domain.util.log
 import javax.inject.Inject
 
 class SyncScheduleByGroupId @Inject constructor(
@@ -12,6 +13,7 @@ class SyncScheduleByGroupId @Inject constructor(
         getRemoteScheduleByGroupId(groupId)?.let {
             deleteGroupById(groupId)
             saveSchedule(it)
+            "Schedule sync done".log()
         }
     }
 }

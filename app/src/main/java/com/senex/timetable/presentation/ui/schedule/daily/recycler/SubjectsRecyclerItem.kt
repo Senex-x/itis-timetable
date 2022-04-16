@@ -18,14 +18,14 @@ sealed class SubjectsRecyclerItem {
                 adapterDelegateViewBinding<OrdinaryItem, SubjectsRecyclerItem, ListItemOrdinarySubjectBinding>(
                     DelegateInflater(ListItemOrdinarySubjectBinding::inflate)::inflate
                 ) {
-                    val item = item.subject
-
                     binding.root.setOnClickListener {
-                        onItemClick(item.id)
+                        onItemClick(item.subject.id)
                     }
 
                     bind {
                         with(binding) {
+                            val item = item.subject
+
                             timePeriod.startTime.text = item.startTime
                             timePeriod.endTime.text = item.endTime
                             subjectName.text = item.name
@@ -39,7 +39,7 @@ sealed class SubjectsRecyclerItem {
 
     data class ElectiveItem(
         val electiveSubjectId: Long,
-        val isHidden: Boolean,
+        val isVisible: Boolean,
         val primarySubject: Subject?,
         val electiveSubjects: List<Subject>,
     ) : SubjectsRecyclerItem() {
@@ -59,7 +59,7 @@ sealed class SubjectsRecyclerItem {
                             timePeriod.endTime.text = firstSubject.endTime
 
                             when {
-                                item.isHidden -> { // Treat like empty subject
+                                !item.isVisible -> { // Treat like empty subject
                                     primarySubjectContent.visibility = View.GONE
                                     unselectedSubjectContent.visibility = View.GONE
 
@@ -69,7 +69,7 @@ sealed class SubjectsRecyclerItem {
                                     unselectedSubjectContent.visibility = View.VISIBLE
 
                                 }
-                                else -> { // Has primary and selected
+                                else -> { // Has primary and visible
                                     primarySubjectContent.visibility = View.VISIBLE
                                     unselectedSubjectContent.visibility = View.GONE
 
@@ -84,7 +84,7 @@ sealed class SubjectsRecyclerItem {
 
     data class EnglishItem(
         val englishSubjectId: Long,
-        val isHidden: Boolean,
+        val isVisible: Boolean,
         val primarySubject: Subject?,
         val englishSubjects: List<Subject>,
     ) : SubjectsRecyclerItem() {
@@ -104,7 +104,7 @@ sealed class SubjectsRecyclerItem {
                             timePeriod.endTime.text = firstSubject.endTime
 
                             when {
-                                item.isHidden -> { // Treat like empty subject
+                                item.isVisible -> { // Treat like empty subject
                                     primarySubjectContent.visibility = View.GONE
                                     unselectedSubjectContent.visibility = View.GONE
 
