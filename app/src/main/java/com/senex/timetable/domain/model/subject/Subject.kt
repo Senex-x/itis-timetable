@@ -5,7 +5,7 @@ data class Subject(
     val dailyScheduleId: Long,
     val electiveSubjectId: Long?,
     val englishSubjectId: Long?,
-    val isHidden: Boolean,
+    val isVisible: Boolean,
     val indexInDay: Int,
     val startTime: String,
     val endTime: String,

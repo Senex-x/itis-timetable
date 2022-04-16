@@ -27,12 +27,6 @@ class DaoModule {
 
     @Singleton
     @Provides
-    fun provideHiddenSubjectDao(
-        appDatabase: AppDatabase,
-    ) = appDatabase.hiddenSubjectDao()
-
-    @Singleton
-    @Provides
     fun provideDailySubjectDao(
         appDatabase: AppDatabase,
     ) = appDatabase.subjectDao()

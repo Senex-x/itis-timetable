@@ -2,14 +2,13 @@ package com.senex.timetable.data.mapper
 
 import com.senex.timetable.data.entity.subject.SubjectEntity
 import com.senex.timetable.domain.model.subject.Subject
-import com.senex.timetable.domain.util.log
 
 internal fun SubjectEntity.transform() = Subject(
     id,
     dailyScheduleId,
     electiveSubjectId,
     englishSubjectId,
-    isHidden,
+    isVisible,
     indexInDay,
     startTime,
     endTime,
@@ -27,7 +26,7 @@ internal fun Subject.transform() = SubjectEntity(
     dailyScheduleId,
     electiveSubjectId,
     englishSubjectId,
-    isHidden,
+    isVisible,
     indexInDay,
     startTime,
     endTime,

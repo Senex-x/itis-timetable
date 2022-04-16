@@ -51,10 +51,10 @@ interface SubjectDao : BaseDao<SubjectEntity, SubjectEntity> {
             AND daily_schedules.index_in_week == :dayIndexInWeek
         ) AS dailyScheduleIds
         ON dailyScheduleIds.id == subjects.daily_schedule_id
-        AND subjects.id NOT IN hidden_subjects
+        AND is_visible
         """
-    )
-    fun getAllExcludingHidden(
+    ) // TODO: Requires testing of isHidden check
+    fun getAllVisible(
         groupId: Long,
         dayIndexInWeek: Int,
     ): Flow<List<SubjectEntity>>

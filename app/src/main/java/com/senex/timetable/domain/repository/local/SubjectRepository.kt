@@ -10,7 +10,7 @@ interface SubjectRepository : BaseRepository<Subject, Subject, Long> {
         dayIndexInWeek: Int,
     ): Flow<List<Subject>>
 
-    fun getAllExcludingHidden(
+    fun getAllVisible(
         groupId: Long,
         dayIndexInWeek: Int,
     ): Flow<List<Subject>>
