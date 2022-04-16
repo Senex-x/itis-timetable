@@ -29,7 +29,7 @@ import com.senex.timetable.data.entity.schedule.DailyScheduleInfoEntity
         ),
     ],
 )
-data class SubjectEntity(
+data class SubjectEntity @JvmOverloads constructor(
     @PrimaryKey
     val id: Long,
     @ColumnInfo(name = "daily_schedule_id")
