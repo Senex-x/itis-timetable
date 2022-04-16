@@ -139,7 +139,11 @@ sealed class SubjectsRecyclerItem {
 
                     bind {
                         with(binding) {
-                            subjectName.text = item.physicalSubject.name
+                            val item = item.physicalSubject
+
+                            timePeriod.startTime.text = item.startTime
+                            timePeriod.endTime.text = item.endTime
+                            subjectName.text = item.name
                         }
                     }
                 }
