@@ -11,11 +11,11 @@
         android:label="ScheduleContainerFragment"
         tools:layout="@layout/fragment_schedule" >
         <action
-            android:id="@+id/action_scheduleFragment_to_subjectFragment"
-            app:destination="@id/subjectFragment" />
-        <action
             android:id="@+id/action_scheduleFragment_to_groupsFragment"
             app:destination="@id/groupsFragment" />
+        <action
+            android:id="@+id/action_scheduleFragment_to_ordinarySubjectFragment"
+            app:destination="@id/ordinarySubjectFragment" />
     </fragment>
     <fragment
         android:id="@+id/groupsFragment"
@@ -27,15 +27,15 @@
             app:destination="@id/scheduleFragment" />
     </fragment>
     <fragment
-        android:id="@+id/subjectFragment"
-        android:name="com.senex.timetable.presentation.ui.subject.SubjectFragment"
+        android:id="@+id/ordinarySubjectFragment"
+        android:name="com.senex.timetable.presentation.ui.subject.OrdinarySubjectFragment"
         android:label="SubjectFragment"
-        tools:layout="@layout/fragment_subject">
-        <action
-            android:id="@+id/action_subjectFragment_to_scheduleFragment"
-            app:destination="@id/scheduleFragment" />
+        tools:layout="@layout/fragment_ordinary_subject">
         <argument
             android:name="subject_id"
             app:argType="long" />
+        <action
+            android:id="@+id/action_ordinarySubjectFragment_to_scheduleFragment"
+            app:destination="@id/scheduleFragment" />
     </fragment>
 </navigation>

@@ -12,9 +12,11 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.hannesdorfmann.adapterdelegates4.AsyncListDifferDelegationAdapter
 import com.senex.timetable.databinding.FragmentDailyScheduleBinding
 import com.senex.timetable.domain.util.toast
+import com.senex.timetable.presentation.common.inflateBinding
 import com.senex.timetable.presentation.ui.schedule.ScheduleFragmentDirections
 import com.senex.timetable.presentation.ui.schedule.ScheduleViewModel
-import com.senex.timetable.presentation.ui.schedule.daily.recycler.*
+import com.senex.timetable.presentation.ui.schedule.daily.recycler.SubjectsRecyclerItem
+import com.senex.timetable.presentation.ui.schedule.daily.recycler.SubjectsRecyclerItemDiffCallback
 import dagger.android.support.DaggerFragment
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -41,11 +43,8 @@ class DailyScheduleFragment : DaggerFragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?,
-    ): View {
-        _binding = FragmentDailyScheduleBinding.inflate(
-            inflater, container, false
-        )
-        return binding.root
+    ) = inflateBinding(FragmentDailyScheduleBinding::inflate, inflater, container) {
+        _binding = it
     }
 
     override fun onViewCreated(
@@ -57,7 +56,7 @@ class DailyScheduleFragment : DaggerFragment() {
         //val recyclerAdapter = SubjectRecyclerAdapter()
         scheduleRecyclerView.adapter = AsyncListDifferDelegationAdapter(
             SubjectsRecyclerItemDiffCallback,
-            SubjectsRecyclerItem.OrdinaryItem.getDelegate { requireContext().toast("Ordinary item") },
+            SubjectsRecyclerItem.OrdinaryItem.getDelegate(navigateToOrdinarySubjectFragment),
             SubjectsRecyclerItem.ElectiveItem.getDelegate { requireContext().toast("Elective item") },
             SubjectsRecyclerItem.EnglishItem.getDelegate { requireContext().toast("English item") },
             SubjectsRecyclerItem.PhysicalItem.getDelegate { requireContext().toast("Physical item") },
@@ -71,11 +70,13 @@ class DailyScheduleFragment : DaggerFragment() {
         }
     }
 
-    private fun navigateToSubjectFragment(subjectId: Long) = findNavController().navigate(
-        ScheduleFragmentDirections.actionScheduleFragmentToSubjectFragment(
-            subjectId
+    private val navigateToOrdinarySubjectFragment: (Long) -> Unit = { subjectId ->
+        findNavController().navigate(
+            ScheduleFragmentDirections.actionScheduleFragmentToOrdinarySubjectFragment(
+                subjectId
+            )
         )
-    )
+    }
 
     override fun onDestroyView() {
         super.onDestroyView()

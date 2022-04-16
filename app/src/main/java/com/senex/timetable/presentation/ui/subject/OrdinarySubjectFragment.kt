@@ -8,7 +8,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.senex.timetable.R
-import com.senex.timetable.databinding.FragmentSubjectBinding
+import com.senex.timetable.databinding.FragmentOrdinarySubjectBinding
 import com.senex.timetable.presentation.common.assistedViewModel
 import com.senex.timetable.presentation.common.inflateBinding
 import dagger.android.support.DaggerFragment
@@ -16,12 +16,12 @@ import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-class SubjectFragment : DaggerFragment() {
-    private var _binding: FragmentSubjectBinding? = null
+class OrdinarySubjectFragment : DaggerFragment() {
+    private var _binding: FragmentOrdinarySubjectBinding? = null
     private val binding
         get() = _binding!!
 
-    private val args: SubjectFragmentArgs by navArgs()
+    private val args: OrdinarySubjectFragmentArgs by navArgs()
 
     @Inject
     lateinit var factory: SubjectViewModel.Factory
@@ -33,7 +33,7 @@ class SubjectFragment : DaggerFragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?,
-    ) = inflateBinding(FragmentSubjectBinding::inflate, inflater, container) {
+    ) = inflateBinding(FragmentOrdinarySubjectBinding::inflate, inflater, container) {
         _binding = it
     }
 
@@ -74,15 +74,9 @@ class SubjectFragment : DaggerFragment() {
         }
     }
 
-    private fun FragmentSubjectBinding.initToolbar() {
-        groupsToolbar.setOnMenuItemClickListener {
-            when (it.itemId) {
-                R.id.action_open_schedule_fragment -> {
-                    navigateToGroupsFragment()
-                    true
-                }
-                else -> false
-            }
+    private fun FragmentOrdinarySubjectBinding.initToolbar() {
+        ordinarySubjectToolbar.setNavigationOnClickListener {
+            findNavController().popBackStack()
         }
     }
 
