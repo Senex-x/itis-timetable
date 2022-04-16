@@ -5,10 +5,14 @@ import com.senex.timetable.domain.model.subject.ElectiveSubject
 
 internal fun ElectiveSubjectEntity.transform() = ElectiveSubject(
     id,
-    dailyScheduleId
+    dailyScheduleId,
+    primarySubjectId,
+    isVisible,
 )
 
 internal fun ElectiveSubject.transform() = ElectiveSubjectEntity(
     id,
-    dailyScheduleId
+    dailyScheduleId,
+    primarySubjectId,
+    isVisible,
 )

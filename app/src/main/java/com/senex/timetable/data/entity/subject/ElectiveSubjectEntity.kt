@@ -5,6 +5,7 @@ import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.PrimaryKey
 import com.senex.timetable.data.entity.schedule.DailyScheduleInfoEntity
+import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
@@ -16,12 +17,27 @@ import com.squareup.moshi.JsonClass
             parentColumns = ["id"],
             childColumns = ["daily_schedule_id"],
             onDelete = ForeignKey.CASCADE,
-        )
+        ),
+        ForeignKey(
+            entity = SubjectEntity::class,
+            parentColumns = ["id"],
+            childColumns = ["primary_subject_id"],
+            onDelete = ForeignKey.CASCADE,
+        ),
     ],
 )
 data class ElectiveSubjectEntity(
     @PrimaryKey
     val id: Long,
+
     @ColumnInfo(name = "daily_schedule_id")
     val dailyScheduleId: Long,
+
+    @Json(ignore = true)
+    @ColumnInfo(name = "primary_subject_id")
+    val primarySubjectId: Long? = null,
+
+    @Json(ignore = true)
+    @ColumnInfo(name = "is_visible")
+    val isVisible: Boolean = true,
 )
