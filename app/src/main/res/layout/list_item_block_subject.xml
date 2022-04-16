@@ -4,13 +4,26 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:foreground="?android:attr/selectableItemBackground">
+    android:foreground="?android:attr/selectableItemBackground"
+    android:padding="16dp">
+
+    <include
+        android:id="@+id/time_period"
+        layout="@layout/subject_time_period"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/subject_name"
-        android:layout_width="wrap_content"
+        android:id="@+id/block_subject_name"
+        style="@style/TextAppearance.Material3.TitleMedium"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/time_period"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="subject name" />
+        tools:text="Discipline block lessons" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

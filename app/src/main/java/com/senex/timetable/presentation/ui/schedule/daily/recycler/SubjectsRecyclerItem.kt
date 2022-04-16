@@ -18,17 +18,19 @@ sealed class SubjectsRecyclerItem {
                 adapterDelegateViewBinding<OrdinaryItem, SubjectsRecyclerItem, ListItemOrdinarySubjectBinding>(
                     DelegateInflater(ListItemOrdinarySubjectBinding::inflate)::inflate
                 ) {
+                    val item = item.subject
+
                     binding.root.setOnClickListener {
-                        onItemClick(item.subject.id)
+                        onItemClick(item.id)
                     }
 
                     bind {
                         with(binding) {
-                            subjectName.text = item.subject.name
-                            timePeriod.startTime.text = item.subject.startTime
-                            timePeriod.endTime.text = item.subject.endTime
-                            type.text = item.subject.type.name
-                            roomNumber.text = item.subject.room
+                            timePeriod.startTime.text = item.startTime
+                            timePeriod.endTime.text = item.endTime
+                            subjectName.text = item.name
+                            type.text = item.type.name
+                            roomNumber.text = item.room
                         }
                     }
                 }
@@ -164,7 +166,11 @@ sealed class SubjectsRecyclerItem {
 
                     bind {
                         with(binding) {
-                            subjectName.text = item.blockSubject.name
+                            val item = item.blockSubject
+
+                            timePeriod.startTime.text = item.startTime
+                            timePeriod.endTime.text = item.endTime
+                            blockSubjectName.text = item.name
                         }
                     }
                 }
