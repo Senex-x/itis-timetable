@@ -38,6 +38,8 @@ data class SubjectEntity(
     val electiveSubjectId: Long?,
     @ColumnInfo(name = "english_subject_id")
     val englishSubjectId: Long?,
+    @ColumnInfo(name = "is_hidden")
+    val isHidden: Boolean = false,
     @ColumnInfo(name = "number_in_day")
     val indexInDay: Int,
     @ColumnInfo(name = "start_time")

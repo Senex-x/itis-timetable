@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import com.senex.timetable.R
 import com.senex.timetable.databinding.FragmentOrdinarySubjectBinding
 import com.senex.timetable.presentation.common.assistedViewModel
 import com.senex.timetable.presentation.common.inflateBinding

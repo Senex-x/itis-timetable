@@ -23,6 +23,7 @@ class SubjectViewModel @AssistedInject constructor(
 ) : ViewModel() {
     val subject = getSubjectById(subjectId).map {
         it ?: throw IllegalArgumentException("Given subjectId: $subjectId is invalid")
+
     }
 
     val isSubjectVisible = getHiddenSubject(subjectId).map {
