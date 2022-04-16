@@ -5,6 +5,8 @@ import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.PrimaryKey
 import com.senex.timetable.data.entity.schedule.DailyScheduleInfoEntity
+import com.squareup.moshi.Json
+import com.squareup.moshi.JsonClass
 
 @Entity(
     tableName = "subjects",
@@ -29,6 +31,7 @@ import com.senex.timetable.data.entity.schedule.DailyScheduleInfoEntity
         ),
     ],
 )
+@JsonClass(generateAdapter = true)
 data class SubjectEntity @JvmOverloads constructor(
     @PrimaryKey
     val id: Long,
@@ -38,6 +41,7 @@ data class SubjectEntity @JvmOverloads constructor(
     val electiveSubjectId: Long?,
     @ColumnInfo(name = "english_subject_id")
     val englishSubjectId: Long?,
+    @Json(ignore = true)
     @ColumnInfo(name = "is_visible")
     val isVisible: Boolean = true,
     @ColumnInfo(name = "number_in_day")

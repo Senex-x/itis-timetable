@@ -5,7 +5,9 @@ import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.PrimaryKey
 import com.senex.timetable.data.entity.schedule.DailyScheduleInfoEntity
+import com.squareup.moshi.JsonClass
 
+@JsonClass(generateAdapter = true)
 @Entity(
     tableName = "english_subjects",
     foreignKeys = [

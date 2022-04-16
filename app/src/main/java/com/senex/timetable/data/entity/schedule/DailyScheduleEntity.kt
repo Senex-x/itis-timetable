@@ -5,7 +5,9 @@ import androidx.room.Relation
 import com.senex.timetable.data.entity.subject.EnglishSubjectEntity
 import com.senex.timetable.data.entity.subject.SubjectEntity
 import com.senex.timetable.data.entity.subject.ElectiveSubjectEntity
+import com.squareup.moshi.JsonClass
 
+@JsonClass(generateAdapter = true)
 data class DailyScheduleEntity(
     @Embedded
     val dailyScheduleInfoEntity: DailyScheduleInfoEntity,

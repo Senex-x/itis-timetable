@@ -4,7 +4,6 @@ import androidx.lifecycle.ViewModel
 import com.senex.timetable.domain.usecase.subject.GetSubjectById
 import com.senex.timetable.domain.usecase.subject.HideSubject
 import com.senex.timetable.domain.usecase.subject.ShowSubject
-import com.senex.timetable.domain.util.log
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedFactory
 import dagger.assisted.AssistedInject

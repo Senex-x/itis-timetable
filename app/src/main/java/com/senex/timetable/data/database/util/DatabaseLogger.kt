@@ -14,29 +14,9 @@ class DatabaseLogger @Inject constructor(
     fun log() {
         CoroutineScope(Dispatchers.Default).launch {
             launch {
-                val result = database.electiveSubjectDao().getAll().first()
+                val result = database.subjectDao().getAll().first()
 
-                "Database elective: $result".log()
-            }
-            launch {
-                val result = database.hiddenElectiveSubjectDao().getAll().first()
-
-                "Database hiddenElectiveSubjectDao: $result".log()
-            }
-            launch {
-                val result = database.primaryElectiveSubjectDao().getAll().first()
-
-                "Database primaryElectiveSubjectDao: $result".log()
-            }
-            launch {
-                val result = database.scheduleDao().getAll().first()
-
-                "Database scheduleDao: $result".log()
-            }
-            launch {
-                val result = database.dailyScheduleDao().getAll().first()
-
-                "Database dailyScheduleDao: $result".log()
+                "Database: $result".log()
             }
         }
     }
