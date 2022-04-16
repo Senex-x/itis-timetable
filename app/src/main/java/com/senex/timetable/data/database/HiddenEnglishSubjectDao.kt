@@ -3,7 +3,6 @@ package com.senex.timetable.data.database
 import androidx.room.Dao
 import androidx.room.Query
 import com.senex.timetable.data.database.util.BaseDao
-import com.senex.timetable.data.entity.subject.HiddenElectiveSubjectEntity
 import com.senex.timetable.data.entity.subject.HiddenEnglishSubjectEntity
 import kotlinx.coroutines.flow.Flow
 

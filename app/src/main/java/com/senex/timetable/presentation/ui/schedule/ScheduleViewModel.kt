@@ -1,12 +1,10 @@
 package com.senex.timetable.presentation.ui.schedule
 
 import androidx.lifecycle.ViewModel
-import com.senex.timetable.domain.usecase.subject.elective.primary.GetPrimarySubjectByElectiveSubjectId
-import com.senex.timetable.domain.usecase.subject.english.primary.GetPrimarySubjectByEnglishSubjectId
 import com.senex.timetable.domain.usecase.schedule.GetScheduleByGroupIdSorted
 import com.senex.timetable.domain.usecase.schedule.SyncScheduleByGroupId
-import com.senex.timetable.domain.usecase.subject.elective.hidden.IsElectiveSubjectHidden
 import com.senex.timetable.domain.usecase.subject.english.hidden.IsEnglishSubjectHidden
+import com.senex.timetable.domain.usecase.subject.english.primary.GetPrimarySubjectByEnglishSubjectId
 import com.senex.timetable.presentation.common.SharedPreferencesHandler
 import com.senex.timetable.presentation.ui.schedule.daily.recycler.toSubjectsRecyclerItemList
 import kotlinx.coroutines.CoroutineScope
@@ -19,9 +17,7 @@ import javax.inject.Inject
 
 class ScheduleViewModel @Inject constructor(
     private val getScheduleByGroupIdSorted: GetScheduleByGroupIdSorted,
-    private val getPrimarySubjectByElectiveSubjectId: GetPrimarySubjectByElectiveSubjectId,
     private val getPrimarySubjectByEnglishSubjectId: GetPrimarySubjectByEnglishSubjectId,
-    private val isElectiveSubjectHidden: IsElectiveSubjectHidden,
     private val isEnglishSubjectHidden: IsEnglishSubjectHidden,
     syncScheduleByGroupId: SyncScheduleByGroupId,
     preferencesHandler: SharedPreferencesHandler,
@@ -48,9 +44,7 @@ class ScheduleViewModel @Inject constructor(
         dayIndexInWeek: Int,
     ) = scheduleFlow.map {
         it?.getDailySchedule(dayIndexInWeek)?.subjects?.toSubjectsRecyclerItemList(
-            getPrimarySubjectByElectiveSubjectId,
             getPrimarySubjectByEnglishSubjectId,
-            isElectiveSubjectHidden,
             isEnglishSubjectHidden,
         ) ?: emptyList()
     }

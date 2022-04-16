@@ -45,21 +45,9 @@ class DaoModule {
 
     @Singleton
     @Provides
-    fun providePrimaryElectiveSubjectDao(
-        appDatabase: AppDatabase,
-    ) = appDatabase.primaryElectiveSubjectDao()
-
-    @Singleton
-    @Provides
     fun providePrimaryEnglishSubjectDao(
         appDatabase: AppDatabase,
     ) = appDatabase.primaryEnglishSubjectDao()
-
-    @Singleton
-    @Provides
-    fun provideHiddenElectiveSubjectDao(
-        appDatabase: AppDatabase,
-    ) = appDatabase.hiddenElectiveSubjectDao()
 
     @Singleton
     @Provides
