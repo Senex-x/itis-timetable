@@ -17,4 +17,8 @@ interface SubjectRepository : BaseRepository<Subject, Subject, Long> {
     suspend fun show(id: Long)
 
     suspend fun hide(id: Long)
+
+    fun getAllByElectiveSubjectId(
+        electiveSubjectId: Long,
+    ): Flow<List<Subject>>
 }

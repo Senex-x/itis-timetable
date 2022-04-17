@@ -3,6 +3,7 @@ package com.senex.timetable.data.database
 import androidx.room.Dao
 import androidx.room.Query
 import com.senex.timetable.data.database.util.BaseDao
+import com.senex.timetable.data.entity.subject.ElectiveSubjectEntity
 import com.senex.timetable.data.entity.subject.SubjectEntity
 import kotlinx.coroutines.flow.Flow
 
@@ -51,9 +52,9 @@ interface SubjectDao : BaseDao<SubjectEntity, SubjectEntity> {
             AND daily_schedules.index_in_week == :dayIndexInWeek
         ) AS dailyScheduleIds
         ON dailyScheduleIds.id == subjects.daily_schedule_id
-        AND is_visible
+        AND is_visible == 1
         """
-    ) // TODO: Requires testing of isHidden check
+    ) // TODO: Requires testing of isVisible check
     fun getAllVisible(
         groupId: Long,
         dayIndexInWeek: Int,
@@ -70,4 +71,7 @@ interface SubjectDao : BaseDao<SubjectEntity, SubjectEntity> {
 
     @Query("UPDATE subjects SET is_visible = 0 WHERE id = :id")
     suspend fun hide(id: Long)
+
+    @Query("SELECT * FROM subjects WHERE elective_subject_id = :electiveSubjectId")
+    fun getAllByElectiveSubjectId(electiveSubjectId: Long): Flow<List<SubjectEntity>>
 }

@@ -50,4 +50,9 @@ class SubjectRepositoryImpl @Inject constructor(
 
     override suspend fun hide(id: Long) =
         subjectDao.hide(id)
+
+    override fun getAllByElectiveSubjectId(electiveSubjectId: Long) =
+        subjectDao.getAllByElectiveSubjectId(electiveSubjectId).map { list ->
+            list.map { it.transform() }
+        }
 }
