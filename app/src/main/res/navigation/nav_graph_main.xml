@@ -28,7 +28,7 @@
     </fragment>
     <fragment
         android:id="@+id/ordinarySubjectFragment"
-        android:name="com.senex.timetable.presentation.ui.subject.OrdinarySubjectFragment"
+        android:name="com.senex.timetable.presentation.ui.subject.ordinary.OrdinarySubjectFragment"
         android:label="SubjectFragment"
         tools:layout="@layout/fragment_ordinary_subject">
         <argument

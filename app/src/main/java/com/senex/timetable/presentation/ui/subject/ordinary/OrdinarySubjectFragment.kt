@@ -1,4 +1,4 @@
-package com.senex.timetable.presentation.ui.subject
+package com.senex.timetable.presentation.ui.subject.ordinary
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -23,8 +23,8 @@ class OrdinarySubjectFragment : DaggerFragment() {
     private val args: OrdinarySubjectFragmentArgs by navArgs()
 
     @Inject
-    lateinit var factory: SubjectViewModel.Factory
-    private val viewModel: SubjectViewModel by assistedViewModel {
+    lateinit var factory: OrdinarySubjectViewModel.Factory
+    private val viewModel: OrdinarySubjectViewModel by assistedViewModel {
         factory.create(args.subjectId)
     }
 
@@ -79,6 +79,8 @@ class OrdinarySubjectFragment : DaggerFragment() {
         }
     }
 
-    private fun navigateToGroupsFragment() =
-        findNavController().popBackStack()
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
 }

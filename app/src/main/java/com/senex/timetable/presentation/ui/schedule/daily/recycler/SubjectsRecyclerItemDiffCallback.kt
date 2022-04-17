@@ -39,8 +39,7 @@ object SubjectsRecyclerItemDiffCallback: DiffUtil.ItemCallback<SubjectsRecyclerI
 
         is ElectiveItem ->
             newItem is ElectiveItem
-                    && oldItem.electiveSubjects.containsAll(newItem.electiveSubjects)
-                    && newItem.electiveSubjects.containsAll(oldItem.electiveSubjects)
+                    && oldItem == newItem
 
         is EnglishItem ->
             newItem is EnglishItem

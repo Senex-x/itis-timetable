@@ -4,7 +4,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.senex.timetable.presentation.ui.groups.GroupsViewModel
 import com.senex.timetable.presentation.ui.schedule.ScheduleViewModel
-import com.senex.timetable.presentation.ui.subject.SubjectViewModel
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap

@@ -19,6 +19,7 @@ suspend fun DailySchedule.toSubjectsRecyclerItems(
 
     var lastElectiveSubjectId = -1L
     var lastEnglishSubjectId = -1L
+    var lastElectiveSubjectTimePeriod = "" to ""
     var electiveSubjects = mutableListOf<Subject>()
     var englishSubjects = mutableListOf<Subject>()
 
@@ -32,9 +33,11 @@ suspend fun DailySchedule.toSubjectsRecyclerItems(
                 lastElectiveSubjectId,
                 electiveSubject.isVisible,
                 electiveSubjects.find { it.id == electiveSubject.primarySubjectId },
-                electiveSubjects,
+                lastElectiveSubjectTimePeriod,
+
             ))
             electiveSubjects = mutableListOf()
+            lastElectiveSubjectTimePeriod = "" to ""
         }
         if (englishSubjects.isNotEmpty()) {
             add(SubjectsRecyclerItem.EnglishItem(
@@ -57,6 +60,7 @@ suspend fun DailySchedule.toSubjectsRecyclerItems(
                 if (lastElectiveSubjectId != subject.electiveSubjectId) {
                     flushSubjectLists()
                     lastElectiveSubjectId = subject.electiveSubjectId!! // Not gonna be null
+                    lastElectiveSubjectTimePeriod = subject.startTime to subject.endTime
                 }
                 electiveSubjects.add(subject)
             }
