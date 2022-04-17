@@ -57,7 +57,7 @@ class DailyScheduleFragment : DaggerFragment() {
         scheduleRecyclerView.adapter = AsyncListDifferDelegationAdapter(
             SubjectsRecyclerItemDiffCallback,
             SubjectsRecyclerItem.OrdinaryItem.getDelegate(navigateToOrdinarySubjectFragment),
-            SubjectsRecyclerItem.ElectiveItem.getDelegate { requireContext().toast("Elective item") },
+            SubjectsRecyclerItem.ElectiveItem.getDelegate(navigateToElectiveSubjectFragment),
             SubjectsRecyclerItem.EnglishItem.getDelegate { requireContext().toast("English item") },
             SubjectsRecyclerItem.PhysicalItem.getDelegate { requireContext().toast("Physical item") },
             SubjectsRecyclerItem.BlockItem.getDelegate { requireContext().toast("Block item") },
@@ -74,6 +74,14 @@ class DailyScheduleFragment : DaggerFragment() {
         findNavController().navigate(
             ScheduleFragmentDirections.actionScheduleFragmentToOrdinarySubjectFragment(
                 subjectId
+            )
+        )
+    }
+
+    private val navigateToElectiveSubjectFragment: (Long) -> Unit = { electiveSubjectId ->
+        findNavController().navigate(
+            ScheduleFragmentDirections.actionScheduleFragmentToElectiveSubjectFragment(
+                electiveSubjectId
             )
         )
     }

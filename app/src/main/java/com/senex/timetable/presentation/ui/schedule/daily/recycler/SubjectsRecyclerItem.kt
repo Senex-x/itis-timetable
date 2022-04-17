@@ -49,7 +49,7 @@ sealed class SubjectsRecyclerItem {
                     DelegateInflater(ListItemElectiveSubjectBinding::inflate)::inflate
                 ) {
                     binding.root.setOnClickListener {
-                        onItemClick(-1)
+                        onItemClick(item.electiveSubjectId)
                     }
 
                     bind {
