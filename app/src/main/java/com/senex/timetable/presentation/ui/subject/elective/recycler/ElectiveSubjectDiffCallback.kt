@@ -8,14 +8,10 @@ object ElectiveSubjectDiffCallback : DiffUtil.ItemCallback<Subject>() {
     override fun areItemsTheSame(
         oldItem: Subject,
         newItem: Subject
-    ): Boolean {
-        TODO("Not yet implemented")
-    }
+    ) = oldItem.id == newItem.id
 
     override fun areContentsTheSame(
         oldItem: Subject,
         newItem: Subject
-    ): Boolean {
-        TODO("Not yet implemented")
-    }
+    ) = oldItem == newItem
 }
