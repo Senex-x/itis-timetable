@@ -4,11 +4,16 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.navArgs
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.senex.timetable.databinding.FragmentElectiveSubjectBinding
 import com.senex.timetable.presentation.common.assistedViewModel
 import com.senex.timetable.presentation.common.inflateBinding
+import com.senex.timetable.presentation.ui.subject.elective.recycler.SelectableElectiveSubjectsRecyclerAdapter
 import dagger.android.support.DaggerFragment
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 import javax.inject.Inject
 
 class ElectiveSubjectFragment : DaggerFragment() {
@@ -36,8 +41,18 @@ class ElectiveSubjectFragment : DaggerFragment() {
         view: View,
         savedInstanceState: Bundle?,
     ): Unit = with(binding) {
-
+        initSelectableElectiveSubjectRecycler()
     }
+
+    private fun FragmentElectiveSubjectBinding.initSelectableElectiveSubjectRecycler(): Unit =
+        with(selectableElectiveSubjectsRecycler) {
+            layoutManager = LinearLayoutManager(requireContext())
+            adapter = SelectableElectiveSubjectsRecyclerAdapter().apply {
+                viewModel.electiveSubjects
+                    .onEach(::submitList)
+                    .launchIn(viewLifecycleOwner.lifecycleScope)
+            }
+        }
 
     override fun onDestroyView() {
         super.onDestroyView()
