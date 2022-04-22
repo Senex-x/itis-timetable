@@ -29,7 +29,7 @@ sealed class SubjectsRecyclerItem {
                             timePeriod.startTime.text = item.startTime
                             timePeriod.endTime.text = item.endTime
                             subjectName.text = item.name
-                            type.text = item.type.name
+                            type.text = root.resources.getString(item.type.nameStringId) + ','
                             roomNumber.text = item.room
                         }
                     }

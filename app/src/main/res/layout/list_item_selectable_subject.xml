@@ -1,22 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:padding="16dp">
 
-    <RadioButton
-        android:id="@+id/radio_button"
+    <CheckBox
+        android:id="@+id/check_box"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text=""
+        android:minWidth="0dp"
+        android:minHeight="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/elective_subject_name"
+        style="@style/TextAppearance.Material3.TitleMedium"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Item"
-        app:layout_constraintStart_toEndOf="@id/radio_button"
+        android:layout_marginStart="16dp"
+        android:text="Introduction to artificial intelligence"
+        app:layout_constraintBottom_toTopOf="@id/selectable_subject_info_container"
+        app:layout_constraintStart_toEndOf="@id/check_box"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/selectable_subject_info_container"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="4dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/check_box"
+        app:layout_constraintTop_toBottomOf="@+id/elective_subject_name">
+
+        <TextView
+            android:id="@+id/full_professor_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="Talanov M.X." />
+
+        <TextView
+            android:id="@+id/type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            tools:text="Practice," />
+
+        <TextView
+            android:id="@+id/room_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            tools:text="1306" />
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,5 +1,6 @@
 package com.senex.timetable.presentation.ui.subject.elective.selectable.recycler
 
+import android.annotation.SuppressLint
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -27,8 +28,12 @@ class SelectableElectiveSubjectsRecyclerAdapter : ListAdapter<Subject, ViewHolde
         private val binding: ListItemSelectableSubjectBinding,
     ) : RecyclerView.ViewHolder(binding.root) {
 
+        @SuppressLint("SetTextI18n")
         fun bind(item: Subject): Unit = with(binding) {
             electiveSubjectName.text = item.name
+            fullProfessorName.text = item.fullProfessorName
+            type.text = root.resources.getString(item.type.nameStringId) + ','
+            roomNumber.text = item.room
         }
     }
 }

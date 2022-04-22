@@ -1,5 +1,8 @@
 package com.senex.timetable.domain.model.subject
 
+import androidx.annotation.StringRes
+import com.senex.timetable.R
+
 data class Subject(
     val id: Long,
     val dailyScheduleId: Long,
@@ -17,10 +20,12 @@ data class Subject(
     val teacherSurname: String,
     val teacherPatronymic: String,
 ) {
-    enum class Type {
-        LECTURE,
-        SEMINAR,
-        UNDEFINED,
+    val fullProfessorName = "$teacherSurname $teacherName$teacherPatronymic"
+
+    enum class Type(@StringRes val nameStringId: Int) {
+        LECTURE(R.string.lecture_enum_name),
+        SEMINAR(R.string.seminar_enum_name),
+        UNDEFINED(R.string.undefined_enum_name),
     }
 
     enum class Kind {

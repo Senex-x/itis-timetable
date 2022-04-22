@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.senex.timetable.databinding.FragmentSelectableElectiveSubjectsBinding
@@ -12,6 +13,8 @@ import com.senex.timetable.presentation.common.inflateBinding
 import com.senex.timetable.presentation.ui.subject.elective.ElectiveSubjectFragmentArgs
 import com.senex.timetable.presentation.ui.subject.elective.selectable.recycler.SelectableElectiveSubjectsRecyclerAdapter
 import dagger.android.support.DaggerFragment
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 import javax.inject.Inject
 
 class SelectableElectiveSubjectsFragment : DaggerFragment() {
@@ -46,11 +49,9 @@ class SelectableElectiveSubjectsFragment : DaggerFragment() {
         with(selectableElectiveSubjectsRecycler) {
             layoutManager = LinearLayoutManager(requireContext())
             adapter = SelectableElectiveSubjectsRecyclerAdapter().apply {
-                /*
                 viewModel.electiveSubjects
                     .onEach(::submitList)
                     .launchIn(viewLifecycleOwner.lifecycleScope)
-                */
             }
         }
 

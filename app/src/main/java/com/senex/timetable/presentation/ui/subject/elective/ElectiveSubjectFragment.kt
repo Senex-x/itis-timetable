@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.senex.timetable.databinding.FragmentElectiveSubjectBinding
 import com.senex.timetable.presentation.common.assistedViewModel
@@ -36,7 +37,18 @@ class ElectiveSubjectFragment : DaggerFragment() {
         view: View,
         savedInstanceState: Bundle?,
     ): Unit = with(binding) {
+        initSelectCourseButton()
+    }
 
+    private fun FragmentElectiveSubjectBinding.initSelectCourseButton() =
+        chooseElectiveCourseButton.setOnClickListener(navigateToSelectionFragment)
+
+    private val navigateToSelectionFragment: (view: View) -> Unit = {
+        findNavController().navigate(
+            ElectiveSubjectFragmentDirections.actionElectiveSubjectFragmentToSelectableElectiveSubjectsFragment(
+                args.electiveSubjectId
+            )
+        )
     }
 
     override fun onDestroyView() {
