@@ -52,5 +52,20 @@
         <argument
             android:name="elective_subject_id"
             app:argType="long" />
+        <action
+            android:id="@+id/action_electiveSubjectFragment_to_selectableElectiveSubjectsFragment"
+            app:destination="@id/selectableElectiveSubjectsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/selectableElectiveSubjectsFragment"
+        android:name="com.senex.timetable.presentation.ui.subject.elective.selectable.SelectableElectiveSubjectsFragment"
+        android:label="SelectableElectiveSubjectsFragment"
+        tools:layout="@layout/fragment_selectable_elective_subjects">
+        <action
+            android:id="@+id/action_selectableElectiveSubjectsFragment_to_electiveSubjectFragment"
+            app:destination="@id/electiveSubjectFragment" />
+        <argument
+            android:name="elective_subject_id"
+            app:argType="long" />
     </fragment>
 </navigation>

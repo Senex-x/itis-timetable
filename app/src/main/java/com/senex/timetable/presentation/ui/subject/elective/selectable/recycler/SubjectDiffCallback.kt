@@ -1,10 +1,9 @@
-package com.senex.timetable.presentation.ui.subject.elective.recycler
+package com.senex.timetable.presentation.ui.subject.elective.selectable.recycler
 
 import androidx.recyclerview.widget.DiffUtil
 import com.senex.timetable.domain.model.subject.Subject
-import com.senex.timetable.presentation.ui.schedule.daily.recycler.SubjectsRecyclerItem
 
-object ElectiveSubjectDiffCallback : DiffUtil.ItemCallback<Subject>() {
+object SubjectDiffCallback : DiffUtil.ItemCallback<Subject>() {
     override fun areItemsTheSame(
         oldItem: Subject,
         newItem: Subject

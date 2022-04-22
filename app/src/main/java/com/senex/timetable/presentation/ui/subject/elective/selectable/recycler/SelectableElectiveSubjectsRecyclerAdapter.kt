@@ -1,22 +1,22 @@
-package com.senex.timetable.presentation.ui.subject.elective.recycler
+package com.senex.timetable.presentation.ui.subject.elective.selectable.recycler
 
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.senex.timetable.R
-import com.senex.timetable.databinding.ListItemSelectableElectiveSubjectBinding
+import com.senex.timetable.databinding.ListItemSelectableSubjectBinding
 import com.senex.timetable.domain.model.subject.Subject
 import com.senex.timetable.presentation.common.bindListItemView
-import com.senex.timetable.presentation.ui.subject.elective.recycler.SelectableElectiveSubjectsRecyclerAdapter.ViewHolder
+import com.senex.timetable.presentation.ui.subject.elective.selectable.recycler.SelectableElectiveSubjectsRecyclerAdapter.ViewHolder
 
 class SelectableElectiveSubjectsRecyclerAdapter : ListAdapter<Subject, ViewHolder>(
-    ElectiveSubjectDiffCallback
+    SubjectDiffCallback
 ) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = ViewHolder(
         bindListItemView(
-            ListItemSelectableElectiveSubjectBinding::bind,
+            ListItemSelectableSubjectBinding::bind,
             parent,
-            R.layout.list_item_selectable_elective_subject
+            R.layout.list_item_selectable_subject
         )
     )
 
@@ -24,7 +24,7 @@ class SelectableElectiveSubjectsRecyclerAdapter : ListAdapter<Subject, ViewHolde
         holder.bind(getItem(position))
 
     inner class ViewHolder(
-        private val binding: ListItemSelectableElectiveSubjectBinding,
+        private val binding: ListItemSelectableSubjectBinding,
     ) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(item: Subject): Unit = with(binding) {
