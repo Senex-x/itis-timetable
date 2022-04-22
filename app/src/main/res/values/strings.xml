@@ -19,4 +19,5 @@
     <string name="confirm_title">Confirm</string>
     <string name="course_is_not_selected_message">Course is not selected</string>
     <string name="hide_elective_course_title">Hide elective course</string>
+    <string name="very_meaningful_message">Bruh</string>
 </resources>

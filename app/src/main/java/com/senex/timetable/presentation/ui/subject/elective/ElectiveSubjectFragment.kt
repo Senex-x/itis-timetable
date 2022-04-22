@@ -8,6 +8,7 @@ import android.widget.Button
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.google.android.material.appbar.MaterialToolbar
 import com.senex.timetable.databinding.FragmentElectiveSubjectBinding
 import com.senex.timetable.databinding.SubjectShowHideButtonsBinding
 import com.senex.timetable.presentation.common.assistedViewModel
@@ -45,6 +46,13 @@ class ElectiveSubjectFragment : DaggerFragment() {
     ): Unit = with(binding) {
         subjectShowHideButtons.initShowHideCourseButtons()
         chooseElectiveCourseButton.initSelectCourseButton()
+        toolbarContainer.toolbar.initToolbar()
+    }
+
+    private fun MaterialToolbar.initToolbar() {
+        setNavigationOnClickListener {
+            findNavController().popBackStack()
+        }
     }
 
     private fun SubjectShowHideButtonsBinding.initShowHideCourseButtons() {

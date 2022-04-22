@@ -73,7 +73,7 @@ class OrdinarySubjectFragment : DaggerFragment() {
     }
 
     private fun FragmentOrdinarySubjectBinding.initToolbar() {
-        ordinarySubjectToolbar.setNavigationOnClickListener {
+        toolbarContainer.toolbar.setNavigationOnClickListener {
             findNavController().popBackStack()
         }
     }
