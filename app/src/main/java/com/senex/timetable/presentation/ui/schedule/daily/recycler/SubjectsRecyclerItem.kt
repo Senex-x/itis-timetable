@@ -29,9 +29,12 @@ sealed class SubjectsRecyclerItem {
 
                             timePeriod.startTime.text = item.startTime
                             timePeriod.endTime.text = item.endTime
-                            subjectName.text = item.name
-                            type.text = root.resources.getString(item.type.nameStringId) + ','
-                            roomNumber.text = item.room
+
+                            if (item.isVisible) {
+                                subjectName.text = item.name
+                                type.text = root.resources.getString(item.type.nameStringId) + ','
+                                roomNumber.text = item.room
+                            }
                         }
                     }
                 }
@@ -82,7 +85,7 @@ sealed class SubjectsRecyclerItem {
                                     subjectInfo.subjectRoomNumber.text = primarySubject.room
                                     subjectInfo.subjectType.text = getString(
                                         primarySubject.type.nameStringId
-                                    ) + if(primarySubject.room.isNotBlank()) "," else ""
+                                    ) + if (primarySubject.room.isNotBlank()) "," else ""
                                 }
                             }
                         }
@@ -116,12 +119,10 @@ sealed class SubjectsRecyclerItem {
                                 item.isVisible -> { // Treat like empty subject
                                     primarySubjectContent.visibility = View.GONE
                                     unselectedSubjectContent.visibility = View.GONE
-
                                 }
                                 item.primarySubject == null -> { // Not selected yet
                                     primarySubjectContent.visibility = View.GONE
                                     unselectedSubjectContent.visibility = View.VISIBLE
-
                                 }
                                 else -> { // Has primary and selected
                                     primarySubjectContent.visibility = View.VISIBLE
@@ -180,6 +181,26 @@ sealed class SubjectsRecyclerItem {
                             timePeriod.startTime.text = item.startTime
                             timePeriod.endTime.text = item.endTime
                             blockSubjectName.text = item.name
+                        }
+                    }
+                }
+        }
+    }
+
+    data class EmptyItem(
+        val emptySubject: Subject,
+    ) : SubjectsRecyclerItem() {
+        companion object {
+            fun getDelegate() =
+                adapterDelegateViewBinding<EmptyItem, SubjectsRecyclerItem, ListItemEmptySubjectBinding>(
+                    DelegateInflater(ListItemEmptySubjectBinding::inflate)::inflate
+                ) {
+                    bind {
+                        with(binding) {
+                            val item = item.emptySubject
+
+                            timePeriod.startTime.text = item.startTime
+                            timePeriod.endTime.text = item.endTime
                         }
                     }
                 }

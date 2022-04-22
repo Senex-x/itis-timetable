@@ -61,10 +61,10 @@ class DailyScheduleFragment : DaggerFragment() {
             SubjectsRecyclerItem.EnglishItem.getDelegate { requireContext().toast("English item") },
             SubjectsRecyclerItem.PhysicalItem.getDelegate { requireContext().toast("Physical item") },
             SubjectsRecyclerItem.BlockItem.getDelegate { requireContext().toast("Block item") },
+            SubjectsRecyclerItem.EmptyItem.getDelegate(),
         ).apply {
             viewModel.getDailySubjectRecyclerItems(dayOfWeek).onEach {
                 emptyListHint.visibility = if (it.isEmpty()) View.VISIBLE else View.GONE
-
                 items = it
             }.launchIn(viewLifecycleOwner.lifecycleScope)
         }

@@ -79,6 +79,10 @@ suspend fun DailySchedule.toSubjectsRecyclerItems(
                 flushSubjectLists()
                 add(SubjectsRecyclerItem.BlockItem(subject))
             }
+            Subject.Kind.EMPTY -> {
+                flushSubjectLists()
+                add(SubjectsRecyclerItem.EmptyItem(subject))
+            }
         }
     }
 

@@ -72,7 +72,8 @@ data class SubjectEntity constructor(
         PHYSICAL,
         ENGLISH,
         ELECTIVE,
-        BLOCK
+        BLOCK,
+        EMPTY,
     }
 }
 

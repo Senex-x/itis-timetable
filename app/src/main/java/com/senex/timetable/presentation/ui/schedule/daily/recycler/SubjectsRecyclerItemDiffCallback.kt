@@ -11,22 +11,21 @@ object SubjectsRecyclerItemDiffCallback: DiffUtil.ItemCallback<SubjectsRecyclerI
         is OrdinaryItem ->
             newItem is OrdinaryItem
                     && oldItem.subject.id == newItem.subject.id
-
         is ElectiveItem ->
             newItem is ElectiveItem
                     && oldItem.electiveSubjectId == newItem.electiveSubjectId
-
         is EnglishItem ->
             newItem is EnglishItem
                     && oldItem.englishSubjectId == newItem.englishSubjectId
-
         is PhysicalItem ->
             newItem is PhysicalItem
                     && oldItem.physicalSubject.id == newItem.physicalSubject.id
-
         is BlockItem ->
             newItem is BlockItem
                     && oldItem.blockSubject.id == newItem.blockSubject.id
+        is EmptyItem ->
+            newItem is EmptyItem
+                    && oldItem.emptySubject.id == newItem.emptySubject.id
     }
 
     override fun areContentsTheSame(
@@ -36,22 +35,21 @@ object SubjectsRecyclerItemDiffCallback: DiffUtil.ItemCallback<SubjectsRecyclerI
         is OrdinaryItem ->
             newItem is OrdinaryItem
                     && oldItem == newItem
-
         is ElectiveItem ->
             newItem is ElectiveItem
                     && oldItem == newItem
-
         is EnglishItem ->
             newItem is EnglishItem
                     && oldItem.englishSubjects.containsAll(newItem.englishSubjects)
                     && newItem.englishSubjects.containsAll(oldItem.englishSubjects)
-
         is PhysicalItem ->
             newItem is PhysicalItem
                     && oldItem == newItem
-
         is BlockItem ->
             newItem is BlockItem
                     && oldItem == newItem
+        is EmptyItem ->
+            newItem is EmptyItem
+                    && oldItem.emptySubject == newItem.emptySubject
     }
 }

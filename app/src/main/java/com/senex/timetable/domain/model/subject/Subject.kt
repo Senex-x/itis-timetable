@@ -33,7 +33,8 @@ data class Subject(
         PHYSICAL,
         ENGLISH,
         ELECTIVE,
-        BLOCK
+        BLOCK,
+        EMPTY,
     }
 }
 
