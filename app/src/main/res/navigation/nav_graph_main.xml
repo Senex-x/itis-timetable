@@ -67,5 +67,8 @@
         <argument
             android:name="elective_subject_id"
             app:argType="long" />
+        <argument
+            android:name="primary_elective_subject_id"
+            app:argType="long" />
     </fragment>
 </navigation>

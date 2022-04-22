@@ -3,30 +3,58 @@ package com.senex.timetable.presentation.ui.subject.elective.selectable
 import androidx.lifecycle.ViewModel
 import com.senex.timetable.domain.usecase.subject.GetAllByElectiveSubjectId
 import com.senex.timetable.domain.usecase.subject.elective.GetElectiveSubject
+import com.senex.timetable.domain.usecase.subject.elective.SetPrimaryElectiveSubject
+import com.senex.timetable.domain.util.log
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedFactory
 import dagger.assisted.AssistedInject
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.launch
 
 class SelectableElectiveSubjectsViewModel @AssistedInject constructor(
     @Assisted private val selectableSubjectId: Long,
+    @Assisted private val savedPrimarySubjectId: Long?,
+    private val setPrimaryElectiveSubject: SetPrimaryElectiveSubject,
     getElectiveSubject: GetElectiveSubject,
     getAllByElectiveSubjectId: GetAllByElectiveSubjectId,
 ) : ViewModel() {
-    val electiveSubject = getElectiveSubject(selectableSubjectId).map {
-        it ?: throw IllegalArgumentException(invalidIdMessage)
+    private val electiveSubjectId = getElectiveSubject(selectableSubjectId).map {
+        it?.id ?: throw IllegalArgumentException(invalidIdMessage)
     }
+
     val electiveSubjects = getAllByElectiveSubjectId(selectableSubjectId)
 
-    var primarySubjectId: Long? = null
+    private val _mutableStateFlow = MutableStateFlow(savedPrimarySubjectId)
+    val primarySubjectId: StateFlow<Long?> = _mutableStateFlow
+
+    fun setPrimarySubjectId(primarySubjectId: Long?) {
+        _mutableStateFlow.value = primarySubjectId
+    }
+
+    val isPrimarySubjectSet
+        get() = _mutableStateFlow.value != null
 
     fun commitPrimarySubject() {
-        // TODO: Implement
+        CoroutineScope(Dispatchers.Default).launch {
+            log(primarySubjectId.value.toString())
+            setPrimaryElectiveSubject(
+                electiveSubjectId.first(),
+                primarySubjectId.value
+            )
+        }
     }
 
     @AssistedFactory
     interface Factory {
-        fun create(electiveSubjectId: Long): SelectableElectiveSubjectsViewModel
+        fun create(
+            electiveSubjectId: Long,
+            primarySubjectId: Long?,
+        ): SelectableElectiveSubjectsViewModel
     }
 
     private val invalidIdMessage =

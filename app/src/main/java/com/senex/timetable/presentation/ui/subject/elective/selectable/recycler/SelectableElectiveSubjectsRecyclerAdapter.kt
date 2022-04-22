@@ -12,6 +12,7 @@ import com.senex.timetable.presentation.ui.subject.elective.selectable.recycler.
 
 class SelectableElectiveSubjectsRecyclerAdapter(
     private val onItemCheckedChangeListener: (Boolean, Long) -> Unit,
+    private val selectedItemId: Long?,
 ) : ListAdapter<Subject, ViewHolder>(
     SubjectDiffCallback
 ) {
@@ -38,6 +39,10 @@ class SelectableElectiveSubjectsRecyclerAdapter(
             fullProfessorName.text = item.fullProfessorName
             type.text = root.resources.getString(item.type.nameStringId) + ','
             roomNumber.text = item.room
+
+            if(item.id == selectedItemId) {
+                checkBox.isChecked = true
+            }
 
             checkBox.setOnCheckedChangeListener { _, isChecked ->
                 onItemCheckedChangeListener(isChecked, item.id)

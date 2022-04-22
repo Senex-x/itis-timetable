@@ -13,12 +13,15 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.appbar.MaterialToolbar
 import com.senex.timetable.R
 import com.senex.timetable.databinding.FragmentSelectableElectiveSubjectsBinding
+import com.senex.timetable.domain.util.toast
 import com.senex.timetable.presentation.common.assistedViewModel
 import com.senex.timetable.presentation.common.inflateBinding
 import com.senex.timetable.presentation.ui.subject.elective.selectable.recycler.SelectableElectiveSubjectsRecyclerAdapter
 import dagger.android.support.DaggerFragment
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class SelectableElectiveSubjectsFragment : DaggerFragment() {
@@ -31,7 +34,7 @@ class SelectableElectiveSubjectsFragment : DaggerFragment() {
     @Inject
     lateinit var factory: SelectableElectiveSubjectsViewModel.Factory
     private val viewModel: SelectableElectiveSubjectsViewModel by assistedViewModel {
-        factory.create(args.electiveSubjectId)
+        factory.create(args.electiveSubjectId, args.primaryElectiveSubjectId.takeIf { it != -1L } )
     }
 
     override fun onCreateView(
@@ -52,6 +55,16 @@ class SelectableElectiveSubjectsFragment : DaggerFragment() {
     }
 
     private fun MaterialToolbar.initToolbar() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewModel.primarySubjectId.collect {
+                if (it != null) {
+                    setConfirmMenuItemColor(R.color.primary)
+                } else {
+                    setConfirmMenuItemColor(R.color.gray)
+                }
+            }
+        }
+
         setNavigationOnClickListener {
             popBackStack()
         }
@@ -64,14 +77,20 @@ class SelectableElectiveSubjectsFragment : DaggerFragment() {
     }
 
     private fun confirmSelection(): Boolean {
-        // TODO: Handle
-        popBackStack()
+        if (viewModel.isPrimarySubjectSet) {
+            commitAndPopBackStack()
+        } else {
+            requireContext().toast(getString(R.string.course_is_not_selected_message))
+        }
         return true
     }
 
     private fun RecyclerView.initRecycler() {
         layoutManager = LinearLayoutManager(requireContext())
-        adapter = SelectableElectiveSubjectsRecyclerAdapter(onItemCheckedChangeListener).apply {
+        adapter = SelectableElectiveSubjectsRecyclerAdapter(
+            onItemCheckedChangeListener,
+            viewModel.primarySubjectId.value
+        ).apply {
             viewModel.electiveSubjects
                 .onEach(::submitList)
                 .launchIn(viewLifecycleOwner.lifecycleScope)
@@ -80,28 +99,23 @@ class SelectableElectiveSubjectsFragment : DaggerFragment() {
 
     private val onItemCheckedChangeListener = { isChecked: Boolean, subjectId: Long ->
         if (isChecked) {
-            viewModel.primarySubjectId = subjectId
-        } else if (viewModel.primarySubjectId == subjectId) {
-            viewModel.primarySubjectId = null
-        }
-
-        val toolbar = binding.selectableElectiveSubjectsToolbar
-        if (viewModel.primarySubjectId != null) {
-            toolbar.setConfirmMenuItemColor(R.color.primary)
-        } else {
-            toolbar.setConfirmMenuItemColor(R.color.gray)
+            viewModel.setPrimarySubjectId(subjectId)
+        } else if (viewModel.primarySubjectId.value == subjectId) {
+            viewModel.setPrimarySubjectId(null)
         }
     }
 
     private fun Button.initSelectNothingButton() = setOnClickListener {
-        viewModel.primarySubjectId = null
+        viewModel.setPrimarySubjectId(null)
+        commitAndPopBackStack()
+    }
+
+    private fun commitAndPopBackStack() {
+        viewModel.commitPrimarySubject()
         popBackStack()
     }
 
-    private fun popBackStack() {
-        viewModel.commitPrimarySubject()
-        findNavController().popBackStack()
-    }
+    private fun popBackStack() = findNavController().popBackStack()
 
     private fun MaterialToolbar.setConfirmMenuItemColor(colorId: Int) =
         menu.findItem(R.id.action_confirm)

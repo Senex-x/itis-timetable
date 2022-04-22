@@ -4,12 +4,15 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.senex.timetable.databinding.FragmentElectiveSubjectBinding
 import com.senex.timetable.presentation.common.assistedViewModel
 import com.senex.timetable.presentation.common.inflateBinding
 import dagger.android.support.DaggerFragment
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class ElectiveSubjectFragment : DaggerFragment() {
@@ -44,11 +47,14 @@ class ElectiveSubjectFragment : DaggerFragment() {
         chooseElectiveCourseButton.setOnClickListener(navigateToSelectionFragment)
 
     private val navigateToSelectionFragment: (view: View) -> Unit = {
-        findNavController().navigate(
-            ElectiveSubjectFragmentDirections.actionElectiveSubjectFragmentToSelectableElectiveSubjectsFragment(
-                args.electiveSubjectId
+        lifecycleScope.launch {
+            findNavController().navigate(
+                ElectiveSubjectFragmentDirections.actionElectiveSubjectFragmentToSelectableElectiveSubjectsFragment(
+                    args.electiveSubjectId,
+                    viewModel.electiveSubject.first().primarySubjectId ?: -1,
+                )
             )
-        )
+        }
     }
 
     override fun onDestroyView() {

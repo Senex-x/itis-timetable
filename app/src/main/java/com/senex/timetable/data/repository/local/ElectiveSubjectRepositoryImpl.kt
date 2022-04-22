@@ -23,6 +23,9 @@ class ElectiveSubjectRepositoryImpl @Inject constructor(
     override suspend fun delete(item: ElectiveSubject) =
         electiveSubjectDao.delete(item.transform())
 
+    override suspend fun setPrimarySubjectId(electiveSubjectId: Long, primarySubjectId: Long?) =
+        electiveSubjectDao.setPrimarySubjectId(electiveSubjectId, primarySubjectId)
+
     override fun get(id: Long) =
         electiveSubjectDao.get(id).map { it?.transform() }
 

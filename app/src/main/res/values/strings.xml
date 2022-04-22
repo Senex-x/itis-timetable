@@ -17,4 +17,5 @@
     <string name="seminar_enum_name">Practice</string>
     <string name="undefined_enum_name">Type undefined</string>
     <string name="confirm_title">Confirm</string>
+    <string name="course_is_not_selected_message">Course is not selected</string>
 </resources>
