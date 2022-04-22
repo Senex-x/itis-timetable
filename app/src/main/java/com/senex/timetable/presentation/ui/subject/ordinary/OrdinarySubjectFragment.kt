@@ -50,9 +50,8 @@ class OrdinarySubjectFragment : DaggerFragment() {
             }
         }
 
-        val isVisible = viewModel.isSubjectVisible
         lifecycleScope.launch {
-            isVisible.collect {
+            viewModel.isSubjectVisible.collect {
                 // Handle visibility changes
                 if (it) {
                     showSubjectButton.visibility = View.INVISIBLE

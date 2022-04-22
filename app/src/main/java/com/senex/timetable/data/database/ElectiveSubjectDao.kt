@@ -26,4 +26,10 @@ interface ElectiveSubjectDao : BaseDao<ElectiveSubjectEntity, ElectiveSubjectEnt
         WHERE id = :electiveSubjectId"""
     )
     suspend fun setPrimarySubjectId(electiveSubjectId: Long, primarySubjectId: Long?)
+
+    @Query("UPDATE elective_subjects SET is_visible = 1 WHERE id = :id")
+    suspend fun show(id: Long)
+
+    @Query("UPDATE elective_subjects SET is_visible = 0 WHERE id = :id")
+    suspend fun hide(id: Long)
 }

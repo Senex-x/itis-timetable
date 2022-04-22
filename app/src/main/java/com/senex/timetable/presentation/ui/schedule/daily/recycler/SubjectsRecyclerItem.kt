@@ -3,6 +3,7 @@ package com.senex.timetable.presentation.ui.schedule.daily.recycler
 import android.annotation.SuppressLint
 import android.view.View
 import com.hannesdorfmann.adapterdelegates4.dsl.adapterDelegateViewBinding
+import com.senex.timetable.R
 import com.senex.timetable.databinding.*
 import com.senex.timetable.domain.model.subject.Subject
 import com.senex.timetable.presentation.common.DelegateInflater
@@ -44,6 +45,7 @@ sealed class SubjectsRecyclerItem {
         val timePeriod: Pair<String, String>,
     ) : SubjectsRecyclerItem() {
         companion object {
+            @SuppressLint("SetTextI18n")
             fun getDelegate(onItemClick: (Long) -> Unit) =
                 adapterDelegateViewBinding<ElectiveItem, SubjectsRecyclerItem, ListItemElectiveSubjectBinding>(
                     DelegateInflater(ListItemElectiveSubjectBinding::inflate)::inflate
@@ -66,12 +68,21 @@ sealed class SubjectsRecyclerItem {
                                 primarySubject == null -> { // Not selected yet
                                     primarySubjectContent.visibility = View.GONE
                                     unselectedSubjectContent.visibility = View.VISIBLE
+                                    root.setBackgroundColor(
+                                        root.resources.getColor(
+                                            R.color.gray_lighter, root.context.theme
+                                        )
+                                    )
                                 }
                                 else -> { // Has primary and visible
                                     primarySubjectContent.visibility = View.VISIBLE
                                     unselectedSubjectContent.visibility = View.GONE
 
-                                    primarySubjectName.text = primarySubject.name
+                                    subjectInfo.subjectName.text = primarySubject.name
+                                    subjectInfo.subjectRoomNumber.text = primarySubject.room
+                                    subjectInfo.subjectType.text = getString(
+                                        primarySubject.type.nameStringId
+                                    ) + if(primarySubject.room.isNotBlank()) "," else ""
                                 }
                             }
                         }

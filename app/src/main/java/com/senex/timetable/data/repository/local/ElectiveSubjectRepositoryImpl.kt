@@ -26,6 +26,12 @@ class ElectiveSubjectRepositoryImpl @Inject constructor(
     override suspend fun setPrimarySubjectId(electiveSubjectId: Long, primarySubjectId: Long?) =
         electiveSubjectDao.setPrimarySubjectId(electiveSubjectId, primarySubjectId)
 
+    override suspend fun show(id: Long) =
+        electiveSubjectDao.show(id)
+
+    override suspend fun hide(id: Long) =
+        electiveSubjectDao.hide(id)
+
     override fun get(id: Long) =
         electiveSubjectDao.get(id).map { it?.transform() }
 
