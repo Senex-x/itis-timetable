@@ -31,9 +31,9 @@ sealed class SubjectsRecyclerItem {
                             timePeriod.endTime.text = item.endTime
 
                             if (item.isVisible) {
-                                subjectName.text = item.name
-                                type.text = root.resources.getString(item.type.nameStringId) + ','
-                                roomNumber.text = item.room
+                                subjectInfo.name.text = item.name
+                                subjectInfo.type.text = root.resources.getString(item.type.nameStringId) + ','
+                                subjectInfo.roomNumber.text = item.room
                             }
                         }
                     }
@@ -82,9 +82,9 @@ sealed class SubjectsRecyclerItem {
                                     primarySubjectContent.visibility = View.VISIBLE
                                     unselectedSubjectContent.visibility = View.GONE
 
-                                    subjectInfo.subjectName.text = primarySubject.name
-                                    subjectInfo.subjectRoomNumber.text = primarySubject.room
-                                    subjectInfo.subjectType.text = getString(
+                                    subjectInfo.name.text = primarySubject.name
+                                    subjectInfo.roomNumber.text = primarySubject.room
+                                    subjectInfo.type.text = getString(
                                         primarySubject.type.nameStringId
                                     ) + if (primarySubject.room.isNotBlank()) "," else ""
                                 }

@@ -6,11 +6,11 @@
     android:layout_height="wrap_content">
 
     <TextView
-        android:id="@+id/subject_name"
+        android:id="@+id/name"
         style="@style/TextAppearance.Material3.TitleMedium"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@id/subject_info_container"
+        app:layout_constraintBottom_toTopOf="@id/info_container"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -18,23 +18,23 @@
         tools:text="Computer science" />
 
     <LinearLayout
-        android:id="@+id/subject_info_container"
+        android:id="@+id/info_container"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/subject_name">
+        app:layout_constraintTop_toBottomOf="@+id/name">
 
         <TextView
-            android:id="@+id/subject_type"
+            android:id="@+id/type"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             tools:text="Practice," />
 
         <TextView
-            android:id="@+id/subject_room_number"
+            android:id="@+id/room_number"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"

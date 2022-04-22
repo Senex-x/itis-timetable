@@ -25,5 +25,4 @@
         app:layout_constraintStart_toEndOf="@+id/time_period"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="Discipline block lessons" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>
