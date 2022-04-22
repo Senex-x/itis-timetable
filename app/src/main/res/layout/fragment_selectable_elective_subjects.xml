@@ -5,6 +5,24 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/selectable_elective_subjects_toolbar_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/selectable_elective_subjects_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/white"
+            app:menu="@menu/fragment_selectable_elective_subjects_toolbar_menu"
+            app:navigationIcon="@drawable/ic_arrow_back_24"
+            app:navigationIconTint="@color/primary"
+            app:title="Select your course"
+            app:titleTextColor="@color/primary" />
+    </com.google.android.material.appbar.AppBarLayout>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/selectable_elective_subjects_recycler"
         android:layout_width="0dp"
@@ -12,7 +30,7 @@
         app:layout_constraintBottom_toTopOf="@+id/select_nothing_hint"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/selectable_elective_subjects_toolbar_container"
         tools:listitem="@layout/list_item_selectable_subject" />
 
     <TextView
