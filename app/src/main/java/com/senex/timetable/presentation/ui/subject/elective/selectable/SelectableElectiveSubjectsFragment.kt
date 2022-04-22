@@ -34,7 +34,7 @@ class SelectableElectiveSubjectsFragment : DaggerFragment() {
     @Inject
     lateinit var factory: SelectableElectiveSubjectsViewModel.Factory
     private val viewModel: SelectableElectiveSubjectsViewModel by assistedViewModel {
-        factory.create(args.electiveSubjectId, args.primaryElectiveSubjectId.takeIf { it != -1L } )
+        factory.create(args.electiveSubjectId, args.primaryElectiveSubjectId.takeIf { it != -1L })
     }
 
     override fun onCreateView(
@@ -57,14 +57,11 @@ class SelectableElectiveSubjectsFragment : DaggerFragment() {
     private fun MaterialToolbar.initToolbar() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.primarySubjectId.collect {
-                if (it != null) {
-                    setConfirmMenuItemColor(R.color.primary)
-                } else {
-                    setConfirmMenuItemColor(R.color.gray)
-                }
+                setConfirmMenuItemColor(
+                    if (it != null) R.color.primary else R.color.gray
+                )
             }
         }
-
         setNavigationOnClickListener {
             popBackStack()
         }

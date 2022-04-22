@@ -4,7 +4,9 @@ import com.senex.timetable.domain.model.schedule.DailySchedule
 import com.senex.timetable.domain.model.subject.Subject
 import com.senex.timetable.domain.usecase.subject.english.hidden.IsEnglishSubjectHidden
 import com.senex.timetable.domain.usecase.subject.english.primary.GetPrimarySubjectByEnglishSubjectId
+import com.senex.timetable.domain.util.log
 import kotlinx.coroutines.flow.first
+
 
 /**
  * Maps daily subjects.
@@ -19,7 +21,6 @@ suspend fun DailySchedule.toSubjectsRecyclerItems(
 
     var lastElectiveSubjectId = -1L
     var lastEnglishSubjectId = -1L
-    var lastElectiveSubjectTimePeriod = "" to ""
     var electiveSubjects = mutableListOf<Subject>()
     var englishSubjects = mutableListOf<Subject>()
 
@@ -29,20 +30,21 @@ suspend fun DailySchedule.toSubjectsRecyclerItems(
                 it.id == lastElectiveSubjectId
             }!!
 
+            val firstElectiveSubject = electiveSubjects.first()
             add(SubjectsRecyclerItem.ElectiveItem(
                 lastElectiveSubjectId,
                 electiveSubject.isVisible,
+                firstElectiveSubject.indexInDay,
                 electiveSubjects.find { it.id == electiveSubject.primarySubjectId },
-                lastElectiveSubjectTimePeriod,
-
+                firstElectiveSubject.startTime to firstElectiveSubject.endTime,
             ))
             electiveSubjects = mutableListOf()
-            lastElectiveSubjectTimePeriod = "" to ""
         }
         if (englishSubjects.isNotEmpty()) {
             add(SubjectsRecyclerItem.EnglishItem(
                 lastEnglishSubjectId,
                 isEnglishSubjectHidden(lastEnglishSubjectId),
+                englishSubjects.first().indexInDay,
                 getPrimarySubjectByEnglishSubjectId(lastEnglishSubjectId).first(),
                 englishSubjects,
             ))
@@ -60,7 +62,6 @@ suspend fun DailySchedule.toSubjectsRecyclerItems(
                 if (lastElectiveSubjectId != subject.electiveSubjectId) {
                     flushSubjectLists()
                     lastElectiveSubjectId = subject.electiveSubjectId!! // Not gonna be null
-                    lastElectiveSubjectTimePeriod = subject.startTime to subject.endTime
                 }
                 electiveSubjects.add(subject)
             }
@@ -85,6 +86,22 @@ suspend fun DailySchedule.toSubjectsRecyclerItems(
             }
         }
     }
-
     flushSubjectLists()
+}.dropLastEmptySubjects()
+
+private fun List<SubjectsRecyclerItem>.dropLastEmptySubjects(): List<SubjectsRecyclerItem> { // 1, 1, 1, 0, 0 -> 0, 0, 1, 1, 1
+    var reversedIndexOfFirstMeaningfulSubject = 0
+    run outer@{
+        asReversed().forEachIndexed { index, subjectsRecyclerItem ->
+            reversedIndexOfFirstMeaningfulSubject = index
+            when (subjectsRecyclerItem) {
+                !is SubjectsRecyclerItem.EmptyItem -> {
+                    return@outer
+                }
+                else -> {}
+            }
+            log(reversedIndexOfFirstMeaningfulSubject.toString())
+        }
+    }
+    return dropLast(reversedIndexOfFirstMeaningfulSubject)
 }

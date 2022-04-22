@@ -44,6 +44,7 @@ sealed class SubjectsRecyclerItem {
     data class ElectiveItem(
         val electiveSubjectId: Long,
         val isVisible: Boolean,
+        val indexInDay: Int,
         val primarySubject: Subject?,
         val timePeriod: Pair<String, String>,
     ) : SubjectsRecyclerItem() {
@@ -97,6 +98,7 @@ sealed class SubjectsRecyclerItem {
     data class EnglishItem(
         val englishSubjectId: Long,
         val isVisible: Boolean,
+        val indexInDay: Int,
         val primarySubject: Subject?,
         val englishSubjects: List<Subject>,
     ) : SubjectsRecyclerItem() {
