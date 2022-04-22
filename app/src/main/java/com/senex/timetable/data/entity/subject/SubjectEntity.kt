@@ -32,7 +32,7 @@ import com.squareup.moshi.JsonClass
     ],
 )
 @JsonClass(generateAdapter = true)
-data class SubjectEntity @JvmOverloads constructor(
+data class SubjectEntity constructor(
     @PrimaryKey
     val id: Long,
     @ColumnInfo(name = "daily_schedule_id")

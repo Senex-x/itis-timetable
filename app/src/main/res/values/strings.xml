@@ -16,4 +16,5 @@
     <string name="lecture_enum_name">Lecture</string>
     <string name="seminar_enum_name">Practice</string>
     <string name="undefined_enum_name">Type undefined</string>
+    <string name="confirm_title">Confirm</string>
 </resources>
