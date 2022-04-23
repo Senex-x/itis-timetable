@@ -19,7 +19,6 @@ import com.senex.timetable.presentation.common.inflateBinding
 import com.senex.timetable.presentation.ui.groups.recycler.GroupsRecyclerItem
 import com.senex.timetable.presentation.ui.groups.recycler.GroupsRecyclerItemDiffCallback
 import dagger.android.support.DaggerFragment
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -48,7 +47,6 @@ class GroupsFragment : DaggerFragment() {
             findNavController(),
             AppBarConfiguration(findNavController().graph)
         )
-        //groupsToolbar.setNavigationIconTint(resources.getColor(R.color.primary, requireContext().theme))
 
         groupsToolbar.setOnMenuItemClickListener {
             when (it.itemId) {

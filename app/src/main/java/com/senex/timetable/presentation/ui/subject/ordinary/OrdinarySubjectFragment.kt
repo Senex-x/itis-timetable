@@ -7,6 +7,9 @@ import android.view.ViewGroup
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.setupWithNavController
+import com.google.android.material.appbar.MaterialToolbar
 import com.senex.timetable.databinding.FragmentOrdinarySubjectBinding
 import com.senex.timetable.presentation.common.assistedViewModel
 import com.senex.timetable.presentation.common.inflateBinding
@@ -40,7 +43,7 @@ class OrdinarySubjectFragment : DaggerFragment() {
         view: View,
         savedInstanceState: Bundle?,
     ): Unit = with(binding) {
-        initToolbar()
+        toolbarContainer.toolbar.initToolbar()
 
         val subject = viewModel.subject
         lifecycleScope.launch {
@@ -72,10 +75,11 @@ class OrdinarySubjectFragment : DaggerFragment() {
         }
     }
 
-    private fun FragmentOrdinarySubjectBinding.initToolbar() {
-        toolbarContainer.toolbar.setNavigationOnClickListener {
-            findNavController().popBackStack()
-        }
+    private fun MaterialToolbar.initToolbar() {
+        setupWithNavController(
+            findNavController(),
+            AppBarConfiguration(findNavController().graph)
+        )
     }
 
     override fun onDestroyView() {

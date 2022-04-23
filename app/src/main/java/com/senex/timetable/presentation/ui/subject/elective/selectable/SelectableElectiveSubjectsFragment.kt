@@ -8,6 +8,8 @@ import android.widget.Button
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.setupWithNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.appbar.MaterialToolbar
@@ -49,7 +51,7 @@ class SelectableElectiveSubjectsFragment : DaggerFragment() {
         view: View,
         savedInstanceState: Bundle?,
     ): Unit = with(binding) {
-        selectableElectiveSubjectsToolbar.initToolbar()
+        toolbar.initToolbar()
         selectableElectiveSubjectsRecycler.initRecycler()
         selectNothingButton.initSelectNothingButton()
     }
@@ -62,9 +64,10 @@ class SelectableElectiveSubjectsFragment : DaggerFragment() {
                 )
             }
         }
-        setNavigationOnClickListener {
-            popBackStack()
-        }
+        setupWithNavController(
+            findNavController(),
+            AppBarConfiguration(findNavController().graph)
+        )
         setOnMenuItemClickListener {
             when (it.itemId) {
                 R.id.action_confirm -> confirmSelection()

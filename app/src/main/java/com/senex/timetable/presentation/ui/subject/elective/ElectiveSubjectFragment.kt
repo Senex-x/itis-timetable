@@ -8,6 +8,8 @@ import android.widget.Button
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.appbar.MaterialToolbar
 import com.senex.timetable.databinding.FragmentElectiveSubjectBinding
 import com.senex.timetable.databinding.SubjectShowHideButtonsBinding
@@ -50,9 +52,10 @@ class ElectiveSubjectFragment : DaggerFragment() {
     }
 
     private fun MaterialToolbar.initToolbar() {
-        setNavigationOnClickListener {
-            findNavController().popBackStack()
-        }
+        setupWithNavController(
+            findNavController(),
+            AppBarConfiguration(findNavController().graph)
+        )
     }
 
     private fun SubjectShowHideButtonsBinding.initShowHideCourseButtons() {
