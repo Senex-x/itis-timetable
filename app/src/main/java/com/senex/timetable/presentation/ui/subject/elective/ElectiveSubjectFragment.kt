@@ -15,6 +15,7 @@ import com.senex.timetable.databinding.FragmentElectiveSubjectBinding
 import com.senex.timetable.databinding.SubjectShowHideButtonsBinding
 import com.senex.timetable.presentation.common.assistedViewModel
 import com.senex.timetable.presentation.common.inflateBinding
+import com.senex.timetable.presentation.common.initNavToolbar
 import dagger.android.support.DaggerFragment
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.first
@@ -48,14 +49,7 @@ class ElectiveSubjectFragment : DaggerFragment() {
     ): Unit = with(binding) {
         subjectShowHideButtons.initShowHideCourseButtons()
         chooseElectiveCourseButton.initSelectCourseButton()
-        toolbarContainer.toolbar.initToolbar()
-    }
-
-    private fun MaterialToolbar.initToolbar() {
-        setupWithNavController(
-            findNavController(),
-            AppBarConfiguration(findNavController().graph)
-        )
+        toolbarContainer.toolbar.initNavToolbar(findNavController())
     }
 
     private fun SubjectShowHideButtonsBinding.initShowHideCourseButtons() {

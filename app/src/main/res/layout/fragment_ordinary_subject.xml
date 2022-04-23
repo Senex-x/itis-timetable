@@ -7,7 +7,7 @@
 
     <include
         android:id="@+id/toolbar_container"
-        layout="@layout/subject_toolbar"
+        layout="@layout/nav_toolbar"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/groupsFragment"
+        android:icon="@drawable/ic_people_24"
+        android:title="@string/select_group_title" />
+    <item
+        android:id="@+id/hiddenSubjectsFragment"
+        android:icon="@drawable/ic_hide_source_24"
+        android:title="@string/hidden_subjects_title" />
+    <item
+        android:id="@+id/settingsFragment"
+        android:icon="@drawable/ic_settings_24"
+        android:title="@string/settings_title" />
+</menu>

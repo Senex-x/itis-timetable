@@ -20,4 +20,7 @@
     <string name="course_is_not_selected_message">Course is not selected</string>
     <string name="hide_elective_course_title">Hide elective course</string>
     <string name="very_meaningful_message">Bruh</string>
+    <string name="settings_title">Settings</string>
+    <string name="select_group_title">Select group</string>
+    <string name="hidden_subjects_title">Hidden subjects</string>
 </resources>

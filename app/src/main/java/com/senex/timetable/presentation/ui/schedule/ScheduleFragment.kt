@@ -4,17 +4,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupWithNavController
-import com.google.android.material.navigation.NavigationView
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.senex.timetable.R
 import com.senex.timetable.databinding.FragmentScheduleBinding
-import com.senex.timetable.presentation.MainActivity
 import com.senex.timetable.presentation.common.inflateBinding
 import java.time.DayOfWeek
 
@@ -45,7 +42,10 @@ class ScheduleFragment : Fragment() {
 
         tableToolbar.setupWithNavController(
             findNavController(),
-            AppBarConfiguration(findNavController().graph, (requireActivity() as MainActivity).findViewById<DrawerLayout>(R.id.drawer_layout))
+            AppBarConfiguration(
+                findNavController().graph,
+                drawerLayout
+            )
         )
 
         tableToolbar.setOnMenuItemClickListener {
