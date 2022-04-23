@@ -8,17 +8,14 @@
 
     <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/groups_toolbar"
-        style="@style/Widget.MaterialComponents.Toolbar.Primary"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="@color/white"
         android:paddingEnd="6dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:menu="@menu/groups_fragment_toolbar_menu"
         app:title="@string/app_name"
-        app:titleTextColor="@color/primary" />
+        app:titleTextColor="@color/primary"
+        tools:ignore="RtlSymmetry" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/groups_recycler_view"

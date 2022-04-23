@@ -8,6 +8,8 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.setupWithNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.hannesdorfmann.adapterdelegates4.AsyncListDifferDelegationAdapter
 import com.senex.timetable.R
@@ -42,6 +44,12 @@ class GroupsFragment : DaggerFragment() {
         view: View,
         savedInstanceState: Bundle?,
     ) = with(binding) {
+        groupsToolbar.setupWithNavController(
+            findNavController(),
+            AppBarConfiguration(findNavController().graph)
+        )
+        //groupsToolbar.setNavigationIconTint(resources.getColor(R.color.primary, requireContext().theme))
+
         groupsToolbar.setOnMenuItemClickListener {
             when (it.itemId) {
                 R.id.action_open_schedule_fragment -> {

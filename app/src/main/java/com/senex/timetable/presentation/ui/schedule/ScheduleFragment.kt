@@ -6,6 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.senex.timetable.R
@@ -36,6 +38,11 @@ class ScheduleFragment : Fragment() {
     }
 
     private fun FragmentScheduleBinding.initToolbar() {
+        tableToolbar.setupWithNavController(
+            findNavController(),
+            AppBarConfiguration(findNavController().graph)
+        )
+
         tableToolbar.setOnMenuItemClickListener {
             when (it.itemId) {
                 R.id.action_open_groups_fragment -> {
