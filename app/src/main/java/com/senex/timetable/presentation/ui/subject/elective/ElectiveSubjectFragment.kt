@@ -72,7 +72,6 @@ class ElectiveSubjectFragment : DaggerFragment() {
         }
     }
 
-
     private fun Button.initSelectCourseButton() =
         setOnClickListener(navigateToSelectionFragment)
 

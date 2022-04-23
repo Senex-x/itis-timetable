@@ -11,6 +11,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
+        android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/very_meaningful_message"
@@ -19,18 +20,31 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <com.google.android.material.divider.MaterialDivider
+        android:layout_marginStart="56dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/choose_elective_course_button" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/choose_elective_course_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?android:attr/selectableItemBackground"
+        android:gravity="start|center_vertical"
+        android:text="@string/choose_elective_course_title"
+        android:textAllCaps="false"
+        android:textColor="@color/primary"
+        android:textSize="16sp"
+        app:icon="@drawable/ic_search_24"
+        app:iconPadding="16dp"
+        app:iconTint="@color/primary"
+        app:layout_constraintBottom_toTopOf="@+id/subject_show_hide_buttons" />
+
     <include
         android:id="@+id/subject_show_hide_buttons"
         layout="@layout/subject_show_hide_buttons"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/choose_elective_course_button" />
-
-    <Button
-        android:id="@+id/choose_elective_course_button"
-        style="@style/Widget.MaterialComponents.Button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/choose_elective_course_title"
         app:layout_constraintBottom_toBottomOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
