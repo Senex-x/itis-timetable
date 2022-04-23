@@ -8,7 +8,6 @@
     <fragment
         android:id="@+id/scheduleFragment"
         android:name="com.senex.timetable.presentation.ui.schedule.ScheduleFragment"
-        android:label="Schedules"
         tools:layout="@layout/fragment_schedule">
         <action
             android:id="@+id/action_scheduleFragment_to_groupsFragment"

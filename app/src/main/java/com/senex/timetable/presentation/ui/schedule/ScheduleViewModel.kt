@@ -1,6 +1,7 @@
 package com.senex.timetable.presentation.ui.schedule
 
 import androidx.lifecycle.ViewModel
+import com.senex.timetable.domain.usecase.group.GetGroup
 import com.senex.timetable.domain.usecase.schedule.GetScheduleByGroupIdSorted
 import com.senex.timetable.domain.usecase.schedule.SyncScheduleByGroupId
 import com.senex.timetable.domain.usecase.subject.english.hidden.IsEnglishSubjectHidden
@@ -9,6 +10,7 @@ import com.senex.timetable.presentation.common.SharedPreferencesHandler
 import com.senex.timetable.presentation.ui.schedule.daily.recycler.toSubjectsRecyclerItems
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
@@ -19,6 +21,7 @@ class ScheduleViewModel @Inject constructor(
     private val getScheduleByGroupIdSorted: GetScheduleByGroupIdSorted,
     private val getPrimarySubjectByEnglishSubjectId: GetPrimarySubjectByEnglishSubjectId,
     private val isEnglishSubjectHidden: IsEnglishSubjectHidden,
+    private val getGroup: GetGroup,
     syncScheduleByGroupId: SyncScheduleByGroupId,
     preferencesHandler: SharedPreferencesHandler,
 ) : ViewModel() {
@@ -32,6 +35,10 @@ class ScheduleViewModel @Inject constructor(
             }
         }
     }
+
+    suspend fun getGroup() = groupId?.let {
+        getGroup(it)
+    }?.first()
 
     fun getDailySubjectRecyclerItems(dayOfWeek: DayOfWeek) =
         dailySubjectRecyclerItems[dayOfWeek.value - 1]

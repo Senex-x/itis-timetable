@@ -1,6 +1,7 @@
 package com.senex.timetable.di
 
 import com.senex.timetable.presentation.ui.groups.GroupsFragment
+import com.senex.timetable.presentation.ui.schedule.ScheduleFragment
 import com.senex.timetable.presentation.ui.schedule.daily.DailyScheduleFragment
 import com.senex.timetable.presentation.ui.subject.elective.ElectiveSubjectFragment
 import com.senex.timetable.presentation.ui.subject.elective.selectable.SelectableElectiveSubjectsFragment
@@ -13,6 +14,9 @@ abstract class FragmentModule {
 
     @ContributesAndroidInjector
     abstract fun contributeGroupsFragment(): GroupsFragment
+
+    @ContributesAndroidInjector
+    abstract fun contributeScheduleFragment(): ScheduleFragment
 
     @ContributesAndroidInjector
     abstract fun contributeDailyScheduleFragment(): DailyScheduleFragment

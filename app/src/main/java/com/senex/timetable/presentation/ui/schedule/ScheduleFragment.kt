@@ -4,7 +4,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupWithNavController
@@ -13,12 +15,19 @@ import com.google.android.material.tabs.TabLayoutMediator
 import com.senex.timetable.R
 import com.senex.timetable.databinding.FragmentScheduleBinding
 import com.senex.timetable.presentation.common.inflateBinding
+import dagger.android.support.DaggerFragment
+import kotlinx.coroutines.launch
 import java.time.DayOfWeek
+import javax.inject.Inject
 
-class ScheduleFragment : Fragment() {
+class ScheduleFragment : DaggerFragment() {
     private var _binding: FragmentScheduleBinding? = null
     private val binding
         get() = _binding!!
+
+    @Inject
+    lateinit var factory: ViewModelProvider.Factory
+    private val viewModel: ScheduleViewModel by viewModels { factory }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -39,6 +48,11 @@ class ScheduleFragment : Fragment() {
 
     private fun FragmentScheduleBinding.initToolbar() {
         navDrawer.setupWithNavController(findNavController())
+
+        viewLifecycleOwner.lifecycleScope.launch {
+            tableToolbar.title = viewModel.getGroup()?.name
+                ?: "Schedules"
+        }
 
         tableToolbar.setupWithNavController(
             findNavController(),

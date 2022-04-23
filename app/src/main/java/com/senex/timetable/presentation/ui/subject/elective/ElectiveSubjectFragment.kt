@@ -8,16 +8,12 @@ import android.widget.Button
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.setupWithNavController
-import com.google.android.material.appbar.MaterialToolbar
 import com.senex.timetable.databinding.FragmentElectiveSubjectBinding
 import com.senex.timetable.databinding.SubjectShowHideButtonsBinding
 import com.senex.timetable.presentation.common.assistedViewModel
 import com.senex.timetable.presentation.common.inflateBinding
 import com.senex.timetable.presentation.common.initNavToolbar
 import dagger.android.support.DaggerFragment
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 import javax.inject.Inject
