@@ -10,6 +10,8 @@
     <include
         android:id="@+id/time_period"
         layout="@layout/subject_time_period"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
