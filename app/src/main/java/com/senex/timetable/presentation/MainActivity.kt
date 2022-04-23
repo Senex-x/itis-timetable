@@ -2,6 +2,9 @@ package com.senex.timetable.presentation
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.setupWithNavController
+import com.senex.timetable.R
 import com.senex.timetable.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
