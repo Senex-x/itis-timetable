@@ -32,6 +32,9 @@ class ScheduleRepositoryImpl @Inject constructor(
     override fun getByGroupId(groupId: Long) =
         scheduleDao.getByGroupId(groupId).map { it?.transform() }
 
+    override suspend fun isPresent(groupId: Long) =
+        scheduleDao.isPresent(groupId)
+
     override fun getAll() =
         scheduleDao.getAll().map { list -> list.map { it.transform() } }
 

@@ -27,4 +27,7 @@ interface ScheduleDao : BaseDao<ScheduleInfoEntity, ScheduleEntity> {
 
     @Query("DELETE FROM schedules")
     override suspend fun deleteAll()
+
+    @Query("SELECT COUNT(1) FROM schedules WHERE group_id = :groupId")
+    suspend fun isPresent(groupId: Long): Boolean
 }

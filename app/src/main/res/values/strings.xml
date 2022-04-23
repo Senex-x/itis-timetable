@@ -23,4 +23,5 @@
     <string name="settings_title">Settings</string>
     <string name="select_group_title">Select group</string>
     <string name="hidden_subjects_title">Hidden subjects</string>
+    <string name="synchronized_hint">Synchronized</string>
 </resources>

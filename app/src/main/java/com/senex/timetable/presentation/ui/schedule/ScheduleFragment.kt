@@ -14,8 +14,11 @@ import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.senex.timetable.R
 import com.senex.timetable.databinding.FragmentScheduleBinding
+import com.senex.timetable.domain.util.log
 import com.senex.timetable.presentation.common.inflateBinding
 import dagger.android.support.DaggerFragment
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 import java.time.DayOfWeek
 import javax.inject.Inject
@@ -40,7 +43,7 @@ class ScheduleFragment : DaggerFragment() {
     override fun onViewCreated(
         view: View,
         savedInstanceState: Bundle?,
-    ) = with(binding) {
+    ): Unit = with(binding) {
         initToolbar()
         initViewPager()
         initTabBar()

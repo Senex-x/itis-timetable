@@ -3,6 +3,8 @@ package com.senex.timetable.presentation.ui.groups
 import androidx.lifecycle.ViewModel
 import com.senex.timetable.domain.usecase.group.GetAllGroupsSorted
 import com.senex.timetable.domain.usecase.group.SyncAllGroups
+import com.senex.timetable.domain.usecase.schedule.GetScheduleByGroupId
+import com.senex.timetable.domain.usecase.schedule.IsSchedulePresent
 import com.senex.timetable.presentation.common.SharedPreferencesHandler
 import com.senex.timetable.presentation.ui.groups.recycler.toGroupsRecyclerItemList
 import kotlinx.coroutines.CoroutineScope
@@ -15,6 +17,7 @@ class GroupsViewModel @Inject constructor(
     private val preferences: SharedPreferencesHandler,
     syncAllGroups: SyncAllGroups,
     getAllGroupsSorted: GetAllGroupsSorted,
+    private val isSchedulePresent: IsSchedulePresent,
 ) : ViewModel() {
 
     init {
@@ -24,7 +27,7 @@ class GroupsViewModel @Inject constructor(
     }
 
     val groupsRecyclerItems = getAllGroupsSorted().map {
-        it.toGroupsRecyclerItemList()
+        it.toGroupsRecyclerItemList(isSchedulePresent)
     }
 
     fun setPrimaryGroup(groupId: Long) =

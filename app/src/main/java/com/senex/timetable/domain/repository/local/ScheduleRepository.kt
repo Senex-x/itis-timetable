@@ -7,4 +7,6 @@ import kotlinx.coroutines.flow.Flow
 
 interface ScheduleRepository : BaseRepository<ScheduleInfo, Schedule, Long> {
     fun getByGroupId(groupId: Long): Flow<Schedule?>
+
+    suspend fun isPresent(groupId: Long): Boolean
 }
