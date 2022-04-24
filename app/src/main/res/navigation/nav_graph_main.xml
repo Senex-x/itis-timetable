@@ -87,6 +87,9 @@
         <action
             android:id="@+id/action_englishSubjectFragment_to_scheduleFragment2"
             app:destination="@id/scheduleFragment" />
+        <argument
+            android:name="english_subject_id"
+            app:argType="long" />
     </fragment>
     <fragment
         android:id="@+id/settingsFragment"

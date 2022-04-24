@@ -18,7 +18,7 @@ class ElectiveSubjectViewModel @AssistedInject constructor(
     private val showElectiveSubject: ShowElectiveSubject,
     private val hideElectiveSubject: HideElectiveSubject,
     getElectiveSubject: GetElectiveSubject,
-    getAllByElectiveSubjectId: GetAllByElectiveSubjectId
+    getAllByElectiveSubjectId: GetAllByElectiveSubjectId,
 ) : ViewModel() {
     val electiveSubject = getElectiveSubject(electiveSubjectId).map {
         it ?: throw IllegalArgumentException(invalidIdMessage)
@@ -44,5 +44,5 @@ class ElectiveSubjectViewModel @AssistedInject constructor(
     }
 
     private val invalidIdMessage =
-        "${this::class.simpleName}: Given electiveSubjectId: $electiveSubjectId. is invalid"
+        "${this::class.simpleName}: Given electiveSubjectId: $electiveSubjectId is invalid"
 }

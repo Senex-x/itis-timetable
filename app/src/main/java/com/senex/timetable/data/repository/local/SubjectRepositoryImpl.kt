@@ -55,4 +55,9 @@ class SubjectRepositoryImpl @Inject constructor(
         subjectDao.getAllByElectiveSubjectId(electiveSubjectId).map { list ->
             list.map { it.transform() }
         }
+
+    override fun getAllByEnglishSubjectId(englishSubjectId: Long) =
+        subjectDao.getAllByEnglishSubjectId(englishSubjectId).map { list ->
+            list.map { it.transform() }
+        }
 }

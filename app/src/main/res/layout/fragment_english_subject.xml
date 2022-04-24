@@ -24,10 +24,10 @@
         android:layout_marginStart="56dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/choose_elective_course_button" />
+        app:layout_constraintBottom_toTopOf="@+id/choose_english_course_button" />
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/choose_elective_course_button"
+        android:id="@+id/choose_english_course_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="?android:attr/selectableItemBackground"

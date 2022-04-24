@@ -73,4 +73,7 @@ interface SubjectDao : BaseDao<SubjectEntity, SubjectEntity> {
 
     @Query("SELECT * FROM subjects WHERE elective_subject_id = :electiveSubjectId")
     fun getAllByElectiveSubjectId(electiveSubjectId: Long): Flow<List<SubjectEntity>>
+
+    @Query("SELECT * FROM subjects WHERE english_subject_id = :englishSubjectId")
+    fun getAllByEnglishSubjectId(englishSubjectId: Long): Flow<List<SubjectEntity>>
 }

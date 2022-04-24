@@ -21,4 +21,8 @@ interface SubjectRepository : BaseRepository<Subject, Subject, Long> {
     fun getAllByElectiveSubjectId(
         electiveSubjectId: Long,
     ): Flow<List<Subject>>
+
+    fun getAllByEnglishSubjectId(
+        englishSubjectId: Long,
+    ): Flow<List<Subject>>
 }

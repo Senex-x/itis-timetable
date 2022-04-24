@@ -87,7 +87,7 @@ class DailyScheduleFragment : DaggerFragment() {
     private val navigateToEnglishSubjectFragment: (Long) -> Unit = { englishSubjectId ->
         findNavController().navigate(
             ScheduleFragmentDirections.actionScheduleFragmentToEnglishSubjectFragment(
-
+                englishSubjectId
             )
         )
     }
