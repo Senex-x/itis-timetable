@@ -5,10 +5,14 @@ import com.senex.timetable.domain.model.subject.EnglishSubject
 
 internal fun EnglishSubjectEntity.transform() = EnglishSubject(
     id,
-    dailyScheduleId
+    dailyScheduleId,
+    primarySubjectId,
+    isVisible,
 )
 
 internal fun EnglishSubject.transform() = EnglishSubjectEntity(
     id,
-    dailyScheduleId
+    dailyScheduleId,
+    primarySubjectId,
+    isVisible,
 )
