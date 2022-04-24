@@ -24,4 +24,5 @@
     <string name="select_group_title">Select group</string>
     <string name="hidden_subjects_title">Hidden subjects</string>
     <string name="synchronized_hint">Synchronized</string>
+    <string name="choose_english_group_title">Choose english group</string>
 </resources>

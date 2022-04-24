@@ -6,6 +6,7 @@ import com.hannesdorfmann.adapterdelegates4.dsl.adapterDelegateViewBinding
 import com.senex.timetable.R
 import com.senex.timetable.databinding.*
 import com.senex.timetable.domain.model.subject.Subject
+import com.senex.timetable.domain.util.log
 import com.senex.timetable.presentation.common.DelegateInflater
 
 sealed class SubjectsRecyclerItem {
@@ -65,7 +66,7 @@ sealed class SubjectsRecyclerItem {
 
                             val primarySubject = item.primarySubject
                             when {
-                                !item.isVisible -> { // TODO: Treat like empty subject
+                                !item.isVisible -> {
                                     primarySubjectContent.visibility = View.GONE
                                     unselectedSubjectContent.visibility = View.GONE
                                 }
@@ -103,6 +104,7 @@ sealed class SubjectsRecyclerItem {
         val timePeriod: Pair<String, String>,
     ) : SubjectsRecyclerItem() {
         companion object {
+            @SuppressLint("SetTextI18n")
             fun getDelegate(onItemClick: (Long) -> Unit) =
                 adapterDelegateViewBinding<EnglishItem, SubjectsRecyclerItem, ListItemEnglishSubjectBinding>(
                     DelegateInflater(ListItemEnglishSubjectBinding::inflate)::inflate
@@ -118,19 +120,28 @@ sealed class SubjectsRecyclerItem {
 
                             val primarySubject = item.primarySubject
                             when {
-                                item.isVisible -> { // Treat like empty subject
+                                !item.isVisible -> { // Treat like empty subject
                                     primarySubjectContent.visibility = View.GONE
                                     unselectedSubjectContent.visibility = View.GONE
                                 }
                                 primarySubject == null -> { // Not selected yet
                                     primarySubjectContent.visibility = View.GONE
                                     unselectedSubjectContent.visibility = View.VISIBLE
+                                    root.setBackgroundColor(
+                                        root.resources.getColor(
+                                            R.color.gray_lighter, root.context.theme
+                                        )
+                                    )
                                 }
                                 else -> { // Has primary and selected
                                     primarySubjectContent.visibility = View.VISIBLE
                                     unselectedSubjectContent.visibility = View.GONE
 
-                                    primarySubjectName.text = primarySubject.name
+                                    subjectInfo.name.text = primarySubject.name
+                                    subjectInfo.roomNumber.text = primarySubject.room
+                                    subjectInfo.type.text = getString(
+                                        primarySubject.type.nameStringId
+                                    ) + if (primarySubject.room.isNotBlank()) "," else ""
                                 }
                             }
                         }

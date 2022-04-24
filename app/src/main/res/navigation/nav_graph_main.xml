@@ -24,6 +24,9 @@
         <action
             android:id="@+id/action_scheduleFragment_to_hiddenSubjectsFragment"
             app:destination="@id/hiddenSubjectsFragment" />
+        <action
+            android:id="@+id/action_scheduleFragment_to_englishSubjectFragment"
+            app:destination="@id/englishSubjectFragment" />
     </fragment>
     <fragment
         android:id="@+id/groupsFragment"
@@ -75,6 +78,15 @@
         <argument
             android:name="primary_elective_subject_id"
             app:argType="long" />
+    </fragment>
+    <fragment
+        android:id="@+id/englishSubjectFragment"
+        android:name="com.senex.timetable.presentation.ui.subject.english.EnglishSubjectFragment"
+        android:label="EnglishSubjectFragment"
+        tools:layout="@layout/fragment_english_subject" >
+        <action
+            android:id="@+id/action_englishSubjectFragment_to_scheduleFragment2"
+            app:destination="@id/scheduleFragment" />
     </fragment>
     <fragment
         android:id="@+id/settingsFragment"

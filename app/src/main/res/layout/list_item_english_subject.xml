@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/gray_lighter"
     android:foreground="?android:attr/selectableItemBackground"
     android:padding="16dp">
 
@@ -21,6 +20,7 @@
         android:id="@+id/unselected_subject_content"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:visibility="gone"
         app:constraint_referenced_ids="unselected_subject_warning_image, unselected_subject_hint" />
 
     <ImageView
@@ -47,14 +47,18 @@
         android:id="@+id/primary_subject_content"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:constraint_referenced_ids="primary_subject_name"
-        tools:visibility="gone" />
+        android:visibility="gone"
+        app:constraint_referenced_ids="subject_info"
+        tools:visibility="visible" />
 
-    <TextView
-        android:id="@+id/primary_subject_name"
-        android:layout_width="wrap_content"
+    <include
+        android:id="@+id/subject_info"
+        layout="@layout/subject_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="subject name" />
+        android:layout_marginStart="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/time_period"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

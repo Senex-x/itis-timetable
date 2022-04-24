@@ -21,8 +21,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:visibility="gone"
-        app:constraint_referenced_ids="unselected_subject_warning_image, unselected_subject_hint"
-        tools:visibility="gone" />
+        app:constraint_referenced_ids="unselected_subject_warning_image, unselected_subject_hint" />
 
     <ImageView
         android:id="@+id/unselected_subject_warning_image"
