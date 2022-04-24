@@ -52,8 +52,8 @@ sealed class SubjectsRecyclerItem {
         companion object {
             @SuppressLint("SetTextI18n")
             fun getDelegate(onItemClick: (Long) -> Unit) =
-                adapterDelegateViewBinding<ElectiveItem, SubjectsRecyclerItem, ListItemElectiveSubjectBinding>(
-                    DelegateInflater(ListItemElectiveSubjectBinding::inflate)::inflate
+                adapterDelegateViewBinding<ElectiveItem, SubjectsRecyclerItem, ListItemVariedSubjectBinding>(
+                    DelegateInflater(ListItemVariedSubjectBinding::inflate)::inflate
                 ) {
                     binding.root.setOnClickListener {
                         onItemClick(item.electiveSubjectId)
@@ -73,6 +73,10 @@ sealed class SubjectsRecyclerItem {
                                 primarySubject == null -> { // Not selected yet
                                     primarySubjectContent.visibility = View.GONE
                                     unselectedSubjectContent.visibility = View.VISIBLE
+
+                                    unselectedSubjectHint.text = getString(
+                                        R.string.elective_subject_is_not_selected
+                                    )
                                     root.setBackgroundColor(
                                         root.resources.getColor(
                                             R.color.gray_lighter, root.context.theme
@@ -106,8 +110,8 @@ sealed class SubjectsRecyclerItem {
         companion object {
             @SuppressLint("SetTextI18n")
             fun getDelegate(onItemClick: (Long) -> Unit) =
-                adapterDelegateViewBinding<EnglishItem, SubjectsRecyclerItem, ListItemEnglishSubjectBinding>(
-                    DelegateInflater(ListItemEnglishSubjectBinding::inflate)::inflate
+                adapterDelegateViewBinding<EnglishItem, SubjectsRecyclerItem, ListItemVariedSubjectBinding>(
+                    DelegateInflater(ListItemVariedSubjectBinding::inflate)::inflate
                 ) {
                     binding.root.setOnClickListener {
                         onItemClick(item.englishSubjectId)
@@ -127,6 +131,10 @@ sealed class SubjectsRecyclerItem {
                                 primarySubject == null -> { // Not selected yet
                                     primarySubjectContent.visibility = View.GONE
                                     unselectedSubjectContent.visibility = View.VISIBLE
+
+                                    unselectedSubjectHint.text = getString(
+                                        R.string.english_subject_is_not_selected
+                                    )
                                     root.setBackgroundColor(
                                         root.resources.getColor(
                                             R.color.gray_lighter, root.context.theme

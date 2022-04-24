@@ -1,4 +1,4 @@
-package com.senex.timetable.presentation.ui.subject.elective.selectable.recycler
+package com.senex.timetable.presentation.ui.subject.common
 
 import androidx.recyclerview.widget.DiffUtil
 import com.senex.timetable.domain.model.subject.Subject

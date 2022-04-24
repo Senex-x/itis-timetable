@@ -16,7 +16,6 @@ suspend fun List<Group>.toGroupsRecyclerItemList(
             currentCourseNumber = group.courseNumber
             add(GroupsRecyclerItem.CourseItem(currentCourseNumber))
         }
-        group.id.toString().log()
         add(GroupsRecyclerItem.GroupItem(group, isSchedulePresent(group.id)))
     }
 }

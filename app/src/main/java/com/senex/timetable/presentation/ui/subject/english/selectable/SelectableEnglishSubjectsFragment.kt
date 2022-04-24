@@ -1,4 +1,4 @@
-package com.senex.timetable.presentation.ui.subject.elective.selectable
+package com.senex.timetable.presentation.ui.subject.english.selectable
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.appbar.MaterialToolbar
 import com.senex.timetable.R
-import com.senex.timetable.databinding.FragmentSelectableElectiveSubjectsBinding
+import com.senex.timetable.databinding.FragmentSelectableEnglishSubjectsBinding
 import com.senex.timetable.domain.util.toast
 import com.senex.timetable.presentation.common.assistedViewModel
 import com.senex.timetable.presentation.common.inflateBinding
@@ -25,19 +25,19 @@ import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-class SelectableElectiveSubjectsFragment : DaggerFragment() {
-    private var _binding: FragmentSelectableElectiveSubjectsBinding? = null
+class SelectableEnglishSubjectsFragment : DaggerFragment() {
+    private var _binding: FragmentSelectableEnglishSubjectsBinding? = null
     private val binding
         get() = _binding!!
 
-    private val args: SelectableElectiveSubjectsFragmentArgs by navArgs()
+    private val args: SelectableEnglishSubjectsFragmentArgs by navArgs()
 
     @Inject
-    lateinit var factory: SelectableElectiveSubjectsViewModel.Factory
-    private val viewModel: SelectableElectiveSubjectsViewModel by assistedViewModel {
+    lateinit var factory: SelectableEnglishSubjectsViewModel.Factory
+    private val viewModel: SelectableEnglishSubjectsViewModel by assistedViewModel {
         factory.create(
-            args.electiveSubjectId,
-            args.primaryElectiveSubjectId.takeIf { it != -1L }
+            args.englishSubjectId,
+            args.primaryEnglishSubjectId.takeIf { it != -1L }
         )
     }
 
@@ -45,7 +45,7 @@ class SelectableElectiveSubjectsFragment : DaggerFragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?,
-    ) = inflateBinding(FragmentSelectableElectiveSubjectsBinding::inflate, inflater, container) {
+    ) = inflateBinding(FragmentSelectableEnglishSubjectsBinding::inflate, inflater, container) {
         _binding = it
     }
 
@@ -54,7 +54,7 @@ class SelectableElectiveSubjectsFragment : DaggerFragment() {
         savedInstanceState: Bundle?,
     ): Unit = with(binding) {
         toolbar.initToolbar()
-        selectableElectiveSubjectsRecycler.initRecycler()
+        selectableEnglishSubjectsRecycler.initRecycler()
         selectNothingButton.initSelectNothingButton()
     }
 
@@ -93,7 +93,7 @@ class SelectableElectiveSubjectsFragment : DaggerFragment() {
             onItemCheckedChangeListener,
             viewModel.primarySubjectId.value
         ).apply {
-            viewModel.electiveSubjects
+            viewModel.englishSubjects
                 .onEach(::submitList)
                 .launchIn(viewLifecycleOwner.lifecycleScope)
         }

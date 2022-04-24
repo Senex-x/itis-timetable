@@ -1,9 +1,9 @@
-package com.senex.timetable.presentation.ui.subject.elective.selectable
+package com.senex.timetable.presentation.ui.subject.english.selectable
 
 import androidx.lifecycle.ViewModel
-import com.senex.timetable.domain.usecase.subject.GetAllByElectiveSubjectId
-import com.senex.timetable.domain.usecase.subject.elective.GetElectiveSubject
-import com.senex.timetable.domain.usecase.subject.elective.SetPrimaryElectiveSubject
+import com.senex.timetable.domain.usecase.subject.GetAllByEnglishSubjectId
+import com.senex.timetable.domain.usecase.subject.english.GetEnglishSubject
+import com.senex.timetable.domain.usecase.subject.english.SetPrimaryEnglishSubject
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedFactory
 import dagger.assisted.AssistedInject
@@ -15,18 +15,18 @@ import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 
-class SelectableElectiveSubjectsViewModel @AssistedInject constructor(
+class SelectableEnglishSubjectsViewModel @AssistedInject constructor(
     @Assisted private val selectableSubjectId: Long,
     @Assisted private val savedPrimarySubjectId: Long?,
-    private val setPrimaryElectiveSubject: SetPrimaryElectiveSubject,
-    getElectiveSubject: GetElectiveSubject,
-    getAllByElectiveSubjectId: GetAllByElectiveSubjectId,
+    private val setPrimaryEnglishSubject: SetPrimaryEnglishSubject,
+    getEnglishSubject: GetEnglishSubject,
+    getAllByEnglishSubjectId: GetAllByEnglishSubjectId,
 ) : ViewModel() {
-    private val electiveSubjectId = getElectiveSubject(selectableSubjectId).map {
+    private val englishSubjectId = getEnglishSubject(selectableSubjectId).map {
         it?.id ?: throw IllegalArgumentException(invalidIdMessage)
     }
 
-    val electiveSubjects = getAllByElectiveSubjectId(selectableSubjectId)
+    val englishSubjects = getAllByEnglishSubjectId(selectableSubjectId)
 
     private val _mutableStateFlow = MutableStateFlow(savedPrimarySubjectId)
     val primarySubjectId: StateFlow<Long?> = _mutableStateFlow
@@ -40,8 +40,8 @@ class SelectableElectiveSubjectsViewModel @AssistedInject constructor(
 
     fun commitPrimarySubject() {
         CoroutineScope(Dispatchers.Default).launch {
-            setPrimaryElectiveSubject(
-                electiveSubjectId.first(),
+            setPrimaryEnglishSubject(
+                englishSubjectId.first(),
                 primarySubjectId.value
             )
         }
@@ -50,11 +50,11 @@ class SelectableElectiveSubjectsViewModel @AssistedInject constructor(
     @AssistedFactory
     interface Factory {
         fun create(
-            electiveSubjectId: Long,
+            englishSubjectId: Long,
             primarySubjectId: Long?,
-        ): SelectableElectiveSubjectsViewModel
+        ): SelectableEnglishSubjectsViewModel
     }
 
     private val invalidIdMessage =
-        "${this::class.simpleName}: Given electiveSubjectId: $selectableSubjectId is invalid"
+        "${this::class.simpleName}: Given englishSubjectId: $selectableSubjectId is invalid"
 }

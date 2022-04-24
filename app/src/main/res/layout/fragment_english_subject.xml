@@ -11,7 +11,6 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/very_meaningful_message"
@@ -24,15 +23,15 @@
         android:layout_marginStart="56dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/choose_english_course_button" />
+        app:layout_constraintBottom_toTopOf="@+id/choose_course_button" />
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/choose_english_course_button"
+        android:id="@+id/choose_course_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="?android:attr/selectableItemBackground"
         android:gravity="start|center_vertical"
-        android:text="@string/choose_english_group_title"
+        android:text="@string/choose_elective_course_title"
         android:textAllCaps="false"
         android:textColor="@color/primary"
         android:textSize="16sp"

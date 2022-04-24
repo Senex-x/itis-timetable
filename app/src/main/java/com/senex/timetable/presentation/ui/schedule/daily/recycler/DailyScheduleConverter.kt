@@ -2,7 +2,6 @@ package com.senex.timetable.presentation.ui.schedule.daily.recycler
 
 import com.senex.timetable.domain.model.schedule.DailySchedule
 import com.senex.timetable.domain.model.subject.Subject
-import com.senex.timetable.domain.util.log
 
 
 /**
@@ -99,7 +98,6 @@ private fun List<SubjectsRecyclerItem>.dropLastEmptySubjects(): List<SubjectsRec
                 }
                 else -> {}
             }
-            log(reversedIndexOfFirstMeaningfulSubject.toString())
         }
     }
     return dropLast(reversedIndexOfFirstMeaningfulSubject)

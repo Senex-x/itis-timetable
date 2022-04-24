@@ -85,10 +85,28 @@
         android:label="EnglishSubjectFragment"
         tools:layout="@layout/fragment_english_subject" >
         <action
-            android:id="@+id/action_englishSubjectFragment_to_scheduleFragment2"
+            android:id="@+id/action_englishSubjectFragment_to_scheduleFragment"
             app:destination="@id/scheduleFragment" />
         <argument
             android:name="english_subject_id"
+            app:argType="long" />
+        <action
+            android:id="@+id/action_englishSubjectFragment_to_selectableEnglishSubjectsFragment"
+            app:destination="@id/selectableEnglishSubjectsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/selectableEnglishSubjectsFragment"
+        android:name="com.senex.timetable.presentation.ui.subject.english.selectable.SelectableEnglishSubjectsFragment"
+        android:label="SelectableEnglishSubjectsFragment"
+        tools:layout="@layout/fragment_selectable_english_subjects">
+        <action
+            android:id="@+id/action_selectableEnglishSubjectsFragment_to_englishSubjectFragment"
+            app:destination="@id/englishSubjectFragment" />
+        <argument
+            android:name="english_subject_id"
+            app:argType="long" />
+        <argument
+            android:name="primary_english_subject_id"
             app:argType="long" />
     </fragment>
     <fragment

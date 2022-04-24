@@ -1,7 +1,6 @@
 package com.senex.timetable.domain.model.schedule
 
 import com.senex.timetable.domain.model.group.Group
-import com.senex.timetable.domain.util.log
 
 data class Schedule(
     val scheduleInfo: ScheduleInfo,

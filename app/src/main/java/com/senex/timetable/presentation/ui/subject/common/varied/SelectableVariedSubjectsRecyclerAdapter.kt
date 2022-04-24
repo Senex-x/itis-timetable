@@ -1,26 +1,26 @@
-package com.senex.timetable.presentation.ui.subject.elective.selectable.recycler
+package com.senex.timetable.presentation.ui.subject.common.varied
 
 import android.annotation.SuppressLint
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.senex.timetable.R
-import com.senex.timetable.databinding.ListItemSelectableSubjectBinding
+import com.senex.timetable.databinding.ListItemSelectableVariedSubjectBinding
 import com.senex.timetable.domain.model.subject.Subject
 import com.senex.timetable.presentation.common.bindListItemView
-import com.senex.timetable.presentation.ui.subject.elective.selectable.recycler.SelectableElectiveSubjectsRecyclerAdapter.ViewHolder
+import com.senex.timetable.presentation.ui.subject.common.SubjectDiffCallback
 
-class SelectableElectiveSubjectsRecyclerAdapter(
+class SelectableVariedSubjectsRecyclerAdapter(
     private val onItemCheckedChangeListener: (Boolean, Long) -> Unit,
     private val selectedItemId: Long?,
-) : ListAdapter<Subject, ViewHolder>(
+) : ListAdapter<Subject, SelectableVariedSubjectsRecyclerAdapter.ViewHolder>(
     SubjectDiffCallback
 ) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = ViewHolder(
         bindListItemView(
-            ListItemSelectableSubjectBinding::bind,
+            ListItemSelectableVariedSubjectBinding::bind,
             parent,
-            R.layout.list_item_selectable_subject
+            R.layout.list_item_selectable_varied_subject
         )
     )
 
@@ -30,7 +30,7 @@ class SelectableElectiveSubjectsRecyclerAdapter(
     private val onItemCheckedListeners = mutableListOf<(Long) -> Unit>()
 
     inner class ViewHolder(
-        private val binding: ListItemSelectableSubjectBinding,
+        private val binding: ListItemSelectableVariedSubjectBinding,
     ) : RecyclerView.ViewHolder(binding.root) {
 
         @SuppressLint("SetTextI18n")

@@ -9,10 +9,10 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.senex.timetable.databinding.FragmentElectiveSubjectBinding
-import com.senex.timetable.databinding.SubjectShowHideButtonsBinding
 import com.senex.timetable.presentation.common.assistedViewModel
 import com.senex.timetable.presentation.common.inflateBinding
 import com.senex.timetable.presentation.common.initNavToolbar
+import com.senex.timetable.presentation.ui.subject.common.initShowHideSubjectButtons
 import dagger.android.support.DaggerFragment
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
@@ -43,35 +43,19 @@ class ElectiveSubjectFragment : DaggerFragment() {
         view: View,
         savedInstanceState: Bundle?,
     ): Unit = with(binding) {
-        subjectShowHideButtons.initShowHideCourseButtons()
-        chooseElectiveCourseButton.initSelectCourseButton()
+        subjectShowHideButtons.initShowHideSubjectButtons(
+            viewLifecycleOwner.lifecycleScope,
+            viewModel.isElectiveSubjectVisible,
+            viewModel::setSubjectVisibility,
+        )
+        chooseCourseButton.initSelectCourseButton()
         toolbarContainer.toolbar.initNavToolbar(findNavController())
-    }
-
-    private fun SubjectShowHideButtonsBinding.initShowHideCourseButtons() {
-        lifecycleScope.launch {
-            viewModel.isElectiveSubjectVisible.collect {
-                if (it) {
-                    showSubjectButton.visibility = View.INVISIBLE
-                    hideSubjectButton.visibility = View.VISIBLE
-                } else {
-                    showSubjectButton.visibility = View.VISIBLE
-                    hideSubjectButton.visibility = View.INVISIBLE
-                }
-            }
-        }
-        hideSubjectButton.setOnClickListener {
-            viewModel.setSubjectVisibility(isVisible = false)
-        }
-        showSubjectButton.setOnClickListener {
-            viewModel.setSubjectVisibility(isVisible = true)
-        }
     }
 
     private fun Button.initSelectCourseButton() =
         setOnClickListener(navigateToSelectionFragment)
 
-    private val navigateToSelectionFragment: (view: View) -> Unit = {
+    private val navigateToSelectionFragment: (View) -> Unit = {
         lifecycleScope.launch {
             findNavController().navigate(
                 ElectiveSubjectFragmentDirections.actionElectiveSubjectFragmentToSelectableElectiveSubjectsFragment(

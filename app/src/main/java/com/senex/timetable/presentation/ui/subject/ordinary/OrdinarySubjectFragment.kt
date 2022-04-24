@@ -12,6 +12,7 @@ import com.senex.timetable.databinding.SubjectShowHideButtonsBinding
 import com.senex.timetable.presentation.common.assistedViewModel
 import com.senex.timetable.presentation.common.inflateBinding
 import com.senex.timetable.presentation.common.initNavToolbar
+import com.senex.timetable.presentation.ui.subject.common.initShowHideSubjectButtons
 import dagger.android.support.DaggerFragment
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -51,27 +52,11 @@ class OrdinarySubjectFragment : DaggerFragment() {
             }
         }
 
-        subjectShowHideButtons.initShowHideCourseButtons()
-    }
-
-    private fun SubjectShowHideButtonsBinding.initShowHideCourseButtons() {
-        lifecycleScope.launch {
-            viewModel.isSubjectVisible.collect {
-                if (it) {
-                    showSubjectButton.visibility = View.INVISIBLE
-                    hideSubjectButton.visibility = View.VISIBLE
-                } else {
-                    showSubjectButton.visibility = View.VISIBLE
-                    hideSubjectButton.visibility = View.INVISIBLE
-                }
-            }
-        }
-        hideSubjectButton.setOnClickListener {
-            viewModel.setSubjectVisibility(isVisible = false)
-        }
-        showSubjectButton.setOnClickListener {
-            viewModel.setSubjectVisibility(isVisible = true)
-        }
+        subjectShowHideButtons.initShowHideSubjectButtons(
+            viewLifecycleOwner.lifecycleScope,
+            viewModel.isSubjectVisible,
+            viewModel::setSubjectVisibility,
+        )
     }
 
     override fun onDestroyView() {
