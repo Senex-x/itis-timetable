@@ -40,8 +40,7 @@ object SubjectsRecyclerItemDiffCallback: DiffUtil.ItemCallback<SubjectsRecyclerI
                     && oldItem == newItem
         is EnglishItem ->
             newItem is EnglishItem
-                    && oldItem.englishSubjects.containsAll(newItem.englishSubjects)
-                    && newItem.englishSubjects.containsAll(oldItem.englishSubjects)
+                    && oldItem == newItem
         is PhysicalItem ->
             newItem is PhysicalItem
                     && oldItem == newItem

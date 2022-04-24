@@ -23,6 +23,20 @@ class EnglishSubjectRepositoryImpl @Inject constructor(
     override suspend fun delete(item: EnglishSubject) =
         englishSubjectDao.delete(item.transform())
 
+    override suspend fun setPrimarySubjectId(
+        englishSubjectId: Long,
+        primarySubjectId: Long?,
+    ) = englishSubjectDao.setPrimarySubjectId(
+        englishSubjectId,
+        primarySubjectId
+    )
+
+    override suspend fun show(id: Long) =
+        englishSubjectDao.show(id)
+
+    override suspend fun hide(id: Long) =
+        englishSubjectDao.hide(id)
+
     override fun get(id: Long) =
         englishSubjectDao.get(id).map { it?.transform() }
 

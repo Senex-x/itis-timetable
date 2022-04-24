@@ -31,7 +31,7 @@ class DatabaseModule {
         ).addCallback(object : RoomDatabase.Callback() {
             override fun onCreate(db: SupportSQLiteDatabase) {
                 CoroutineScope(Dispatchers.Default + exceptionHandler).launch {
-                    databaseFiller.get().populateDatabase()
+                    //databaseFiller.get().populateDatabase()
                 }
             }
 

@@ -2,20 +2,14 @@ package com.senex.timetable.presentation.ui.schedule.daily.recycler
 
 import com.senex.timetable.domain.model.schedule.DailySchedule
 import com.senex.timetable.domain.model.subject.Subject
-import com.senex.timetable.domain.usecase.subject.english.hidden.IsEnglishSubjectHidden
-import com.senex.timetable.domain.usecase.subject.english.primary.GetPrimarySubjectByEnglishSubjectId
 import com.senex.timetable.domain.util.log
-import kotlinx.coroutines.flow.first
 
 
 /**
  * Maps daily subjects.
  * Works properly only if the list items are sorted by indexInDay property.
  */
-suspend fun DailySchedule.toSubjectsRecyclerItems(
-    getPrimarySubjectByEnglishSubjectId: GetPrimarySubjectByEnglishSubjectId,
-    isEnglishSubjectHidden: IsEnglishSubjectHidden,
-) = buildList {
+fun DailySchedule.toSubjectsRecyclerItems() = buildList {
     val dailySchedule = this@toSubjectsRecyclerItems
     val subjects = dailySchedule.subjects
 
@@ -24,7 +18,7 @@ suspend fun DailySchedule.toSubjectsRecyclerItems(
     var electiveSubjects = mutableListOf<Subject>()
     var englishSubjects = mutableListOf<Subject>()
 
-    suspend fun flushSubjectLists() { // Always call before changing id variables
+    fun flushSubjectLists() { // Always call before changing id variables
         if (electiveSubjects.isNotEmpty()) {
             val electiveSubject = dailySchedule.electiveSubjects.find {
                 it.id == lastElectiveSubjectId
@@ -41,12 +35,17 @@ suspend fun DailySchedule.toSubjectsRecyclerItems(
             electiveSubjects = mutableListOf()
         }
         if (englishSubjects.isNotEmpty()) {
+            val englishSubject = dailySchedule.englishSubjects.find {
+                it.id == lastEnglishSubjectId
+            }!!
+
+            val firstEnglishSubject = englishSubjects.first()
             add(SubjectsRecyclerItem.EnglishItem(
                 lastEnglishSubjectId,
-                isEnglishSubjectHidden(lastEnglishSubjectId),
-                englishSubjects.first().indexInDay,
-                getPrimarySubjectByEnglishSubjectId(lastEnglishSubjectId).first(),
-                englishSubjects,
+                englishSubject.isVisible,
+                firstEnglishSubject.indexInDay,
+                englishSubjects.find { it.id == englishSubject.primarySubjectId },
+                firstEnglishSubject.startTime to firstEnglishSubject.endTime,
             ))
             englishSubjects = mutableListOf()
         }

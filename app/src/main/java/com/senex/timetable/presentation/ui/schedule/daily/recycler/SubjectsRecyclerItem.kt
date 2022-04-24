@@ -60,10 +60,10 @@ sealed class SubjectsRecyclerItem {
 
                     bind {
                         with(binding) {
-                            val primarySubject = item.primarySubject
                             timePeriod.startTime.text = item.timePeriod.first
                             timePeriod.endTime.text = item.timePeriod.second
 
+                            val primarySubject = item.primarySubject
                             when {
                                 !item.isVisible -> { // TODO: Treat like empty subject
                                     primarySubjectContent.visibility = View.GONE
@@ -100,7 +100,7 @@ sealed class SubjectsRecyclerItem {
         val isVisible: Boolean,
         val indexInDay: Int,
         val primarySubject: Subject?,
-        val englishSubjects: List<Subject>,
+        val timePeriod: Pair<String, String>,
     ) : SubjectsRecyclerItem() {
         companion object {
             fun getDelegate(onItemClick: (Long) -> Unit) =
@@ -108,21 +108,21 @@ sealed class SubjectsRecyclerItem {
                     DelegateInflater(ListItemEnglishSubjectBinding::inflate)::inflate
                 ) {
                     binding.root.setOnClickListener {
-                        onItemClick(item.englishSubjects.first().id)
+                        onItemClick(item.englishSubjectId)
                     }
 
                     bind {
                         with(binding) {
-                            val firstSubject = item.englishSubjects.first()
-                            timePeriod.startTime.text = firstSubject.startTime
-                            timePeriod.endTime.text = firstSubject.endTime
+                            timePeriod.startTime.text = item.timePeriod.first
+                            timePeriod.endTime.text = item.timePeriod.second
 
+                            val primarySubject = item.primarySubject
                             when {
                                 item.isVisible -> { // Treat like empty subject
                                     primarySubjectContent.visibility = View.GONE
                                     unselectedSubjectContent.visibility = View.GONE
                                 }
-                                item.primarySubject == null -> { // Not selected yet
+                                primarySubject == null -> { // Not selected yet
                                     primarySubjectContent.visibility = View.GONE
                                     unselectedSubjectContent.visibility = View.VISIBLE
                                 }
@@ -130,7 +130,7 @@ sealed class SubjectsRecyclerItem {
                                     primarySubjectContent.visibility = View.VISIBLE
                                     unselectedSubjectContent.visibility = View.GONE
 
-                                    primarySubjectName.text = firstSubject.name
+                                    primarySubjectName.text = primarySubject.name
                                 }
                             }
                         }

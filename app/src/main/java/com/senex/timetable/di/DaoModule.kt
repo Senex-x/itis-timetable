@@ -42,16 +42,4 @@ class DaoModule {
     fun provideEnglishSubjectDao(
         appDatabase: AppDatabase,
     ) = appDatabase.englishSubjectDao()
-
-    @Singleton
-    @Provides
-    fun providePrimaryEnglishSubjectDao(
-        appDatabase: AppDatabase,
-    ) = appDatabase.primaryEnglishSubjectDao()
-
-    @Singleton
-    @Provides
-    fun provideHiddenEnglishSubjectDao(
-        appDatabase: AppDatabase,
-    ) = appDatabase.hiddenEnglishSubjectDao()
 }
