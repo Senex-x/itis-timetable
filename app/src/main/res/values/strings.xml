@@ -13,8 +13,8 @@
     <string name="choose_elective_course_title">Choose elective course</string>
     <string name="select_no_courses_hint">Is your course not here?</string>
     <string name="select_nothing_title">Select nothing</string>
-    <string name="lecture_enum_name">Lecture</string>
-    <string name="seminar_enum_name">Practice</string>
+    <string name="lecture_subject_type">Lecture</string>
+    <string name="seminar_subject_type">Practice</string>
     <string name="undefined_enum_name">Type undefined</string>
     <string name="confirm_title">Confirm</string>
     <string name="course_is_not_selected_message">Course is not selected</string>
@@ -25,4 +25,15 @@
     <string name="hidden_subjects_title">Hidden subjects</string>
     <string name="synchronized_hint">Synchronized</string>
     <string name="choose_english_group_title">Choose english group</string>
+    <string name="ordinary_subject_kind">Ordinary lesson</string>
+    <string name="physical_subject_kind">Physical culture</string>
+    <string name="english_subject_kind">English lesson</string>
+    <string name="elective_subject_kind">Elective subject lesson</string>
+    <string name="block_subject_kind">Block subject lesson</string>
+    <string name="subject_name_hint">Subject name</string>
+    <string name="time_period_hint">Time period</string>
+    <string name="room_hint">Room</string>
+    <string name="type_hint">Type</string>
+    <string name="kind_hint">Kind</string>
+    <string name="professor_hint">Professor</string>
 </resources>

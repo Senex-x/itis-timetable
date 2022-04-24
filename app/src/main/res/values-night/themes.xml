@@ -14,7 +14,7 @@
 
         <item name="drawerArrowStyle">@style/NavigationArrowStyle</item>
 
-<!--        <item name="materialButtonStyle">@style/AppTheme.Button</item>-->
+        <item name="android:forceDarkAllowed" tools:targetApi="29">false</item>
     </style>
 
     <style name="NavigationArrowStyle" parent="Widget.AppCompat.DrawerArrowToggle">

@@ -18,6 +18,7 @@ import com.senex.timetable.databinding.FragmentSelectableEnglishSubjectsBinding
 import com.senex.timetable.domain.util.toast
 import com.senex.timetable.presentation.common.assistedViewModel
 import com.senex.timetable.presentation.common.inflateBinding
+ import com.senex.timetable.presentation.ui.subject.common.setMenuItemColor
 import com.senex.timetable.presentation.ui.subject.common.varied.SelectableVariedSubjectsRecyclerAdapter
 import dagger.android.support.DaggerFragment
 import kotlinx.coroutines.flow.launchIn
@@ -61,8 +62,9 @@ class SelectableEnglishSubjectsFragment : DaggerFragment() {
     private fun MaterialToolbar.initToolbar() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.primarySubjectId.collect {
-                setConfirmMenuItemColor(
-                    if (it != null) R.color.primary else R.color.gray
+                setMenuItemColor(
+                    R.id.action_confirm,
+                    if (it != null) R.color.primary else R.color.gray,
                 )
             }
         }
@@ -118,10 +120,6 @@ class SelectableEnglishSubjectsFragment : DaggerFragment() {
     }
 
     private fun popBackStack() = findNavController().popBackStack()
-
-    private fun MaterialToolbar.setConfirmMenuItemColor(colorId: Int) =
-        menu.findItem(R.id.action_confirm)
-            .icon.setTint(resources.getColor(colorId, requireContext().theme))
 
     override fun onDestroyView() {
         super.onDestroyView()

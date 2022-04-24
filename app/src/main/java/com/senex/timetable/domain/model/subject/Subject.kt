@@ -23,18 +23,18 @@ data class Subject(
     val fullProfessorName = "$teacherSurname $teacherName$teacherPatronymic"
 
     enum class Type(@StringRes val nameStringId: Int) {
-        LECTURE(R.string.lecture_enum_name),
-        SEMINAR(R.string.seminar_enum_name),
-        UNDEFINED(R.string.undefined_enum_name),
+        LECTURE(R.string.lecture_subject_type),
+        SEMINAR(R.string.seminar_subject_type),
+        UNDEFINED(R.string.very_meaningful_message),
     }
 
-    enum class Kind {
-        ORDINARY,
-        PHYSICAL,
-        ENGLISH,
-        ELECTIVE,
-        BLOCK,
-        EMPTY,
+    enum class Kind(@StringRes val nameStringId: Int) {
+        ORDINARY(R.string.ordinary_subject_kind),
+        PHYSICAL(R.string.physical_subject_kind),
+        ENGLISH(R.string.english_subject_kind),
+        ELECTIVE(R.string.elective_subject_kind),
+        BLOCK(R.string.block_subject_kind),
+        EMPTY(R.string.very_meaningful_message),
     }
 }
 
