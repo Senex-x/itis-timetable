@@ -44,7 +44,7 @@ class GetScheduleByGroupIdSorted @Inject constructor(
     }
 
     private fun sortSubjects(dailySchedule: DailySchedule) =
-        dailySchedule.subjects.sortedWith { subject1, subject2 ->
-            subject1.startTime.compareTo(subject2.startTime)
-        }
+        dailySchedule.subjects.sortedWith(
+            Comparator.comparingInt { it.indexInDay }
+        )
 }
