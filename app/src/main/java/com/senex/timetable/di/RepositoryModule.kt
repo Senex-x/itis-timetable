@@ -10,7 +10,7 @@ import dagger.Binds
 import dagger.Module
 import javax.inject.Singleton
 
-@Module
+@Module(includes = [UseCaseModule::class])
 abstract class RepositoryModule {
 
     @Singleton

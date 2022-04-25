@@ -44,7 +44,7 @@ class VariedSubjectFragment : DaggerFragment() {
     ): Unit = with(binding) {
         subjectShowHideButtons.initShowHideSubjectButtons(
             viewLifecycleOwner.lifecycleScope,
-            viewModel.isElectiveSubjectVisible,
+            viewModel.isVariedSubjectVisible,
             viewModel::setSubjectVisibility,
         )
         chooseCourseButton.initSelectCourseButton()
@@ -57,9 +57,9 @@ class VariedSubjectFragment : DaggerFragment() {
     private val navigateToSelectionFragment: (View) -> Unit = {
         lifecycleScope.launch {/*
             findNavController().navigate(
-                VariedSubjectFragmentDirections.actionElectiveSubjectFragmentToSelectableElectiveSubjectsFragment(
+                VariedSubjectFragmentDirections.actionVariedSubjectFragmentToSelectableVariedSubjectsFragment(
                     args.variedSubjectId,
-                    viewModel.electiveSubject.first().primarySubjectId ?: -1,
+                    viewModel.variedSubject.first().primarySubjectId ?: -1,
                 )
             )*/
         }
