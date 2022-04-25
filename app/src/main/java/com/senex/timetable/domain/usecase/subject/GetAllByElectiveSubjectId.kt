@@ -5,7 +5,7 @@ import javax.inject.Inject
 
 class GetAllByElectiveSubjectId @Inject constructor(
     private val subjectRepository: SubjectRepository,
-) {
-    operator fun invoke(electiveSubjectId: Long) =
-        subjectRepository.getAllByElectiveSubjectId(electiveSubjectId)
+) : GetAllByVariedSubjectId {
+    override operator fun invoke(variedSubjectId: Long) =
+        subjectRepository.getAllByElectiveSubjectId(variedSubjectId)
 }
