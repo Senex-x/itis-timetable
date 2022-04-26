@@ -14,14 +14,14 @@ import com.senex.timetable.presentation.ui.subject.common.initShowHideSubjectBut
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-class NewElectiveSubjectFragment : BaseVariedSubjectFragment<FragmentVariedSubjectBinding>() {
+class NewEnglishSubjectFragment : BaseVariedSubjectFragment<FragmentVariedSubjectBinding>() {
 
-    private val args: NewElectiveSubjectFragmentArgs by navArgs()
+    private val args: NewEnglishSubjectFragmentArgs by navArgs()
 
     @Inject
-    lateinit var factory: NewElectiveSubjectViewModel.Factory
-    private val viewModel: NewElectiveSubjectViewModel by assistedViewModel {
-        factory.create(args.electiveSubjectId)
+    lateinit var factory: NewEnglishSubjectViewModel.Factory
+    private val viewModel: NewEnglishSubjectViewModel by assistedViewModel {
+        factory.create(args.englishSubjectId)
     }
 
     override val getBindingInflater: (LayoutInflater, ViewGroup?, Boolean) -> FragmentVariedSubjectBinding =

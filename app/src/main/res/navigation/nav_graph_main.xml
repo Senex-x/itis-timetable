@@ -28,8 +28,11 @@
             android:id="@+id/action_scheduleFragment_to_englishSubjectFragment"
             app:destination="@id/englishSubjectFragment" />
         <action
-            android:id="@+id/action_scheduleFragment_to_variedSubjectFragment"
-            app:destination="@id/variedSubjectFragment" />
+            android:id="@+id/action_scheduleFragment_to_newElectiveSubjectFragment"
+            app:destination="@id/newElectiveSubjectFragment" />
+        <action
+            android:id="@+id/action_scheduleFragment_to_newEnglishSubjectFragment"
+            app:destination="@id/newEnglishSubjectFragment" />
     </fragment>
     <fragment
         android:id="@+id/groupsFragment"
@@ -131,15 +134,27 @@
             app:destination="@id/scheduleFragment" />
     </fragment>
     <fragment
-        android:id="@+id/variedSubjectFragment"
-        android:name="com.senex.timetable.presentation.ui.subject.varied.VariedSubjectFragment"
-        android:label="VariedSubjectFragment"
+        android:id="@+id/newElectiveSubjectFragment"
+        android:name="com.senex.timetable.presentation.ui.subject.varied.NewElectiveSubjectFragment"
+        android:label="NewElectiveSubjectFragment"
         tools:layout="@layout/fragment_varied_subject">
         <action
-            android:id="@+id/action_variedSubjectFragment_to_scheduleFragment"
+            android:id="@+id/action_newElectiveSubjectFragment_to_scheduleFragment"
             app:destination="@id/scheduleFragment" />
         <argument
-            android:name="varied_subject_id"
+            android:name="elective_subject_id"
+            app:argType="long" />
+    </fragment>
+    <fragment
+        android:id="@+id/newEnglishSubjectFragment"
+        android:name="com.senex.timetable.presentation.ui.subject.varied.NewEnglishSubjectFragment"
+        android:label="NewEnglishSubjectFragment"
+        tools:layout="@layout/fragment_varied_subject">
+        <action
+            android:id="@+id/action_newEnglishSubjectFragment_to_scheduleFragment"
+            app:destination="@id/scheduleFragment" />
+        <argument
+            android:name="english_subject_id"
             app:argType="long" />
     </fragment>
 </navigation>
