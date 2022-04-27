@@ -1,61 +1,37 @@
-package com.senex.timetable.presentation.ui.subject.elective.selectable
+package com.senex.timetable.presentation.ui.subject.varied.base.selectable
 
-import android.os.Bundle
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.fragment.navArgs
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupWithNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.appbar.MaterialToolbar
 import com.senex.timetable.R
-import com.senex.timetable.databinding.FragmentSelectableElectiveSubjectsBinding
+import com.senex.timetable.databinding.FragmentSelectableVariedSubjectsBinding
+import com.senex.timetable.domain.model.subject.VariedSubject
 import com.senex.timetable.domain.util.toast
-import com.senex.timetable.presentation.common.assistedViewModel
-import com.senex.timetable.presentation.common.inflateBinding
+import com.senex.timetable.presentation.common.BindingFragment
 import com.senex.timetable.presentation.ui.subject.common.setMenuItemColor
 import com.senex.timetable.presentation.ui.subject.common.varied.SelectableVariedSubjectsRecyclerAdapter
-import dagger.android.support.DaggerFragment
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
-import javax.inject.Inject
 
-class SelectableElectiveSubjectsFragment : DaggerFragment() {
-    private var _binding: FragmentSelectableElectiveSubjectsBinding? = null
-    private val binding
-        get() = _binding!!
+abstract class SelectableVariedSubjectsFragment<T : VariedSubject> :
+    BindingFragment<FragmentSelectableVariedSubjectsBinding>() {
 
-    private val args: SelectableElectiveSubjectsFragmentArgs by navArgs()
+    protected abstract val viewModel: SelectableVariedSubjectsViewModel<T>
 
-    @Inject
-    lateinit var factory: SelectableElectiveSubjectsViewModel.Factory
-    private val viewModel: SelectableElectiveSubjectsViewModel by assistedViewModel {
-        factory.create(
-            args.electiveSubjectId,
-            args.primaryElectiveSubjectId.takeIf { it != -1L }
-        )
-    }
+    override val bindingInflater: (LayoutInflater, ViewGroup?, Boolean) -> FragmentSelectableVariedSubjectsBinding =
+        FragmentSelectableVariedSubjectsBinding::inflate
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?,
-    ) = inflateBinding(FragmentSelectableElectiveSubjectsBinding::inflate, inflater, container) {
-        _binding = it
-    }
-
-    override fun onViewCreated(
-        view: View,
-        savedInstanceState: Bundle?,
-    ): Unit = with(binding) {
+    override val onViewCreatedCallback: FragmentSelectableVariedSubjectsBinding.() -> Unit = {
         toolbar.initToolbar()
-        selectableElectiveSubjectsRecycler.initRecycler()
+        selectableSubjectsRecycler.initRecycler()
         selectNothingButton.initSelectNothingButton()
     }
 
@@ -95,7 +71,7 @@ class SelectableElectiveSubjectsFragment : DaggerFragment() {
             onItemCheckedChangeListener,
             viewModel.primarySubjectId.value
         ).apply {
-            viewModel.electiveSubjects
+            viewModel.variedSubjects
                 .onEach(::submitList)
                 .launchIn(viewLifecycleOwner.lifecycleScope)
         }
@@ -120,9 +96,4 @@ class SelectableElectiveSubjectsFragment : DaggerFragment() {
     }
 
     private fun popBackStack() = findNavController().popBackStack()
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
 }

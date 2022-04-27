@@ -5,18 +5,18 @@ import com.senex.timetable.domain.usecase.subject.GetAllByEnglishSubjectId
 import com.senex.timetable.domain.usecase.subject.english.GetEnglishSubject
 import com.senex.timetable.domain.usecase.subject.english.HideEnglishSubject
 import com.senex.timetable.domain.usecase.subject.english.ShowEnglishSubject
-import com.senex.timetable.presentation.ui.subject.varied.BaseVariedSubjectViewModel
+import com.senex.timetable.presentation.ui.subject.varied.base.VariedSubjectViewModel
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedFactory
 import dagger.assisted.AssistedInject
 
-class NewEnglishSubjectViewModel @AssistedInject constructor(
+class EnglishSubjectViewModel @AssistedInject constructor(
     @Assisted englishSubjectId: Long,
     showEnglishSubject: ShowEnglishSubject,
     hideEnglishSubject: HideEnglishSubject,
     getEnglishSubject: GetEnglishSubject,
     getAllByEnglishSubjectId: GetAllByEnglishSubjectId,
-) : BaseVariedSubjectViewModel<EnglishSubject>(
+) : VariedSubjectViewModel<EnglishSubject>(
     englishSubjectId,
     showEnglishSubject,
     hideEnglishSubject,
@@ -25,6 +25,6 @@ class NewEnglishSubjectViewModel @AssistedInject constructor(
 ) {
     @AssistedFactory
     interface Factory {
-        fun create(englishSubjectId: Long): NewEnglishSubjectViewModel
+        fun create(englishSubjectId: Long): EnglishSubjectViewModel
     }
 }

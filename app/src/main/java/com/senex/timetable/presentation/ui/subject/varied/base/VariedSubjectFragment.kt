@@ -1,4 +1,4 @@
-package com.senex.timetable.presentation.ui.subject.varied
+package com.senex.timetable.presentation.ui.subject.varied.base
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -7,6 +7,7 @@ import androidx.navigation.NavDirections
 import androidx.navigation.fragment.findNavController
 import com.senex.timetable.databinding.FragmentVariedSubjectBinding
 import com.senex.timetable.domain.model.subject.VariedSubject
+import com.senex.timetable.presentation.common.BindingFragment
 import com.senex.timetable.presentation.common.initNavToolbar
 import com.senex.timetable.presentation.ui.subject.common.initShowHideSubjectButtons
 import kotlinx.coroutines.launch
@@ -14,7 +15,7 @@ import kotlinx.coroutines.launch
 abstract class VariedSubjectFragment<T : VariedSubject> :
     BindingFragment<FragmentVariedSubjectBinding>() {
 
-    protected abstract val viewModel: BaseVariedSubjectViewModel<T>
+    protected abstract val viewModel: VariedSubjectViewModel<T>
 
     protected abstract val selectionFragmentNavDirections: suspend () -> NavDirections
 

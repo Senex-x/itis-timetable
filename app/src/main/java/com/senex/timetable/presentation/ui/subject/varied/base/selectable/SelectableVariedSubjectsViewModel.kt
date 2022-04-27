@@ -1,4 +1,4 @@
-package com.senex.timetable.presentation.ui.subject.varied
+package com.senex.timetable.presentation.ui.subject.varied.base.selectable
 
 import androidx.lifecycle.ViewModel
 import com.senex.timetable.domain.model.subject.VariedSubject

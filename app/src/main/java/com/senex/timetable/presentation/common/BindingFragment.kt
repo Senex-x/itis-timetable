@@ -1,11 +1,10 @@
-package com.senex.timetable.presentation.ui.subject.varied
+package com.senex.timetable.presentation.common
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.viewbinding.ViewBinding
-import com.senex.timetable.presentation.common.inflateBinding
 import dagger.android.support.DaggerFragment
 
 abstract class BindingFragment<T : ViewBinding> : DaggerFragment() {

@@ -1,7 +1,6 @@
-package com.senex.timetable.presentation.ui.subject.varied
+package com.senex.timetable.presentation.ui.subject.varied.base
 
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import com.senex.timetable.domain.model.subject.VariedSubject
 import com.senex.timetable.domain.usecase.subject.GetAllByVariedSubjectId
 import com.senex.timetable.domain.usecase.subject.varied.GetVariedSubject
@@ -12,7 +11,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 
-abstract class BaseVariedSubjectViewModel<T: VariedSubject> (
+abstract class VariedSubjectViewModel<T: VariedSubject> (
     private val variedSubjectId: Long,
     private val showVariedSubject: ShowVariedSubject<T>,
     private val hideVariedSubject: HideVariedSubject<T>,

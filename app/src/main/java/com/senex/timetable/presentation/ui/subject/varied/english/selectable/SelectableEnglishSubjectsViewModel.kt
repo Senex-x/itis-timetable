@@ -4,12 +4,12 @@ import com.senex.timetable.domain.model.subject.EnglishSubject
 import com.senex.timetable.domain.usecase.subject.GetAllByEnglishSubjectId
 import com.senex.timetable.domain.usecase.subject.english.GetEnglishSubject
 import com.senex.timetable.domain.usecase.subject.english.SetPrimaryEnglishSubject
-import com.senex.timetable.presentation.ui.subject.varied.SelectableVariedSubjectsViewModel
+import com.senex.timetable.presentation.ui.subject.varied.base.selectable.SelectableVariedSubjectsViewModel
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedFactory
 import dagger.assisted.AssistedInject
 
-class NewSelectableEnglishSubjectsViewModel @AssistedInject constructor(
+class SelectableEnglishSubjectsViewModel @AssistedInject constructor(
     @Assisted englishSubjectId: Long,
     @Assisted savedPrimarySubjectId: Long?,
     setPrimaryEnglishSubject: SetPrimaryEnglishSubject,
@@ -27,6 +27,6 @@ class NewSelectableEnglishSubjectsViewModel @AssistedInject constructor(
         fun create(
             englishSubjectId: Long,
             primarySubjectId: Long?,
-        ): NewSelectableEnglishSubjectsViewModel
+        ): SelectableEnglishSubjectsViewModel
     }
 }
