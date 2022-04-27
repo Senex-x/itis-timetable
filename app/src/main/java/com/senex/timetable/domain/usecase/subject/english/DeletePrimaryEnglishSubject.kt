@@ -4,8 +4,5 @@ import com.senex.timetable.domain.usecase.subject.varied.DeletePrimaryVariedSubj
 import javax.inject.Inject
 
 class DeletePrimaryEnglishSubject @Inject constructor(
-    private val setPrimaryEnglishSubject: SetPrimaryEnglishSubject,
-) : DeletePrimaryVariedSubject {
-    override suspend operator fun invoke(variedSubjectId: Long) =
-        setPrimaryEnglishSubject(variedSubjectId, null)
-}
+    setPrimaryEnglishSubject: SetPrimaryEnglishSubject,
+) : DeletePrimaryVariedSubject(setPrimaryEnglishSubject)

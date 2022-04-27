@@ -6,8 +6,5 @@ import com.senex.timetable.domain.usecase.subject.varied.SaveAllVariedSubjects
 import javax.inject.Inject
 
 class SaveAllEnglishSubjects @Inject constructor(
-    private val englishSubjectRepository: EnglishSubjectRepository,
-) : SaveAllVariedSubjects<EnglishSubject> {
-    override suspend operator fun invoke(variedSubjects: List<EnglishSubject>) =
-        englishSubjectRepository.insertAll(*variedSubjects.toTypedArray())
-}
+    englishSubjectRepository: EnglishSubjectRepository,
+) : SaveAllVariedSubjects<EnglishSubject>(englishSubjectRepository)

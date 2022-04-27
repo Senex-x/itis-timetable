@@ -1,5 +1,10 @@
 package com.senex.timetable.domain.usecase.subject.varied
 
-interface ShowVariedSubject {
-    suspend operator fun invoke(variedSubjectId: Long)
+import com.senex.timetable.domain.repository.local.VariedSubjectRepository
+
+open class ShowVariedSubject<T>(
+    private val variedSubjectRepository: VariedSubjectRepository<T>,
+) {
+    suspend operator fun invoke(variedSubjectId: Long) =
+        variedSubjectRepository.show(variedSubjectId)
 }
