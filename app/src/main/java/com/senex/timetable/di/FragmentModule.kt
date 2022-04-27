@@ -5,7 +5,7 @@ import com.senex.timetable.presentation.ui.hidden.HiddenSubjectsFragment
 import com.senex.timetable.presentation.ui.schedule.ScheduleFragment
 import com.senex.timetable.presentation.ui.schedule.daily.DailyScheduleFragment
 import com.senex.timetable.presentation.ui.settings.SettingsFragment
-import com.senex.timetable.presentation.ui.subject.ordinary.OrdinarySubjectFragment
+import com.senex.timetable.presentation.ui.subject.single.SubjectFragment
 import com.senex.timetable.presentation.ui.subject.varied.elective.ElectiveSubjectFragment
 import com.senex.timetable.presentation.ui.subject.varied.elective.selectable.SelectableElectiveSubjectsFragment
 import com.senex.timetable.presentation.ui.subject.varied.english.EnglishSubjectFragment
@@ -26,7 +26,7 @@ abstract class FragmentModule {
     abstract fun contributeDailyScheduleFragment(): DailyScheduleFragment
 
     @ContributesAndroidInjector
-    abstract fun contributeOrdinarySubjectFragment(): OrdinarySubjectFragment
+    abstract fun contributeOrdinarySubjectFragment(): SubjectFragment
 
     @ContributesAndroidInjector
     abstract fun contributeNewElectiveSubjectFragment(): ElectiveSubjectFragment

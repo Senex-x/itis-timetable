@@ -13,12 +13,10 @@ import com.hannesdorfmann.adapterdelegates4.AsyncListDifferDelegationAdapter
 import com.senex.timetable.databinding.FragmentDailyScheduleBinding
 import com.senex.timetable.domain.util.toast
 import com.senex.timetable.presentation.common.BindingFragment
-import com.senex.timetable.presentation.common.inflateBinding
 import com.senex.timetable.presentation.ui.schedule.ScheduleFragmentDirections
 import com.senex.timetable.presentation.ui.schedule.ScheduleViewModel
 import com.senex.timetable.presentation.ui.schedule.daily.recycler.SubjectsRecyclerItem
 import com.senex.timetable.presentation.ui.schedule.daily.recycler.SubjectsRecyclerItemDiffCallback
-import dagger.android.support.DaggerFragment
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import java.time.DayOfWeek
@@ -44,11 +42,11 @@ class DailyScheduleFragment : BindingFragment<FragmentDailyScheduleBinding>() {
         scheduleRecyclerView.layoutManager = LinearLayoutManager(requireContext())
         scheduleRecyclerView.adapter = AsyncListDifferDelegationAdapter(
             SubjectsRecyclerItemDiffCallback,
-            SubjectsRecyclerItem.OrdinaryItem.getDelegate(navigateToOrdinarySubjectFragment),
+            SubjectsRecyclerItem.OrdinaryItem.getDelegate(navigateToSubjectFragment),
             SubjectsRecyclerItem.ElectiveItem.getDelegate(navigateToElectiveSubjectFragment),
             SubjectsRecyclerItem.EnglishItem.getDelegate(navigateToEnglishSubjectFragment),
-            SubjectsRecyclerItem.PhysicalItem.getDelegate { requireContext().toast("Physical item") },
-            SubjectsRecyclerItem.BlockItem.getDelegate { requireContext().toast("Block item") },
+            SubjectsRecyclerItem.PhysicalItem.getDelegate(navigateToSubjectFragment),
+            SubjectsRecyclerItem.BlockItem.getDelegate(navigateToSubjectFragment),
             SubjectsRecyclerItem.EmptyItem.getDelegate(),
         ).apply {
             viewModel.getDailySubjectRecyclerItems(dayOfWeek).onEach {
@@ -58,7 +56,7 @@ class DailyScheduleFragment : BindingFragment<FragmentDailyScheduleBinding>() {
         }
     }
 
-    private val navigateToOrdinarySubjectFragment: (Long) -> Unit = { subjectId ->
+    private val navigateToSubjectFragment: (Long) -> Unit = { subjectId ->
         findNavController().navigate(
             ScheduleFragmentDirections.actionScheduleFragmentToOrdinarySubjectFragment(
                 subjectId

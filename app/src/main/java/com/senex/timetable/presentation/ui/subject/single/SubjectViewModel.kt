@@ -1,4 +1,4 @@
-package com.senex.timetable.presentation.ui.subject.ordinary
+package com.senex.timetable.presentation.ui.subject.single
 
 import androidx.lifecycle.ViewModel
 import com.senex.timetable.domain.usecase.subject.GetSubjectById
@@ -12,7 +12,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 
-class OrdinarySubjectViewModel @AssistedInject constructor(
+class SubjectViewModel @AssistedInject constructor(
     @Assisted private val subjectId: Long,
     private val showSubject: ShowSubject,
     private val hideSubject: HideSubject,
@@ -37,6 +37,6 @@ class OrdinarySubjectViewModel @AssistedInject constructor(
 
     @AssistedFactory
     interface Factory {
-        fun create(subjectId: Long): OrdinarySubjectViewModel
+        fun create(subjectId: Long): SubjectViewModel
     }
 }

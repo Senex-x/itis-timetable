@@ -39,9 +39,9 @@
     </fragment>
     <fragment
         android:id="@+id/ordinarySubjectFragment"
-        android:name="com.senex.timetable.presentation.ui.subject.ordinary.OrdinarySubjectFragment"
+        android:name="com.senex.timetable.presentation.ui.subject.single.SubjectFragment"
         android:label="SubjectFragment"
-        tools:layout="@layout/fragment_ordinary_subject">
+        tools:layout="@layout/fragment_subject">
         <action
             android:id="@+id/action_ordinarySubjectFragment_to_scheduleFragment"
             app:destination="@id/scheduleFragment" />

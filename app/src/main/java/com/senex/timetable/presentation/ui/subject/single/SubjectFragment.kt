@@ -1,4 +1,4 @@
-package com.senex.timetable.presentation.ui.subject.ordinary
+package com.senex.timetable.presentation.ui.subject.single
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -6,7 +6,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.navigation.ui.setupWithNavController
-import com.senex.timetable.databinding.FragmentOrdinarySubjectBinding
+import com.senex.timetable.databinding.FragmentSubjectBinding
 import com.senex.timetable.presentation.common.BindingFragment
 import com.senex.timetable.presentation.common.assistedViewModel
 import com.senex.timetable.presentation.ui.subject.common.initShowHideSubjectButtons
@@ -14,20 +14,20 @@ import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import javax.inject.Inject
 
-class OrdinarySubjectFragment : BindingFragment<FragmentOrdinarySubjectBinding>() {
+class SubjectFragment : BindingFragment<FragmentSubjectBinding>() {
 
-    override val bindingInflater: (LayoutInflater, ViewGroup?, Boolean) -> FragmentOrdinarySubjectBinding =
-        FragmentOrdinarySubjectBinding::inflate
+    override val bindingInflater: (LayoutInflater, ViewGroup?, Boolean) -> FragmentSubjectBinding =
+        FragmentSubjectBinding::inflate
 
-    private val args: OrdinarySubjectFragmentArgs by navArgs()
+    private val args: SubjectFragmentArgs by navArgs()
 
     @Inject
-    lateinit var factory: OrdinarySubjectViewModel.Factory
-    private val viewModel: OrdinarySubjectViewModel by assistedViewModel {
+    lateinit var factory: SubjectViewModel.Factory
+    private val viewModel: SubjectViewModel by assistedViewModel {
         factory.create(args.subjectId)
     }
 
-    override fun FragmentOrdinarySubjectBinding.onViewCreated() {
+    override fun FragmentSubjectBinding.onViewCreated() {
         toolbarContainer.toolbar.setupWithNavController(findNavController())
 
         viewModel.subject.onEach {
