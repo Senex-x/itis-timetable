@@ -44,10 +44,7 @@ abstract class SelectableVariedSubjectsFragment<T : VariedSubject> :
                 )
             }
         }
-        setupWithNavController(
-            findNavController(),
-            AppBarConfiguration(findNavController().graph)
-        )
+        setupWithNavController(findNavController())
         setOnMenuItemClickListener {
             when (it.itemId) {
                 R.id.action_confirm -> commitSelection()

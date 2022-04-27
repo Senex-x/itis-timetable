@@ -5,10 +5,10 @@ import android.view.ViewGroup
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import androidx.navigation.ui.setupWithNavController
 import com.senex.timetable.databinding.FragmentOrdinarySubjectBinding
 import com.senex.timetable.presentation.common.BindingFragment
 import com.senex.timetable.presentation.common.assistedViewModel
-import com.senex.timetable.presentation.common.initNavToolbar
 import com.senex.timetable.presentation.ui.subject.common.initShowHideSubjectButtons
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -28,16 +28,18 @@ class OrdinarySubjectFragment : BindingFragment<FragmentOrdinarySubjectBinding>(
     }
 
     override fun FragmentOrdinarySubjectBinding.onViewCreated() {
-        toolbarContainer.toolbar.initNavToolbar(findNavController())
+        toolbarContainer.toolbar.setupWithNavController(findNavController())
 
         viewModel.subject.onEach {
-            name.text = it.name
-            startTime.text = it.startTime
-            endTime.text = it.endTime
-            room.text = it.room
-            type.text = getString(it.type.nameStringId)
-            kind.text = getString(it.kind.nameStringId)
-            fullProfessorName.text = it.fullProfessorName
+            with(subjectInfo) {
+                name.text = it.name
+                startTime.text = it.startTime
+                endTime.text = it.endTime
+                room.text = it.room
+                type.text = getString(it.type.nameStringId)
+                kind.text = getString(it.kind.nameStringId)
+                fullProfessorName.text = it.fullProfessorName
+            }
         }.launchIn(viewLifecycleOwner.lifecycleScope)
 
         subjectShowHideButtons.initShowHideSubjectButtons(

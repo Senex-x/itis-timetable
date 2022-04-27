@@ -5,10 +5,10 @@ import android.view.ViewGroup
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavDirections
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.ui.setupWithNavController
 import com.senex.timetable.databinding.FragmentVariedSubjectBinding
 import com.senex.timetable.domain.model.subject.VariedSubject
 import com.senex.timetable.presentation.common.BindingFragment
-import com.senex.timetable.presentation.common.initNavToolbar
 import com.senex.timetable.presentation.ui.subject.common.initShowHideSubjectButtons
 import kotlinx.coroutines.launch
 
@@ -33,6 +33,6 @@ abstract class VariedSubjectFragment<T : VariedSubject> :
                 findNavController().navigate(selectionFragmentNavDirections())
             }
         }
-        toolbarContainer.toolbar.initNavToolbar(findNavController())
+        toolbarContainer.toolbar.setupWithNavController(findNavController())
     }
 }

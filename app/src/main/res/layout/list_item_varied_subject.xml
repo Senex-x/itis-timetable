@@ -52,7 +52,7 @@
 
     <include
         android:id="@+id/subject_info"
-        layout="@layout/subject_content"
+        layout="@layout/subject_list_item_content"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"

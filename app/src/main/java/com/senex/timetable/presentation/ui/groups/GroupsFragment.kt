@@ -28,10 +28,7 @@ class GroupsFragment : BindingFragment<FragmentGroupsBinding>() {
         FragmentGroupsBinding::inflate
 
     override fun FragmentGroupsBinding.onViewCreated() {
-        groupsToolbar.setupWithNavController(
-            findNavController(),
-            AppBarConfiguration(findNavController().graph)
-        )
+        groupsToolbar.setupWithNavController(findNavController())
 
         groupsToolbar.setOnMenuItemClickListener {
             when (it.itemId) {

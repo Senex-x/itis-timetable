@@ -60,8 +60,7 @@ class ScheduleFragment : BindingFragment<FragmentScheduleBinding>() {
     }
 
     private fun FragmentScheduleBinding.initViewPager() {
-        val pagerAdapter = SchedulePagerAdapter(this@ScheduleFragment)
-        pager.adapter = pagerAdapter
+        pager.adapter = SchedulePagerAdapter(this@ScheduleFragment)
     }
 
     private fun FragmentScheduleBinding.initTabBar() {

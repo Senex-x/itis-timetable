@@ -3,9 +3,9 @@ package com.senex.timetable.presentation.ui.settings
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.ui.setupWithNavController
 import com.senex.timetable.databinding.FragmentSettingsBinding
 import com.senex.timetable.presentation.common.BindingFragment
-import com.senex.timetable.presentation.common.initNavToolbar
 
 class SettingsFragment : BindingFragment<FragmentSettingsBinding>() {
 
@@ -13,6 +13,6 @@ class SettingsFragment : BindingFragment<FragmentSettingsBinding>() {
         FragmentSettingsBinding::inflate
 
     override fun FragmentSettingsBinding.onViewCreated() {
-        toolbarContainer.toolbar.initNavToolbar(findNavController())
+        toolbarContainer.toolbar.setupWithNavController(findNavController())
     }
 }
