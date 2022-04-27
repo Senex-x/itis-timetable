@@ -12,7 +12,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 
-abstract class BaseVariedSubjectViewModel<T: VariedSubject> constructor(
+abstract class BaseVariedSubjectViewModel<T: VariedSubject> (
     private val variedSubjectId: Long,
     private val showVariedSubject: ShowVariedSubject<T>,
     private val hideVariedSubject: HideVariedSubject<T>,

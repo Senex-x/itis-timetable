@@ -23,7 +23,8 @@ import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-class NewSelectableEnglishSubjectsFragment : BindingFragment<FragmentSelectableVariedSubjectsBinding>() {
+class NewSelectableEnglishSubjectsFragment :
+    BindingFragment<FragmentSelectableVariedSubjectsBinding>() {
     private val args: NewSelectableEnglishSubjectsFragmentArgs by navArgs()
 
     @Inject
@@ -80,7 +81,7 @@ class NewSelectableEnglishSubjectsFragment : BindingFragment<FragmentSelectableV
             onItemCheckedChangeListener,
             viewModel.primarySubjectId.value
         ).apply {
-            viewModel.englishSubjects
+            viewModel.variedSubjects
                 .onEach(::submitList)
                 .launchIn(viewLifecycleOwner.lifecycleScope)
         }

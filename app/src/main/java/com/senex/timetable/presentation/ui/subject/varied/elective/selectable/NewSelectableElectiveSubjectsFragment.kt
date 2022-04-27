@@ -81,7 +81,7 @@ class NewSelectableElectiveSubjectsFragment :
             onItemCheckedChangeListener,
             viewModel.primarySubjectId.value
         ).apply {
-            viewModel.electiveSubjects
+            viewModel.variedSubjects
                 .onEach(::submitList)
                 .launchIn(viewLifecycleOwner.lifecycleScope)
         }
