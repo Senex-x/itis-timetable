@@ -12,9 +12,11 @@ import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.senex.timetable.R
 import com.senex.timetable.databinding.FragmentScheduleBinding
+import com.senex.timetable.domain.util.log
 import com.senex.timetable.presentation.common.BindingFragment
 import kotlinx.coroutines.launch
 import java.time.DayOfWeek
+import java.util.*
 import javax.inject.Inject
 
 class ScheduleFragment : BindingFragment<FragmentScheduleBinding>() {
@@ -61,6 +63,24 @@ class ScheduleFragment : BindingFragment<FragmentScheduleBinding>() {
 
     private fun FragmentScheduleBinding.initViewPager() {
         pager.adapter = SchedulePagerAdapter(this@ScheduleFragment)
+        viewLifecycleOwner.lifecycleScope.launch {
+            pager.setCurrentItem(calculateIndex(), false)
+        }
+    }
+
+    private suspend fun calculateIndex(): Int {
+        var todayDayIndex = Calendar.getInstance().get(Calendar.DAY_OF_WEEK) - 2
+        if (todayDayIndex == -1) todayDayIndex = 0
+
+        val current = Calendar.getInstance().get(Calendar.HOUR_OF_DAY)
+
+        val lastSubjectEndTime = viewModel.getLastSubjectEndTime(todayDayIndex)
+        val last = Calendar.Builder()
+            .setInstant(lastSubjectEndTime)
+            .build()
+            .get(Calendar.HOUR_OF_DAY)
+
+        return if (current > last) (todayDayIndex + 1) % 6 else todayDayIndex
     }
 
     private fun FragmentScheduleBinding.initTabBar() {

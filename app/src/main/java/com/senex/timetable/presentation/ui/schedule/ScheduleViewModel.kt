@@ -4,7 +4,9 @@ import androidx.lifecycle.ViewModel
 import com.senex.timetable.domain.usecase.group.GetGroup
 import com.senex.timetable.domain.usecase.schedule.GetScheduleByGroupIdSorted
 import com.senex.timetable.domain.usecase.schedule.SyncScheduleByGroupId
+import com.senex.timetable.domain.util.log
 import com.senex.timetable.presentation.common.SharedPreferencesHandler
+import com.senex.timetable.presentation.ui.schedule.daily.recycler.SubjectsRecyclerItem
 import com.senex.timetable.presentation.ui.schedule.daily.recycler.toSubjectsRecyclerItems
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -12,7 +14,10 @@ import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
+import java.text.SimpleDateFormat
 import java.time.DayOfWeek
+import java.time.format.DateTimeFormatter
+import java.util.*
 import javax.inject.Inject
 
 class ScheduleViewModel @Inject constructor(
@@ -54,5 +59,19 @@ class ScheduleViewModel @Inject constructor(
         flowOf(null)
     } else {
         getScheduleByGroupIdSorted(groupId)
+    }
+
+    suspend fun getLastSubjectEndTime(dayIndexInWeek: Int): Date {
+        val timeString = when(
+            val lastSubject = getDailySubjectRecyclerItems(DayOfWeek.of(dayIndexInWeek + 1)).first().last()
+        ) {
+            is SubjectsRecyclerItem.OrdinaryItem -> lastSubject.subject.endTime
+            is SubjectsRecyclerItem.BlockItem -> lastSubject.blockSubject.endTime
+            is SubjectsRecyclerItem.ElectiveItem -> lastSubject.timePeriod.second
+            is SubjectsRecyclerItem.EmptyItem -> lastSubject.emptySubject.endTime
+            is SubjectsRecyclerItem.EnglishItem -> lastSubject.timePeriod.second
+            is SubjectsRecyclerItem.PhysicalItem -> lastSubject.physicalSubject.endTime
+        }
+        return SimpleDateFormat("HH:mm", Locale.getDefault()).parse(timeString)!!
     }
 }
