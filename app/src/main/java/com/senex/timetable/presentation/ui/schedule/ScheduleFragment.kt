@@ -1,8 +1,6 @@
 package com.senex.timetable.presentation.ui.schedule
 
-import android.os.Bundle
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
@@ -14,36 +12,21 @@ import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.senex.timetable.R
 import com.senex.timetable.databinding.FragmentScheduleBinding
-import com.senex.timetable.domain.util.log
-import com.senex.timetable.presentation.common.inflateBinding
-import dagger.android.support.DaggerFragment
-import kotlinx.coroutines.flow.launchIn
-import kotlinx.coroutines.flow.onEach
+import com.senex.timetable.presentation.common.BindingFragment
 import kotlinx.coroutines.launch
 import java.time.DayOfWeek
 import javax.inject.Inject
 
-class ScheduleFragment : DaggerFragment() {
-    private var _binding: FragmentScheduleBinding? = null
-    private val binding
-        get() = _binding!!
+class ScheduleFragment : BindingFragment<FragmentScheduleBinding>() {
 
     @Inject
     lateinit var factory: ViewModelProvider.Factory
     private val viewModel: ScheduleViewModel by viewModels { factory }
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?,
-    ) = inflateBinding(FragmentScheduleBinding::inflate, inflater, container) {
-        _binding = it
-    }
+    override val bindingInflater: (LayoutInflater, ViewGroup?, Boolean) -> FragmentScheduleBinding =
+        FragmentScheduleBinding::inflate
 
-    override fun onViewCreated(
-        view: View,
-        savedInstanceState: Bundle?,
-    ): Unit = with(binding) {
+    override fun FragmentScheduleBinding.onViewCreated() {
         initToolbar()
         initViewPager()
         initTabBar()
@@ -91,9 +74,4 @@ class ScheduleFragment : DaggerFragment() {
     private fun navigateToGroupsFragment() = findNavController().navigate(
         ScheduleFragmentDirections.actionScheduleFragmentToGroupsFragment()
     )
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
 }

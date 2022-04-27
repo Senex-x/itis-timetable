@@ -1,8 +1,6 @@
 package com.senex.timetable.presentation.ui.groups
 
-import android.os.Bundle
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
@@ -15,34 +13,21 @@ import com.hannesdorfmann.adapterdelegates4.AsyncListDifferDelegationAdapter
 import com.senex.timetable.R
 import com.senex.timetable.databinding.FragmentGroupsBinding
 import com.senex.timetable.domain.util.toast
-import com.senex.timetable.presentation.common.inflateBinding
+import com.senex.timetable.presentation.common.BindingFragment
 import com.senex.timetable.presentation.ui.groups.recycler.GroupsRecyclerItem
 import com.senex.timetable.presentation.ui.groups.recycler.GroupsRecyclerItemDiffCallback
-import dagger.android.support.DaggerFragment
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-class GroupsFragment : DaggerFragment() {
-    private var _binding: FragmentGroupsBinding? = null
-    private val binding
-        get() = _binding!!
-
+class GroupsFragment : BindingFragment<FragmentGroupsBinding>() {
     @Inject
     lateinit var factory: ViewModelProvider.Factory
     private val viewModel: GroupsViewModel by viewModels(factoryProducer = { factory })
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?,
-    ) = inflateBinding(FragmentGroupsBinding::inflate, inflater, container) {
-        _binding = it
-    }
+    override val bindingInflater: (LayoutInflater, ViewGroup?, Boolean) -> FragmentGroupsBinding =
+        FragmentGroupsBinding::inflate
 
-    override fun onViewCreated(
-        view: View,
-        savedInstanceState: Bundle?,
-    ) = with(binding) {
+    override fun FragmentGroupsBinding.onViewCreated() {
         groupsToolbar.setupWithNavController(
             findNavController(),
             AppBarConfiguration(findNavController().graph)

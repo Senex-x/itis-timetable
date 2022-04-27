@@ -22,7 +22,7 @@ abstract class VariedSubjectFragment<T : VariedSubject> :
     override val bindingInflater: (LayoutInflater, ViewGroup?, Boolean) -> FragmentVariedSubjectBinding =
         FragmentVariedSubjectBinding::inflate
 
-    override val onViewCreatedCallback: FragmentVariedSubjectBinding.() -> Unit = {
+    override fun FragmentVariedSubjectBinding.onViewCreated() {
         subjectShowHideButtons.initShowHideSubjectButtons(
             viewLifecycleOwner.lifecycleScope,
             viewModel.isVariedSubjectVisible,
@@ -36,5 +36,3 @@ abstract class VariedSubjectFragment<T : VariedSubject> :
         toolbarContainer.toolbar.initNavToolbar(findNavController())
     }
 }
-
-

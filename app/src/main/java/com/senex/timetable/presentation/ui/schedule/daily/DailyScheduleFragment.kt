@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.hannesdorfmann.adapterdelegates4.AsyncListDifferDelegationAdapter
 import com.senex.timetable.databinding.FragmentDailyScheduleBinding
 import com.senex.timetable.domain.util.toast
+import com.senex.timetable.presentation.common.BindingFragment
 import com.senex.timetable.presentation.common.inflateBinding
 import com.senex.timetable.presentation.ui.schedule.ScheduleFragmentDirections
 import com.senex.timetable.presentation.ui.schedule.ScheduleViewModel
@@ -23,10 +24,10 @@ import kotlinx.coroutines.flow.onEach
 import java.time.DayOfWeek
 import javax.inject.Inject
 
-class DailyScheduleFragment : DaggerFragment() {
-    private var _binding: FragmentDailyScheduleBinding? = null
-    private val binding
-        get() = _binding!!
+class DailyScheduleFragment : BindingFragment<FragmentDailyScheduleBinding>() {
+
+    override val bindingInflater: (LayoutInflater, ViewGroup?, Boolean) -> FragmentDailyScheduleBinding =
+        FragmentDailyScheduleBinding::inflate
 
     private val dayOfWeek by lazy {
         arguments?.getSerializable(DAY_OF_WEEK_KEY) as DayOfWeek
@@ -39,18 +40,7 @@ class DailyScheduleFragment : DaggerFragment() {
         factoryProducer = { factory },
     )
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?,
-    ) = inflateBinding(FragmentDailyScheduleBinding::inflate, inflater, container) {
-        _binding = it
-    }
-
-    override fun onViewCreated(
-        view: View,
-        savedInstanceState: Bundle?,
-    ): Unit = with(binding) {
+    override fun FragmentDailyScheduleBinding.onViewCreated() {
         scheduleRecyclerView.layoutManager = LinearLayoutManager(requireContext())
         scheduleRecyclerView.adapter = AsyncListDifferDelegationAdapter(
             SubjectsRecyclerItemDiffCallback,
@@ -90,11 +80,6 @@ class DailyScheduleFragment : DaggerFragment() {
                 englishSubjectId
             )
         )
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
     }
 
     companion object {

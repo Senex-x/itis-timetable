@@ -1,26 +1,23 @@
 package com.senex.timetable.presentation.ui.subject.ordinary
 
-import android.os.Bundle
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.senex.timetable.databinding.FragmentOrdinarySubjectBinding
+import com.senex.timetable.presentation.common.BindingFragment
 import com.senex.timetable.presentation.common.assistedViewModel
-import com.senex.timetable.presentation.common.inflateBinding
 import com.senex.timetable.presentation.common.initNavToolbar
 import com.senex.timetable.presentation.ui.subject.common.initShowHideSubjectButtons
-import dagger.android.support.DaggerFragment
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import javax.inject.Inject
 
-class OrdinarySubjectFragment : DaggerFragment() {
-    private var _binding: FragmentOrdinarySubjectBinding? = null
-    private val binding
-        get() = _binding!!
+class OrdinarySubjectFragment : BindingFragment<FragmentOrdinarySubjectBinding>() {
+
+    override val bindingInflater: (LayoutInflater, ViewGroup?, Boolean) -> FragmentOrdinarySubjectBinding =
+        FragmentOrdinarySubjectBinding::inflate
 
     private val args: OrdinarySubjectFragmentArgs by navArgs()
 
@@ -30,18 +27,7 @@ class OrdinarySubjectFragment : DaggerFragment() {
         factory.create(args.subjectId)
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?,
-    ) = inflateBinding(FragmentOrdinarySubjectBinding::inflate, inflater, container) {
-        _binding = it
-    }
-
-    override fun onViewCreated(
-        view: View,
-        savedInstanceState: Bundle?,
-    ): Unit = with(binding) {
+    override fun FragmentOrdinarySubjectBinding.onViewCreated() {
         toolbarContainer.toolbar.initNavToolbar(findNavController())
 
         viewModel.subject.onEach {
@@ -59,10 +45,5 @@ class OrdinarySubjectFragment : DaggerFragment() {
             viewModel.isSubjectVisible,
             viewModel::setSubjectVisibility,
         )
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
     }
 }
