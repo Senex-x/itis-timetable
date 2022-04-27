@@ -11,6 +11,7 @@ import com.senex.timetable.presentation.common.assistedViewModel
 import com.senex.timetable.presentation.common.initNavToolbar
 import com.senex.timetable.presentation.ui.subject.common.initShowHideSubjectButtons
 import com.senex.timetable.presentation.ui.subject.varied.BindingFragment
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -28,13 +29,13 @@ class NewEnglishSubjectFragment : BindingFragment<FragmentVariedSubjectBinding>(
         FragmentVariedSubjectBinding::inflate
 
     private val navigateToSelectionFragment: (View) -> Unit = {
-        lifecycleScope.launch {/*
+        lifecycleScope.launch {
             findNavController().navigate(
-                VariedSubjectFragmentDirections.actionVariedSubjectFragmentToSelectableVariedSubjectsFragment(
-                    args.variedSubjectId,
+                NewEnglishSubjectFragmentDirections.actionNewEnglishSubjectFragmentToNewSelectableEnglishSubjectsFragment(
+                    args.englishSubjectId,
                     viewModel.variedSubject.first().primarySubjectId ?: -1,
                 )
-            )*/
+            )
         }
     }
 

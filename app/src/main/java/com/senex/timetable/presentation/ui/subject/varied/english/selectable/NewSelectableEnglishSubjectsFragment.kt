@@ -1,8 +1,6 @@
-package com.senex.timetable.presentation.ui.subject.english.selectable
+package com.senex.timetable.presentation.ui.subject.varied.english.selectable
 
-import android.os.Bundle
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import androidx.lifecycle.lifecycleScope
@@ -14,48 +12,35 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.appbar.MaterialToolbar
 import com.senex.timetable.R
-import com.senex.timetable.databinding.FragmentSelectableEnglishSubjectsBinding
+import com.senex.timetable.databinding.FragmentSelectableVariedSubjectsBinding
 import com.senex.timetable.domain.util.toast
 import com.senex.timetable.presentation.common.assistedViewModel
-import com.senex.timetable.presentation.common.inflateBinding
 import com.senex.timetable.presentation.ui.subject.common.setMenuItemColor
 import com.senex.timetable.presentation.ui.subject.common.varied.SelectableVariedSubjectsRecyclerAdapter
-import dagger.android.support.DaggerFragment
+import com.senex.timetable.presentation.ui.subject.varied.BindingFragment
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-class SelectableEnglishSubjectsFragment : DaggerFragment() {
-    private var _binding: FragmentSelectableEnglishSubjectsBinding? = null
-    private val binding
-        get() = _binding!!
-
-    private val args: SelectableEnglishSubjectsFragmentArgs by navArgs()
+class NewSelectableEnglishSubjectsFragment : BindingFragment<FragmentSelectableVariedSubjectsBinding>() {
+    private val args: NewSelectableEnglishSubjectsFragmentArgs by navArgs()
 
     @Inject
-    lateinit var factory: SelectableEnglishSubjectsViewModel.Factory
-    private val viewModel: SelectableEnglishSubjectsViewModel by assistedViewModel {
+    lateinit var factory: NewSelectableEnglishSubjectsViewModel.Factory
+    private val viewModel: NewSelectableEnglishSubjectsViewModel by assistedViewModel {
         factory.create(
             args.englishSubjectId,
             args.primaryEnglishSubjectId.takeIf { it != -1L }
         )
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?,
-    ) = inflateBinding(FragmentSelectableEnglishSubjectsBinding::inflate, inflater, container) {
-        _binding = it
-    }
+    override val bindingInflater: (LayoutInflater, ViewGroup?, Boolean) -> FragmentSelectableVariedSubjectsBinding =
+        FragmentSelectableVariedSubjectsBinding::inflate
 
-    override fun onViewCreated(
-        view: View,
-        savedInstanceState: Bundle?,
-    ): Unit = with(binding) {
+    override val onViewCreatedCallback: FragmentSelectableVariedSubjectsBinding.() -> Unit = {
         toolbar.initToolbar()
-        selectableEnglishSubjectsRecycler.initRecycler()
+        selectableSubjectsRecycler.initRecycler()
         selectNothingButton.initSelectNothingButton()
     }
 
@@ -120,9 +105,4 @@ class SelectableEnglishSubjectsFragment : DaggerFragment() {
     }
 
     private fun popBackStack() = findNavController().popBackStack()
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
 }

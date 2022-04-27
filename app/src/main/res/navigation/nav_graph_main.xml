@@ -159,11 +159,15 @@
         <argument
             android:name="english_subject_id"
             app:argType="long" />
+        <action
+            android:id="@+id/action_newEnglishSubjectFragment_to_newSelectableEnglishSubjectsFragment"
+            app:destination="@id/newSelectableEnglishSubjectsFragment" />
     </fragment>
     <fragment
         android:id="@+id/newSelectableElectiveSubjectsFragment"
         android:name="com.senex.timetable.presentation.ui.subject.varied.elective.selectable.NewSelectableElectiveSubjectsFragment"
-        android:label="NewSelectableElectiveSubjectsFragment" >
+        android:label="NewSelectableElectiveSubjectsFragment"
+        tools:layout="@layout/fragment_selectable_varied_subjects">
         <action
             android:id="@+id/action_newSelectableElectiveSubjectsFragment_to_newElectiveSubjectFragment"
             app:destination="@id/newElectiveSubjectFragment" />
@@ -172,6 +176,21 @@
             app:argType="long" />
         <argument
             android:name="primary_elective_subject_id"
+            app:argType="long" />
+    </fragment>
+    <fragment
+        android:id="@+id/newSelectableEnglishSubjectsFragment"
+        android:name="com.senex.timetable.presentation.ui.subject.varied.english.selectable.NewSelectableEnglishSubjectsFragment"
+        android:label="NewSelectableEnglishSubjectsFragment"
+        tools:layout="@layout/fragment_selectable_varied_subjects">
+        <action
+            android:id="@+id/action_newSelectableEnglishSubjectsFragment_to_newEnglishSubjectFragment"
+            app:destination="@id/newEnglishSubjectFragment" />
+        <argument
+            android:name="english_subject_id"
+            app:argType="long" />
+        <argument
+            android:name="primary_english_subject_id"
             app:argType="long" />
     </fragment>
 </navigation>
