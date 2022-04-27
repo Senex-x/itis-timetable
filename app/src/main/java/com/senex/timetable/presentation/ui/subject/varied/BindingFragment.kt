@@ -8,7 +8,7 @@ import androidx.viewbinding.ViewBinding
 import com.senex.timetable.presentation.common.inflateBinding
 import dagger.android.support.DaggerFragment
 
-abstract class BaseVariedSubjectFragment<T : ViewBinding> : DaggerFragment() {
+abstract class BindingFragment<T : ViewBinding> : DaggerFragment() {
     private var _binding: T? = null
     protected val binding
         get() = _binding!!
@@ -17,11 +17,11 @@ abstract class BaseVariedSubjectFragment<T : ViewBinding> : DaggerFragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?,
-    ) = inflateBinding(getBindingInflater, layoutInflater, container) {
+    ) = inflateBinding(bindingInflater, layoutInflater, container) {
         _binding = it
     }
 
-    protected abstract val getBindingInflater: (LayoutInflater, ViewGroup?, Boolean) -> T
+    protected abstract val bindingInflater: (LayoutInflater, ViewGroup?, Boolean) -> T
 
     override fun onViewCreated(
         view: View,

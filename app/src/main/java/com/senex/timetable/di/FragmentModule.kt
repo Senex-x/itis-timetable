@@ -8,8 +8,9 @@ import com.senex.timetable.presentation.ui.subject.elective.selectable.Selectabl
 import com.senex.timetable.presentation.ui.subject.english.EnglishSubjectFragment
 import com.senex.timetable.presentation.ui.subject.english.selectable.SelectableEnglishSubjectsFragment
 import com.senex.timetable.presentation.ui.subject.ordinary.OrdinarySubjectFragment
-import com.senex.timetable.presentation.ui.subject.varied.NewElectiveSubjectFragment
-import com.senex.timetable.presentation.ui.subject.varied.NewEnglishSubjectFragment
+import com.senex.timetable.presentation.ui.subject.varied.elective.NewElectiveSubjectFragment
+import com.senex.timetable.presentation.ui.subject.varied.elective.selectable.NewSelectableElectiveSubjectsFragment
+import com.senex.timetable.presentation.ui.subject.varied.english.NewEnglishSubjectFragment
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
@@ -42,6 +43,9 @@ abstract class FragmentModule {
 
     @ContributesAndroidInjector
     abstract fun contributeSelectableElectiveSubjectsFragment(): SelectableElectiveSubjectsFragment
+
+    @ContributesAndroidInjector
+    abstract fun contributeNewSelectableElectiveSubjectsFragment(): NewSelectableElectiveSubjectsFragment
 
     @ContributesAndroidInjector
     abstract fun contributeSelectableEnglishSubjectsFragment(): SelectableEnglishSubjectsFragment

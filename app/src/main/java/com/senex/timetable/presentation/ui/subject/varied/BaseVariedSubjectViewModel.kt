@@ -2,6 +2,7 @@ package com.senex.timetable.presentation.ui.subject.varied
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.senex.timetable.domain.model.subject.VariedSubject
 import com.senex.timetable.domain.usecase.subject.GetAllByVariedSubjectId
 import com.senex.timetable.domain.usecase.subject.varied.GetVariedSubject
 import com.senex.timetable.domain.usecase.subject.varied.HideVariedSubject
@@ -11,11 +12,11 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 
-abstract class BaseVariedSubjectViewModel constructor(
+abstract class BaseVariedSubjectViewModel<T: VariedSubject> constructor(
     private val variedSubjectId: Long,
-    private val showVariedSubject: ShowVariedSubject,
-    private val hideVariedSubject: HideVariedSubject,
-    getVariedSubject: GetVariedSubject,
+    private val showVariedSubject: ShowVariedSubject<T>,
+    private val hideVariedSubject: HideVariedSubject<T>,
+    getVariedSubject: GetVariedSubject<T>,
     getAllByVariedSubjectId: GetAllByVariedSubjectId,
 ) : ViewModel() {
     val variedSubject = getVariedSubject(variedSubjectId).map {

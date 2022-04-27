@@ -135,7 +135,7 @@
     </fragment>
     <fragment
         android:id="@+id/newElectiveSubjectFragment"
-        android:name="com.senex.timetable.presentation.ui.subject.varied.NewElectiveSubjectFragment"
+        android:name="com.senex.timetable.presentation.ui.subject.varied.elective.NewElectiveSubjectFragment"
         android:label="NewElectiveSubjectFragment"
         tools:layout="@layout/fragment_varied_subject">
         <action
@@ -144,10 +144,13 @@
         <argument
             android:name="elective_subject_id"
             app:argType="long" />
+        <action
+            android:id="@+id/action_newElectiveSubjectFragment_to_newSelectableElectiveSubjectsFragment"
+            app:destination="@id/newSelectableElectiveSubjectsFragment" />
     </fragment>
     <fragment
         android:id="@+id/newEnglishSubjectFragment"
-        android:name="com.senex.timetable.presentation.ui.subject.varied.NewEnglishSubjectFragment"
+        android:name="com.senex.timetable.presentation.ui.subject.varied.english.NewEnglishSubjectFragment"
         android:label="NewEnglishSubjectFragment"
         tools:layout="@layout/fragment_varied_subject">
         <action
@@ -155,6 +158,20 @@
             app:destination="@id/scheduleFragment" />
         <argument
             android:name="english_subject_id"
+            app:argType="long" />
+    </fragment>
+    <fragment
+        android:id="@+id/newSelectableElectiveSubjectsFragment"
+        android:name="com.senex.timetable.presentation.ui.subject.varied.elective.selectable.NewSelectableElectiveSubjectsFragment"
+        android:label="NewSelectableElectiveSubjectsFragment" >
+        <action
+            android:id="@+id/action_newSelectableElectiveSubjectsFragment_to_newElectiveSubjectFragment"
+            app:destination="@id/newElectiveSubjectFragment" />
+        <argument
+            android:name="elective_subject_id"
+            app:argType="long" />
+        <argument
+            android:name="primary_elective_subject_id"
             app:argType="long" />
     </fragment>
 </navigation>

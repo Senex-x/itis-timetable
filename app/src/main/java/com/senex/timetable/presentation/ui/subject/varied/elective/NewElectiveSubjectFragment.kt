@@ -1,9 +1,8 @@
-package com.senex.timetable.presentation.ui.subject.varied
+package com.senex.timetable.presentation.ui.subject.varied.elective
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -11,30 +10,32 @@ import com.senex.timetable.databinding.FragmentVariedSubjectBinding
 import com.senex.timetable.presentation.common.assistedViewModel
 import com.senex.timetable.presentation.common.initNavToolbar
 import com.senex.timetable.presentation.ui.subject.common.initShowHideSubjectButtons
+import com.senex.timetable.presentation.ui.subject.varied.BindingFragment
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-class NewEnglishSubjectFragment : BaseVariedSubjectFragment<FragmentVariedSubjectBinding>() {
+class NewElectiveSubjectFragment : BindingFragment<FragmentVariedSubjectBinding>() {
 
-    private val args: NewEnglishSubjectFragmentArgs by navArgs()
+    private val args: NewElectiveSubjectFragmentArgs by navArgs()
 
     @Inject
-    lateinit var factory: NewEnglishSubjectViewModel.Factory
-    private val viewModel: NewEnglishSubjectViewModel by assistedViewModel {
-        factory.create(args.englishSubjectId)
+    lateinit var factory: NewElectiveSubjectViewModel.Factory
+    private val viewModel: NewElectiveSubjectViewModel by assistedViewModel {
+        factory.create(args.electiveSubjectId)
     }
 
-    override val getBindingInflater: (LayoutInflater, ViewGroup?, Boolean) -> FragmentVariedSubjectBinding =
+    override val bindingInflater: (LayoutInflater, ViewGroup?, Boolean) -> FragmentVariedSubjectBinding =
         FragmentVariedSubjectBinding::inflate
 
     private val navigateToSelectionFragment: (View) -> Unit = {
-        lifecycleScope.launch {/*
+        lifecycleScope.launch {
             findNavController().navigate(
-                VariedSubjectFragmentDirections.actionVariedSubjectFragmentToSelectableVariedSubjectsFragment(
-                    args.variedSubjectId,
+                NewElectiveSubjectFragmentDirections.actionNewElectiveSubjectFragmentToNewSelectableElectiveSubjectsFragment(
+                    args.electiveSubjectId,
                     viewModel.variedSubject.first().primarySubjectId ?: -1,
                 )
-            )*/
+            )
         }
     }
 

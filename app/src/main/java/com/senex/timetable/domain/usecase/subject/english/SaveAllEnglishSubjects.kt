@@ -7,4 +7,7 @@ import javax.inject.Inject
 
 class SaveAllEnglishSubjects @Inject constructor(
     englishSubjectRepository: EnglishSubjectRepository,
-) : SaveAllVariedSubjects<EnglishSubject>(englishSubjectRepository)
+) : SaveAllVariedSubjects<EnglishSubject>(englishSubjectRepository) {
+    suspend operator fun invoke(variedSubjects: List<EnglishSubject>) =
+        insertAll(variedSubjects.toTypedArray())
+}
