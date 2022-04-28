@@ -66,7 +66,7 @@ class DailyScheduleFragment : BindingFragment<FragmentDailyScheduleBinding>() {
 
     private val navigateToElectiveSubjectFragment: (Long) -> Unit = { electiveSubjectId ->
         findNavController().navigate(
-            ScheduleFragmentDirections.actionScheduleFragmentToNewElectiveSubjectFragment(
+            ScheduleFragmentDirections.actionScheduleFragmentToElectiveSubjectFragment(
                 electiveSubjectId
             )
         )
@@ -74,7 +74,7 @@ class DailyScheduleFragment : BindingFragment<FragmentDailyScheduleBinding>() {
 
     private val navigateToEnglishSubjectFragment: (Long) -> Unit = { englishSubjectId ->
         findNavController().navigate(
-            ScheduleFragmentDirections.actionScheduleFragmentToNewEnglishSubjectFragment(
+            ScheduleFragmentDirections.actionScheduleFragmentToEnglishSubjectFragment(
                 englishSubjectId
             )
         )

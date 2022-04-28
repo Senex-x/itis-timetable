@@ -28,7 +28,7 @@ class ElectiveSubjectFragment : VariedSubjectFragment<ElectiveSubject>() {
     }
 
     override val selectionFragmentNavDirections: suspend () -> NavDirections = {
-        ElectiveSubjectFragmentDirections.actionNewElectiveSubjectFragmentToNewSelectableElectiveSubjectsFragment(
+        ElectiveSubjectFragmentDirections.actionElectiveSubjectFragmentToSelectableElectiveSubjectsFragment(
             args.electiveSubjectId,
             viewModel.variedSubject.first().primarySubjectId ?: -1,
         )

@@ -22,11 +22,11 @@
             android:id="@+id/action_scheduleFragment_to_hiddenSubjectsFragment"
             app:destination="@id/hiddenSubjectsFragment" />
         <action
-            android:id="@+id/action_scheduleFragment_to_newElectiveSubjectFragment"
-            app:destination="@id/newElectiveSubjectFragment" />
+            android:id="@+id/action_scheduleFragment_to_electiveSubjectFragment"
+            app:destination="@id/electiveSubjectFragment" />
         <action
-            android:id="@+id/action_scheduleFragment_to_newEnglishSubjectFragment"
-            app:destination="@id/newEnglishSubjectFragment" />
+            android:id="@+id/action_scheduleFragment_to_englishSubjectFragment"
+            app:destination="@id/englishSubjectFragment" />
     </fragment>
     <fragment
         android:id="@+id/groupsFragment"
@@ -68,63 +68,67 @@
             app:destination="@id/scheduleFragment" />
     </fragment>
     <fragment
-        android:id="@+id/newElectiveSubjectFragment"
+        android:id="@+id/electiveSubjectFragment"
         android:name="com.senex.timetable.presentation.ui.subject.varied.elective.ElectiveSubjectFragment"
-        android:label="NewElectiveSubjectFragment"
+        android:label="electiveSubjectFragment"
         tools:layout="@layout/fragment_varied_subject">
-        <action
-            android:id="@+id/action_newElectiveSubjectFragment_to_scheduleFragment"
-            app:destination="@id/scheduleFragment" />
         <argument
             android:name="elective_subject_id"
             app:argType="long" />
         <action
-            android:id="@+id/action_newElectiveSubjectFragment_to_newSelectableElectiveSubjectsFragment"
-            app:destination="@id/newSelectableElectiveSubjectsFragment" />
+            android:id="@+id/action_electiveSubjectFragment_to_selectableElectiveSubjectsFragment"
+            app:destination="@id/selectableElectiveSubjectsFragment" />
+        <action
+            android:id="@+id/action_electiveSubjectFragment_to_scheduleFragment"
+            app:destination="@id/scheduleFragment" />
     </fragment>
     <fragment
-        android:id="@+id/newEnglishSubjectFragment"
+        android:id="@+id/englishSubjectFragment"
         android:name="com.senex.timetable.presentation.ui.subject.varied.english.EnglishSubjectFragment"
-        android:label="NewEnglishSubjectFragment"
+        android:label="englishSubjectFragment"
         tools:layout="@layout/fragment_varied_subject">
-        <action
-            android:id="@+id/action_newEnglishSubjectFragment_to_scheduleFragment"
-            app:destination="@id/scheduleFragment" />
+
         <argument
             android:name="english_subject_id"
             app:argType="long" />
         <action
-            android:id="@+id/action_newEnglishSubjectFragment_to_newSelectableEnglishSubjectsFragment"
-            app:destination="@id/newSelectableEnglishSubjectsFragment" />
+            android:id="@+id/action_englishSubjectFragment_to_selectableEnglishSubjectsFragment"
+            app:destination="@id/selectableEnglishSubjectsFragment" />
+        <action
+            android:id="@+id/action_englishSubjectFragment_to_scheduleFragment"
+            app:destination="@id/scheduleFragment" />
+
     </fragment>
     <fragment
-        android:id="@+id/newSelectableElectiveSubjectsFragment"
+        android:id="@+id/selectableElectiveSubjectsFragment"
         android:name="com.senex.timetable.presentation.ui.subject.varied.elective.selectable.SelectableElectiveSubjectsFragment"
-        android:label="NewSelectableElectiveSubjectsFragment"
+        android:label="selectableElectiveSubjectsFragment"
         tools:layout="@layout/fragment_selectable_varied_subjects">
-        <action
-            android:id="@+id/action_newSelectableElectiveSubjectsFragment_to_newElectiveSubjectFragment"
-            app:destination="@id/newElectiveSubjectFragment" />
+
         <argument
             android:name="elective_subject_id"
             app:argType="long" />
         <argument
             android:name="primary_elective_subject_id"
             app:argType="long" />
+        <action
+            android:id="@+id/action_selectableElectiveSubjectsFragment_to_electiveSubjectFragment"
+            app:destination="@id/electiveSubjectFragment" />
     </fragment>
     <fragment
-        android:id="@+id/newSelectableEnglishSubjectsFragment"
+        android:id="@+id/selectableEnglishSubjectsFragment"
         android:name="com.senex.timetable.presentation.ui.subject.varied.english.selectable.SelectableEnglishSubjectsFragment"
-        android:label="NewSelectableEnglishSubjectsFragment"
+        android:label="selectableEnglishSubjectsFragment"
         tools:layout="@layout/fragment_selectable_varied_subjects">
-        <action
-            android:id="@+id/action_newSelectableEnglishSubjectsFragment_to_newEnglishSubjectFragment"
-            app:destination="@id/newEnglishSubjectFragment" />
+
         <argument
             android:name="english_subject_id"
             app:argType="long" />
         <argument
             android:name="primary_english_subject_id"
             app:argType="long" />
+        <action
+            android:id="@+id/action_selectableEnglishSubjectsFragment_to_englishSubjectFragment"
+            app:destination="@id/englishSubjectFragment" />
     </fragment>
 </navigation>
