@@ -2,6 +2,7 @@ package com.senex.timetable.domain.usecase.schedule
 
 import com.senex.timetable.domain.usecase.group.DeleteGroupById
 import com.senex.timetable.domain.util.log
+import kotlinx.coroutines.delay
 import javax.inject.Inject
 
 class SyncScheduleByGroupId @Inject constructor(

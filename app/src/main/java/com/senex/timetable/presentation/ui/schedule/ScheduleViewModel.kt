@@ -19,13 +19,13 @@ import java.util.*
 import javax.inject.Inject
 
 class ScheduleViewModel @Inject constructor(
-    private val getScheduleByGroupIdSorted: GetScheduleByGroupIdSorted,
     private val getGroup: GetGroup,
+    private val getScheduleByGroupIdSorted: GetScheduleByGroupIdSorted,
     syncScheduleByGroupId: SyncScheduleByGroupId,
     preferencesHandler: GroupSharedPrefsHandler,
 ) : ViewModel() {
-    private val groupId = preferencesHandler.getSavedGroupId()
-    private val scheduleFlow = getScheduleFlow()
+
+    val groupId = preferencesHandler.getSavedGroupId()
 
     init {
         groupId?.let {
@@ -39,29 +39,29 @@ class ScheduleViewModel @Inject constructor(
         getGroup(it)
     }?.first()
 
-    fun getDailySubjectRecyclerItems(dayOfWeek: DayOfWeek) =
-        dailySubjectRecyclerItems[dayOfWeek.value - 1]
-
     private val dailySubjectRecyclerItems = Array(6) {
-        getDailySubjectRecyclerItems(dayIndexInWeek = it)
+        getSubjectsRecyclerItems(dayIndexInWeek = it)
     }
 
-    private fun getDailySubjectRecyclerItems(
+    fun getSubjectsRecyclerItems(dayOfWeek: DayOfWeek) =
+        dailySubjectRecyclerItems[dayOfWeek.value - 1]
+
+    private fun getSubjectsRecyclerItems(
         dayIndexInWeek: Int,
-    ) = scheduleFlow.map {
+    ) = getScheduleFlow().map {
         it?.getDailySchedule(dayIndexInWeek)?.toSubjectsRecyclerItems()
             ?: emptyList()
     }
 
-    private fun getScheduleFlow() = if (groupId == null) {
+    private fun getScheduleFlow() = if (groupId == null)
         flowOf(null)
-    } else {
+    else
         getScheduleByGroupIdSorted(groupId)
-    }
 
     suspend fun getLastSubjectEndTime(dayIndexInWeek: Int): Date {
-        val timeString = when(
-            val lastSubject = getDailySubjectRecyclerItems(DayOfWeek.of(dayIndexInWeek + 1)).first().last()
+        val timeString = when (
+            val lastSubject =
+                getSubjectsRecyclerItems(DayOfWeek.of(dayIndexInWeek + 1)).first().last()
         ) {
             is SubjectsRecyclerItem.OrdinaryItem -> lastSubject.subject.endTime
             is SubjectsRecyclerItem.BlockItem -> lastSubject.blockSubject.endTime

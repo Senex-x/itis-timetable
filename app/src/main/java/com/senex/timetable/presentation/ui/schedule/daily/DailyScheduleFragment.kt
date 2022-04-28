@@ -11,7 +11,6 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.hannesdorfmann.adapterdelegates4.AsyncListDifferDelegationAdapter
 import com.senex.timetable.databinding.FragmentDailyScheduleBinding
-import com.senex.timetable.domain.util.toast
 import com.senex.timetable.presentation.common.BindingFragment
 import com.senex.timetable.presentation.ui.schedule.ScheduleFragmentDirections
 import com.senex.timetable.presentation.ui.schedule.ScheduleViewModel
@@ -39,6 +38,9 @@ class DailyScheduleFragment : BindingFragment<FragmentDailyScheduleBinding>() {
     )
 
     override fun FragmentDailyScheduleBinding.onViewCreated() {
+        emptyListHint.visibility = if (viewModel.groupId == null)
+            View.VISIBLE else View.GONE
+
         scheduleRecyclerView.layoutManager = LinearLayoutManager(requireContext())
         scheduleRecyclerView.adapter = AsyncListDifferDelegationAdapter(
             SubjectsRecyclerItemDiffCallback,
@@ -49,8 +51,10 @@ class DailyScheduleFragment : BindingFragment<FragmentDailyScheduleBinding>() {
             SubjectsRecyclerItem.BlockItem.getDelegate(navigateToSubjectFragment),
             SubjectsRecyclerItem.EmptyItem.getDelegate(),
         ).apply {
-            viewModel.getDailySubjectRecyclerItems(dayOfWeek).onEach {
-                emptyListHint.visibility = if (it.isEmpty()) View.VISIBLE else View.GONE
+            viewModel.getSubjectsRecyclerItems(dayOfWeek).onEach {
+                loadingIndicator.visibility = if (it.isEmpty())
+                    View.VISIBLE else View.GONE
+
                 items = it
             }.launchIn(viewLifecycleOwner.lifecycleScope)
         }
