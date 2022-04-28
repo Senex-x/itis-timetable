@@ -48,9 +48,11 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <com.google.android.material.navigation.NavigationView
+        app:itemIconTint="@color/primary"
         android:id="@+id/nav_drawer"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"
+        android:background="?android:attr/colorBackground"
         app:menu="@menu/nav_drawer_menu" />
 </androidx.drawerlayout.widget.DrawerLayout>

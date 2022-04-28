@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <color name="primary">#25B3FF</color>
     <color name="main_background">#232323</color>
     <color name="main_background_light">#373737</color>
     <color name="color_background_floating">@color/main_background_light</color>
