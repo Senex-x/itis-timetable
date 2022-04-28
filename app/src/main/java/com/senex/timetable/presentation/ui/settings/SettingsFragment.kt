@@ -7,14 +7,14 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.senex.timetable.databinding.FragmentSettingsBinding
 import com.senex.timetable.presentation.common.BindingFragment
-import com.senex.timetable.presentation.common.Theme
-import com.senex.timetable.presentation.common.ThemeSharedPrefsHandler
+import com.senex.timetable.presentation.common.prefs.AppTheme
+import com.senex.timetable.presentation.common.prefs.ThemeSharedPrefsHandler
 import javax.inject.Inject
 
 class SettingsFragment : BindingFragment<FragmentSettingsBinding>() {
 
     @Inject
-    lateinit var themePrefs: ThemeSharedPrefsHandler
+    lateinit var themePrefsHandler: ThemeSharedPrefsHandler
 
     override val bindingInflater: (LayoutInflater, ViewGroup?, Boolean) -> FragmentSettingsBinding =
         FragmentSettingsBinding::inflate
@@ -22,18 +22,21 @@ class SettingsFragment : BindingFragment<FragmentSettingsBinding>() {
     override fun FragmentSettingsBinding.onViewCreated() {
         toolbarContainer.toolbar.setupWithNavController(findNavController())
 
-        val savedTheme = themePrefs.getSavedTheme()
-        darkThemeSwitch.isChecked = savedTheme == Theme.DARK
-        darkThemeSwitch.setOnCheckedChangeListener { _, isChecked ->
+        val savedTheme = themePrefsHandler.getSavedTheme()
+        darkThemeSwitch.isChecked = savedTheme == AppTheme.DARK
 
-            val theme = if (isChecked) Theme.DARK else Theme.LIGHT
-            themePrefs.saveTheme(theme)
-            when(theme) {
-                Theme.LIGHT -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-                Theme.DARK -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-            }
+        darkThemeSwitch.setOnCheckedChangeListener { _, isChecked ->
+            val theme = if (isChecked) AppTheme.DARK else AppTheme.LIGHT
+            themePrefsHandler.saveTheme(theme)
         }
 
-
+        themePrefsHandler.setOnThemeChangeListener {
+            AppCompatDelegate.setDefaultNightMode(
+                when (it) {
+                    AppTheme.LIGHT -> AppCompatDelegate.MODE_NIGHT_NO
+                    AppTheme.DARK -> AppCompatDelegate.MODE_NIGHT_YES
+                }
+            )
+        }
     }
 }

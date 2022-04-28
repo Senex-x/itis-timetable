@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import com.senex.timetable.domain.usecase.group.GetGroup
 import com.senex.timetable.domain.usecase.schedule.GetScheduleByGroupIdSorted
 import com.senex.timetable.domain.usecase.schedule.SyncScheduleByGroupId
-import com.senex.timetable.presentation.common.GroupSharedPrefsHandler
+import com.senex.timetable.presentation.common.prefs.GroupSharedPrefsHandler
 import com.senex.timetable.presentation.ui.schedule.daily.recycler.SubjectsRecyclerItem
 import com.senex.timetable.presentation.ui.schedule.daily.recycler.toSubjectsRecyclerItems
 import kotlinx.coroutines.CoroutineScope

@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import com.senex.timetable.domain.usecase.group.GetAllGroupsSorted
 import com.senex.timetable.domain.usecase.group.SyncAllGroups
 import com.senex.timetable.domain.usecase.schedule.IsSchedulePresent
-import com.senex.timetable.presentation.common.GroupSharedPrefsHandler
+import com.senex.timetable.presentation.common.prefs.GroupSharedPrefsHandler
 import com.senex.timetable.presentation.ui.groups.recycler.toGroupsRecyclerItemList
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
