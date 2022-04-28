@@ -2,6 +2,7 @@ package com.senex.timetable.presentation.ui.subject.varied.english
 
 import com.senex.timetable.domain.model.subject.EnglishSubject
 import com.senex.timetable.domain.usecase.subject.GetAllByEnglishSubjectId
+import com.senex.timetable.domain.usecase.subject.GetPrimarySubject
 import com.senex.timetable.domain.usecase.subject.english.GetEnglishSubject
 import com.senex.timetable.domain.usecase.subject.english.HideEnglishSubject
 import com.senex.timetable.domain.usecase.subject.english.ShowEnglishSubject
@@ -16,12 +17,14 @@ class EnglishSubjectViewModel @AssistedInject constructor(
     hideEnglishSubject: HideEnglishSubject,
     getEnglishSubject: GetEnglishSubject,
     getAllByEnglishSubjectId: GetAllByEnglishSubjectId,
+    getPrimarySubject: GetPrimarySubject,
 ) : VariedSubjectViewModel<EnglishSubject>(
     englishSubjectId,
     showEnglishSubject,
     hideEnglishSubject,
     getEnglishSubject,
     getAllByEnglishSubjectId,
+    getPrimarySubject,
 ) {
     @AssistedFactory
     interface Factory {

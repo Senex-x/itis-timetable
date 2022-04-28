@@ -1,6 +1,7 @@
 package com.senex.timetable.presentation.ui.subject.varied.base
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavDirections
@@ -10,6 +11,8 @@ import com.senex.timetable.databinding.FragmentVariedSubjectBinding
 import com.senex.timetable.domain.model.subject.VariedSubject
 import com.senex.timetable.presentation.common.BindingFragment
 import com.senex.timetable.presentation.ui.subject.common.initShowHideSubjectButtons
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 
 abstract class VariedSubjectFragment<T : VariedSubject> :
@@ -22,7 +25,11 @@ abstract class VariedSubjectFragment<T : VariedSubject> :
     override val bindingInflater: (LayoutInflater, ViewGroup?, Boolean) -> FragmentVariedSubjectBinding =
         FragmentVariedSubjectBinding::inflate
 
-    override fun FragmentVariedSubjectBinding.onViewCreated() {
+    override fun FragmentVariedSubjectBinding.onViewCreated() = onViewCreatedImpl(this)
+
+    protected fun onViewCreatedImpl(
+        binding: FragmentVariedSubjectBinding,
+    ): Unit = with(binding) {
         subjectShowHideButtons.initShowHideSubjectButtons(
             viewLifecycleOwner.lifecycleScope,
             viewModel.isVariedSubjectVisible,
@@ -34,5 +41,25 @@ abstract class VariedSubjectFragment<T : VariedSubject> :
             }
         }
         toolbarContainer.toolbar.setupWithNavController(findNavController())
+
+        viewModel.primarySubject.onEach {
+            with(subjectInfo) {
+                if(it != null) {
+                    subjectInfo.root.visibility = View.VISIBLE
+                    subjectIsNotSelectedHint.visibility = View.GONE
+
+                    name.text = it.name
+                    startTime.text = it.startTime
+                    endTime.text = it.endTime
+                    room.text = it.room
+                    type.text = getString(it.type.nameStringId)
+                    kind.text = getString(it.kind.nameStringId)
+                    fullProfessorName.text = it.fullProfessorName
+                } else {
+                    subjectInfo.root.visibility = View.GONE
+                    subjectIsNotSelectedHint.visibility = View.VISIBLE
+                }
+            }
+        }.launchIn(viewLifecycleOwner.lifecycleScope)
     }
 }

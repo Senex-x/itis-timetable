@@ -64,7 +64,7 @@ class ScheduleFragment : BindingFragment<FragmentScheduleBinding>() {
     private fun FragmentScheduleBinding.initViewPager() {
         pager.adapter = SchedulePagerAdapter(this@ScheduleFragment)
         viewLifecycleOwner.lifecycleScope.launch {
-            pager.setCurrentItem(calculateIndex(), false)
+            //pager.setCurrentItem(calculateIndex(), false)
         }
     }
 
@@ -78,7 +78,7 @@ class ScheduleFragment : BindingFragment<FragmentScheduleBinding>() {
         val last = Calendar.Builder()
             .setInstant(lastSubjectEndTime)
             .build()
-            .get(Calendar.HOUR_OF_DAY)
+            .get(Calendar.HOUR_OF_DAY) + 1
 
         return if (current > last) (todayDayIndex + 1) % 6 else todayDayIndex
     }

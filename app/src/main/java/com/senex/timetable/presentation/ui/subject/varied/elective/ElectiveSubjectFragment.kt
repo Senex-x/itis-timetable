@@ -2,6 +2,8 @@ package com.senex.timetable.presentation.ui.subject.varied.elective
 
 import androidx.navigation.NavDirections
 import androidx.navigation.fragment.navArgs
+import com.senex.timetable.R
+import com.senex.timetable.databinding.FragmentVariedSubjectBinding
 import com.senex.timetable.domain.model.subject.ElectiveSubject
 import com.senex.timetable.presentation.common.assistedViewModel
 import com.senex.timetable.presentation.ui.subject.varied.base.VariedSubjectFragment
@@ -16,6 +18,13 @@ class ElectiveSubjectFragment : VariedSubjectFragment<ElectiveSubject>() {
     lateinit var factory: ElectiveSubjectViewModel.Factory
     override val viewModel: ElectiveSubjectViewModel by assistedViewModel {
         factory.create(args.electiveSubjectId)
+    }
+
+    override fun FragmentVariedSubjectBinding.onViewCreated() {
+        super.onViewCreatedImpl(this)
+
+        chooseCourseButton.text = getString(R.string.choose_elective_course_title)
+        subjectIsNotSelectedHint.text = getString(R.string.elective_course_not_selected_hint)
     }
 
     override val selectionFragmentNavDirections: suspend () -> NavDirections = {

@@ -3,6 +3,7 @@ package com.senex.timetable.presentation.ui.subject.varied.base.selectable
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Button
+import androidx.annotation.CallSuper
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -29,6 +30,7 @@ abstract class SelectableVariedSubjectsFragment<T : VariedSubject> :
     override val bindingInflater: (LayoutInflater, ViewGroup?, Boolean) -> FragmentSelectableVariedSubjectsBinding =
         FragmentSelectableVariedSubjectsBinding::inflate
 
+    @CallSuper
     override fun FragmentSelectableVariedSubjectsBinding.onViewCreated() {
         toolbar.initToolbar()
         selectableSubjectsRecycler.initRecycler()

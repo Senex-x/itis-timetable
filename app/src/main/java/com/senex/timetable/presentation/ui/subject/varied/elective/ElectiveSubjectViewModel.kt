@@ -2,6 +2,7 @@ package com.senex.timetable.presentation.ui.subject.varied.elective
 
 import com.senex.timetable.domain.model.subject.ElectiveSubject
 import com.senex.timetable.domain.usecase.subject.GetAllByElectiveSubjectId
+import com.senex.timetable.domain.usecase.subject.GetPrimarySubject
 import com.senex.timetable.domain.usecase.subject.elective.GetElectiveSubject
 import com.senex.timetable.domain.usecase.subject.elective.HideElectiveSubject
 import com.senex.timetable.domain.usecase.subject.elective.ShowElectiveSubject
@@ -16,12 +17,14 @@ class ElectiveSubjectViewModel @AssistedInject constructor(
     hideElectiveSubject: HideElectiveSubject,
     getElectiveSubject: GetElectiveSubject,
     getAllByElectiveSubjectId: GetAllByElectiveSubjectId,
+    getPrimarySubject: GetPrimarySubject,
 ) : VariedSubjectViewModel<ElectiveSubject>(
     electiveSubjectId,
     showElectiveSubject,
     hideElectiveSubject,
     getElectiveSubject,
     getAllByElectiveSubjectId,
+    getPrimarySubject
 ) {
     @AssistedFactory
     interface Factory {

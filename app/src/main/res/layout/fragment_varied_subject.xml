@@ -10,20 +10,40 @@
         layout="@layout/nav_toolbar"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/very_meaningful_message"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:clipToPadding="false"
+        app:layout_constraintBottom_toTopOf="@+id/choose_course_button"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar_container">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:orientation="vertical">
+
+            <include
+                android:id="@+id/subject_info"
+                layout="@layout/subject_info"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/subject_is_not_selected_hint"
+                style="@style/TextAppearance.Material3.TitleMedium"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:visibility="gone" />
+        </LinearLayout>
+    </ScrollView>
 
     <com.google.android.material.divider.MaterialDivider
-        android:layout_marginStart="56dp"
+        android:id="@+id/materialDivider"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/choose_course_button" />
+        app:layout_constraintBottom_toTopOf="@+id/choose_course_button"
+        tools:layout_editor_absoluteX="56dp" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/choose_course_button"
