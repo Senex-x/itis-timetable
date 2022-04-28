@@ -9,4 +9,7 @@
     <color name="gray">#959595</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="main_background">?android:attr/colorBackground</color>
+    <color name="main_background_light">?android:attr/colorBackground</color>
+    <color name="color_background_floating">#e0e0e0</color>
 </resources>

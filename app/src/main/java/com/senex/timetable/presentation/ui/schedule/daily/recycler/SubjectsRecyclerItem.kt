@@ -79,7 +79,7 @@ sealed class SubjectsRecyclerItem {
                                     )
                                     root.setBackgroundColor(
                                         root.resources.getColor(
-                                            R.color.gray_lighter, root.context.theme
+                                            R.color.color_background_floating, root.context.theme
                                         )
                                     )
                                 }
@@ -137,7 +137,7 @@ sealed class SubjectsRecyclerItem {
                                     )
                                     root.setBackgroundColor(
                                         root.resources.getColor(
-                                            R.color.gray_lighter, root.context.theme
+                                            R.color.color_background_floating, root.context.theme
                                         )
                                     )
                                 }

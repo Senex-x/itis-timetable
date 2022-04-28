@@ -16,7 +16,7 @@
             android:id="@+id/groups_toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="@color/white"
+            android:background="?attr/colorSurface"
             android:paddingEnd="6dp"
             app:menu="@menu/groups_fragment_toolbar_menu"
             app:titleTextColor="@color/primary"
