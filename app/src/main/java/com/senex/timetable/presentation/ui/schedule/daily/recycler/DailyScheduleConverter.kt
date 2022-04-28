@@ -3,7 +3,6 @@ package com.senex.timetable.presentation.ui.schedule.daily.recycler
 import com.senex.timetable.domain.model.schedule.DailySchedule
 import com.senex.timetable.domain.model.subject.Subject
 
-
 /**
  * Maps daily subjects.
  * Works properly only if the list items are sorted by indexInDay property.
@@ -87,7 +86,7 @@ fun DailySchedule.toSubjectsRecyclerItems() = buildList {
     flushSubjectLists()
 }.dropLastEmptySubjects()
 
-private fun List<SubjectsRecyclerItem>.dropLastEmptySubjects(): List<SubjectsRecyclerItem> { // 1, 1, 1, 0, 0 -> 0, 0, 1, 1, 1
+private fun List<SubjectsRecyclerItem>.dropLastEmptySubjects(): List<SubjectsRecyclerItem> {
     var reversedIndexOfFirstMeaningfulSubject = 0
     run outer@{
         asReversed().forEachIndexed { index, subjectsRecyclerItem ->
