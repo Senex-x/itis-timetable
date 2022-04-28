@@ -1,17 +1,24 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.ItisTimetable" parent="Theme.MaterialComponents.Light.NoActionBar">
+    <style name="Theme.ItisTimetable" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/primary</item>
         <item name="colorPrimaryVariant">@color/primary</item>
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/background</item>
+        <item name="colorSecondary">@color/primary</item>
         <item name="colorSecondaryVariant">@color/background_light</item>
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
 
-        <item name="android:forceDarkAllowed" tools:targetApi="29">false</item>
+        <item name="drawerArrowStyle">@style/NavigationArrowStyle</item>
+    </style>
+
+    <style name="TextStyle" />
+    <style name="TextStyle.Body" parent="TextAppearance.Material3.TitleMedium" />
+
+    <style name="NavigationArrowStyle" parent="Widget.AppCompat.DrawerArrowToggle">
+        <item name="color">@color/primary</item>
     </style>
 </resources>

@@ -4,8 +4,7 @@ import androidx.lifecycle.ViewModel
 import com.senex.timetable.domain.usecase.group.GetGroup
 import com.senex.timetable.domain.usecase.schedule.GetScheduleByGroupIdSorted
 import com.senex.timetable.domain.usecase.schedule.SyncScheduleByGroupId
-import com.senex.timetable.domain.util.log
-import com.senex.timetable.presentation.common.SharedPreferencesHandler
+import com.senex.timetable.presentation.common.GroupSharedPrefsHandler
 import com.senex.timetable.presentation.ui.schedule.daily.recycler.SubjectsRecyclerItem
 import com.senex.timetable.presentation.ui.schedule.daily.recycler.toSubjectsRecyclerItems
 import kotlinx.coroutines.CoroutineScope
@@ -16,7 +15,6 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.time.DayOfWeek
-import java.time.format.DateTimeFormatter
 import java.util.*
 import javax.inject.Inject
 
@@ -24,7 +22,7 @@ class ScheduleViewModel @Inject constructor(
     private val getScheduleByGroupIdSorted: GetScheduleByGroupIdSorted,
     private val getGroup: GetGroup,
     syncScheduleByGroupId: SyncScheduleByGroupId,
-    preferencesHandler: SharedPreferencesHandler,
+    preferencesHandler: GroupSharedPrefsHandler,
 ) : ViewModel() {
     private val groupId = preferencesHandler.getSavedGroupId()
     private val scheduleFlow = getScheduleFlow()

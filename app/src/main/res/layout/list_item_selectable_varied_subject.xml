@@ -7,7 +7,6 @@
     android:padding="16dp">
 
     <CheckBox
-        android:buttonTint="@color/primary"
         android:id="@+id/check_box"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -23,7 +22,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:text="Introduction to artificial intelligence"
+        tools:text="Introduction to artificial intelligence"
         app:layout_constraintBottom_toTopOf="@id/selectable_subject_info_container"
         app:layout_constraintStart_toEndOf="@id/check_box"
         app:layout_constraintTop_toTopOf="parent" />
