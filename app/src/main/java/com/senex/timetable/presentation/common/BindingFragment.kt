@@ -13,7 +13,7 @@ abstract class BindingFragment<T : ViewBinding> : DaggerFragment() {
 
     protected abstract val bindingInflater: (LayoutInflater, ViewGroup?, Boolean) -> T
 
-    protected abstract fun T.onViewCreated()
+    protected abstract val onViewCreatedCallback: T.() -> Unit
 
     @CallSuper
     override fun onCreateView(
@@ -29,7 +29,7 @@ abstract class BindingFragment<T : ViewBinding> : DaggerFragment() {
         view: View,
         savedInstanceState: Bundle?,
     ) {
-        binding?.onViewCreated()
+        binding?.let { onViewCreatedCallback.invoke(it) }
     }
 
     @CallSuper
@@ -38,6 +38,3 @@ abstract class BindingFragment<T : ViewBinding> : DaggerFragment() {
         binding = null
     }
 }
-
-
-
