@@ -2,9 +2,9 @@ package com.senex.timetable.domain.usecase.subject.english
 
 import com.senex.timetable.domain.model.subject.EnglishSubject
 import com.senex.timetable.domain.repository.local.EnglishSubjectRepository
-import com.senex.timetable.domain.usecase.subject.varied.GetVariedSubject
+import com.senex.timetable.domain.usecase.subject.varied.SetPrimaryVariedSubject
 import javax.inject.Inject
 
-class GetEnglishSubject @Inject constructor(
+class SetPrimaryEnglishSubject @Inject constructor(
     englishSubjectRepository: EnglishSubjectRepository,
-) : GetVariedSubject<EnglishSubject>(englishSubjectRepository)
+) : SetPrimaryVariedSubject<EnglishSubject>(englishSubjectRepository)

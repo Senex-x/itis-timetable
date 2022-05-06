@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.viewbinding.ViewBinding
 
-inline fun <reified T : ViewBinding> inflateBinding(
+fun <T : ViewBinding> inflateBinding(
     bindingInflater: (LayoutInflater, ViewGroup?, Boolean) -> T,
     layoutInflater: LayoutInflater,
     root: ViewGroup?,

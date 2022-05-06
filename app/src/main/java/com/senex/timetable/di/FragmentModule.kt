@@ -3,11 +3,11 @@ package com.senex.timetable.di
 import com.senex.timetable.presentation.ui.groups.GroupsFragment
 import com.senex.timetable.presentation.ui.schedule.ScheduleFragment
 import com.senex.timetable.presentation.ui.schedule.daily.DailyScheduleFragment
-import com.senex.timetable.presentation.ui.subject.elective.ElectiveSubjectFragment
-import com.senex.timetable.presentation.ui.subject.elective.selectable.SelectableElectiveSubjectsFragment
-import com.senex.timetable.presentation.ui.subject.english.EnglishSubjectFragment
-import com.senex.timetable.presentation.ui.subject.english.selectable.SelectableEnglishSubjectsFragment
 import com.senex.timetable.presentation.ui.subject.ordinary.OrdinarySubjectFragment
+import com.senex.timetable.presentation.ui.subject.varied.elective.ElectiveSubjectFragment
+import com.senex.timetable.presentation.ui.subject.varied.elective.selectable.SelectableElectiveSubjectsFragment
+import com.senex.timetable.presentation.ui.subject.varied.english.EnglishSubjectFragment
+import com.senex.timetable.presentation.ui.subject.varied.english.selectable.SelectableEnglishSubjectsFragment
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
@@ -27,14 +27,14 @@ abstract class FragmentModule {
     abstract fun contributeOrdinarySubjectFragment(): OrdinarySubjectFragment
 
     @ContributesAndroidInjector
-    abstract fun contributeElectiveSubjectFragment(): ElectiveSubjectFragment
+    abstract fun contributeNewElectiveSubjectFragment(): ElectiveSubjectFragment
 
     @ContributesAndroidInjector
-    abstract fun contributeEnglishSubjectFragment(): EnglishSubjectFragment
+    abstract fun contributeNewEnglishSubjectFragment(): EnglishSubjectFragment
 
     @ContributesAndroidInjector
-    abstract fun contributeSelectableElectiveSubjectsFragment(): SelectableElectiveSubjectsFragment
+    abstract fun contributeNewSelectableElectiveSubjectsFragment(): SelectableElectiveSubjectsFragment
 
     @ContributesAndroidInjector
-    abstract fun contributeSelectableEnglishSubjectsFragment(): SelectableEnglishSubjectsFragment
+    abstract fun contributeNewSelectableEnglishSubjectsFragment(): SelectableEnglishSubjectsFragment
 }

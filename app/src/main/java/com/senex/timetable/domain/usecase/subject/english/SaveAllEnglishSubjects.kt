@@ -2,11 +2,12 @@ package com.senex.timetable.domain.usecase.subject.english
 
 import com.senex.timetable.domain.model.subject.EnglishSubject
 import com.senex.timetable.domain.repository.local.EnglishSubjectRepository
+import com.senex.timetable.domain.usecase.subject.varied.SaveAllVariedSubjects
 import javax.inject.Inject
 
 class SaveAllEnglishSubjects @Inject constructor(
-    private val englishSubjectRepository: EnglishSubjectRepository,
-) {
-    suspend operator fun invoke(englishSubjects: List<EnglishSubject>) =
-        englishSubjectRepository.insertAll(*englishSubjects.toTypedArray())
+    englishSubjectRepository: EnglishSubjectRepository,
+) : SaveAllVariedSubjects<EnglishSubject>(englishSubjectRepository) {
+    suspend operator fun invoke(variedSubjects: List<EnglishSubject>) =
+        insertAll(variedSubjects.toTypedArray())
 }
