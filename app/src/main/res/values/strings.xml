@@ -11,7 +11,7 @@
     <string name="english_subject_is_not_selected">English group is not selected yet</string>
     <string name="subject_title">Subject</string>
     <string name="choose_elective_course_title">Choose elective course</string>
-    <string name="select_no_courses_hint">Is your course not here?</string>
+    <string name="select_no_courses_hint">Your course is not here?</string>
     <string name="select_nothing_title">Select nothing</string>
     <string name="lecture_subject_type">Lecture</string>
     <string name="seminar_subject_type">Practice</string>

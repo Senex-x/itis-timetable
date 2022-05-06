@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
@@ -11,6 +12,9 @@
         android:layout_height="wrap_content"
         android:text="@string/hide_from_schedule_title"
         android:visibility="gone"
+        app:icon="@drawable/ic_hide_source_24"
+        app:iconGravity="textStart"
+        app:iconSize="20dp"
         tools:visibility="visible" />
 
     <com.google.android.material.button.MaterialButton
@@ -20,5 +24,8 @@
         android:layout_height="wrap_content"
         android:text="@string/show_in_schedule_title"
         android:visibility="gone"
-        tools:visibility="gone" />
+        app:icon="@drawable/ic_hide_source_24"
+        app:iconGravity="textStart"
+        app:iconSize="20dp"
+        tools:visibility="visible" />
 </FrameLayout>

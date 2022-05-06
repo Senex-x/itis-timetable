@@ -26,7 +26,8 @@
             <include
                 android:id="@+id/subject_info"
                 layout="@layout/subject_info"
-                android:visibility="gone" />
+                android:visibility="gone"
+                tools:visibility="visible" />
 
             <TextView
                 android:id="@+id/subject_is_not_selected_hint"
@@ -38,26 +39,16 @@
         </LinearLayout>
     </ScrollView>
 
-    <com.google.android.material.divider.MaterialDivider
-        android:id="@+id/materialDivider"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/choose_course_button"
-        tools:layout_editor_absoluteX="56dp" />
-
     <com.google.android.material.button.MaterialButton
         android:id="@+id/choose_course_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?android:attr/selectableItemBackground"
-        android:gravity="start|center_vertical"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="4dp"
         android:text="@string/choose_elective_course_title"
-        android:textAllCaps="false"
-        android:textColor="@color/primary"
-        android:textSize="16sp"
         app:icon="@drawable/ic_search_24"
-        app:iconPadding="16dp"
-        app:iconTint="@color/primary"
+        app:iconGravity="textStart"
         app:layout_constraintBottom_toTopOf="@+id/subject_show_hide_buttons" />
 
     <include
@@ -65,5 +56,8 @@
         layout="@layout/subject_show_hide_buttons"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toBottomOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
