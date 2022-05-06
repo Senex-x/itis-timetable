@@ -62,7 +62,7 @@ class DailyScheduleFragment : BindingFragment<FragmentDailyScheduleBinding>() {
 
     private val navigateToSubjectFragment: (Long) -> Unit = { subjectId ->
         findNavController().navigate(
-            ScheduleFragmentDirections.actionScheduleFragmentToOrdinarySubjectFragment(
+            ScheduleFragmentDirections.actionScheduleFragmentToSubjectFragment(
                 subjectId
             )
         )
