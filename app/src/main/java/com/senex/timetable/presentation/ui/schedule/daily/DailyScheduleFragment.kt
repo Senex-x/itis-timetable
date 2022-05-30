@@ -52,7 +52,7 @@ class DailyScheduleFragment : BindingFragment<FragmentDailyScheduleBinding>() {
             SubjectsRecyclerItem.EmptyItem.getDelegate(),
         ).apply {
             viewModel.getSubjectsRecyclerItems(dayOfWeek).onEach {
-                loadingIndicator.visibility = if (it.isEmpty())
+                loadingIndicator.visibility = if (it.isEmpty() && viewModel.groupId != null)
                     View.VISIBLE else View.GONE
 
                 items = it

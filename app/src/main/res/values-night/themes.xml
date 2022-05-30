@@ -10,7 +10,7 @@
         <item name="colorSecondaryVariant">@color/background_light</item>
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
-        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorSurface</item>
+        <item name="android:statusBarColor">?attr/colorSurface</item>
 
         <!-- Tab bar and nav drawer backgrounds -->
         <item name="colorSurface">@color/main_background_light</item>

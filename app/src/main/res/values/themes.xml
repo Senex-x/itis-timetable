@@ -10,9 +10,12 @@
         <item name="colorSecondaryVariant">@color/background_light</item>
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
-        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorSurface</item>
+        <item name="android:statusBarColor">?attr/colorSurface</item>
 
         <item name="drawerArrowStyle">@style/NavigationArrowStyle</item>
+
+        <!-- Emphasized items on default background -->
+        <item name="android:colorBackgroundFloating">@color/color_background_floating</item>
     </style>
 
     <style name="TextStyle" />
