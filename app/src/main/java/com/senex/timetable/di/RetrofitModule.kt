@@ -24,6 +24,6 @@ class RetrofitModule {
         .build()
 
     companion object {
-        private const val BASE_URL = "http://192.168.0.112:8080/"
+        private const val BASE_URL = "https://itis-timetable-parser.herokuapp.com/"
     }
 }
