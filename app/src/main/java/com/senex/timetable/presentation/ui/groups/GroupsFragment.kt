@@ -55,7 +55,6 @@ class GroupsFragment : BindingFragment<FragmentGroupsBinding>() {
     }
 
     private val onGroupItemClick: (Long) -> Unit = {
-        requireContext().toast("GroupEntity with id: $it selected")
         viewModel.setPrimaryGroup(it)
         navigateToScheduleFragment()
     }
