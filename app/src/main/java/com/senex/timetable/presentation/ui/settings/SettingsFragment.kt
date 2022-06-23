@@ -7,8 +7,10 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.senex.timetable.databinding.FragmentSettingsBinding
+import com.senex.timetable.domain.util.toast
 import com.senex.timetable.presentation.common.BindingFragment
 import com.senex.timetable.presentation.common.prefs.AppTheme
+import com.senex.timetable.presentation.common.prefs.DayNamesDisplayType
 import javax.inject.Inject
 
 class SettingsFragment : BindingFragment<FragmentSettingsBinding>() {
@@ -26,6 +28,11 @@ class SettingsFragment : BindingFragment<FragmentSettingsBinding>() {
         darkThemeSwitch.isChecked = viewModel.theme.value == AppTheme.DARK
         darkThemeSwitch.setOnCheckedChangeListener { _, isChecked ->
             viewModel.setTheme(!isChecked)
+        }
+
+        fullDayNamesSwitch.isChecked = viewModel.getDayNamesDisplayType() == DayNamesDisplayType.FULL
+        fullDayNamesSwitch.setOnCheckedChangeListener { _, isChecked ->
+            viewModel.setDayNamesDisplayType(isChecked)
         }
     }
 }

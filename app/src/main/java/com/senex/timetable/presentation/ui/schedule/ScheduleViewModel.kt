@@ -4,6 +4,8 @@ import androidx.lifecycle.ViewModel
 import com.senex.timetable.domain.usecase.group.GetGroup
 import com.senex.timetable.domain.usecase.schedule.GetScheduleByGroupIdSorted
 import com.senex.timetable.domain.usecase.schedule.SyncScheduleByGroupId
+import com.senex.timetable.domain.util.log
+import com.senex.timetable.presentation.common.prefs.DayNamesDisplayTypePrefs
 import com.senex.timetable.presentation.common.prefs.GroupSharedPrefsHandler
 import com.senex.timetable.presentation.ui.schedule.daily.recycler.SubjectsRecyclerItem
 import com.senex.timetable.presentation.ui.schedule.daily.recycler.toSubjectsRecyclerItems
@@ -21,11 +23,16 @@ import javax.inject.Inject
 class ScheduleViewModel @Inject constructor(
     private val getGroup: GetGroup,
     private val getScheduleByGroupIdSorted: GetScheduleByGroupIdSorted,
+    private val dayNamesDisplayTypePrefs: DayNamesDisplayTypePrefs,
     syncScheduleByGroupId: SyncScheduleByGroupId,
     preferencesHandler: GroupSharedPrefsHandler,
 ) : ViewModel() {
 
     val groupId = preferencesHandler.getSavedGroupId()
+    // TODO: Inspect the difference between these two statements.
+    //  Why is the above working well while the below fails to update value on runtime
+    val dayNamesDisplayType
+        get() = dayNamesDisplayTypePrefs.getDisplayType()
 
     init {
         groupId?.let {

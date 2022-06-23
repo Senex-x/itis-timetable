@@ -13,7 +13,9 @@ import com.google.android.material.tabs.TabLayoutMediator
 import com.senex.timetable.R
 import com.senex.timetable.databinding.FragmentScheduleBinding
 import com.senex.timetable.domain.util.log
+import com.senex.timetable.domain.util.toast
 import com.senex.timetable.presentation.common.BindingFragment
+import com.senex.timetable.presentation.common.prefs.DayNamesDisplayType
 import kotlinx.coroutines.launch
 import java.time.DayOfWeek
 import java.util.*
@@ -85,8 +87,11 @@ class ScheduleFragment : BindingFragment<FragmentScheduleBinding>() {
 
     private fun FragmentScheduleBinding.initTabBar() {
         tabLayout.tabMode = TabLayout.MODE_SCROLLABLE
+        val isDisplayTypeShort = viewModel.dayNamesDisplayType == DayNamesDisplayType.SHORT
         TabLayoutMediator(tabLayout, pager) { tab, position ->
-            tab.text = DayOfWeek.of(position + 1).name
+            var tabText = DayOfWeek.of(position + 1).name
+            if(isDisplayTypeShort) tabText = tabText.substring(0, 3)
+            tab.text = tabText
         }.attach()
     }
 

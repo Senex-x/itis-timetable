@@ -40,4 +40,5 @@
     <string name="english_group_not_selected_hint">English group is not selected yet</string>
     <string name="dark_theme_title">Dark theme</string>
     <string name="russian_language_title">Russian language</string>
+    <string name="full_day_names_title">Display full day names</string>
 </resources>
