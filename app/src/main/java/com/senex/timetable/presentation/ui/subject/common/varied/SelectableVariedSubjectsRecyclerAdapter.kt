@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.senex.timetable.R
 import com.senex.timetable.databinding.ListItemSelectableVariedSubjectBinding
 import com.senex.timetable.domain.model.subject.Subject
+import com.senex.timetable.domain.util.toast
 import com.senex.timetable.presentation.common.bindListItemView
 import com.senex.timetable.presentation.ui.subject.common.SubjectDiffCallback
 
@@ -40,8 +41,12 @@ class SelectableVariedSubjectsRecyclerAdapter(
             type.text = root.resources.getString(item.type.nameStringId) + ','
             roomNumber.text = item.room
 
-            if(item.id == selectedItemId) {
+            if (item.id == selectedItemId) {
                 checkBox.isChecked = true
+            }
+
+            root.setOnClickListener {
+                checkBox.isChecked = !checkBox.isChecked
             }
 
             checkBox.setOnCheckedChangeListener { _, isChecked ->
