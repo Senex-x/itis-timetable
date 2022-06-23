@@ -1,6 +1,7 @@
 package com.senex.timetable.presentation.ui.groups
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
@@ -48,6 +49,10 @@ class GroupsFragment : BindingFragment<FragmentGroupsBinding>() {
         ).apply {
             viewLifecycleOwner.lifecycleScope.launch {
                 viewModel.groupsRecyclerItems.collect {
+                    if(it.isNotEmpty())
+                        loadingIndicator.visibility = View.GONE
+                    else
+                        loadingIndicator.visibility = View.VISIBLE
                     items = it
                 }
             }
