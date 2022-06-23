@@ -20,7 +20,7 @@ class RetrofitModule {
         .build()
 
     private val okHttpClient = OkHttpClient.Builder()
-        .connectTimeout(5, TimeUnit.SECONDS)
+        .connectTimeout(20, TimeUnit.SECONDS)
         .build()
 
     companion object {
