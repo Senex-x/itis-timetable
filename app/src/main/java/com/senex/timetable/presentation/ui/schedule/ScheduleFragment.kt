@@ -12,12 +12,11 @@ import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.senex.timetable.R
 import com.senex.timetable.databinding.FragmentScheduleBinding
-import com.senex.timetable.domain.util.log
-import com.senex.timetable.domain.util.toast
 import com.senex.timetable.presentation.common.BindingFragment
-import com.senex.timetable.presentation.common.prefs.DayNamesDisplayType
+import com.senex.timetable.presentation.common.prefs.constants.DayNamesDisplayType
 import kotlinx.coroutines.launch
 import java.time.DayOfWeek
+import java.time.format.TextStyle
 import java.util.*
 import javax.inject.Inject
 
@@ -41,7 +40,7 @@ class ScheduleFragment : BindingFragment<FragmentScheduleBinding>() {
 
         viewLifecycleOwner.lifecycleScope.launch {
             tableToolbar.title = viewModel.getGroup()?.name
-                ?: "Schedules"
+                ?: requireContext().resources.getString(R.string.schedule_title)
         }
 
         tableToolbar.setupWithNavController(
@@ -89,9 +88,9 @@ class ScheduleFragment : BindingFragment<FragmentScheduleBinding>() {
         tabLayout.tabMode = TabLayout.MODE_SCROLLABLE
         val isDisplayTypeShort = viewModel.dayNamesDisplayType == DayNamesDisplayType.SHORT
         TabLayoutMediator(tabLayout, pager) { tab, position ->
-            var tabText = DayOfWeek.of(position + 1).name
-            if(isDisplayTypeShort) tabText = tabText.substring(0, 3)
-            tab.text = tabText
+            val textStyle = if(isDisplayTypeShort) TextStyle.SHORT else TextStyle.FULL
+            tab.text = DayOfWeek.of(position + 1)
+                .getDisplayName(textStyle, requireContext().resources.configuration.locales[0])
         }.attach()
     }
 

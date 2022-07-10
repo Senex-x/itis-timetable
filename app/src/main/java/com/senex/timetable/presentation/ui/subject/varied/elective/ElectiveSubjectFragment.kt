@@ -23,6 +23,7 @@ class ElectiveSubjectFragment : VariedSubjectFragment<ElectiveSubject>() {
     override fun FragmentVariedSubjectBinding.onViewCreated() {
         super.onViewCreatedImpl(this)
 
+        toolbarContainer.toolbar.title = resources.getString(R.string.elective_subject_title)
         chooseCourseButton.text = getString(R.string.choose_elective_course_title)
         subjectIsNotSelectedHint.text = getString(R.string.elective_course_not_selected_hint)
     }

@@ -1,6 +1,8 @@
 package com.senex.timetable.presentation.common.prefs.constants
 
-enum class AppLanguage {
-    EN,
-    RU,
+import java.util.*
+
+enum class AppLanguage(val locale: Locale) {
+    EN(Locale("en")),
+    RU(Locale("ru")),
 }

@@ -1,6 +1,8 @@
 package com.senex.timetable.presentation.ui.subject.varied.elective.selectable
 
 import androidx.navigation.fragment.navArgs
+import com.senex.timetable.R
+import com.senex.timetable.databinding.FragmentSelectableVariedSubjectsBinding
 import com.senex.timetable.domain.model.subject.ElectiveSubject
 import com.senex.timetable.presentation.common.assistedViewModel
 import com.senex.timetable.presentation.ui.subject.varied.base.selectable.SelectableVariedSubjectsFragment
@@ -17,5 +19,11 @@ class SelectableElectiveSubjectsFragment :
             args.electiveSubjectId,
             args.primaryElectiveSubjectId.takeIf { it != -1L }
         )
+    }
+
+    override fun FragmentSelectableVariedSubjectsBinding.onViewCreated() {
+        super.onViewCreatedImpl(this)
+
+        toolbar.title = resources.getString(R.string.elective_subjects_title)
     }
 }

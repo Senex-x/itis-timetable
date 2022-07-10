@@ -30,8 +30,10 @@ abstract class SelectableVariedSubjectsFragment<T : VariedSubject> :
     override val bindingInflater: (LayoutInflater, ViewGroup?, Boolean) -> FragmentSelectableVariedSubjectsBinding =
         FragmentSelectableVariedSubjectsBinding::inflate
 
+    override fun FragmentSelectableVariedSubjectsBinding.onViewCreated() = onViewCreatedImpl(this)
+
     @CallSuper
-    override fun FragmentSelectableVariedSubjectsBinding.onViewCreated() {
+    protected fun onViewCreatedImpl(binding: FragmentSelectableVariedSubjectsBinding): Unit = with(binding) {
         toolbar.initToolbar()
         selectableSubjectsRecycler.initRecycler()
         selectNothingButton.initSelectNothingButton()

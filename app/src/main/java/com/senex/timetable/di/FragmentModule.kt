@@ -1,5 +1,6 @@
 package com.senex.timetable.di
 
+import com.senex.timetable.presentation.MainActivity
 import com.senex.timetable.presentation.ui.groups.GroupsFragment
 import com.senex.timetable.presentation.ui.hidden.HiddenSubjectsFragment
 import com.senex.timetable.presentation.ui.schedule.ScheduleFragment
@@ -15,6 +16,9 @@ import dagger.android.ContributesAndroidInjector
 
 @Module
 abstract class FragmentModule {
+
+    @ContributesAndroidInjector
+    abstract fun contributeMainActivity(): MainActivity
 
     @ContributesAndroidInjector
     abstract fun contributeGroupsFragment(): GroupsFragment

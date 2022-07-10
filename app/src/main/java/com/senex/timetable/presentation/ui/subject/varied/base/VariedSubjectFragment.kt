@@ -3,10 +3,12 @@ package com.senex.timetable.presentation.ui.subject.varied.base
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.CallSuper
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavDirections
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
+import com.senex.timetable.R
 import com.senex.timetable.databinding.FragmentVariedSubjectBinding
 import com.senex.timetable.domain.model.subject.VariedSubject
 import com.senex.timetable.presentation.common.BindingFragment
@@ -27,6 +29,7 @@ abstract class VariedSubjectFragment<T : VariedSubject> :
 
     override fun FragmentVariedSubjectBinding.onViewCreated() = onViewCreatedImpl(this)
 
+    @CallSuper
     protected fun onViewCreatedImpl(
         binding: FragmentVariedSubjectBinding,
     ): Unit = with(binding) {

@@ -30,7 +30,7 @@ class GroupsFragment : BindingFragment<FragmentGroupsBinding>() {
 
     override fun FragmentGroupsBinding.onViewCreated() {
         groupsToolbar.setupWithNavController(findNavController())
-
+        groupsToolbar.title = resources.getString(R.string.groups_list_title)
         groupsToolbar.setOnMenuItemClickListener {
             when (it.itemId) {
                 R.id.action_open_schedule_fragment -> {

@@ -22,6 +22,7 @@ class EnglishSubjectFragment : VariedSubjectFragment<EnglishSubject>() {
     override fun FragmentVariedSubjectBinding.onViewCreated() {
         super.onViewCreatedImpl(this)
 
+        toolbarContainer.toolbar.title = resources.getString(R.string.english_group_title)
         chooseCourseButton.text = getString(R.string.choose_english_group_title)
         subjectIsNotSelectedHint.text = getString(R.string.english_group_not_selected_hint)
     }
