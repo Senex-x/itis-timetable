@@ -76,7 +76,7 @@ sealed class SubjectsRecyclerItem {
                                     unselectedSubjectContent.visibility = View.VISIBLE
 
                                     unselectedSubjectHint.text = getString(
-                                        R.string.elective_subject_is_not_selected
+                                        R.string.elective_course_not_selected_hint
                                     )
                                     root.setBackgroundColor(
                                         root.resources.getColor(
@@ -134,7 +134,7 @@ sealed class SubjectsRecyclerItem {
                                     unselectedSubjectContent.visibility = View.VISIBLE
 
                                     unselectedSubjectHint.text = getString(
-                                        R.string.english_subject_is_not_selected
+                                        R.string.english_group_not_selected_hint
                                     )
                                     root.setBackgroundColor(
                                         root.resources.getColor(

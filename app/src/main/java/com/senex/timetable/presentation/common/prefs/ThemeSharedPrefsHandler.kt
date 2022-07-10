@@ -1,6 +1,7 @@
 package com.senex.timetable.presentation.common.prefs
 
 import android.content.SharedPreferences
+import com.senex.timetable.presentation.common.prefs.constants.AppTheme
 import javax.inject.Inject
 
 class ThemeSharedPrefsHandler @Inject constructor(
