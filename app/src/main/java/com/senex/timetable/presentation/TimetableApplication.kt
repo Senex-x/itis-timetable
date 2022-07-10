@@ -2,8 +2,8 @@ package com.senex.timetable.presentation
 
 import androidx.appcompat.app.AppCompatDelegate
 import com.senex.timetable.di.DaggerAppComponent
-import com.senex.timetable.presentation.common.prefs.AppTheme
 import com.senex.timetable.presentation.common.prefs.ThemeSharedPrefsHandler
+import com.senex.timetable.presentation.common.prefs.constants.AppTheme
 import dagger.android.DaggerApplication
 import javax.inject.Inject
 

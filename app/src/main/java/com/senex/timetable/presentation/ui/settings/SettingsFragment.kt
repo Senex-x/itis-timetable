@@ -2,6 +2,7 @@ package com.senex.timetable.presentation.ui.settings
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.fragment.app.commit
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -12,7 +13,6 @@ import com.senex.timetable.presentation.common.BindingFragment
 import com.senex.timetable.presentation.common.prefs.constants.AppLanguage
 import com.senex.timetable.presentation.common.prefs.constants.AppTheme
 import com.senex.timetable.presentation.common.prefs.constants.DayNamesDisplayType
-import java.util.*
 import javax.inject.Inject
 
 class SettingsFragment : BindingFragment<FragmentSettingsBinding>() {
@@ -33,7 +33,8 @@ class SettingsFragment : BindingFragment<FragmentSettingsBinding>() {
             viewModel.setTheme(!isChecked)
         }
 
-        fullDayNamesSwitch.isChecked = viewModel.getDayNamesDisplayType() == DayNamesDisplayType.FULL
+        fullDayNamesSwitch.isChecked =
+            viewModel.getDayNamesDisplayType() == DayNamesDisplayType.FULL
         fullDayNamesSwitch.setOnCheckedChangeListener { _, isChecked ->
             viewModel.setDayNamesDisplayType(isChecked)
         }
@@ -41,6 +42,9 @@ class SettingsFragment : BindingFragment<FragmentSettingsBinding>() {
         languageSwitch.isChecked = viewModel.getLanguage() == AppLanguage.RU
         languageSwitch.setOnCheckedChangeListener { _, isChecked ->
             viewModel.setLanguage(isChecked, requireActivity().baseContext.resources)
+
+            parentFragmentManager.commit { detach(this@SettingsFragment) }
+            parentFragmentManager.commit { attach(this@SettingsFragment) }
         }
     }
 }
