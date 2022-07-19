@@ -87,6 +87,7 @@ class DatabaseFiller @Inject constructor(
         id,
         dailyScheduleId, null, null,
         true,
+        Subject.Periodicity.EVERY_WEEK,
         Random.nextInt(1, 10),
         "8:30", "10:00",
         "Computer Science",

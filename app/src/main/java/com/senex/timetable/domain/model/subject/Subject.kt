@@ -9,6 +9,7 @@ data class Subject(
     val electiveSubjectId: Long?,
     val englishSubjectId: Long?,
     val isVisible: Boolean,
+    val periodicity: Periodicity, // TODO: test
     val indexInDay: Int,
     val startTime: String,
     val endTime: String,
@@ -21,6 +22,12 @@ data class Subject(
     val teacherPatronymic: String,
 ) {
     val fullProfessorName = "$teacherSurname $teacherName$teacherPatronymic"
+
+    enum class Periodicity {
+        EVEN_WEEKS,
+        ODD_WEEKS,
+        EVERY_WEEK,
+    }
 
     enum class Type(@StringRes val nameStringId: Int) {
         LECTURE(R.string.lecture_subject_type),

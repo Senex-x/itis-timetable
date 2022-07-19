@@ -60,4 +60,7 @@ class SubjectRepositoryImpl @Inject constructor(
         subjectDao.getAllByEnglishSubjectId(englishSubjectId).map { list ->
             list.map { it.transform() }
         }
+
+    override suspend fun setPeriodicity(periodicity: Subject.Periodicity, id: Long) =
+        subjectDao.setPeriodicity(periodicity, id)
 }

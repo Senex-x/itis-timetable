@@ -5,6 +5,7 @@ import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.PrimaryKey
 import com.senex.timetable.data.entity.schedule.DailyScheduleInfoEntity
+import com.senex.timetable.domain.model.subject.Subject
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
@@ -44,6 +45,9 @@ data class SubjectEntity constructor(
     @Json(ignore = true)
     @ColumnInfo(name = "is_visible")
     val isVisible: Boolean = true,
+    @Json(ignore = true)
+    @ColumnInfo(name = "periodicity")
+    val periodicity: Subject.Periodicity = Subject.Periodicity.EVERY_WEEK,
     @ColumnInfo(name = "number_in_day")
     val indexInDay: Int,
     @ColumnInfo(name = "start_time")

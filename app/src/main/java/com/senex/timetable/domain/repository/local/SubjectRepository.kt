@@ -25,4 +25,6 @@ interface SubjectRepository : BaseRepository<Subject, Subject, Long> {
     fun getAllByEnglishSubjectId(
         englishSubjectId: Long,
     ): Flow<List<Subject>>
+
+    suspend fun setPeriodicity(periodicity: Subject.Periodicity, id: Long)
 }

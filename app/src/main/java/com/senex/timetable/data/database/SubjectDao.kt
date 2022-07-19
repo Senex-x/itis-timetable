@@ -4,6 +4,7 @@ import androidx.room.Dao
 import androidx.room.Query
 import com.senex.timetable.data.database.util.BaseDao
 import com.senex.timetable.data.entity.subject.SubjectEntity
+import com.senex.timetable.domain.model.subject.Subject
 import kotlinx.coroutines.flow.Flow
 
 @Dao
@@ -76,4 +77,7 @@ interface SubjectDao : BaseDao<SubjectEntity, SubjectEntity> {
 
     @Query("SELECT * FROM subjects WHERE english_subject_id = :englishSubjectId")
     fun getAllByEnglishSubjectId(englishSubjectId: Long): Flow<List<SubjectEntity>>
+
+    @Query("UPDATE subjects SET periodicity = :periodicity WHERE id = :id")
+    suspend fun setPeriodicity(periodicity: Subject.Periodicity, id: Long)
 }
