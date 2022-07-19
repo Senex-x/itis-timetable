@@ -53,7 +53,7 @@ dependencies {
 
     runtimeOnly "org.jetbrains.kotlin:kotlin-reflect:1.6.21"
 
-    def nav_component = "2.5.0-beta01"
+    def nav_component = "2.5.0"
     implementation "androidx.navigation:navigation-fragment-ktx:$nav_component"
     implementation "androidx.navigation:navigation-ui-ktx:$nav_component"
     implementation "androidx.navigation:navigation-runtime-ktx:$nav_component"
