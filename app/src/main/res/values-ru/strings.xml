@@ -45,4 +45,7 @@
     <string name="elective_subjects_title">Курсы по выбору</string>
     <string name="english_groups_title">Группы по английскому</string>
     <string name="schedule_title">Расписание</string>
+    <string name="feedback_title">Обратная связь</string>
+    <string name="leave_feedback_here_hint">Оставьте свой отзыв здесь</string>
+    <string name="send_feedback_title">Отправить</string>
 </resources>

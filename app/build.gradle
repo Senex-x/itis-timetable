@@ -8,6 +8,9 @@ plugins {
 android {
     compileSdk 31
 
+    Properties properties = new Properties()
+    properties.load(project.rootProject.file("local.properties").newDataInputStream())
+
     defaultConfig {
         applicationId "com.senex.timetable"
         minSdk 26
@@ -16,6 +19,8 @@ android {
         versionName "1.0.3-ALPHA"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        resValue "string", "email_for_feedback", properties.getProperty("email.feedback", "")
     }
 
     buildTypes {

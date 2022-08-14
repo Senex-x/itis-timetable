@@ -1,6 +1,7 @@
 package com.senex.timetable.di
 
 import com.senex.timetable.presentation.MainActivity
+import com.senex.timetable.presentation.ui.feedback.FeedbackFragment
 import com.senex.timetable.presentation.ui.groups.GroupsFragment
 import com.senex.timetable.presentation.ui.hidden.HiddenSubjectsFragment
 import com.senex.timetable.presentation.ui.schedule.ScheduleFragment
@@ -49,4 +50,7 @@ abstract class FragmentModule {
 
     @ContributesAndroidInjector
     abstract fun contributeSettingsFragment(): SettingsFragment
+
+    @ContributesAndroidInjector
+    abstract fun contributeFeedbackFragment(): FeedbackFragment
 }
