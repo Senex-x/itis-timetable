@@ -9,6 +9,10 @@
         android:icon="@drawable/ic_hide_source_24"
         android:title="@string/hidden_subjects_title" />
     <item
+        android:id="@+id/feedbackFragment"
+        android:icon="@drawable/ic_feedback_24"
+        android:title="@string/feedback_title" />
+    <item
         android:id="@+id/settingsFragment"
         android:icon="@drawable/ic_settings_24"
         android:title="@string/settings_title" />
