@@ -1,9 +1,11 @@
 package com.senex.timetable.presentation.ui.feedback
 
+import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.senex.timetable.R
@@ -19,6 +21,8 @@ class FeedbackFragment : BindingFragment<FragmentFeedbackBinding>() {
     override fun FragmentFeedbackBinding.onViewCreated() {
         toolbarContainer.toolbar.setupWithNavController(findNavController())
         toolbarContainer.toolbar.title = getString(R.string.feedback_title)
+
+        toggleKeyboard()
 
         sendFeedbackButton.setOnClickListener {
             if (feedbackText.text.isNullOrBlank()) {
@@ -36,6 +40,16 @@ class FeedbackFragment : BindingFragment<FragmentFeedbackBinding>() {
             startActivity(intent)
 
             feedbackText.setText("")
+        }
+    }
+
+    private fun FragmentFeedbackBinding.toggleKeyboard() {
+        if (feedbackText.requestFocus()) {
+            (requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager)
+                .toggleSoftInput(
+                    InputMethodManager.SHOW_IMPLICIT,
+                    InputMethodManager.HIDE_IMPLICIT_ONLY
+                )
         }
     }
 }
