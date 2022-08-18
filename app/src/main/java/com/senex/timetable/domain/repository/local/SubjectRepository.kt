@@ -27,4 +27,6 @@ interface SubjectRepository : BaseRepository<Subject, Subject, Long> {
     ): Flow<List<Subject>>
 
     suspend fun setPeriodicity(periodicity: Subject.Periodicity, id: Long)
+
+    suspend fun setIsRemote(isRemote: Boolean, id: Long)
 }

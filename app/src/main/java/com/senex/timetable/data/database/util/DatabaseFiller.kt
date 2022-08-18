@@ -86,7 +86,7 @@ class DatabaseFiller @Inject constructor(
     private fun createSubject(id: Long, dailyScheduleId: Long) = Subject(
         id,
         dailyScheduleId, null, null,
-        true,
+        true, false,
         Subject.Periodicity.EVERY_WEEK,
         Random.nextInt(1, 10),
         "8:30", "10:00",

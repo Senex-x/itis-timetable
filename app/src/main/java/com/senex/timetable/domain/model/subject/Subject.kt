@@ -9,6 +9,7 @@ data class Subject(
     val electiveSubjectId: Long?,
     val englishSubjectId: Long?,
     val isVisible: Boolean,
+    val isRemote: Boolean,
     val periodicity: Periodicity, // TODO: test
     val indexInDay: Int,
     val startTime: String,

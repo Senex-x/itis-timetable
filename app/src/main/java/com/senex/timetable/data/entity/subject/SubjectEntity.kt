@@ -33,7 +33,7 @@ import com.squareup.moshi.JsonClass
     ],
 )
 @JsonClass(generateAdapter = true)
-data class SubjectEntity constructor(
+data class SubjectEntity(
     @PrimaryKey
     val id: Long,
     @ColumnInfo(name = "daily_schedule_id")
@@ -42,6 +42,9 @@ data class SubjectEntity constructor(
     val electiveSubjectId: Long?,
     @ColumnInfo(name = "english_subject_id")
     val englishSubjectId: Long?,
+    @Json(ignore = true)
+    @ColumnInfo(name = "is_remote")
+    val isRemote: Boolean = false,
     @Json(ignore = true)
     @ColumnInfo(name = "is_visible")
     val isVisible: Boolean = true,

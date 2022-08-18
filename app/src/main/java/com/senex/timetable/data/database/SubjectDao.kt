@@ -80,4 +80,7 @@ interface SubjectDao : BaseDao<SubjectEntity, SubjectEntity> {
 
     @Query("UPDATE subjects SET periodicity = :periodicity WHERE id = :id")
     suspend fun setPeriodicity(periodicity: Subject.Periodicity, id: Long)
+
+    @Query("UPDATE subjects SET is_remote = :isRemote WHERE id = :id")
+    suspend fun setIsRemote(isRemote: Boolean, id: Long)
 }

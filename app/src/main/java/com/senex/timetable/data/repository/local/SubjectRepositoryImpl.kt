@@ -63,4 +63,7 @@ class SubjectRepositoryImpl @Inject constructor(
 
     override suspend fun setPeriodicity(periodicity: Subject.Periodicity, id: Long) =
         subjectDao.setPeriodicity(periodicity, id)
+
+    override suspend fun setIsRemote(isRemote: Boolean, id: Long) =
+        subjectDao.setIsRemote(isRemote, id)
 }
