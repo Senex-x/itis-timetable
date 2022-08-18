@@ -48,4 +48,6 @@
     <string name="feedback_title">Обратная связь</string>
     <string name="leave_feedback_here_hint">Оставьте свой отзыв здесь</string>
     <string name="send_feedback_title">Отправить</string>
+    <string name="under_development_title">В разработке</string>
+
 </resources>
