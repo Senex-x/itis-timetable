@@ -25,29 +25,31 @@ class SyncScheduleByGroupId @Inject constructor(
         }
     }
 
+    // TODO: BRUH optimize this
     private fun areSchedulesSameLazy(first: Schedule, second: Schedule): Boolean {
-        var result = false
-        for (firstDailySchedule in first.dailySchedules) {
-            for (secondDailySchedule in second.dailySchedules) {
-                for (firstSubject in firstDailySchedule.subjects) {
-                    for (secondSubject in secondDailySchedule.subjects) {
-                        result = firstSubject.dailyScheduleId == secondSubject.dailyScheduleId
-                                && firstSubject.electiveSubjectId == secondSubject.electiveSubjectId
-                                && firstSubject.englishSubjectId == secondSubject.englishSubjectId
-                                && firstSubject.indexInDay == secondSubject.indexInDay
-                                && firstSubject.startTime == secondSubject.startTime
-                                && firstSubject.endTime == secondSubject.endTime
-                                && firstSubject.name == secondSubject.name
-                                && firstSubject.room == secondSubject.room
-                                && firstSubject.type == secondSubject.type
-                                && firstSubject.kind == secondSubject.kind
-                                && firstSubject.teacherName == secondSubject.teacherName
-                                && firstSubject.teacherPatronymic == secondSubject.teacherPatronymic
-                                && firstSubject.teacherSurname == secondSubject.teacherSurname
-                    }
-                }
-            }
-        }
-        return result
+        return true
+//        var result = false
+//        for (firstDailySchedule in first.dailySchedules) {
+//            for (secondDailySchedule in second.dailySchedules) {
+//                for (firstSubject in firstDailySchedule.subjects) {
+//                    for (secondSubject in secondDailySchedule.subjects) {
+//                        result = firstSubject.dailyScheduleId == secondSubject.dailyScheduleId
+//                                && firstSubject.electiveSubjectId == secondSubject.electiveSubjectId
+//                                && firstSubject.englishSubjectId == secondSubject.englishSubjectId
+//                                && firstSubject.indexInDay == secondSubject.indexInDay
+//                                && firstSubject.startTime == secondSubject.startTime
+//                                && firstSubject.endTime == secondSubject.endTime
+//                                && firstSubject.name == secondSubject.name
+//                                && firstSubject.room == secondSubject.room
+//                                && firstSubject.type == secondSubject.type
+//                                && firstSubject.kind == secondSubject.kind
+//                                && firstSubject.teacherName == secondSubject.teacherName
+//                                && firstSubject.teacherPatronymic == secondSubject.teacherPatronymic
+//                                && firstSubject.teacherSurname == secondSubject.teacherSurname
+//                    }
+//                }
+//            }
+//        }
+//        return result
     }
 }
