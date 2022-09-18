@@ -43,11 +43,11 @@ data class SubjectEntity(
     @ColumnInfo(name = "english_subject_id")
     val englishSubjectId: Long?,
     @Json(ignore = true)
-    @ColumnInfo(name = "is_remote")
-    val isRemote: Boolean = false,
-    @Json(ignore = true)
     @ColumnInfo(name = "is_visible")
     val isVisible: Boolean = true,
+    @Json(ignore = true)
+    @ColumnInfo(name = "is_remote")
+    val isRemote: Boolean = false,
     @Json(ignore = true)
     @ColumnInfo(name = "periodicity")
     val periodicity: Subject.Periodicity = Subject.Periodicity.EVERY_WEEK,
