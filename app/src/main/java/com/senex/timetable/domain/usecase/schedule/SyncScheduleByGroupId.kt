@@ -11,11 +11,13 @@ class SyncScheduleByGroupId @Inject constructor(
     private val deleteGroupById: DeleteGroupById,
     private val saveSchedule: SaveSchedule,
     private val getScheduleByGroupIdSorted: GetScheduleByGroupIdSorted,
+    private val sortSchedule: SortSchedule,
 ) {
     suspend operator fun invoke(groupId: Long) {
         getRemoteScheduleByGroupId(groupId)?.let {
+            val remoteSchedule = sortSchedule(it)!!
             val localSchedule = getScheduleByGroupIdSorted(groupId).first()
-            if (localSchedule == null || !areSchedulesSameLazy(localSchedule, it)) {
+            if (localSchedule == null || !areSchedulesSame(localSchedule, remoteSchedule)) {
                 deleteGroupById(groupId)
                 saveSchedule(it)
                 "Schedule sync done".log()
@@ -25,31 +27,32 @@ class SyncScheduleByGroupId @Inject constructor(
         }
     }
 
-    // TODO: BRUH optimize this
-    private fun areSchedulesSameLazy(first: Schedule, second: Schedule): Boolean {
+    private fun areSchedulesSame(first: Schedule, second: Schedule): Boolean {
+
+        first.dailySchedules.forEachIndexed { dailyScheduleIndex, dailyScheduleFirst ->
+            val dailyScheduleSecond = second.dailySchedules.getOrNull(dailyScheduleIndex) ?: return false
+
+            dailyScheduleFirst.subjects.forEachIndexed { subjectIndex, subjectFirst ->
+                val subjectSecond = dailyScheduleSecond.subjects.getOrNull(subjectIndex) ?: return false
+
+                val areSubjectsSame = subjectFirst.dailyScheduleId == subjectSecond.dailyScheduleId
+                        && subjectFirst.electiveSubjectId == subjectSecond.electiveSubjectId
+                        && subjectFirst.englishSubjectId == subjectSecond.englishSubjectId
+                        && subjectFirst.indexInDay == subjectSecond.indexInDay
+                        && subjectFirst.startTime == subjectSecond.startTime
+                        && subjectFirst.endTime == subjectSecond.endTime
+                        && subjectFirst.name == subjectSecond.name
+                        && subjectFirst.room == subjectSecond.room
+                        && subjectFirst.type == subjectSecond.type
+                        && subjectFirst.kind == subjectSecond.kind
+                        && subjectFirst.teacherName == subjectSecond.teacherName
+                        && subjectFirst.teacherPatronymic == subjectSecond.teacherPatronymic
+                        && subjectFirst.teacherSurname == subjectSecond.teacherSurname
+
+                if(!areSubjectsSame) return false
+            }
+        }
+
         return true
-//        var result = false
-//        for (firstDailySchedule in first.dailySchedules) {
-//            for (secondDailySchedule in second.dailySchedules) {
-//                for (firstSubject in firstDailySchedule.subjects) {
-//                    for (secondSubject in secondDailySchedule.subjects) {
-//                        result = firstSubject.dailyScheduleId == secondSubject.dailyScheduleId
-//                                && firstSubject.electiveSubjectId == secondSubject.electiveSubjectId
-//                                && firstSubject.englishSubjectId == secondSubject.englishSubjectId
-//                                && firstSubject.indexInDay == secondSubject.indexInDay
-//                                && firstSubject.startTime == secondSubject.startTime
-//                                && firstSubject.endTime == secondSubject.endTime
-//                                && firstSubject.name == secondSubject.name
-//                                && firstSubject.room == secondSubject.room
-//                                && firstSubject.type == secondSubject.type
-//                                && firstSubject.kind == secondSubject.kind
-//                                && firstSubject.teacherName == secondSubject.teacherName
-//                                && firstSubject.teacherPatronymic == secondSubject.teacherPatronymic
-//                                && firstSubject.teacherSurname == secondSubject.teacherSurname
-//                    }
-//                }
-//            }
-//        }
-//        return result
     }
 }
