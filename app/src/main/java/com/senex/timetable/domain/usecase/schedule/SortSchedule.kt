@@ -36,7 +36,13 @@ class SortSchedule @Inject constructor() {
     }
 
     private fun sortSubjects(dailySchedule: DailySchedule) =
-        dailySchedule.subjects.sortedWith(
-            Comparator.comparingInt { it.indexInDay }
-        )
+        dailySchedule.subjects.sortedWith { first, second ->
+            val indexComparisonResult = first.indexInDay.compareTo(second.indexInDay)
+
+            if (indexComparisonResult == 0) {
+                first.name.compareTo(second.name)
+            } else {
+                indexComparisonResult
+            }
+        }
 }
